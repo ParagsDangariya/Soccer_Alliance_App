@@ -1,11 +1,88 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textAllCaps">false</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TextInputEditTextStyle" parent="Base.Widget.MaterialComponents.TextInputEditText">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:singleLine">true</item>
+
+    </style>
+
+    <style name="TextInputHint" parent="TextAppearance.Design.Hint">
+        <!-- Floating label appearance here -->
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextInputError" parent="TextAppearance.Design.Error">
+        <!-- Error message appearance here -->
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxStrokeColor">@color/user_auth_default_textinput_border_color</item>
+        <item name="hintTextAppearance">@style/TextInputHint</item>
+        <item name="errorTextAppearance">@style/TextInputError</item>
+        <item name="errorTextColor">@color/colorErroronAuth</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="hintTextColor">@android:color/white</item>
+        <item name="endIconTint">@android:color/white</item>
+        <item name="errorIconTint">@android:color/white</item>
+        <item name="startIconTint">@android:color/white</item>
+    </style>
+
+
+    <style name="NormalButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="backgroundTint">@color/colorNormalButton</item>
+        <item name="cornerRadius">10dp</item>
+
+    </style>
+
+    <style name="VarientButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="backgroundTint">@android:color/white</item>
+        <item name="cornerRadius">10dp</item>
+
+    </style>
+
+    <style name="TextInputAutoCompleteLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxStrokeColor">@color/user_auth_default_textinput_border_color</item>
+        <item name="hintTextAppearance">@style/TextInputHint</item>
+        <item name="errorTextAppearance">@style/TextInputError</item>
+        <item name="errorTextColor">@color/colorErroronAuth</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="hintTextColor">@android:color/white</item>
+        <item name="endIconTint">@android:color/white</item>
+        <item name="errorIconTint">@android:color/white</item>
+        <item name="startIconTint">@android:color/white</item>
+    </style>
+
+    <style name="NavDrawerTexApptStyle" parent="TextAppearance.AppCompat.Menu">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="NavigationTheme" parent="AppTheme">
+        <item name="listPreferredItemHeightSmall">55dp</item><!-- menu item height- vary as u need -->
+    </style>
+
 
 </resources>

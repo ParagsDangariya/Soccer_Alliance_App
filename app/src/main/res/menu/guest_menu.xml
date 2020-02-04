@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/guest_dashboard_btn"
+        android:title="Dashboard"
+        android:icon="@drawable/user"/>
+
+    <item android:id="@+id/guest_list_of_country_btn"
+        android:title="List Of Country"
+        android:icon="@drawable/user"/>
+
+    <item android:id="@+id/guest_Teams_btn"
+        android:title="Teams"
+        android:icon="@drawable/user"/>
+
+    <item android:id="@+id/guest_login_btn"
+        android:title="Login/SignUp"
+        android:icon="@drawable/user"/>
+
+</menu>

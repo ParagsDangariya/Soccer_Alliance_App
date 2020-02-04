@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_auth_nav_graph"
+    app:startDestination="@id/splash_Screen">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.soccerallianceapp.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_signUp1_Fragment"
+            app:destination="@id/signUp1_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp1_Fragment"
+        android:name="com.example.soccerallianceapp.SignUp1_Fragment"
+        android:label="fragment_sign_up1"
+        tools:layout="@layout/fragment_sign_up1" >
+        <action
+            android:id="@+id/action_signUp1_Fragment_to_signUp2_Fragment"
+            app:destination="@id/signUp2_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp2_Fragment"
+        android:name="com.example.soccerallianceapp.SignUp2_Fragment"
+        android:label="fragment_sign_up2"
+        tools:layout="@layout/fragment_sign_up2" >
+        <action
+            android:id="@+id/action_signUp2_Fragment_to_signup_profile_Fragment"
+            app:destination="@id/signup_profile_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp3_Fragment"
+        android:name="com.example.soccerallianceapp.SignUp3_Fragment"
+        android:label="fragment_sign_up3"
+        tools:layout="@layout/fragment_sign_up3" >
+        <action
+            android:id="@+id/action_signUp3_Fragment_to_signUp4_Fragment"
+            app:destination="@id/signUp4_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp4_Fragment"
+        android:name="com.example.soccerallianceapp.SignUp4_Fragment"
+        android:label="fragment_sign_up4"
+        tools:layout="@layout/fragment_sign_up4" />
+    <fragment
+        android:id="@+id/splash_Screen"
+        android:name="com.example.soccerallianceapp.Splash_Screen_Fragment"
+        android:label="fragment_splash__screen"
+        tools:layout="@layout/fragment_splash__screen" >
+        <action
+            android:id="@+id/action_splash_Screen_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/forgot_pass2_Fragment"
+        android:name="com.example.soccerallianceapp.forgot_pass2_Fragment"
+        android:label="fragment_forgot_pass2"
+        tools:layout="@layout/fragment_forgot_pass2" />
+    <fragment
+        android:id="@+id/forgot_pass1_Fragment"
+        android:name="com.example.soccerallianceapp.forgot_pass1_Fragment"
+        android:label="fragment_forgot_pass1"
+        tools:layout="@layout/fragment_forgot_pass1" />
+    <fragment
+        android:id="@+id/forgot_pass3_Fragment"
+        android:name="com.example.soccerallianceapp.forgot_pass3_Fragment"
+        android:label="fragment_forgot_pass3"
+        tools:layout="@layout/fragment_forgot_pass3" />
+    <fragment
+        android:id="@+id/signup_profile_Fragment"
+        android:name="com.example.soccerallianceapp.Signup_profile_Fragment"
+        android:label="fragment_signup_profile"
+        tools:layout="@layout/fragment_signup_profile" >
+        <action
+            android:id="@+id/action_signup_profile_Fragment_to_signUp3_Fragment"
+            app:destination="@id/signUp3_Fragment" />
+    </fragment>
+
+</navigation>

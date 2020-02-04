@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#142038</color>
+    <color name="colorPrimaryDark">#000013</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimaryLight">#3d4762</color>
+    <color name="colorError">#FC642D</color>
+    <color name="colorErroronAuth">#FFFFFF</color>
+    <color name="colorNormalButton">#1c28c9</color>
+    <color name="colorNavDrawerBackground">#dfe0dd</color>
 </resources>
