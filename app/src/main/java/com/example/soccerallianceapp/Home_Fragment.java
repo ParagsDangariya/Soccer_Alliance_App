@@ -60,5 +60,5 @@ public class Home_Fragment extends Fragment {
 
 
     }
-    
+
 }
