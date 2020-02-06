@@ -50,5 +50,10 @@
         android:name="com.example.soccerallianceapp.Add_Team_in_League_Fragment"
         android:label="fragment_add_team_in_league"
         tools:layout="@layout/fragment_add_team_in_league" />
+    <fragment
+        android:id="@+id/team_mngr_my_profile_Fragment"
+        android:name="com.example.soccerallianceapp.Team_mngr_my_profile_Fragment"
+        android:label="fragment_team_mngr_my_profile_"
+        tools:layout="@layout/fragment_team_mngr_my_profile_" />
 
 </navigation>

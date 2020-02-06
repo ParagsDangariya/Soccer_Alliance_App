@@ -59,7 +59,7 @@
         <item name="boxStrokeColor">@color/dashboard_default_textinput_border_color</item>
         <item name="hintTextAppearance">@style/TextInputHint</item>
         <item name="errorTextAppearance">@style/TextInputError</item>
-        <item name="errorTextColor">@color/colorErroronAuth</item>
+        <item name="errorTextColor">@android:color/holo_red_light</item>
         <item name="android:textColorHint">@color/colorPrimaryLight</item>
         <item name="hintTextColor">@color/colorPrimaryLight</item>
         <item name="endIconTint">@color/colorPrimaryLight</item>
@@ -93,6 +93,20 @@
         <item name="endIconTint">@android:color/white</item>
         <item name="errorIconTint">@android:color/white</item>
         <item name="startIconTint">@android:color/white</item>
+    </style>
+
+
+    <style name="TextInputAutoCompleteLayoutVarient" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxStrokeColor">@color/dashboard_default_textinput_border_color</item>
+        <item name="hintTextAppearance">@style/TextInputHint</item>
+        <item name="errorTextAppearance">@style/TextInputError</item>
+        <item name="errorTextColor">@android:color/holo_red_light</item>
+        <item name="android:textColorHint">@color/colorPrimaryLight</item>
+        <item name="hintTextColor">@color/colorPrimaryLight</item>
+        <item name="endIconTint">@color/colorPrimaryLight</item>
+        <item name="errorIconTint">@color/colorPrimaryLight</item>
+        <item name="startIconTint">@color/colorPrimaryLight</item>
     </style>
 
     <style name="NavDrawerTexApptStyle" parent="TextAppearance.AppCompat.Menu">

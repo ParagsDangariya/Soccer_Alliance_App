@@ -144,6 +144,12 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 }
                 break;
 
+            case R.id.team_my_profile_btn:
+                if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
+                    DashboardNavController.navigate(R.id.team_mngr_my_profile_Fragment);
+                }
+                break;
+
         }
 
         return true;
