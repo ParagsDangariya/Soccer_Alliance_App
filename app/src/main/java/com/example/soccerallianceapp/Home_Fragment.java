@@ -23,11 +23,6 @@ public class Home_Fragment extends Fragment {
     private ViewPageAdapter viewPageAdapter;
 
 
-    public Home_Fragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,7 +37,7 @@ public class Home_Fragment extends Fragment {
         /*-------------Tab Layout Setup---------*/
         dashboardTabLayout = view.findViewById(R.id.dashboard_tabs_layout);
         tabs_view_pager = view.findViewById(R.id.tabs_view_pager);
-        viewPageAdapter = new ViewPageAdapter(getActivity().getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,2);
+        viewPageAdapter = new ViewPageAdapter(getChildFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,2);
         tabs_view_pager.setAdapter(viewPageAdapter);
         tabs_view_pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(dashboardTabLayout));
         dashboardTabLayout.setupWithViewPager(tabs_view_pager);

@@ -22,6 +22,13 @@
         <item name="android:singleLine">true</item>
 
     </style>
+    <style name="TextInputEditTextStyleVarient" parent="Base.Widget.MaterialComponents.TextInputEditText">
+        <item name="android:textColor">@color/colorPrimaryLight</item>
+        <item name="android:textCursorDrawable">@drawable/dashbord_cursor_color</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:singleLine">true</item>
+
+    </style>
 
     <style name="TextInputHint" parent="TextAppearance.Design.Hint">
         <!-- Floating label appearance here -->
@@ -47,6 +54,18 @@
     </style>
 
 
+    <style name="TextInputLayoutStyleVarient" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxStrokeColor">@color/dashboard_default_textinput_border_color</item>
+        <item name="hintTextAppearance">@style/TextInputHint</item>
+        <item name="errorTextAppearance">@style/TextInputError</item>
+        <item name="errorTextColor">@color/colorErroronAuth</item>
+        <item name="android:textColorHint">@color/colorPrimaryLight</item>
+        <item name="hintTextColor">@color/colorPrimaryLight</item>
+        <item name="endIconTint">@color/colorPrimaryLight</item>
+        <item name="errorIconTint">@color/colorPrimaryLight</item>
+        <item name="startIconTint">@color/colorPrimaryLight</item>
+    </style>
     <style name="NormalButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">18sp</item>

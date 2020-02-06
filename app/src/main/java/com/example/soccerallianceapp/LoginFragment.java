@@ -25,7 +25,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     public NavController navController;
     private Context context;
-    MaterialButton guest_login_btn;
+    MaterialButton guest_login_btn,login_btn;
     TextView register_btn_on_login_page,forget_password_txt;
 
 
@@ -57,12 +57,20 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         forget_password_txt = view.findViewById(R.id.forget_password_txt);
         forget_password_txt.setOnClickListener(this);
 
+        login_btn = view.findViewById(R.id.login_btn);
+        login_btn.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View view) {
-        if(view==register_btn_on_login_page){
+
+        if(view == login_btn){
+            Intent i = new Intent(context,Dashboard_Activity.class);
+            i.putExtra("user_type","Team Manager");
+            startActivity(i);
+        }
+        else if(view==register_btn_on_login_page){
             navController.navigate(R.id.signUp1_Fragment);
         }
         else if(view == forget_password_txt){

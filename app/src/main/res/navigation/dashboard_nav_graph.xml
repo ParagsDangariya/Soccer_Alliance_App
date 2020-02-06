@@ -10,4 +10,45 @@
         android:name="com.example.soccerallianceapp.Home_Fragment"
         android:label="Soccer Alliance"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/teamListFragment"
+        android:name="com.example.soccerallianceapp.TeamListFragment"
+        android:label="Teams"
+        tools:layout="@layout/fragment_team_list" />
+    <fragment
+        android:id="@+id/country_List_Fragment"
+        android:name="com.example.soccerallianceapp.Country_List_Fragment"
+        android:label="fragment_country_list"
+        tools:layout="@layout/fragment_country_list" />
+    <fragment
+        android:id="@+id/player_List_Fragment"
+        android:name="com.example.soccerallianceapp.Player_List_Fragment"
+        android:label="fragment_player_list"
+        tools:layout="@layout/fragment_player_list" />
+    <fragment
+        android:id="@+id/upcomingMatchFragment"
+        android:name="com.example.soccerallianceapp.UpcomingMatchFragment"
+        android:label="fragment_upcoming_match"
+        tools:layout="@layout/fragment_upcoming_match" />
+    <fragment
+        android:id="@+id/match_Score_Fragment"
+        android:name="com.example.soccerallianceapp.Match_Score_Fragment"
+        android:label="fragment_match_score"
+        tools:layout="@layout/fragment_match_score" />
+    <fragment
+        android:id="@+id/my_Team_Fragment"
+        android:name="com.example.soccerallianceapp.My_Team_Fragment"
+        android:label="fragment_my_team"
+        tools:layout="@layout/fragment_my_team" />
+    <fragment
+        android:id="@+id/add_Player_Fragment"
+        android:name="com.example.soccerallianceapp.Add_Player_Fragment"
+        android:label="fragment_add_team"
+        tools:layout="@layout/fragment_add_player" />
+    <fragment
+        android:id="@+id/add_Team_in_League_Fragment"
+        android:name="com.example.soccerallianceapp.Add_Team_in_League_Fragment"
+        android:label="fragment_add_team_in_league"
+        tools:layout="@layout/fragment_add_team_in_league" />
+
 </navigation>
