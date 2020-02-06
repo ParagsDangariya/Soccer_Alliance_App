@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:background="@color/colorNavDrawerBackground"
+android:fillViewport="true"
+tools:context="com.example.soccerallianceapp.Add_Player_Fragment">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:paddingBottom="120dp">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/add_player_cardview"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cardCornerRadius="60dp"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="2dp"
+            app:strokeColor="@android:color/darker_gray">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/user"
+                android:id="@+id/add_player_user_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/add_player_update_image_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Update Profile"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_player_cardview"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_player_name_layout"
+            style="@style/TextInputLayoutStyleVarient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_player_update_image_txt">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_player_name_edt_txt"
+                style="@style/TextInputEditTextStyleVarient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Full Name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textColorHint="@color/colorPrimaryLight" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_player_role_layout"
+            style="@style/TextInputLayoutStyleVarient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_player_name_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_player_role_edt_txt"
+                style="@style/TextInputEditTextStyleVarient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Role"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textColorHint="@color/colorPrimaryLight" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_player_strength_layout"
+            style="@style/TextInputLayoutStyleVarient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_player_role_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_player_strength_edt_txt"
+                style="@style/TextInputEditTextStyleVarient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Strength"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:textColorHint="@color/colorPrimaryLight" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!--<ProgressBar
+            android:id="@+id/signup1_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingBottom="5dp"
+            android:layout_centerInParent="true"
+            android:paddingTop="5dp"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:indeterminateTint="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signup_divider"/>
+        -->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_progress"
+            android:id="@+id/add_new_player_btn"
+            style="@style/NormalButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="30pt"
+            android:layout_margin="16dp"
+            android:text="Add New Player" />
+
+    </LinearLayout>
+</RelativeLayout>
+
+
+</ScrollView>
