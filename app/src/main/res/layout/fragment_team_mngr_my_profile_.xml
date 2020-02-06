@@ -116,7 +116,7 @@ tools:context="com.example.soccerallianceapp.Team_mngr_my_profile_Fragment">
             app:layout_constraintTop_toBottomOf="@id/tmp_age_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp">
 
@@ -197,7 +197,7 @@ tools:context="com.example.soccerallianceapp.Team_mngr_my_profile_Fragment">
                 style="@style/TextInputEditTextStyleVarient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Strength"
+                android:hint="Team Name"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:textColorHint="@color/colorPrimaryLight" />
