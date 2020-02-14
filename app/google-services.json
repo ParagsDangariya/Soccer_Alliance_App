@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "580329956435",
+    "firebase_url": "https://soccer-alliance-app.firebaseio.com",
+    "project_id": "soccer-alliance-app",
+    "storage_bucket": "soccer-alliance-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580329956435:android:3613733b665db626a812a6",
+        "android_client_info": {
+          "package_name": "com.example.soccerallianceapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580329956435-8e8dnnvrv3qbo1gho1idhsbr24bfncru.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.soccerallianceapp",
+            "certificate_hash": "c68d6464261bcff6a38983ec6bbb3ad54b552989"
+          }
+        },
+        {
+          "client_id": "580329956435-77cnr0si6p354lsnhk64bovvk0urhv7n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChIAfjlnd98pSLENs_f21OPHUgXti8TM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580329956435-77cnr0si6p354lsnhk64bovvk0urhv7n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
