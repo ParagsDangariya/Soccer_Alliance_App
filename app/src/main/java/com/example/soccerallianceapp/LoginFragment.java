@@ -60,7 +60,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         login_btn = view.findViewById(R.id.login_btn);
         login_btn.setOnClickListener(this);
 
-
     }
 
     @Override
