@@ -60,5 +60,10 @@
         android:name="com.example.soccerallianceapp.LeagueOperationsFragment"
         android:label="fragment_league_operations"
         tools:layout="@layout/fragment_league_operations" />
+    <fragment
+        android:id="@+id/createLeagueFragment"
+        android:name="com.example.soccerallianceapp.CreateLeagueFragment"
+        android:label="fragment_create_league"
+        tools:layout="@layout/fragment_create_league" />
 
 </navigation>
