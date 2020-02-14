@@ -76,6 +76,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         else if(view == forget_password_txt){
             navController.navigate(R.id.forgot_pass1_Fragment);
         }
+
+
         else if(view == guest_login_btn){
             Intent i = new Intent(context,Dashboard_Activity.class);
             startActivity(i);
