@@ -15,6 +15,9 @@ import com.example.soccer_alliance_project_test.R;
 
 public class MatchScoreRescheduleFragment extends Fragment {
 
+    public MatchScoreRescheduleFragment() {
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
