@@ -80,5 +80,10 @@
         android:name="com.example.soccerallianceapp.MatchScoreRescheduleFragment"
         android:label="fragment_match_score_reschedule"
         tools:layout="@layout/fragment_match_score_reschedule" />
+    <fragment
+        android:id="@+id/matchScoreUpdateFragment"
+        android:name="com.example.soccerallianceapp.MatchScoreUpdateFragment"
+        android:label="fragment_match_score_update"
+        tools:layout="@layout/fragment_match_score_update" />
 
 </navigation>

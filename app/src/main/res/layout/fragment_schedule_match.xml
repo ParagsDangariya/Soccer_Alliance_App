@@ -181,7 +181,7 @@
             <com.google.android.material.button.MaterialButton
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf=""
+
                 android:id="@+id/Schedule_match_btn"
                 style="@style/NormalButtonStyle"
                 android:layout_width="match_parent"
