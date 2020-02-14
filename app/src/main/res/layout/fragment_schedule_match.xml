@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorNavDrawerBackground"
+    android:fillViewport="true"
+    tools:context="com.example.soccerallianceapp.ScheduleMatchFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="5dp"
+            android:paddingBottom="120dp">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/schedule_match_team1_layout"
+                style="@style/TextInputLayoutStyleVarient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginEnd="16dp"
+                app:hintEnabled="false"
+                app:layout_constraintBottom_toTopOf="@+id/schedule_match_team2_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_match_edt_txt"
+                    style="@style/TextInputEditTextStyleVarient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Team1 Name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textColorHint="@color/colorPrimaryLight" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/schedule_match_team2_layout"
+                style="@style/TextInputLayoutStyleVarient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/schedule_match_team1_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_match_team2_edt_txt"
+                    style="@style/TextInputEditTextStyleVarient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Team2 Name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textColorHint="@color/colorPrimaryLight" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/schedule_match_date_layout"
+                style="@style/TextInputLayoutStyleVarient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/schedule_match_team2_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_match_date_edt_txt"
+                    style="@style/TextInputEditTextStyleVarient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Date"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textColorHint="@color/colorPrimaryLight" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/schedule_match_time_layout"
+                style="@style/TextInputLayoutStyleVarient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/schedule_match_date_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_match_time_layout_edt_txt"
+                    style="@style/TextInputEditTextStyleVarient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Time"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textColorHint="@color/colorPrimaryLight" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/schedule_match_location_layout"
+                style="@style/TextInputLayoutStyleVarient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/schedule_match_time_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_match_location_layout_edt_txt"
+                    style="@style/TextInputEditTextStyleVarient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Location"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:textColorHint="@color/colorPrimaryLight" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!--<ProgressBar
+                android:id="@+id/signup1_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingBottom="5dp"
+                android:layout_centerInParent="true"
+                android:paddingTop="5dp"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:indeterminateTint="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/signup_divider"/>
+            -->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+
+            <com.google.android.material.button.MaterialButton
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf=""
+                android:id="@+id/Schedule_match_btn"
+                style="@style/NormalButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="30pt"
+                android:layout_margin="8dp"
+                android:text="Schedule Match" />
+
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</ScrollView>

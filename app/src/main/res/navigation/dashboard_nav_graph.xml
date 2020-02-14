@@ -65,5 +65,10 @@
         android:name="com.example.soccerallianceapp.CreateLeagueFragment"
         android:label="fragment_create_league"
         tools:layout="@layout/fragment_create_league" />
+    <fragment
+        android:id="@+id/scheduleMatchFragment"
+        android:name="com.example.soccerallianceapp.ScheduleMatchFragment"
+        android:label="fragment_schedule_match"
+        tools:layout="@layout/fragment_schedule_match" />
 
 </navigation>
