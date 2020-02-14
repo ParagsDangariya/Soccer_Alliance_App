@@ -73,6 +73,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         else if(view==register_btn_on_login_page){
             navController.navigate(R.id.signUp1_Fragment);
         }
+
+        
         else if(view == forget_password_txt){
             navController.navigate(R.id.forgot_pass1_Fragment);
         }
