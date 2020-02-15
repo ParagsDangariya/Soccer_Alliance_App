@@ -13,6 +13,8 @@ import com.example.soccer_alliance_project_test.R;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ *
  */
 public class SignUp4_Fragment extends Fragment {
 

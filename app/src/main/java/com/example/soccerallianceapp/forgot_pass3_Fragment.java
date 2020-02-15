@@ -13,6 +13,8 @@ import com.example.soccer_alliance_project_test.R;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * forgot password with email instead of OTP.
  */
 public class forgot_pass3_Fragment extends Fragment {
 
