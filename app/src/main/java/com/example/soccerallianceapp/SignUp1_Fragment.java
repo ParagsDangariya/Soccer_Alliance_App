@@ -21,6 +21,8 @@ import com.example.soccer_alliance_project_test.R;
 
 /**
  * A simple {@link Fragment} subclass.
+ * Sign up part-1 has Email and phone number field and decide user type.
+ *
  */
 public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
 
