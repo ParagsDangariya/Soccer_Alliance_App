@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.soccer_alliance_project_test.R;
 
-
+/*
+* Upcoming matches will be which are coming in future and display details of match fixed by whom and who are inclueded.
+*
+* */
 public class UpcomingMatchFragment extends Fragment {
 
     @Override

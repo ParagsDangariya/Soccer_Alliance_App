@@ -14,6 +14,7 @@ import com.example.soccer_alliance_project_test.R;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
  */
 public class Line_Up_Fragment extends Fragment {
 
