@@ -15,6 +15,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.soccer_alliance_project_test.R;
+import com.google.android.material.textfield.TextInputEditText;
 
 
 /**
@@ -27,6 +28,10 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
     private Context context;
 
     ImageButton signup2_next_btn;
+
+
+    TextInputEditText signup2_name_edit_txt,signup2_age_edit_txt,signup2_country_layout,signup2_gender_edit_text;
+
 
 
     @Override
@@ -44,13 +49,31 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
 
         signup2_next_btn = view.findViewById(R.id.signup2_next_btn);
         signup2_next_btn.setOnClickListener(this);
+
+        signup2_name_edit_txt = view.findViewById(R.id.signup2_name_edit_txt);
+        signup2_age_edit_txt = view.findViewById(R.id.signup2_age_edit_txt);
+        signup2_country_layout = view.findViewById(R.id.signup2_country_layout);
+        signup2_gender_edit_text = view.findViewById(R.id.signup2_gender_edit_text);
+
     }
 
     @Override
     public void onClick(View view) {
         if(view == signup2_next_btn){
 
-            navController.navigate(R.id.signup_profile_Fragment);
+            String name = signup2_name_edit_txt.getEditableText().toString().trim();
+            String age = signup2_age_edit_txt.getEditableText().toString().trim();
+            String gender = signup2_gender_edit_text.getEditableText().toString().trim();
+            String country = signup2_country_layout.getEditableText().toString().trim();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("name", name);
+            bundle.putString("age", age);
+            bundle.putString("gender", gender);
+            bundle.putString("country", country);
+
+
+            navController.navigate(R.id.signUp3_Fragment,bundle);
 
         }
     }
