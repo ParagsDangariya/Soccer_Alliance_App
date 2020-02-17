@@ -30,8 +30,9 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
     ImageButton signup2_next_btn;
 
 
-    TextInputEditText signup2_name_edit_txt,signup2_age_edit_txt,signup2_country_layout,signup2_gender_edit_text;
+    TextInputEditText signup2_name_edit_txt,signup2_age_edit_txt,signup2_country_edit_text,signup2_gender_edit_text;
 
+    String email,phone;
 
 
     @Override
@@ -52,9 +53,11 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
 
         signup2_name_edit_txt = view.findViewById(R.id.signup2_name_edit_txt);
         signup2_age_edit_txt = view.findViewById(R.id.signup2_age_edit_txt);
-        signup2_country_layout = view.findViewById(R.id.signup2_country_layout);
-        signup2_gender_edit_text = view.findViewById(R.id.signup2_gender_edit_text);
+        //signup2_country_edit_text = view.findViewById(R.id.signup2_country_edit_text);
+        //signup2_gender_edit_text = view.findViewById(R.id.signup2_gender_edit_text);
 
+        email = getArguments().getString("email");
+        phone = getArguments().getString("phone");
     }
 
     @Override
@@ -64,16 +67,18 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
             String name = signup2_name_edit_txt.getEditableText().toString().trim();
             String age = signup2_age_edit_txt.getEditableText().toString().trim();
             String gender = signup2_gender_edit_text.getEditableText().toString().trim();
-            String country = signup2_country_layout.getEditableText().toString().trim();
+            String country = signup2_country_edit_text.getEditableText().toString().trim();
 
-            Bundle bundle = new Bundle();
+            /*Bundle bundle = new Bundle();
             bundle.putString("name", name);
             bundle.putString("age", age);
             bundle.putString("gender", gender);
             bundle.putString("country", country);
 
 
-            navController.navigate(R.id.signUp3_Fragment,bundle);
+             */
+
+            navController.navigate(R.id.signUp3_Fragment);
 
         }
     }

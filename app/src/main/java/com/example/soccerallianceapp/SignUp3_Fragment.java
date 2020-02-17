@@ -54,14 +54,14 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
         signup3_new_password = view.findViewById(R.id.signup3_new_password_edit_txt);
         signup3_confirm_password = view.findViewById(R.id.signup3_confirm_password_edit_txt);
 
-        email = getArguments().getString("email");
-        phone = getArguments().getString("phone");
+        //email = getArguments().getString("email");
+       phone = getArguments().getString("phone");
         name = getArguments().getString("name");
         gender = getArguments().getString("gender");
         country = getArguments().getString("country");
         age = getArguments().getString("age");
 
-        System.out.println(email);
+       // System.out.println(email);
 
     }
 
@@ -88,7 +88,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
             }
 
 
-           
+
             navController.navigate(R.id.signUp4_Fragment);
 
         }
