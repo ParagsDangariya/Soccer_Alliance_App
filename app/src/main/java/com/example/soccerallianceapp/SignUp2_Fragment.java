@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -28,9 +29,10 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
     private Context context;
 
     ImageButton signup2_next_btn;
+    private AutoCompleteTextView signup2_country_edit_text,signup2_gender_edit_text;
 
 
-    TextInputEditText signup2_name_edit_txt,signup2_age_edit_txt,signup2_country_edit_text,signup2_gender_edit_text;
+    TextInputEditText signup2_name_edit_txt,signup2_age_edit_txt;
 
     String email,phone;
 
@@ -53,8 +55,8 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
 
         signup2_name_edit_txt = view.findViewById(R.id.signup2_name_edit_txt);
         signup2_age_edit_txt = view.findViewById(R.id.signup2_age_edit_txt);
-        //signup2_country_edit_text = view.findViewById(R.id.signup2_country_edit_text);
-        //signup2_gender_edit_text = view.findViewById(R.id.signup2_gender_edit_text);
+        signup2_country_edit_text = view.findViewById(R.id.signup2_country_edit_text);
+        signup2_gender_edit_text = view.findViewById(R.id.signup2_gender_edit_text);
 
         email = getArguments().getString("email");
         phone = getArguments().getString("phone");

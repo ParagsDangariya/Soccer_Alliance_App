@@ -55,12 +55,14 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
         signup3_confirm_password = view.findViewById(R.id.signup3_confirm_password_edit_txt);
 
         //email = getArguments().getString("email");
-       phone = getArguments().getString("phone");
+        /*phone = getArguments().getString("phone");
         name = getArguments().getString("name");
         gender = getArguments().getString("gender");
         country = getArguments().getString("country");
         age = getArguments().getString("age");
 
+
+         */
        // System.out.println(email);
 
     }
