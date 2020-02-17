@@ -20,9 +20,7 @@ import com.example.soccer_alliance_project_test.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
 

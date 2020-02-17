@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 
@@ -17,6 +18,8 @@ import androidx.navigation.Navigation;
 
 import com.example.soccer_alliance_project_test.R;
 import com.google.android.material.textfield.TextInputEditText;
+
+import static android.R.layout.simple_list_item_1;
 
 
 /**
@@ -35,6 +38,12 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
     TextInputEditText signup2_name_edit_txt,signup2_age_edit_txt;
 
     String email,phone;
+    private static final String[] COUNTRIES = new String[] {
+            "Belgium", "France", "Italy", "Germany", "Spain"
+    };
+    private static final String[] GENDER = new String[] {
+             "Male", "Female"
+    };
 
 
     @Override
@@ -53,13 +62,23 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
         signup2_next_btn = view.findViewById(R.id.signup2_next_btn);
         signup2_next_btn.setOnClickListener(this);
 
+        ArrayAdapter<String> countriesadapter = new ArrayAdapter<String>(context,
+                simple_list_item_1, COUNTRIES);
+
+        ArrayAdapter<String> genderadapter = new ArrayAdapter<String>(context,
+                simple_list_item_1, GENDER);
         signup2_name_edit_txt = view.findViewById(R.id.signup2_name_edit_txt);
         signup2_age_edit_txt = view.findViewById(R.id.signup2_age_edit_txt);
         signup2_country_edit_text = view.findViewById(R.id.signup2_country_edit_text);
         signup2_gender_edit_text = view.findViewById(R.id.signup2_gender_edit_text);
 
+
+        signup2_country_edit_text.setAdapter(countriesadapter);
+
+        signup2_gender_edit_text.setAdapter(genderadapter);
         email = getArguments().getString("email");
         phone = getArguments().getString("phone");
+
     }
 
     @Override
