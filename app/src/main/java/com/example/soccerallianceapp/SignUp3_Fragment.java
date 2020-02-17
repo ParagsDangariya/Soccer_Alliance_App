@@ -17,8 +17,11 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.soccer_alliance_project_test.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
@@ -28,6 +31,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
     private Context context;
 
     ImageButton signup3_next_btn;
+    FirebaseAuth fAuth;
 
     TextInputEditText signup3_new_password,signup3_confirm_password;
 
@@ -52,7 +56,10 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
         signup3_new_password = view.findViewById(R.id.signup3_new_password_edit_txt);
         signup3_confirm_password = view.findViewById(R.id.signup3_confirm_password_edit_txt);
 
-        //email = getArguments().getString("email");
+
+        fAuth = FirebaseAuth.getInstance();
+
+        email = getArguments().getString("email");
         /*phone = getArguments().getString("phone");
         name = getArguments().getString("name");
         gender = getArguments().getString("gender");
@@ -61,7 +68,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
 
          */
-       // System.out.println(email);
+       System.out.println("email"+email);
 
     }
 
@@ -77,19 +84,28 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
             }else if(password.length() < 6){
                 signup3_new_password.setError("Password Must be >= 6 Characters");
                 return;
-            }
-
-
-
-
-            if(password == confirmpassword){
+            }else if(password == confirmpassword){
                 signup3_confirm_password.setError("The confirm password conformation does not match!");
                 return;
             }
 
+            fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(getContext(), "User Created.", Toast.LENGTH_SHORT).show();
+                        navController.navigate(R.id.loginFragment);
+
+                    }else{
+                        Toast.makeText(getContext(), "Error ! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        System.out.println(task.getException().getMessage());
+                        navController.navigate(R.id.forgot_pass1_Fragment);
+                    }
+                }
+            });
 
 
-            navController.navigate(R.id.signUp4_Fragment);
+
 
         }
     }

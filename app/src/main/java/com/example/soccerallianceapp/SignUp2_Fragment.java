@@ -87,16 +87,17 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
             String gender = signup2_gender_edit_text.getEditableText().toString().trim();
             String country = signup2_country_edit_text.getEditableText().toString().trim();
 
-            /*Bundle bundle = new Bundle();
+            Bundle bundle = new Bundle();
+
             bundle.putString("name", name);
             bundle.putString("age", age);
             bundle.putString("gender", gender);
             bundle.putString("country", country);
 
 
-             */
 
-            navController.navigate(R.id.signUp3_Fragment);
+
+            navController.navigate(R.id.signUp3_Fragment,bundle);
 
         }
     }
