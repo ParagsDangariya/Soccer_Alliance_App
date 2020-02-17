@@ -38,9 +38,6 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
     TextInputEditText signup2_name_edit_txt,signup2_age_edit_txt;
 
     String email,phone;
-    private static final String[] COUNTRIES = new String[] {
-            "Belgium", "France", "Italy", "Germany", "Spain"
-    };
     private static final String[] GENDER = new String[] {
              "Male", "Female"
     };
@@ -63,7 +60,7 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
         signup2_next_btn.setOnClickListener(this);
 
         ArrayAdapter<String> countriesadapter = new ArrayAdapter<String>(context,
-                simple_list_item_1, COUNTRIES);
+                simple_list_item_1, Countries_List.country);
 
         ArrayAdapter<String> genderadapter = new ArrayAdapter<String>(context,
                 simple_list_item_1, GENDER);
