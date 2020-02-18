@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_loginFragment_to_signUp1_Fragment"
             app:destination="@id/signUp1_Fragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_emailNotVerifiedFragment"
+            app:destination="@id/emailNotVerifiedFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUp1_Fragment"
@@ -80,5 +83,10 @@
             android:id="@+id/action_signup_profile_Fragment_to_signUp3_Fragment"
             app:destination="@id/signUp3_Fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/emailNotVerifiedFragment"
+        android:name="com.example.soccerallianceapp.EmailNotVerifiedFragment"
+        android:label="fragment_email_not_verified"
+        tools:layout="@layout/fragment_email_not_verified" />
 
 </navigation>

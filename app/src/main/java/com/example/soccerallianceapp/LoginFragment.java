@@ -25,6 +25,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
@@ -36,8 +37,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     TextView register_btn_on_login_page,forget_password_txt;
 
     TextInputEditText email_edit_txt,password_edit_txt;
+    FirebaseUser user;
 
 
+    String uid="";
     FirebaseAuth fAuth;
 
     @Override
@@ -114,11 +117,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
 
-                        Toast.makeText(getContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
 
-                        Intent i = new Intent(context,Dashboard_Activity.class);
-                        i.putExtra("user_type","Team Manager");
-                        startActivity(i);
+                        uid = fAuth.getCurrentUser().getUid();
+                         user = fAuth.getCurrentUser();
+                        verifieduser(user);
+
 
                     }else {
 
@@ -145,5 +149,20 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             startActivity(i);
         }
 
+    }
+
+    private void verifieduser(FirebaseUser user) {
+
+        if(!user.isEmailVerified()){
+            Toast.makeText(getContext(), "Verify your Account First.", Toast.LENGTH_LONG).show();
+            navController.navigate(R.id.emailNotVerifiedFragment);
+        }else {
+            Toast.makeText(getContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
+
+            Intent i = new Intent(context,Dashboard_Activity.class);
+            i.putExtra("user_type","Team Manager");
+            startActivity(i);
+
+        }
     }
 }

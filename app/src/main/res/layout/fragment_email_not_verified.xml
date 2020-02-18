@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:fillViewport="true"
-    tools:context="com.example.soccerallianceapp.SignUp4_Fragment">
+    tools:context="com.example.soccerallianceapp.EmailNotVerifiedFragment">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,13 +35,13 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                android:id="@+id/signup4_registration_txt"
+                android:id="@+id/email_verify_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:fontFamily="sans-serif-black"
-                android:text="Registration"
+                android:text="Email Verification"
                 android:textColor="@android:color/white"
                 android:textSize="46dp"
                 android:textStyle="bold"
@@ -56,12 +57,12 @@
                 android:fontFamily="sans-serif"
                 android:padding="15dp"
                 android:gravity="center"
-                android:text="A Verification link sent to your Email Account."
+                android:text="Verify your Account."
                 android:textColor="@android:color/white"
                 android:textSize="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/signup4_registration_txt"/>
+                app:layout_constraintTop_toBottomOf="@id/email_verify_txt"/>
 
 
 
@@ -91,7 +92,7 @@
 
 
                 android:layout_margin="16dp"
-                android:text="Log In" />
+                android:text="Resend Email" />
 
         </LinearLayout>
     </RelativeLayout>

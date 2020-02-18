@@ -45,6 +45,15 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
 
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            email = getArguments().getString("email");
+            phone = getArguments().getString("phone");
+            user_type = getArguments().getString("user-type");
+        }
+    }
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -75,9 +84,7 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
 
         signup2_gender_edit_text.setAdapter(genderadapter);
 
-        email = getArguments().getString("email");
-        phone = getArguments().getString("phone");
-        user_type = getArguments().getString("user-type");
+
 
     }
 

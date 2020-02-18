@@ -40,6 +40,19 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            email = getArguments().getString("email");
+            phone = getArguments().getString("phone");
+            user_type = getArguments().getString("user-type");
+            name = getArguments().getString("name");
+            gender = getArguments().getString("gender");
+            country = getArguments().getString("country");
+            age = getArguments().getString("age");
+        }
+    }
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -60,13 +73,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
         fAuth = FirebaseAuth.getInstance();
 
-        email = getArguments().getString("email");
-        phone = getArguments().getString("phone");
-        user_type = getArguments().getString("user-type");
-        name = getArguments().getString("name");
-        gender = getArguments().getString("gender");
-        country = getArguments().getString("country");
-        age = getArguments().getString("age");
+
 
 
 
@@ -105,7 +112,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(getContext(), "User Created.", Toast.LENGTH_SHORT).show();
-                        navController.navigate(R.id.loginFragment);
+                        navController.navigate(R.id.signUp4_Fragment);
 
                     }else{
                         Toast.makeText(getContext(), "Error ! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
