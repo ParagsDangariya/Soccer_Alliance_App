@@ -93,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Phone Number"
                         android:imeOptions="actionDone"
-                        android:inputType="text"
+                        android:inputType="phone"
                         android:textColorHint="@android:color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 

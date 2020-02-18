@@ -35,8 +35,8 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
     TextInputEditText signup3_new_password,signup3_confirm_password;
 
-    String email,phone,name,gender,country,age,user_type;
-    //int phoneno;
+    String email,name,gender,country,age,user_type,phone;
+    //int ;
 
 
     @Override
@@ -84,14 +84,21 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                 signup3_new_password.setError("Password is Required.");
                 return ;
             }else if(password.length() < 6){
-                signup3_new_password.setError("Password Must be >= 6 Characters");
+                signup3_new_password.setError("Password Must be more than 6 Characters");
                 return;
-            }
+            }else if(TextUtils.isEmpty(confirmpassword)) {
+                signup3_confirm_password.setError("The confirm password is Required.");
+                return;
+            }else if(!password.equals(confirmpassword)){
+                    signup3_confirm_password.setError("The confirm password conformation does not match!");
+                    return;
+                }
 
-            if(password == confirmpassword){
-                signup3_confirm_password.setError("The confirm password conformation does not match!");
-                return;
-            }
+
+            System.out.println("Pass"+password);
+
+
+            System.out.println("Pass"+confirmpassword);
 
             fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -103,7 +110,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                     }else{
                         Toast.makeText(getContext(), "Error ! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         System.out.println(task.getException().getMessage());
-                        navController.navigate(R.id.forgot_pass1_Fragment);
+
                     }
                 }
             });

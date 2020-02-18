@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +20,9 @@ import androidx.navigation.Navigation;
 
 import com.example.soccer_alliance_project_test.R;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -34,6 +38,13 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
     ConstraintLayout signup_team_manager_btn_type,signup_league_manager_btn_type;
     String user_type = "";
     ImageButton signup1_next_btn;
+    //public static final String PHONE_VERIFICATION = "^[+0-9-\\(\\)\\s]*{6,14}$";
+
+    //private static Pattern p;
+    //private static Matcher m;
+    String email,phone;
+    //boolean isPhoneValid;
+
 
     TextInputEditText signup_email_edit_txt,signup_phone_edit_txt;
 
@@ -75,21 +86,34 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
             signup_team_manager_btn_type.setBackground(null);
             user_type = "League Manager";
         }
-        else if(view==signup1_next_btn){
+        if(view==signup1_next_btn){
 
-            String email = signup_email_edit_txt.getEditableText().toString().trim();
 
-            String phone = signup_phone_edit_txt.getEditableText().toString().trim();
 
-            if(TextUtils.isEmpty(email)){
+            if(TextUtils.isEmpty(signup_email_edit_txt.getEditableText().toString().trim())){
                 signup_email_edit_txt.setError("Email is Required.");
                 return;
+            }else if(TextUtils.isEmpty(signup_phone_edit_txt.getEditableText().toString().trim())){
+                signup_phone_edit_txt.setError("The Phone number is Required.");
+                return;
             }
-            if(TextUtils.isEmpty(phone)){
-                signup_phone_edit_txt.setError("phone number is required with country code.");
+            /*
+            else {
+                if(!isValid(signup_phone_edit_txt.getEditableText().toString().trim())){
+                    signup_phone_edit_txt.setError("The Phone number is NOT valid!");
+                    return;
+                }
 
+                */
+            if(TextUtils.isEmpty(user_type)){
+                Toast.makeText(context,"Select User-type First for Registration",Toast.LENGTH_SHORT).show();
+                return;
             }
 
+            email = signup_email_edit_txt.getEditableText().toString().trim();
+            System.out.println("email"+email);
+
+            phone = signup_phone_edit_txt.getEditableText().toString().trim();
 
 
 
@@ -97,8 +121,34 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
             bundle.putString("email", email);
             bundle.putString("Phone", phone);
             bundle.putString("user-type",user_type);
-            navController.navigate(R.id.signUp2_Fragment, bundle);
+
+
+            navController.navigate(R.id.signUp2_Fragment,bundle);
 
         }
     }
+
+   /* public static boolean isValid(String s)
+    {
+        // The given argument to compile() method
+        // is regular expression. With the help of
+        // regular expression we can validate mobile
+        // number.
+        // 1) Begins with 0 or 91
+        // 2) Then contains 7 or 8 or 9.
+        // 3) Then contains 9 digits
+        Pattern p = Pattern.compile("/^\\d{10}$/");
+
+        // Pattern class contains matcher() method
+        // to find matching between given number
+        // and regular expression
+        s=s.replaceAll("[\\-\\+]", "");
+        System.out.println("mobile"+s);
+        Matcher m = p.matcher(s);
+        return (m.find() && m.group().equals(s));
+    }
+
+
+    */
+
 }
