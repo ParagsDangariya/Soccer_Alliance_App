@@ -19,7 +19,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:paddingBottom="120dp">
+            android:id="@+id/Constraint_layout"
+            android:paddingBottom="20dp">
 
             <ImageView
                 android:id="@+id/logo_image"
@@ -38,9 +39,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
+                android:fontFamily="sans-serif-black"
                 android:text="Registration"
                 android:textColor="@android:color/white"
-                android:textSize="26sp"
+                android:textSize="46dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,59 +53,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif"
+                android:padding="15dp"
                 android:gravity="center"
-                android:text="A 6-digit OTP has been sent to your email Id."
+                android:text="A Verification link sent to your Email Account."
                 android:textColor="@android:color/white"
-                android:textSize="16sp"
+                android:textSize="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/signup4_registration_txt"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/signup4_OTP_layout"
-                style="@style/TextInputLayoutStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                app:hintEnabled="false"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/signup4_OTP_txt">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/signup4_OTP_edit_txt"
-                    style="@style/TextInputEditTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="------"
-                    android:gravity="center"
-                    android:imeOptions="actionNext"
-                    android:inputType="number"
-                    android:textColorHint="@android:color/white" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
 
 
-
-            <!--<ProgressBar
-                android:id="@+id/signup1_progress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:paddingBottom="5dp"
-                android:layout_centerInParent="true"
-                android:paddingTop="5dp"
-                android:visibility="gone"
-                android:layout_gravity="center"
-                android:indeterminateTint="@android:color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/signup_divider"/>
-            -->
 
 
 
@@ -113,19 +75,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_below="@+id/Constraint_layout"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginTop="5dp"
             android:gravity="right"
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/signup4_validate_otp_btn"
+                android:id="@+id/signup4_login_btn"
                 style="@style/NormalButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="30pt"
+                android:fontFamily="sans-serif-black"
+                android:textSize="26dp"
                 android:layout_margin="16dp"
-                android:text="VALIDATE" />
+                android:text="Log In" />
 
         </LinearLayout>
     </RelativeLayout>

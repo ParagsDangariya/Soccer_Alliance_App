@@ -111,6 +111,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                         Toast.makeText(getContext(), "Error ! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         System.out.println(task.getException().getMessage());
 
+                        navController.navigate(R.id.signUp1_Fragment);
                     }
                 }
             });

@@ -153,7 +153,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/signup_league_txt"
-                            android:src="@mipmap/ic_launcher_round"
+                            android:src="@drawable/league_user"
                             android:padding="8dp"/>
 
                         <TextView
@@ -196,7 +196,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toTopOf="@id/signup_team_txt"
-                            android:src="@mipmap/ic_launcher_round"
+                            android:src="@drawable/team_user"
                             android:padding="8dp"/>
 
                         <TextView

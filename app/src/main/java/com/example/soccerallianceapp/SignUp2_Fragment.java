@@ -37,7 +37,7 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
 
     TextInputEditText signup2_name_edit_txt,signup2_age_edit_txt;
 
-    String email,user_type,phone;
+    String email="",user_type="",phone="";
     //int ;
     private static final String[] GENDER = new String[] {
              "Male", "Female"

@@ -42,7 +42,7 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
 
     //private static Pattern p;
     //private static Matcher m;
-    String email,phone;
+    String email ="",phone="";
     //boolean isPhoneValid;
 
 
