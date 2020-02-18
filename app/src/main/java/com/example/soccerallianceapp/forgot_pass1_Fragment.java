@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,10 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.soccer_alliance_project_test.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class forgot_pass1_Fragment extends Fragment implements View.OnClickListener {
@@ -22,7 +27,10 @@ public class forgot_pass1_Fragment extends Fragment implements View.OnClickListe
     public NavController navController;
     private Context context;
 
+    TextInputEditText fp1_email_edit_txt;
     ImageButton fp1_next_btn;
+    FirebaseAuth fAuth;
+
 
 
     @Override
@@ -42,12 +50,34 @@ public class forgot_pass1_Fragment extends Fragment implements View.OnClickListe
         fp1_next_btn = view.findViewById(R.id.fp1_next_btn);
         fp1_next_btn.setOnClickListener(this);
 
+
+        fp1_email_edit_txt = view.findViewById(R.id.fp1_email_edit_txt);
+
+        fAuth = FirebaseAuth.getInstance();
+
+
+
     }
 
     @Override
     public void onClick(View view) {
         if(view == fp1_next_btn){
-            navController.navigate(R.id.forgot_pass2_Fragment);
+
+
+            String email = fp1_email_edit_txt.getEditableText().toString().trim();
+            fAuth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(getContext(), "Password rest link is sent to your Email", Toast.LENGTH_LONG).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), "Error! Reset link is not sent!"+e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+
+            navController.navigate(R.id.loginFragment);
         }
     }
 }

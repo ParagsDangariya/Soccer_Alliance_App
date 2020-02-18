@@ -86,7 +86,9 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
             }else if(password.length() < 6){
                 signup3_new_password.setError("Password Must be >= 6 Characters");
                 return;
-            }else if(password == confirmpassword){
+            }
+
+            if(password == confirmpassword){
                 signup3_confirm_password.setError("The confirm password conformation does not match!");
                 return;
             }
