@@ -37,7 +37,7 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
 
     TextInputEditText signup2_name_edit_txt,signup2_age_edit_txt;
 
-    String email,phone;
+    String email,phone,user_type;
     private static final String[] GENDER = new String[] {
              "Male", "Female"
     };
@@ -75,6 +75,7 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
         signup2_gender_edit_text.setAdapter(genderadapter);
         email = getArguments().getString("email");
         phone = getArguments().getString("phone");
+        user_type = getArguments().getString("user-type");
 
     }
 
@@ -89,6 +90,9 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
 
             Bundle bundle = new Bundle();
 
+            bundle.putString("email", email);
+            bundle.putString("Phone", phone);
+            bundle.putString("user-type",user_type);
             bundle.putString("name", name);
             bundle.putString("age", age);
             bundle.putString("gender", gender);

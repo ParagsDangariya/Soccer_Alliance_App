@@ -35,7 +35,8 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
     TextInputEditText signup3_new_password,signup3_confirm_password;
 
-    String email,phone,name,gender,country,age;
+    String email,phone,name,gender,country,age,user_type;
+    //int phoneno;
 
 
     @Override
@@ -60,14 +61,15 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
         fAuth = FirebaseAuth.getInstance();
 
         email = getArguments().getString("email");
-        /*phone = getArguments().getString("phone");
+        phone = getArguments().getString("phone");
+        user_type = getArguments().getString("user-type");
         name = getArguments().getString("name");
         gender = getArguments().getString("gender");
         country = getArguments().getString("country");
         age = getArguments().getString("age");
 
 
-         */
+
        System.out.println("email"+email);
 
     }
