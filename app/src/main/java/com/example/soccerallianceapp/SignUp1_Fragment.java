@@ -79,12 +79,12 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
         if(view == signup_team_manager_btn_type){
             signup_team_manager_btn_type.setBackground(ContextCompat.getDrawable(context,R.drawable.user_type_selection_border));
             signup_league_manager_btn_type.setBackground(null);
-            user_type = "Team Manager";
+            user_type = "Team_Manager";
         }
         else if(view==signup_league_manager_btn_type){
             signup_league_manager_btn_type.setBackground(ContextCompat.getDrawable(context,R.drawable.user_type_selection_border));
             signup_team_manager_btn_type.setBackground(null);
-            user_type = "League Manager";
+            user_type = "League_Manager";
         }
         if(view==signup1_next_btn){
 

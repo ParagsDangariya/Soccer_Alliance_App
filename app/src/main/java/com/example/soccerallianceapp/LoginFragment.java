@@ -160,7 +160,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
 
             Intent i = new Intent(context,Dashboard_Activity.class);
-            i.putExtra("user_type","Team Manager");
+            i.putExtra("user_type","Team_Manager");
             startActivity(i);
 
         }
