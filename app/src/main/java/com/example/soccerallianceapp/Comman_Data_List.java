@@ -5,6 +5,8 @@ class Comman_Data_List {
     private String item_name;
     private int item_image;
 
+
+
     public Comman_Data_List(String item_name, int item_image) {
         this.item_name = item_name;
         this.item_image = item_image;

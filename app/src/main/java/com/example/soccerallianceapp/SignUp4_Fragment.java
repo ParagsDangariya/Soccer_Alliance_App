@@ -76,7 +76,7 @@ public class SignUp4_Fragment extends Fragment implements View.OnClickListener{
         fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(context,"Verification Email has been sent.",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"Verification Email has been sent.",Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

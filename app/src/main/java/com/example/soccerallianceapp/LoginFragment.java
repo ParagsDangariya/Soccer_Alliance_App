@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+
 import com.example.soccer_alliance_project_test.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,6 +27,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
@@ -36,11 +41,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     MaterialButton guest_login_btn,login_btn;
     TextView register_btn_on_login_page,forget_password_txt;
 
+    String uid ="",user_type;
     TextInputEditText email_edit_txt,password_edit_txt;
     FirebaseUser user;
 
+    //RequestQueue mqueue;
+    //VollyGetMethod volly;
 
-    String uid="";
     FirebaseAuth fAuth;
 
     @Override
@@ -82,6 +89,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         fAuth = FirebaseAuth.getInstance();
 
 
+       // mqueue= Volley.newRequestQueue(context);
 
     }
 
@@ -158,6 +166,52 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             navController.navigate(R.id.emailNotVerifiedFragment);
         }else {
             Toast.makeText(getContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
+
+
+            uid = user.getUid();
+            System.out.println(uid);
+
+            String url = "https://soccerallianceapp.appspot.com/rest/api/ViewregisterUserDetail&" + uid;
+
+
+            System.out.println("url" + url);
+
+
+            /*
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonArray = response.getJSONArray("UserDetails");
+
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject employee = jsonArray.getJSONObject(i);
+
+                                    String user_type = employee.getString("user_type");
+                                   System.out.println("usertype"+user_type);
+                                    //mTextViewResult.append(firstName + ", " + String.valueOf(age) + ", " + mail + "\n\n");
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                    System.out.println("error" + error.getMessage());
+                }
+            });
+
+            mqueue.add(request);
+
+
+
+
+            System.out.println("user" + user_type);
+
+             */
 
             Intent i = new Intent(context,Dashboard_Activity.class);
             i.putExtra("user_type","Team_Manager");

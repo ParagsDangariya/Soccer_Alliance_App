@@ -36,14 +36,15 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
     private Context context;
 
     ConstraintLayout signup_team_manager_btn_type,signup_league_manager_btn_type;
-    String user_type = "";
+    String user_type = "",phone;
     ImageButton signup1_next_btn;
     //public static final String PHONE_VERIFICATION = "^[+0-9-\\(\\)\\s]*{6,14}$";
 
-    //private static Pattern p;
-    //private static Matcher m;
-    String email ="",phone="";
-    //boolean isPhoneValid;
+
+    private static Pattern p;
+    private static Matcher m;
+    String email ="";
+    boolean isPhoneValid;
 
 
     TextInputEditText signup_email_edit_txt,signup_phone_edit_txt;
@@ -97,14 +98,26 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
                 signup_phone_edit_txt.setError("The Phone number is Required.");
                 return;
             }
-            /*
+
             else {
-                if(!isValid(signup_phone_edit_txt.getEditableText().toString().trim())){
+                if (!isValid(signup_phone_edit_txt.getEditableText().toString().trim())) {
                     signup_phone_edit_txt.setError("The Phone number is NOT valid!");
                     return;
                 }
+                /*
 
-                */
+                if ((signup_phone_edit_txt.getEditableText().toString().length())<9 &&(signup_phone_edit_txt.getEditableText().toString().length())>11 ) {
+                    signup_phone_edit_txt.setError("The Phone number does not have valid number input.");
+                    return;
+
+                }
+
+                 */
+
+            }
+
+
+
             if(TextUtils.isEmpty(user_type)){
                 Toast.makeText(context,"Select User-type First for Registration",Toast.LENGTH_SHORT).show();
                 return;
@@ -128,7 +141,9 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
         }
     }
 
-   /* public static boolean isValid(String s)
+
+
+    public static boolean isValid(String s)
     {
         // The given argument to compile() method
         // is regular expression. With the help of
@@ -137,18 +152,17 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
         // 1) Begins with 0 or 91
         // 2) Then contains 7 or 8 or 9.
         // 3) Then contains 9 digits
-        Pattern p = Pattern.compile("/^\\d{10}$/");
+        Pattern p = Pattern.compile("^[0-9]*$");
 
         // Pattern class contains matcher() method
         // to find matching between given number
         // and regular expression
-        s=s.replaceAll("[\\-\\+]", "");
+        //s=s.replaceAll("[\\-\\+]", "");
         System.out.println("mobile"+s);
         Matcher m = p.matcher(s);
         return (m.find() && m.group().equals(s));
     }
 
 
-    */
 
 }

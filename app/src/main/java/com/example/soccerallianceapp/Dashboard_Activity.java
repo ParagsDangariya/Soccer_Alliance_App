@@ -64,11 +64,16 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
         }
 */
         if(getIntent().getExtras()!=null){
-            if(getIntent().getStringExtra("user_type").equals("Team Manager")){
+            if(getIntent().getStringExtra("user_type").equals("Team_Manager")){
                 DashboardNavigationView.getMenu().clear();
                 DashboardNavigationView.inflateMenu(R.menu.team_manager_menu);
+
+            }else if(getIntent().getStringExtra("user_type").equals("League_Manager")){
+                DashboardNavigationView.getMenu().clear();
+                DashboardNavigationView.inflateMenu(R.menu.league_manager_menu);
             }
         }
+
         else {
             DashboardNavigationView.getMenu().clear();
             DashboardNavigationView.inflateMenu(R.menu.guest_menu);
@@ -125,6 +130,11 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                     DashboardNavController.navigate(R.id.country_List_Fragment);
                 }
                 break;
+            case R.id.guest_login_btn:
+                if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
+                    //DashboardNavController.navigate(R.id.home_Fragment);
+                }
+                break;
 
             case R.id.team_dashboard_btn:
                 if (DashboardNavController.getCurrentDestination().getId() != R.id.home_Fragment) {
@@ -145,6 +155,42 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 break;
 
             case R.id.team_my_profile_btn:
+                if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
+                    DashboardNavController.navigate(R.id.team_mngr_my_profile_Fragment);
+                }
+                break;
+            case R.id.team_logout_btn:
+                if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
+                    DashboardNavController.navigate(R.id.loginFragment);
+                }
+                break;
+
+            case R.id.league_dashboard_btn:
+                if (DashboardNavController.getCurrentDestination().getId() != R.id.home_Fragment) {
+                    DashboardNavController.navigate(R.id.home_Fragment);
+                }
+                break;
+
+            case R.id.league_my_league_btn:
+                if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
+                    DashboardNavController.navigate(R.id.my_Team_Fragment);
+                }
+                break;
+
+            case R.id.league_team_btn:
+                if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
+                    DashboardNavController.navigate(R.id.player_List_Fragment);
+                }
+                break;
+
+            case R.id.league_my_profile_btn:
+                if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
+                    DashboardNavController.navigate(R.id.team_mngr_my_profile_Fragment);
+                }
+                break;
+
+
+            case R.id.league_logout_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
                     DashboardNavController.navigate(R.id.team_mngr_my_profile_Fragment);
                 }

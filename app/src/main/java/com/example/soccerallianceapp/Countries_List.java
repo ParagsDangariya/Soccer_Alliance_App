@@ -71,4 +71,7 @@ public class Countries_List {
             "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "US Virgin Islands", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam",
 
             "Wallis and Futuna", "West Bank", "Yemen", "Zambia", "Zimbabwe"};
+
+    public static String[] gender = new String[]{"Male", "Female"};
+
 }
