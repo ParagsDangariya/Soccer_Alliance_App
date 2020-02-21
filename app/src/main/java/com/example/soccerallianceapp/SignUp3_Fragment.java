@@ -28,6 +28,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
@@ -35,6 +42,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
     public NavController navController;
     private Context context;
 
+    //Getdataservice service;
     //RequestQueue mqueue;
     ImageButton signup3_next_btn;
     FirebaseAuth fAuth;
@@ -60,6 +68,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
             age = getArguments().getString("age");
         }
         System.out.println("s3"+gender);
+        //service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,8 +94,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
 
 
-
-       System.out.println("email"+email);
+        System.out.println("email"+email);
 
     }
 
@@ -131,6 +139,35 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
 
                         System.out.println("url"+url);
+
+
+                        /*
+                        Call<ResponseBody> call = service.registerUser(uid,name,email,
+                        phone,gender,country,age,user_type,"noPhoto");
+
+                        call.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                try {
+                                    String s = response.body().string();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                Toast.makeText(context,"succesfully created....",Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                Toast.makeText(context," no more hopes....",Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+
+
+
+                         */
+
                        /* JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                                 new Response.Listener<JSONObject>() {
                                     @Override

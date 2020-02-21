@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    compileOptions {
+        targetCompatibility = "8"
+        sourceCompatibility = "8"
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
@@ -43,7 +47,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0-beta01'
 
     //volley libraries
-    implementation 'com.android.volley:volley:1.1.1'
+    //implementation 'com.android.volley:volley:1.1.1'
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
