@@ -14,7 +14,7 @@ public interface Getdataservice {
 //    Call<Weather> getWeather(@Path("geoId")int geoId);
 
 
-    @GET("registerUser&{uid}&{Full_name}&{Email}&{Phone}&{gender}&{Country}&{Age}&{User_type}&{User_photo}")
+    @GET("registerUser&{uid}&{Full_name}&{Email}&{Phone}&{Gender}&{Country}&{Age}&{User_type}&{User_photo}")
     Call<ResponseBody> registerUser(
 
             @Path("uid") String uid,@Path("Full_name") String full_name,

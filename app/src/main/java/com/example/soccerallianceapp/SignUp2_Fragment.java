@@ -47,9 +47,10 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             email = getArguments().getString("email");
-            phone = getArguments().getString("phone");
+            phone = getArguments().getString("Phone");
             user_type = getArguments().getString("user-type");
         }
+        System.out.println("phone"+phone);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,6 +96,7 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
             String gender = signup2_gender_edit_text.getEditableText().toString().trim();
             String country = signup2_country_edit_text.getEditableText().toString().trim();
 
+            System.out.println("phone2"+phone);
             System.out.println("ge"+gender);
             Bundle bundle = new Bundle();
 

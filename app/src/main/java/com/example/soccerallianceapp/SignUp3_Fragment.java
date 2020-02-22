@@ -42,7 +42,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
     public NavController navController;
     private Context context;
 
-    //Getdataservice service;
+    Getdataservice service;
     //RequestQueue mqueue;
     ImageButton signup3_next_btn;
     FirebaseAuth fAuth;
@@ -60,15 +60,16 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             email = getArguments().getString("email");
-            phone = getArguments().getString("phone");
+            phone = getArguments().getString("Phone");
             user_type = getArguments().getString("user-type");
             name = getArguments().getString("name");
             gender = getArguments().getString("gender");
             country = getArguments().getString("country");
             age = getArguments().getString("age");
         }
+        System.out.println("phone3"+phone);
         System.out.println("s3"+gender);
-        //service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -141,7 +142,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                         System.out.println("url"+url);
 
 
-                        /*
+
                         Call<ResponseBody> call = service.registerUser(uid,name,email,
                         phone,gender,country,age,user_type,"noPhoto");
 
@@ -159,6 +160,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                                System.out.println("error"+t.getMessage());
                                 Toast.makeText(context," no more hopes....",Toast.LENGTH_LONG).show();
 
                             }
@@ -166,7 +168,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
 
 
-                         */
+
 
                        /* JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                                 new Response.Listener<JSONObject>() {

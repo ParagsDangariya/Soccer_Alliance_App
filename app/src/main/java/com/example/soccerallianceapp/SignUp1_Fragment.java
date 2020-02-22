@@ -128,6 +128,7 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
 
             phone = signup_phone_edit_txt.getEditableText().toString().trim();
 
+            System.out.println("phone11"+phone);
 
 
             Bundle bundle = new Bundle();
