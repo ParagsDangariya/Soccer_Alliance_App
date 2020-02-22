@@ -45,9 +45,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     TextInputEditText email_edit_txt,password_edit_txt;
     FirebaseUser user;
 
-    //RequestQueue mqueue;
-    //VollyGetMethod volly;
-
+    /*
+    *Authication done by firebase .
+    * */
     FirebaseAuth fAuth;
 
     @Override
