@@ -4,7 +4,10 @@ import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUse
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface Getdataservice {
@@ -13,15 +16,16 @@ public interface Getdataservice {
 //    Call<Weather> getWeather(@Path("geoId")int geoId);
 
 
-    @GET("registerUser&{uid}&{Full_name}&{Email}&{Phone}&{Gender}&{Country}&{Age}&{User_type}&{User_photo}")
+    @FormUrlEncoded
+    @POST("registerUser")
     Call<ResponseBody> registerUser(
 
-            @Path("uid") String uid,@Path("Full_name") String full_name,
-            @Path("Email") String email, @Path("Phone") String phone,
-            @Path("Gender") String gender, @Path("Country") String country,
-            @Path("Age") String age,
-            @Path("User_type") String user_type,
-            @Path("User_photo") String user_photo
+            @Field("uid") String uid, @Field("Full_name") String full_name,
+            @Field("Email") String email, @Field("Phone") String phone,
+            @Field("gender") String gender, @Field("Country") String country,
+            @Field("Age") String age,
+            @Field("User_type") String user_type,
+            @Field("User_photo") String user_photo
     );
     @GET("ViewregisterUserDetail&{uid}")
     Call<ViewregisterUserDetail> ViewregisterUserDetail(
