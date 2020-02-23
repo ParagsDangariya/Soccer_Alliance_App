@@ -23,8 +23,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.IOException;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -132,7 +130,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
 
                         System.out.println("fire"+gender);
-                        String url = "https://soccerallianceapp.appspot.com/rest/api/registerUser&"+uid+"&"+name+"&"+email+"&"+phone+"&"+gender+"&"+country+"&"+age+"&"+user_type+"&noPhoto";
+                        String url = "https://soccerallianceapp.appspot.com/rest/api/registerUser&"+uid+"&"+name+"&"+email+"&"+phone+"&"+gender+"&"+country+"&"+age+"&"+user_type+"&nophoto";
 
 
 
@@ -146,12 +144,18 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                try {
-                                    String s = response.body().string();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+
+                                if(!response.isSuccessful()){
+                                    int s = response.code();
+                                    System.out.println("code"+s);
+                                    //Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
+
+
                                 }
-                                Toast.makeText(context,"succesfully created....",Toast.LENGTH_LONG).show();
+
+
+                                int s = response.code();
+                                Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
                             }
 
                             @Override
