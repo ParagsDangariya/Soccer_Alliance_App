@@ -16,17 +16,12 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-
 import com.example.soccer_alliance_project_test.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -69,7 +64,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
         }
         System.out.println("phone3"+phone);
         System.out.println("s3"+gender);
-        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -94,6 +89,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
 
 
+        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
         System.out.println("email"+email);
 
@@ -120,10 +116,10 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                 }
 
 
-            System.out.println("Pass"+password);
+            //System.out.println("Pass"+password);
 
 
-            System.out.println("Pass"+confirmpassword);
+            //System.out.println("Pass"+confirmpassword);
 
             fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -144,7 +140,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
 
                         Call<ResponseBody> call = service.registerUser(uid,name,email,
-                        phone,gender,country,age,user_type,"noPhoto");
+                        phone,gender,country,age,user_type,"nophoto");
 
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override

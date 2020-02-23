@@ -1,11 +1,10 @@
 package com.example.soccerallianceapp;
 
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface Getdataservice {
@@ -24,6 +23,13 @@ public interface Getdataservice {
             @Path("User_type") String user_type,
             @Path("User_photo") String user_photo
     );
+    @GET("ViewregisterUserDetail&{uid}")
+    Call<ViewregisterUserDetail> ViewregisterUserDetail(
+
+            @Path("uid") String uid
+    );
+
+
 
 
 }

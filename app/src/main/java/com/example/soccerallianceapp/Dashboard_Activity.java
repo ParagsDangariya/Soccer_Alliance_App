@@ -1,5 +1,10 @@
 package com.example.soccerallianceapp;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,12 +13,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.soccer_alliance_project_test.R;
 import com.google.android.material.navigation.NavigationView;
@@ -68,10 +67,13 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 DashboardNavigationView.getMenu().clear();
                 DashboardNavigationView.inflateMenu(R.menu.team_manager_menu);
 
-            }else if(getIntent().getStringExtra("user_type").equals("League_Manager")){
+            }
+            else if(getIntent().getStringExtra("user_type").equals("League_Manager")){
                 DashboardNavigationView.getMenu().clear();
                 DashboardNavigationView.inflateMenu(R.menu.league_manager_menu);
             }
+
+
         }
 
         else {
