@@ -17,17 +17,16 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.soccer_alliance_project_test.R;
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 
 
 public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
@@ -45,8 +44,9 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
     String uid ="";
     TextInputEditText signup3_new_password,signup3_confirm_password;
 
-    String email,name,gender,country,age,user_type,password,phone;
+    String email,name,gender,country,user_type,password,phone;
     //int phone;
+    int age;
 
 
     @Override
@@ -59,7 +59,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
             name = getArguments().getString("name");
             gender = getArguments().getString("gender");
             country = getArguments().getString("country");
-            age = getArguments().getString("age");
+            age = getArguments().getInt("age");
         }
         System.out.println("phone3"+phone);
         System.out.println("s3"+gender);
@@ -132,18 +132,46 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                         System.out.println("fire"+gender);
                         String url = "https://soccerallianceapp.appspot.com/rest/api/registerUser&"+uid+"&"+name+"&"+email+"&"+phone+"&"+gender+"&"+country+"&"+age+"&"+user_type+"&nophoto";
 
+                        String user_photo = "nophone";
 
 
                         System.out.println("url"+url);
 
+                        User user = new User(uid,name,email,phone,gender,country,age,user_type,user_photo);
 
 
-                        Call<ResponseBody> call = service.registerUser(uid,name,email,
-                        phone,gender,country,age,user_type,"nophoto");
+                        Call<User> call = service.registerUser(user);
 
-                        call.enqueue(new Callback<ResponseBody>() {
+                        call.enqueue(new Callback<User>() {
                             @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                if(!response.isSuccessful()){
+                                    int s = response.code();
+                                    System.out.println("code"+s);
+                                    //Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
+
+
+                                }
+
+
+                                int s = response.code();
+                                Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
+                            }
+
+
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+
+                                System.out.println("error"+t.getMessage());
+                                Toast.makeText(context," no more hopes....",Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+
+                        /*
+                        call.enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
 
                                 if(!response.isSuccessful()){
                                     int s = response.code();
@@ -166,6 +194,8 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
                             }
                         });
+
+                         */
 
 
 

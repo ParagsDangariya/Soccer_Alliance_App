@@ -95,14 +95,13 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
 
 
             String name = signup2_name_edit_txt.getEditableText().toString().trim();
-            String age = signup2_age_edit_txt.getEditableText().toString().trim();
             String gender = signup2_gender_edit_text.getEditableText().toString().trim();
             String country = signup2_country_edit_text.getEditableText().toString().trim();
 
             if(TextUtils.isEmpty(name)){
                 signup2_name_edit_txt.setError("Name is Required.");
                 return ;
-            }else if(TextUtils.isEmpty(age)){
+            }else if(TextUtils.isEmpty(signup2_age_edit_txt.getEditableText().toString().trim())){
                 signup2_age_edit_txt.setError("Age is Required.");
                 return ;
             }else if(TextUtils.isEmpty(gender)){
@@ -113,6 +112,8 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
                 return ;
             }
                 System.out.println("phone2"+phone);
+            int age = Integer.parseInt(signup2_age_edit_txt.getEditableText().toString().trim());
+
             System.out.println("ge"+gender);
             Bundle bundle = new Bundle();
 
@@ -120,7 +121,7 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
             bundle.putString("Phone", phone);
             bundle.putString("user-type",user_type);
             bundle.putString("name", name);
-            bundle.putString("age", age);
+            bundle.putInt("age", age);
             bundle.putString("gender", gender);
             bundle.putString("country", country);
 
