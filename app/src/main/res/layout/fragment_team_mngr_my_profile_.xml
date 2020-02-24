@@ -6,7 +6,7 @@ android:layout_height="match_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 android:background="@color/colorNavDrawerBackground"
 android:fillViewport="true"
-tools:context=".Team_mngr_my_profile_Fragment">
+tools:context="com.example.soccerallianceapp.Team_mngr_my_profile_Fragment">
 
 <RelativeLayout
     android:layout_width="match_parent"
