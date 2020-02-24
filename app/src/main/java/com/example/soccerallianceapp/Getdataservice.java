@@ -32,7 +32,7 @@ public interface Getdataservice {
 
             @Path("uid") String uid
     );
-    
+
 
 
 
