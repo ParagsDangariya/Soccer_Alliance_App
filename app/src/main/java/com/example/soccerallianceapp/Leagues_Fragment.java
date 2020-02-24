@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,6 +67,9 @@ public class Leagues_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 DashboardNavController.navigate(R.id.teamListFragment);
+
+                Button btn;
+
             }
         });
 
