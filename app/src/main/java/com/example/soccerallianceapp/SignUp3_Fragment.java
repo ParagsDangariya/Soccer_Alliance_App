@@ -1,7 +1,5 @@
 package com.example.soccerallianceapp;
 
-import com.example.soccerallianceapp.pojo.viewregisteruserdetail.UserDetails;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,7 +16,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.soccer_alliance_project_test.R;
-//import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -28,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+//import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
 
 
 public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
@@ -134,7 +134,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                         String url = "https://soccerallianceapp.appspot.com/rest/api/registerUser&"+uid+"&"+name+"&"+email+"&"+phone+"&"+gender+"&"+country+"&"+age+"&"+user_type+"&nophoto";
 
                         String user_photo = "nophone";
-/*
+
 
                         System.out.println("url"+url);
 
@@ -169,6 +169,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                             }
                         });
 
+                        /*
 
                         call.enqueue(new Callback<User>() {
                             @Override
