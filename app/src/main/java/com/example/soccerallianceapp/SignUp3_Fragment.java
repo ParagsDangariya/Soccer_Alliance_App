@@ -1,5 +1,6 @@
 package com.example.soccerallianceapp;
 
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.UserDetails;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.soccer_alliance_project_test.R;
-import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
+//import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -133,7 +134,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                         String url = "https://soccerallianceapp.appspot.com/rest/api/registerUser&"+uid+"&"+name+"&"+email+"&"+phone+"&"+gender+"&"+country+"&"+age+"&"+user_type+"&nophoto";
 
                         String user_photo = "nophone";
-
+/*
 
                         System.out.println("url"+url);
 
@@ -168,7 +169,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                             }
                         });
 
-                        /*
+
                         call.enqueue(new Callback<User>() {
                             @Override
                             public void onResponse(Call<User> call, Response<User> response) {
@@ -185,7 +186,6 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                                 int s = response.code();
                                 Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
                             }
-
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
@@ -195,9 +195,9 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                             }
                         });
 
-                         */
 
 
+*/
 
 
 
