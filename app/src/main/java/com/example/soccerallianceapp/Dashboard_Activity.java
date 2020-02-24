@@ -177,7 +177,7 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 }
                 break;
 
-            case R.id.league_team_btn:
+            case R.id.league_team_list_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
                     DashboardNavController.navigate(R.id.player_List_Fragment);
                 }

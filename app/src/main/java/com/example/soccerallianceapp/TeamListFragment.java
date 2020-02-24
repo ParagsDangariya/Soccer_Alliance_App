@@ -2,9 +2,11 @@ package com.example.soccerallianceapp;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,9 +17,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.soccer_alliance_project_test.R;
+import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.TeamList;
+import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class TeamListFragment extends Fragment implements View.OnClickListener{
@@ -29,6 +37,7 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
     private ArrayList<Comman_Data_List> comman_data_List;
     private Comman_adapter comman_adapter;
     FloatingActionButton add_team_btn;
+    String league_id="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,30 +55,108 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
 
         add_team_btn = view.findViewById(R.id.add_team_btn);
         add_team_btn.setOnClickListener(this);
-
+        Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
         /*--------Teams Adapter Configuration--------*/
         team_recycler_view = view.findViewById(R.id.team_recycler_view);
         comman_data_List = new ArrayList<Comman_Data_List>();
         comman_data_List.clear();
-
-        comman_data_List.add(new Comman_Data_List("Team 1", R.drawable.user));
-        comman_data_List.add(new Comman_Data_List("Team 2", R.drawable.user));
-        comman_data_List.add(new Comman_Data_List("Team 3", R.drawable.user));
-        comman_data_List.add(new Comman_Data_List("Team 4", R.drawable.user));
-        comman_data_List.add(new Comman_Data_List("Team 5", R.drawable.user));
-
-        comman_adapter = new Comman_adapter(comman_data_List,context);
-        comman_adapter.notifyDataSetChanged();
+        comman_adapter = new Comman_adapter(comman_data_List, context);
         team_recycler_view.setLayoutManager(new LinearLayoutManager(context));
         team_recycler_view.setAdapter(comman_adapter);
 
-        comman_adapter.setOnClickListener(new View.OnClickListener() {
+        if(getArguments()!=null){
+            if(getArguments().getString("Coming_from").equals("Leagues_Fragment_Class")){
+                league_id = getArguments().getString("league_id");
+                Toast.makeText(context,league_id, Toast.LENGTH_LONG).show();
+
+                Call viewTeamListByLeague = service.getviewTeamListFromLeagueIdCall(league_id);
+
+                viewTeamListByLeague.enqueue(new Callback<ViewTeamListByLeague>() {
+                    @Override
+                    public void onResponse(Call<ViewTeamListByLeague> call, Response<ViewTeamListByLeague> response) {
+
+                        ViewTeamListByLeague teamListByLeague = response.body();
+
+                        if(response.body() != null){
+                            if (teamListByLeague.getStatus() == 200) {
+                                for (TeamList teamList : teamListByLeague.getTeamList()) {
+
+                                    comman_data_List.add(new Comman_Data_List(
+                                            teamList.getTeamName(),
+                                            teamList.getLogo()));
+                                }
+                                comman_adapter.notifyDataSetChanged();
+                            }
+
+
+                        }else{
+
+                            Toast.makeText(getActivity() ,"Response empty",Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+
+                    }
+                });
+
+            }
+           /* if(){
+
+                this block for league list code which comes from leaguemnager menu click....
+
+
+            }*/
+        }
+         else{
+
+             //TRy this block when ViewTeamLIst start working...
+           /* Call<ListOfCountries> listleaguecall = service.getListOfCountriesCall();
+            System.out.println("call " + listleaguecall);
+            listleaguecall.enqueue(new Callback<ListOfCountries>() {
+
+                @Override
+                public void onResponse(Call<ListOfCountries> call, Response<ListOfCountries> response) {
+                    Log.d("step2", "after onResponse");
+                    ListOfCountries realData = response.body();
+                    System.out.println("response" + realData);
+
+                    if (response.body() != null) {
+                        if (realData.getStatus() == 200) {
+                            for (String countries : realData.getCountries()) {
+
+                                comman_data_List.add(new Comman_Data_List(countries));
+                            }
+                        }
+
+                    } else {
+                        Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    comman_adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onFailure(Call<ListOfCountries> call, Throwable t) {
+
+                    System.out.println("Error : " + t.getMessage());
+                }
+            });
+*/
+
+        }
+
+        /*comman_adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 DashboardNavController.navigate(R.id.player_List_Fragment);
             }
         });
-
+*/
     }
 
     @Override

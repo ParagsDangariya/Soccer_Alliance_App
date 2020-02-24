@@ -57,11 +57,11 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
         comman_data_List = new ArrayList<Comman_Data_List>();
         comman_data_List.clear();
 
-        comman_data_List.add(new Comman_Data_List("Player 1", R.drawable.user));
-        comman_data_List.add(new Comman_Data_List("Player 2", R.drawable.user));
-        comman_data_List.add(new Comman_Data_List("Player 3", R.drawable.user));
-        comman_data_List.add(new Comman_Data_List("Player 4", R.drawable.user));
-        comman_data_List.add(new Comman_Data_List("Player 5", R.drawable.user));
+//        comman_data_List.add(new Comman_Data_List("Player 1", R.drawable.user));
+//        comman_data_List.add(new Comman_Data_List("Player 2", R.drawable.user));
+//        comman_data_List.add(new Comman_Data_List("Player 3", R.drawable.user));
+//        comman_data_List.add(new Comman_Data_List("Player 4", R.drawable.user));
+//        comman_data_List.add(new Comman_Data_List("Player 5", R.drawable.user));
 
         comman_adapter = new Comman_adapter(comman_data_List,context);
         comman_adapter.notifyDataSetChanged();

@@ -51,6 +51,10 @@ dependencies {
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
-
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+
+    //Gilde libary
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
 }

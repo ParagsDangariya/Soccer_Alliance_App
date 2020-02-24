@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
 
 import java.util.ArrayList;
@@ -38,8 +39,8 @@ public class Comman_adapter extends RecyclerView.Adapter<Comman_adapter.ViewHold
     public void onBindViewHolder(@NonNull Comman_adapter.ViewHolder holder, int position) {
 
         holder.item_name.setText(comman_data_lists.get(position).getItem_name());
-        holder.item_image.setImageResource(comman_data_lists.get(position).getItem_image());
-
+       // holder.item_image.setImageResource(comman_data_lists.get(position).getItem_image());
+        Glide.with(context).load("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.iconfinder.com%2Ficons%2F3222456%2Fbadge_club_football_shield_soccer_team_icon&psig=AOvVaw14UmH91fAPljOtw9wTLAfq&ust=1582501135750000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjOk6Wq5ucCFQAAAAAdAAAAABAr").into(holder.item_image);
 
     }
 
