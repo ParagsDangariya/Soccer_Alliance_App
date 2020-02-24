@@ -1,6 +1,6 @@
 package com.example.soccerallianceapp;
 
-import com.example.soccerallianceapp.pojo.viewregisteruserdetail.UserDetails;
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
 import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
 
 import retrofit2.Call;
@@ -17,7 +17,7 @@ public interface Getdataservice {
 
 
     //@FormUrlEncoded
-   /* @Headers({"Content-Type:application/json"})
+    @Headers({"Content-Type:application/json"})
     @POST("registerUser")
     Call<User> registerUser(@Body User user
 
@@ -25,7 +25,7 @@ public interface Getdataservice {
     );
 
 
-    */
+
 
     @GET("ViewregisterUserDetail&{uid}")
     Call<ViewregisterUserDetail> ViewregisterUserDetail(
