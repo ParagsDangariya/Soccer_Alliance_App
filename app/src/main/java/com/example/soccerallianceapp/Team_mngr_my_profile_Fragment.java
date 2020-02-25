@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -44,6 +46,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.R.layout.simple_list_item_1;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,7 +63,8 @@ public class Team_mngr_my_profile_Fragment extends Fragment implements View.OnCl
     String imageUri,email,name,gender,country,user_type,password,phone;
     int age;
     FirebaseAuth fAuth;
-    TextInputEditText tmp_name_edt_txt,tmp_age_edt_txt,tmp_gender_edit_text,tmp_country_edt_txt,tmp_phone_edt_txt;
+    private AutoCompleteTextView tmp_gender_edit_text;
+    TextInputEditText tmp_name_edt_txt,tmp_age_edt_txt,tmp_country_edt_txt,tmp_phone_edt_txt;
     String uid ="";
     MaterialButton tmp_update_btn;
 
@@ -70,6 +75,8 @@ public class Team_mngr_my_profile_Fragment extends Fragment implements View.OnCl
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fAuth = FirebaseAuth.getInstance();
+
+        uid =fAuth.getCurrentUser().getUid();
 
     }
 
@@ -90,14 +97,17 @@ public class Team_mngr_my_profile_Fragment extends Fragment implements View.OnCl
         // login_progress = view.findViewById(R.id.login_progress);
         //login_progress.setOnClickListener(this);
 
+
+        ArrayAdapter<String> genderadapter = new ArrayAdapter<String>(context,
+                simple_list_item_1, Countries_List.gender);
+
         tmp_name_edt_txt = view.findViewById(R.id.tmp_name_edt_txt);
         tmp_age_edt_txt = view.findViewById(R.id.tmp_age_edt_txt);
         tmp_gender_edit_text = view.findViewById(R.id.tmp_gender_edit_text);
         tmp_country_edt_txt = view.findViewById(R.id.tmp_country_edt_txt);
         tmp_phone_edt_txt = view.findViewById(R.id.tmp_phone_edt_txt);
 
-
-
+        tmp_gender_edit_text.setAdapter(genderadapter);
 
         tmp_update_btn = view.findViewById(R.id.tmp_update_btn);
         tmp_update_btn.setOnClickListener(this);
