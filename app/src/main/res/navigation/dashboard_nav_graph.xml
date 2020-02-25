@@ -85,5 +85,10 @@
         android:name="com.example.soccerallianceapp.MatchScoreUpdateFragment"
         android:label="fragment_match_score_update"
         tools:layout="@layout/fragment_match_score_update" />
+    <fragment
+        android:id="@+id/guest_PlayedMatches_fragment"
+        android:name="com.example.soccerallianceapp.guest_PlayedMatches_fragment"
+        android:label="fragment_guest__played_matches_fragment"
+        tools:layout="@layout/fragment_guest__played_matches_fragment" />
 
 </navigation>

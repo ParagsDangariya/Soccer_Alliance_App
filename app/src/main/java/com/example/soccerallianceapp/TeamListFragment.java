@@ -127,7 +127,7 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
             if(getArguments().getString("Coming_from").equals("Country_Fragment_Class")){
                 country = getArguments().getString("country");
                 Toast.makeText(context,country, Toast.LENGTH_LONG).show();
-
+                   System.out.println("COuntry name form team fragment "+country);
                 Call listOfLeaguesByCountry = service.getListOfLeaguesByCountryCall(country);
 
                 listOfLeaguesByCountry.enqueue(new Callback<ListOfLeaguesByCountry>() {
@@ -145,7 +145,7 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
                                             leaguesList.getLogo()));
                                 }
                                 comman_adapter.notifyDataSetChanged();
-                              /*
+
                                 comman_adapter.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
@@ -159,7 +159,7 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
 
                                         DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
                                     }
-                                });*/
+                                });
                             }
 
                         }else{
@@ -194,9 +194,26 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
                             for (TeamList  getTeamList : realData.getTeamList()) {
 
                                 comman_data_List.add(new Comman_Data_List(
-                                        getTeamList.getTeamName()
-                                        ,getTeamList.getLogo()));
+                                        getTeamList.getTeamName(),
+                                        getTeamList.getLogo()));
                             }
+                            comman_adapter.notifyDataSetChanged();
+
+                            comman_adapter.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                                    int position = viewHolder.getAdapterPosition();
+
+                                    Bundle bundle = new Bundle();
+                                    bundle.putInt("team_id",comman_data_List.get(position).getIteam_id());
+                                    bundle.putString("Coming_from" ,"TeamList_Fragment_Class");
+
+                                    DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
+                                }
+                            });
+
                         }
 
                     } else {
@@ -217,14 +234,6 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
 
         }
 
-        /*comman_adapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                DashboardNavController.navigate(R.id.player_List_Fragment);
-            }
-        });
-*/
     }
 
     @Override

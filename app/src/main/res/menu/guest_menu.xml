@@ -13,6 +13,10 @@
         android:title="Teams"
         android:icon="@drawable/user"/>
 
+    <item android:id="@+id/guest_PlayedMatches_btn"
+        android:title="Played Matches"
+        android:icon="@drawable/user"/>
+
     <item android:id="@+id/guest_login_btn"
         android:title="Login/SignUp"
         android:icon="@drawable/user"/>
