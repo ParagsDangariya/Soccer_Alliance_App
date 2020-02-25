@@ -19,9 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.ListOfLeaguesByCountry.Leagues;
 import com.example.soccerallianceapp.pojo.ListOfLeaguesByCountry.ListOfLeaguesByCountry;
+import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
 import com.example.soccerallianceapp.pojo.ViewTeamListDashboard.TeamList;
 
-import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
 import com.example.soccerallianceapp.pojo.ViewTeamListDashboard.ViewTeamList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -88,6 +88,7 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
                                 for (com.example.soccerallianceapp.pojo.ViewTeamListByLeague.TeamList teamList : teamListByLeague.getTeamList()) {
 
                                     comman_data_List.add(new Comman_Data_List(
+                                            teamList.getTeamid(),
                                             teamList.getTeamName(),
                                             teamList.getLogo()));
                                 }
@@ -101,7 +102,7 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
                                         int position = viewHolder.getAdapterPosition();
 
                                         Bundle bundle = new Bundle();
-                                        bundle.putString("team_id",String.valueOf(1));
+                                        bundle.putInt("team_id",comman_data_List.get(position).getIteam_id());
                                         bundle.putString("Coming_from" ,"TeamList_Fragment_Class");
 
                                         DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
@@ -112,7 +113,6 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
                         }else{
 
                             Toast.makeText(getActivity() ,"Response empty",Toast.LENGTH_LONG).show();
-
                         }
                     }
 
@@ -145,7 +145,7 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
                                             leaguesList.getLogo()));
                                 }
                                 comman_adapter.notifyDataSetChanged();
-/*
+                              /*
                                 comman_adapter.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {

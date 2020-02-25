@@ -23,8 +23,9 @@ class Comman_Data_List {
         this.item_name=countries;
     }
 
-    public Comman_Data_List(String teamName, String logo) {
+    public Comman_Data_List(int teamid,String teamName, String logo) {
 
+        this.iteam_id=teamid;
         this.item_name=teamName;
         this.item_image=logo;
     }
@@ -35,6 +36,11 @@ class Comman_Data_List {
         this.item_image=playerPhoto;
         this.item_strenght=strength;
 
+    }
+
+    public Comman_Data_List(String teamName, String logo) {
+        this.item_name=teamName;
+        this.item_image=logo;
     }
 
     public int getIteam_id(){return iteam_id ;}

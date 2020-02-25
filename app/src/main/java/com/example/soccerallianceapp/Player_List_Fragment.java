@@ -38,7 +38,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
     private ArrayList<Comman_Data_List> comman_data_List;
     private Comman_adapter comman_adapter;
     FloatingActionButton add_player_btn;
-    String team_id="";
+    int team_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,8 +72,8 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
         if(getArguments()!=null){
             if(getArguments().getString("Coming_from").equals("TeamList_Fragment_Class")){
-                team_id = getArguments().getString("team_id");
-                Toast.makeText(context,team_id, Toast.LENGTH_LONG).show();
+                team_id = getArguments().getInt("team_id");
+                Toast.makeText(context,""+team_id, Toast.LENGTH_LONG).show();
                 System.out.println("team Id "+team_id);
                 Call viewPlayerLIstByTeam = service.getviewPlayerListFromTeamDashboardCall(team_id);
                 System.out.println("Before respon");
