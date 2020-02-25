@@ -1,7 +1,7 @@
 package com.example.soccerallianceapp;
 
-import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
 import com.example.soccerallianceapp.pojo.User;
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,6 +22,8 @@ public interface Getdataservice {
     Call<User> registerUser(@Body User user);
 
 
+    @POST("UpdateUserProfile")
+    Call<User> UpdateUserProfile(@Body User user);
 
 
     @GET("ViewregisterUserDetail&{uid}")
@@ -29,12 +31,6 @@ public interface Getdataservice {
 
             @Path("uid") String uid
     );
-
-
-
-
-
-
 
 
 }
