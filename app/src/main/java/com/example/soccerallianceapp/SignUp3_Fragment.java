@@ -1,4 +1,4 @@
-package com.example.soccerallianceapp;
+[12:48 PM, 2/25/2020] Parag Dangariya: package com.example.soccerallianceapp;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.soccer_alliance_project_test.R;
+import com.example.soccerallianceapp.pojo.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -26,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import com.example.soccerallianceapp.pojo.User;
+//import com.example.soccerallianceapp.pojo.User;
 
 
 public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
@@ -94,6 +95,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
     }
 
+
     @Override
     public void onClick(View view) {
         if(view == signup3_next_btn){
@@ -110,9 +112,9 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                 signup3_confirm_password.setError("The confirm password is Required.");
                 return;
             }else if(!password.equals(confirmpassword)){
-                    signup3_confirm_password.setError("The confirm password conformation does not match!");
-                    return;
-                }
+                signup3_confirm_password.setError("The confirm password conformation does not match!");
+                return;
+            }
 
 
             //System.out.println("Pass"+password);
@@ -124,7 +126,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                       // Toast.makeText(getContext(), "User Created.", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getContext(), "User Created.", Toast.LENGTH_SHORT).show();
 
                         uid =fAuth.getCurrentUser().getUid();
 
@@ -136,6 +138,8 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
 
                         System.out.println("url"+url);
+
+
 
                         User user = new User(uid,name,email,phone,gender,country,age,user_type,user_photo);
 
@@ -233,7 +237,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
                         */
 
-                       //String response = volly.volleyget(url,context);
+                        //String response = volly.volleyget(url,context);
 
                         navController.navigate(R.id.signUp4_Fragment);
 
