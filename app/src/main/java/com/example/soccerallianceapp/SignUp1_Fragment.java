@@ -41,10 +41,10 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
     //public static final String PHONE_VERIFICATION = "^[+0-9-\\(\\)\\s]*{6,14}$";
 
 
-    private static Pattern p;
-    private static Matcher m;
+    //private static Pattern p;
+    //private static Matcher m;
     String email ="";
-    boolean isPhoneValid;
+    //boolean isPhoneValid;
 
 
     TextInputEditText signup_email_edit_txt,signup_phone_edit_txt;

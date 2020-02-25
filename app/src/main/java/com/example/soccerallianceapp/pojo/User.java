@@ -1,4 +1,4 @@
-package com.example.soccerallianceapp.pojo.viewregisteruserdetail;
+package com.example.soccerallianceapp.pojo;
 
 public class User {
 

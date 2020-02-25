@@ -1,7 +1,7 @@
 package com.example.soccerallianceapp;
 
-import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
 import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
+import com.example.soccerallianceapp.pojo.User;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
