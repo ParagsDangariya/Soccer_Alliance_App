@@ -28,6 +28,8 @@ import androidx.navigation.Navigation;
 import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.User;
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.UserDetails;
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
@@ -54,7 +56,6 @@ import static android.R.layout.simple_list_item_1;
  */
 public class Team_mngr_my_profile_Fragment extends Fragment implements View.OnClickListener{
 
-
     Getdataservice service;
     public NavController navController;
     private Context context;
@@ -68,16 +69,13 @@ public class Team_mngr_my_profile_Fragment extends Fragment implements View.OnCl
     String uid ="";
     MaterialButton tmp_update_btn;
 
+    UserDetails userDetails;
 
     private StorageReference mStorageRef;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fAuth = FirebaseAuth.getInstance();
-
-        uid =fAuth.getCurrentUser().getUid();
-
     }
 
     public Team_mngr_my_profile_Fragment() {
@@ -112,10 +110,70 @@ public class Team_mngr_my_profile_Fragment extends Fragment implements View.OnCl
         tmp_update_btn = view.findViewById(R.id.tmp_update_btn);
         tmp_update_btn.setOnClickListener(this);
 
-        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+
 
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
+
+
+        fAuth = FirebaseAuth.getInstance();
+
+        uid =fAuth.getCurrentUser().getUid();
+        System.out.println("uidparag"+uid);
+        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+
+        Call<ViewregisterUserDetail> call = service.ViewregisterUserDetail(uid);
+
+        call.enqueue(new Callback<ViewregisterUserDetail>() {
+            @Override
+            public void onResponse(Call<ViewregisterUserDetail> call, Response<ViewregisterUserDetail> response) {
+                ViewregisterUserDetail viewregister = response.body();
+
+
+                userDetails = viewregister.getUserDetails();
+
+
+                //user_type = userDetails.getUserType();
+
+                name = userDetails.getFullName();
+                System.out.println("uidparag"+name);
+                email = userDetails.getEmail();
+                phone = userDetails.getPhone();
+                age = userDetails.getAge();
+                gender = userDetails.getGender();
+                country = userDetails.getCountry();
+                user_type = userDetails.getUserType();
+                imageUri = userDetails.getUserPhoto();
+
+
+                System.out.println("uidparag"+name);
+                tmp_name_edt_txt.setText(name);
+                tmp_age_edt_txt.setText(String.valueOf(age));
+                tmp_gender_edit_text.setText(gender);
+                tmp_phone_edt_txt.setText(phone);
+                tmp_country_edt_txt.setText(country);
+
+                if(!(TextUtils.equals("nophoto",imageUri))){
+                    Glide.with(context).load(imageUri).into(tmp_user_image);
+                }
+
+
+                System.out.println("string"+user_type);
+                //Toast.makeText(context,"succesfully login."+user_type,Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<ViewregisterUserDetail> call, Throwable t) {
+
+                System.out.println("error"+t.getMessage());
+                Toast.makeText(context," no more hopes on log in....",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+
+
     }
 
     @Override
@@ -285,5 +343,4 @@ public class Team_mngr_my_profile_Fragment extends Fragment implements View.OnCl
         Matcher m = p.matcher(s);
         return (m.find() && m.group().equals(s));
     }
-
 }

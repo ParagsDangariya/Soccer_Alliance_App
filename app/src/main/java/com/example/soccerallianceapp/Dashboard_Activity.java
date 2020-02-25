@@ -1,5 +1,6 @@
 package com.example.soccerallianceapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.soccer_alliance_project_test.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Dashboard_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -134,6 +136,9 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 break;
             case R.id.guest_login_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
+
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    finish();
                     //DashboardNavController.navigate(R.id.home_Fragment);
                 }
                 break;
@@ -163,7 +168,9 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 break;
             case R.id.team_logout_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
-                    DashboardNavController.navigate(R.id.loginFragment);
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    finish();
                 }
                 break;
 
@@ -194,7 +201,9 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
 
             case R.id.league_logout_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
-                    DashboardNavController.navigate(R.id.team_mngr_my_profile_Fragment);
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    finish();
                 }
                 break;
 

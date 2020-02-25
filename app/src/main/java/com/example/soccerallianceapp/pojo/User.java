@@ -3,6 +3,7 @@ package com.example.soccerallianceapp.pojo;
 public class User {
 
 
+
     private String user_id;
     private String full_name;
     private String email;

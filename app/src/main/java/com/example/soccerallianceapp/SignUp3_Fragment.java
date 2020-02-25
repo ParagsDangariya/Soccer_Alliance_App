@@ -2,7 +2,6 @@
 package com.example.soccerallianceapp;
 
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;

@@ -19,6 +19,7 @@ public interface Getdataservice {
     //@FormUrlEncoded
     @Headers({"Content-Type:application/json"})
     @POST("registerUser")
+
     Call<User> registerUser(@Body User user);
 
 
