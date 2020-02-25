@@ -1,5 +1,8 @@
 package com.example.soccerallianceapp;
 
+import com.example.soccerallianceapp.pojo.ViewPlayerListByTeamDashboard.ViewPlayerListDashboard;
+import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
+import com.example.soccerallianceapp.pojo.ViewTeamListDashboard.ViewTeamList;
 import com.example.soccerallianceapp.pojo.listLeagueDashboard.League;
 import com.example.soccerallianceapp.pojo.listLeagueDashboard.ListLeagueDashboard;
 import com.example.soccerallianceapp.pojo.listOfCountries.ListOfCountries;
@@ -39,19 +42,22 @@ public interface Getdataservice {
     @GET("ListOfCountries")
     Call<ListOfCountries> getListOfCountriesCall();
 
-    @FormUrlEncoded
-    @POST("viewTeamListFromLeagueId")
-    Call<ListOfCountries> getviewTeamListFromLeagueIdCall(@Field("league_id") String league_id);
+
+    @GET("viewTeamListFromLeagueId&{league_id}")
+    Call<ViewTeamListByLeague> getviewTeamListFromLeagueIdCall(@Path("league_id") String league_id);
 
 
-   /*
-    This service is unavavlible
     @GET("viewTeamList")
-    Call<ListOfCountries> getviewTeamListCall();
-*/
+    Call<ViewTeamList> getviewTeamListCall();
+
+
    @GET("upcomingMatches_guestDashboard")
    Call<MatchListDashboard> getupcomingMatches_guestDashboardCall();
 
 
+    @GET("viewPlayerListFromTeam&{team_id}")
+    Call<ViewPlayerListDashboard> getviewPlayerListFromTeamDashboardCall(@Path("team_id") String team_id);
+
 
 }
+

@@ -97,6 +97,7 @@ public class Leagues_Fragment extends Fragment {
                                 bundle.putString("league_id",String.valueOf(comman_data_List.get(position).getIteam_id()));
                                 bundle.putString("Coming_from" ,"Leagues_Fragment_Class");
 
+
                                 DashboardNavController.navigate(R.id.teamListFragment,bundle);
                             }
                         });
@@ -104,11 +105,7 @@ public class Leagues_Fragment extends Fragment {
 
                 }else{
                     Toast.makeText(getActivity() ,"REsponse empty",Toast.LENGTH_LONG).show();
-
                 }
-
-
-
             }
 
             @Override

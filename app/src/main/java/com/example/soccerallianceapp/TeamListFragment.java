@@ -17,9 +17,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.soccer_alliance_project_test.R;
-import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.TeamList;
+import com.example.soccerallianceapp.pojo.ViewTeamListDashboard.TeamList;
+
 import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
+import com.example.soccerallianceapp.pojo.ViewTeamListDashboard.ViewTeamList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 import java.util.ArrayList;
 
@@ -76,18 +79,31 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
                     public void onResponse(Call<ViewTeamListByLeague> call, Response<ViewTeamListByLeague> response) {
 
                         ViewTeamListByLeague teamListByLeague = response.body();
-
                         if(response.body() != null){
                             if (teamListByLeague.getStatus() == 200) {
-                                for (TeamList teamList : teamListByLeague.getTeamList()) {
+                                for (com.example.soccerallianceapp.pojo.ViewTeamListByLeague.TeamList teamList : teamListByLeague.getTeamList()) {
 
                                     comman_data_List.add(new Comman_Data_List(
                                             teamList.getTeamName(),
                                             teamList.getLogo()));
                                 }
                                 comman_adapter.notifyDataSetChanged();
-                            }
 
+                                comman_adapter.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                                        int position = viewHolder.getAdapterPosition();
+
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("team_id",String.valueOf(comman_data_List.get(position).getIteam_id()));
+                                        bundle.putString("Coming_from" ,"TeamList_Fragment_Class");
+
+                                        DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
+                                    }
+                                });
+                            }
 
                         }else{
 
@@ -98,6 +114,7 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
 
                     @Override
                     public void onFailure(Call call, Throwable t) {
+                        System.out.println("Error : "+t.getMessage());
 
                     }
                 });
@@ -111,23 +128,23 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
             }*/
         }
          else{
-
-             //TRy this block when ViewTeamLIst start working...
-           /* Call<ListOfCountries> listleaguecall = service.getListOfCountriesCall();
-            System.out.println("call " + listleaguecall);
-            listleaguecall.enqueue(new Callback<ListOfCountries>() {
+            Call<ViewTeamList> viewTeamListcall = service.getviewTeamListCall();
+            System.out.println("call " + viewTeamListcall);
+            viewTeamListcall.enqueue(new Callback<ViewTeamList>() {
 
                 @Override
-                public void onResponse(Call<ListOfCountries> call, Response<ListOfCountries> response) {
+                public void onResponse(Call<ViewTeamList> call, Response<ViewTeamList> response) {
                     Log.d("step2", "after onResponse");
-                    ListOfCountries realData = response.body();
+                    ViewTeamList realData = response.body();
                     System.out.println("response" + realData);
 
                     if (response.body() != null) {
                         if (realData.getStatus() == 200) {
-                            for (String countries : realData.getCountries()) {
+                            for (TeamList  getTeamList : realData.getTeamList()) {
 
-                                comman_data_List.add(new Comman_Data_List(countries));
+                                comman_data_List.add(new Comman_Data_List(
+                                        getTeamList.getTeamName()
+                                        ,getTeamList.getLogo()));
                             }
                         }
 
@@ -140,12 +157,12 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
                 }
 
                 @Override
-                public void onFailure(Call<ListOfCountries> call, Throwable t) {
+                public void onFailure(Call<ViewTeamList> call, Throwable t) {
 
                     System.out.println("Error : " + t.getMessage());
                 }
             });
-*/
+
 
         }
 

@@ -5,6 +5,8 @@ class Comman_Data_List {
     private int iteam_id;
     private String item_name;
     private String item_image;
+    private String item_strenght;
+
 
    /*  public Comman_Data_List(String item_name, String item_image) {
         this.item_name = item_name;
@@ -26,6 +28,14 @@ class Comman_Data_List {
         this.item_name=teamName;
         this.item_image=logo;
     }
+
+   /* public Comman_Data_List(String fullName, String playerPhoto, String strength) {
+
+        this.item_name=fullName;
+        this.item_image=playerPhoto;
+        this.item_strenght=strength;
+
+    }*/
 
     public int getIteam_id(){return iteam_id ;}
 
