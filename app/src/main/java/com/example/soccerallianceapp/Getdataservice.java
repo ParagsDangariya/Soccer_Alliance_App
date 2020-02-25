@@ -1,5 +1,6 @@
 package com.example.soccerallianceapp;
 
+import com.example.soccerallianceapp.pojo.User;
 import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
 
 import retrofit2.Call;
@@ -19,6 +20,11 @@ public interface Getdataservice {
     @Headers({"Content-Type:application/json"})
     @POST("registerUser")
     Call<User> registerUser(@Body User user);
+
+
+
+    @POST("UpdateUserProfile")
+    Call<User> UpdateUserProfile(@Body User user);
 
 
 
