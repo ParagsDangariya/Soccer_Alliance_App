@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +31,7 @@ import retrofit2.Response;
 
 public class Country_List_Fragment extends Fragment {
 
+    public NavController DashboardNavController;
     private RecyclerView country_recycler_view;
     private Context context;
     private ArrayList<Comman_Data_List> comman_data_List ;
@@ -45,6 +48,7 @@ public class Country_List_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
         /*--------Teams Adapter Configuration--------*/
         country_recycler_view = view.findViewById(R.id.country_recycler_view);
@@ -71,6 +75,21 @@ public class Country_List_Fragment extends Fragment {
                         for (String countries : realData.getCountries()) {
 
                             comman_data_List.add(new Comman_Data_List(countries));
+                            comman_adapter.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                                    int position = viewHolder.getAdapterPosition();
+
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("country",String.valueOf(comman_data_List.get(position).getIteam_id()));
+                                    bundle.putString("Coming_from" ,"Country_Fragment_Class");
+
+
+                                    DashboardNavController.navigate(R.id.teamListFragment,bundle);
+                                }
+                            });
                         }
                     }
 

@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.soccer_alliance_project_test.R;
+import com.example.soccerallianceapp.pojo.ListOfLeaguesByCountry.Leagues;
+import com.example.soccerallianceapp.pojo.ListOfLeaguesByCountry.ListOfLeaguesByCountry;
 import com.example.soccerallianceapp.pojo.ViewTeamListDashboard.TeamList;
 
 import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
@@ -41,6 +43,7 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
     private Comman_adapter comman_adapter;
     FloatingActionButton add_team_btn;
     String league_id="";
+    String country="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +82,7 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
                     public void onResponse(Call<ViewTeamListByLeague> call, Response<ViewTeamListByLeague> response) {
 
                         ViewTeamListByLeague teamListByLeague = response.body();
+                        System.out.println("response pojo"+teamListByLeague);
                         if(response.body() != null){
                             if (teamListByLeague.getStatus() == 200) {
                                 for (com.example.soccerallianceapp.pojo.ViewTeamListByLeague.TeamList teamList : teamListByLeague.getTeamList()) {
@@ -97,7 +101,7 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
                                         int position = viewHolder.getAdapterPosition();
 
                                         Bundle bundle = new Bundle();
-                                        bundle.putString("team_id",String.valueOf(comman_data_List.get(position).getIteam_id()));
+                                        bundle.putString("team_id",String.valueOf(1));
                                         bundle.putString("Coming_from" ,"TeamList_Fragment_Class");
 
                                         DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
@@ -120,12 +124,59 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
                 });
 
             }
-           /* if(){
+            if(getArguments().getString("Coming_from").equals("Country_Fragment_Class")){
+                country = getArguments().getString("country");
+                Toast.makeText(context,country, Toast.LENGTH_LONG).show();
 
-                this block for league list code which comes from leaguemnager menu click....
+                Call listOfLeaguesByCountry = service.getListOfLeaguesByCountryCall(country);
 
+                listOfLeaguesByCountry.enqueue(new Callback<ListOfLeaguesByCountry>() {
+                    @Override
+                    public void onResponse(Call<ListOfLeaguesByCountry> call, Response<ListOfLeaguesByCountry> response) {
 
-            }*/
+                        ListOfLeaguesByCountry listOfLeaguesByCountry = response.body();
+                        System.out.println("response pojo"+listOfLeaguesByCountry);
+                        if(response.body() != null){
+                            if (listOfLeaguesByCountry.getStatus() == 200) {
+                                for (Leagues leaguesList : listOfLeaguesByCountry.getLeagues()) {
+
+                                    comman_data_List.add(new Comman_Data_List(
+                                            leaguesList.getName(),
+                                            leaguesList.getLogo()));
+                                }
+                                comman_adapter.notifyDataSetChanged();
+/*
+                                comman_adapter.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                                        int position = viewHolder.getAdapterPosition();
+
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("team_id",String.valueOf(1));
+                                        bundle.putString("Coming_from" ,"TeamList_Fragment_Class");
+
+                                        DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
+                                    }
+                                });*/
+                            }
+
+                        }else{
+
+                            Toast.makeText(getActivity() ,"Response empty",Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+                        System.out.println("Error : "+t.getMessage());
+
+                    }
+                });
+
+            }
         }
          else{
             Call<ViewTeamList> viewTeamListcall = service.getviewTeamListCall();

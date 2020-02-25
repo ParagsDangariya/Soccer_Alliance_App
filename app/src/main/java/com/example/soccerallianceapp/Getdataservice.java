@@ -1,5 +1,6 @@
 package com.example.soccerallianceapp;
 
+import com.example.soccerallianceapp.pojo.ListOfLeaguesByCountry.ListOfLeaguesByCountry;
 import com.example.soccerallianceapp.pojo.ViewPlayerListByTeamDashboard.ViewPlayerListDashboard;
 import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
 import com.example.soccerallianceapp.pojo.ViewTeamListDashboard.ViewTeamList;
@@ -58,6 +59,8 @@ public interface Getdataservice {
     @GET("viewPlayerListFromTeam&{team_id}")
     Call<ViewPlayerListDashboard> getviewPlayerListFromTeamDashboardCall(@Path("team_id") String team_id);
 
+    @GET("ListOfLeaguesByCountry&{country}")
+    Call<ListOfLeaguesByCountry> getListOfLeaguesByCountryCall(@Path("country") String country);
 
 }
 

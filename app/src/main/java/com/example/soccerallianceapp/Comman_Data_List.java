@@ -29,13 +29,13 @@ class Comman_Data_List {
         this.item_image=logo;
     }
 
-   /* public Comman_Data_List(String fullName, String playerPhoto, String strength) {
+    public Comman_Data_List(String fullName, String playerPhoto, String strength) {
 
         this.item_name=fullName;
         this.item_image=playerPhoto;
         this.item_strenght=strength;
 
-    }*/
+    }
 
     public int getIteam_id(){return iteam_id ;}
 

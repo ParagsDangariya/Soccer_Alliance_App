@@ -57,7 +57,6 @@ public class Comman_adapter extends RecyclerView.Adapter<Comman_adapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-
         TextView item_name;
         ImageView item_image;
 

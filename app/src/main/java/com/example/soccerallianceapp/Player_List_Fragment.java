@@ -90,8 +90,8 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
                                     comman_data_List.add(new Comman_Data_List(
                                             playerList.getFullName(),
-                                            playerList.getPlayerPhoto()
-                                        //  playerList.getStrength()
+                                            playerList.getPlayerPhoto(),
+                                          playerList.getStrength()
                                     ));
                                 }
                                 comman_adapter.notifyDataSetChanged();
