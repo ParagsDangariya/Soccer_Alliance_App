@@ -51,7 +51,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     //RequestQueue mqueue;
     //VollyGetMethod volly;
 
-    FirebaseAuth fAuth;
+    FirebaseAuth fAuth ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
