@@ -52,6 +52,8 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
         comman_data_List = new ArrayList<Comman_Data_List>();
         comman_data_List.clear();
 
+/*
+
         comman_data_List.add(new Comman_Data_List("Team 1", R.drawable.user));
         comman_data_List.add(new Comman_Data_List("Team 2", R.drawable.user));
         comman_data_List.add(new Comman_Data_List("Team 3", R.drawable.user));
@@ -60,6 +62,8 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
 
         comman_adapter = new Comman_adapter(comman_data_List,context);
         comman_adapter.notifyDataSetChanged();
+
+  */
         team_recycler_view.setLayoutManager(new LinearLayoutManager(context));
         team_recycler_view.setAdapter(comman_adapter);
 

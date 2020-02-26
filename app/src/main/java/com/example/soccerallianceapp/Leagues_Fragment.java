@@ -57,18 +57,29 @@ public class Leagues_Fragment extends Fragment {
     public void onResume() {
         super.onResume();
         comman_data_List.clear();
+
+        /*
         comman_data_List.add(new Comman_Data_List("League 1",R.drawable.user));
         comman_data_List.add(new Comman_Data_List("League 2",R.drawable.user));
         comman_data_List.add(new Comman_Data_List("League 3",R.drawable.user));
         comman_data_List.add(new Comman_Data_List("League 4",R.drawable.user));
         comman_data_List.add(new Comman_Data_List("League 5",R.drawable.user));
         comman_adapter.notifyDataSetChanged();
+
+        */
         comman_adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DashboardNavController.navigate(R.id.teamListFragment);
 
-                Button btn;
+
+
+
+
+
+
+
+
 
             }
         });

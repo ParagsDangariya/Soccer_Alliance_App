@@ -43,6 +43,7 @@ public class Country_List_Fragment extends Fragment {
         comman_data_List = new ArrayList<Comman_Data_List>();
         comman_data_List.clear();
 
+        /*
         comman_data_List.add(new Comman_Data_List("Country 1", R.drawable.user));
         comman_data_List.add(new Comman_Data_List("Country 2", R.drawable.user));
         comman_data_List.add(new Comman_Data_List("Country 3", R.drawable.user));
@@ -54,5 +55,10 @@ public class Country_List_Fragment extends Fragment {
         country_recycler_view.setLayoutManager(new LinearLayoutManager(context));
         country_recycler_view.setAdapter(comman_adapter);
 
+
+*/
     }
+
+
+
 }

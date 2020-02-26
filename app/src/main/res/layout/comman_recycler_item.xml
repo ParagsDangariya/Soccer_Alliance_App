@@ -43,6 +43,14 @@
                 app:layout_constraintStart_toEndOf="@id/item_icon"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/league_id"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            />
+
     </com.google.android.material.card.MaterialCardView>
 
 </com.google.android.material.card.MaterialCardView>

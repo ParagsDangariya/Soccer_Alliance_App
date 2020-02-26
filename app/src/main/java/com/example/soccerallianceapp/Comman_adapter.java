@@ -38,7 +38,8 @@ public class Comman_adapter extends RecyclerView.Adapter<Comman_adapter.ViewHold
     public void onBindViewHolder(@NonNull Comman_adapter.ViewHolder holder, int position) {
 
         holder.item_name.setText(comman_data_lists.get(position).getItem_name());
-        holder.item_image.setImageResource(comman_data_lists.get(position).getItem_image());
+
+      //  holder.item_image.setImageResource(comman_data_lists.get(position).getItem_image());
 
 
     }
@@ -57,12 +58,13 @@ public class Comman_adapter extends RecyclerView.Adapter<Comman_adapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder{
 
 
-        TextView item_name;
+        TextView item_name,league_id;
         ImageView item_image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            league_id = itemView.findViewById(R.id.league_id);
             item_name = itemView.findViewById(R.id.item_name);
             item_image = itemView.findViewById(R.id.item_icon);
 

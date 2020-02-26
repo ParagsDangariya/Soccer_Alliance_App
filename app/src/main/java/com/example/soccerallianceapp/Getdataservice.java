@@ -1,7 +1,11 @@
 package com.example.soccerallianceapp;
 
+import com.example.soccerallianceapp.pojo.leaguelistbyuserId.LeagueList;
+import com.example.soccerallianceapp.pojo.leaguelistbyuserId.LeaguesFragment;
 import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
 import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,8 +26,6 @@ public interface Getdataservice {
     Call<User> registerUser(@Body User user);
 
 
-
-
     @GET("ViewregisterUserDetail&{uid}")
     Call<ViewregisterUserDetail> ViewregisterUserDetail(
 
@@ -31,6 +33,8 @@ public interface Getdataservice {
     );
 
 
+    @GET("LeagueListByUser&{user_id}")
+    Call<LeaguesFragment> getLeagueList(@Path("user_id") String user_id);
 
 
 

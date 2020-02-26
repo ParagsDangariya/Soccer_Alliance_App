@@ -90,5 +90,10 @@
         android:name="com.example.soccerallianceapp.Leagues_Fragment"
         android:label="Fragment_Leagues"
         tools:layout="@layout/fragment_leagues" />
+    <fragment
+        android:id="@+id/LeagueListFragment"
+        android:name="com.example.soccerallianceapp.LeagueListFragment"
+        android:label="fragment_league_list"
+        tools:layout="@layout/fragment_league_list" />
 
 </navigation>

@@ -13,9 +13,13 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.soccer_alliance_project_test.R;
 import com.google.android.material.button.MaterialButton;
+
+import java.util.ArrayList;
 
 
 public class LeagueOperationsFragment extends Fragment implements View.OnClickListener{
@@ -23,6 +27,14 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
 
     public NavController DashboardNavController;
     private Context context;
+    private ArrayList<Comman_Data_List> comman_data_List;
+    private Comman_adapter comman_adapter;
+    TextView LeagueName;
+    String league_name;
+    String league_id="";
+
+
+
     MaterialButton league_operations_addteam_btn,league_operations_removeteam_btn,
             league_operations_teamlist_btn,league_operations_upmatch_btn,
             league_operations_schedulematch_btn,league_operations_playedmatch_btn;
@@ -35,8 +47,11 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
+
+        LeagueName = view.findViewById(R.id.league_name);
 
         league_operations_addteam_btn = view.findViewById(R.id.league_operations_addteam_btn);
         league_operations_addteam_btn.setOnClickListener(this);
@@ -50,15 +65,53 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
         league_operations_upmatch_btn = view.findViewById(R.id.league_operations_upmatch_btn);
         league_operations_upmatch_btn.setOnClickListener(this);
 
-        league_operations_schedulematch_btn = view.findViewById(R.id.league_operations_schedulematch_btn);
-        league_operations_schedulematch_btn.setOnClickListener(this);
-
         league_operations_playedmatch_btn = view.findViewById(R.id.league_operations_playedmatch_btn);
         league_operations_playedmatch_btn.setOnClickListener(this);
 
+        league_operations_schedulematch_btn = view.findViewById(R.id.league_operations_schedulematch_btn);
+        league_operations_schedulematch_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DashboardNavController.navigate(R.id.scheduleMatchFragment);
 
 
+            }
+        });
 
+
+        Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+
+
+        comman_data_List = new ArrayList<Comman_Data_List>();
+        comman_data_List.clear();
+        comman_adapter = new Comman_adapter(comman_data_List, context);
+
+        Bundle bundle = getArguments();
+
+
+        try {
+            if (getArguments() != null) {
+                if (bundle.getString("Coming_from").equals("ListLeaguesFragment_Class")) {
+
+                    league_id = getArguments().getString("league_id");
+                    Toast.makeText(context, league_id, Toast.LENGTH_LONG).show();
+
+
+                    //league_name = getArguments().getString("League_name");
+
+                    league_name = bundle.getString("League_name");
+                    LeagueName.setText(league_name);
+
+                }
+
+
+            } else {
+                Toast.makeText(getActivity(), "Something Went Wrong", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
