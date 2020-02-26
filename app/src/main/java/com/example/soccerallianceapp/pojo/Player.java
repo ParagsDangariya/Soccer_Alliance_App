@@ -9,6 +9,8 @@ public class Player {
     private String strength;
     private String user_id;
 
+
+
     public Player(int player_id, String full_name, String player_photo, String position, String strength, String user_id) {
         this.player_id = player_id;
         this.full_name = full_name;

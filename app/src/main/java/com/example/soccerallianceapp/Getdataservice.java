@@ -54,7 +54,7 @@ public interface Getdataservice {
 
             @Path("team_id") int team_id
     );
-    
+
 
 
 }
