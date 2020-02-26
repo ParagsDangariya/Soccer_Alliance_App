@@ -63,7 +63,7 @@ public class My_Team_Fragment extends Fragment implements View.OnClickListener {
     private static final int GALLERY_REQUEST_CODE = 106;
     private StorageReference mStorageRef;
     ImageView my_team_user_image;
-    TeamDetails teamDetails;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -106,10 +106,11 @@ public class My_Team_Fragment extends Fragment implements View.OnClickListener {
             public void onResponse(Call<ViewTeamDetail> call, Response<ViewTeamDetail> response) {
                 ViewTeamDetail viewTeam = response.body();
 
-                if(viewTeam!= null){
 
-                    teamDetails = viewTeam.getTeamDetails();
 
+                    TeamDetails teamDetails = viewTeam.getTeamDetails();
+
+                if(teamDetails!= null){
                     name = teamDetails.getName();
 
                     shorthand = teamDetails.getTeamLabel();
