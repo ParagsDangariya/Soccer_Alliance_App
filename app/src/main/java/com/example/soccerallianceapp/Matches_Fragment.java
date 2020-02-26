@@ -56,7 +56,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
 
         comman_adapter = new Comman_adapter(comman_data_List, context);
         um_cardView1 = view.findViewById(R.id.um_cardView1);
-        um_cardView1.setOnClickListener(this);
+//        um_cardView1.setOnClickListener(this);
 
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
         Call<MatchListDashboard> matchlistcall =service.getupcomingMatches_guestDashboardCall();
