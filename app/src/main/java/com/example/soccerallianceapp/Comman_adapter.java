@@ -37,10 +37,10 @@ public class Comman_adapter extends RecyclerView.Adapter<Comman_adapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull Comman_adapter.ViewHolder holder, int position) {
 
-        holder.item_name.setText(comman_data_lists.get(position).getItem_name());
+      /*  holder.item_name.setText(comman_data_lists.get(position).getItem_name());
         holder.item_image.setImageResource(comman_data_lists.get(position).getItem_image());
 
-
+*/
     }
 
     public void setOnClickListener(View.OnClickListener clickListener){

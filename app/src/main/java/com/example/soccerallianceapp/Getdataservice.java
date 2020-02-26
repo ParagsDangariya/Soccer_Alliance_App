@@ -1,5 +1,7 @@
 package com.example.soccerallianceapp;
 
+import com.example.soccerallianceapp.createleague.CreateLeagueBinClass;
+import com.example.soccerallianceapp.pojo.LeaguesFragment;
 import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
 import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
 
@@ -20,6 +22,13 @@ public interface Getdataservice {
     @Headers({"Content-Type:application/json"})
     @POST("registerUser")
     Call<User> registerUser(@Body User user);
+
+    @Headers({"Contenet_Type:application/json"})
+    @POST("createLeague")
+    Call<CreateLeagueBinClass> createLeague(@Body CreateLeagueBinClass league);
+
+@GET("LeagueListByUser&{league_id}")
+Call<LeaguesFragment>  getLeagueList(@Path("league_id") String league_id);
 
 
 
