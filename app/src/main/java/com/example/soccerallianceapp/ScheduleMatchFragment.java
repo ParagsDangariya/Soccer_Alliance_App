@@ -16,6 +16,12 @@ import com.example.soccer_alliance_project_test.R;
 
 
 public class ScheduleMatchFragment extends Fragment {
+
+
+
+
+
+
     public ScheduleMatchFragment() {
     }
 
@@ -23,6 +29,17 @@ public class ScheduleMatchFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_schedule_match, container, false);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+
+
+
 
 
 

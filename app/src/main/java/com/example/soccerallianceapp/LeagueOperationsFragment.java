@@ -68,40 +68,51 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
         league_operations_playedmatch_btn = view.findViewById(R.id.league_operations_playedmatch_btn);
         league_operations_playedmatch_btn.setOnClickListener(this);
 
+
+        Bundle bundle = getArguments();
+
         league_operations_schedulematch_btn = view.findViewById(R.id.league_operations_schedulematch_btn);
-        league_operations_schedulematch_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                DashboardNavController.navigate(R.id.scheduleMatchFragment);
 
 
-            }
-        });
-
-
-        Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+        //Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
 
         comman_data_List = new ArrayList<Comman_Data_List>();
         comman_data_List.clear();
         comman_adapter = new Comman_adapter(comman_data_List, context);
 
-        Bundle bundle = getArguments();
+
 
 
         try {
             if (getArguments() != null) {
-                if (bundle.getString("Coming_from").equals("ListLeaguesFragment_Class")) {
+                if (getArguments().getString("Coming_from").equals("ListLeaguesFragment_Class")) {
 
                     league_id = getArguments().getString("league_id");
                     Toast.makeText(context, league_id, Toast.LENGTH_LONG).show();
 
 
-                    //league_name = getArguments().getString("League_name");
+                    league_name = getArguments().getString("League_name");
 
-                    league_name = bundle.getString("League_name");
+                    //league_name = bundle.getString("League_name");
                     LeagueName.setText(league_name);
+
+
+                    bundle.putString("League_name",league_name);
+                    bundle.putString("league_id",league_id);
+
+                    league_operations_schedulematch_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            DashboardNavController.navigate(R.id.scheduleMatchFragment,bundle);
+
+                        }
+                    });
+
+
+
+
 
                 }
 

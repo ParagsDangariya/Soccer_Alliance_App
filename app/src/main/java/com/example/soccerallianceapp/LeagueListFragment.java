@@ -174,7 +174,7 @@ public class LeagueListFragment extends Fragment {
                 } catch (Exception e) {
 
 
-                   // System.out.println(e.printStackTrace());
+                   e.printStackTrace();
                 }
             }
 
