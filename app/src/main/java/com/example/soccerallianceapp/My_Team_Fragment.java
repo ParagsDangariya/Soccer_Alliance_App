@@ -56,8 +56,10 @@ public class My_Team_Fragment extends Fragment implements View.OnClickListener {
     Getdataservice service;
     MaterialButton my_team_update_details_btn;
     String name,shorthand,uid,imageUri;
+    int teamid;
     TextInputEditText my_team_name_edt_txt,my_team_shorthand_edt_txt;
     FirebaseAuth fAuth;
+    //int i =0;
     private static final int GALLERY_REQUEST_CODE = 106;
     private StorageReference mStorageRef;
     ImageView my_team_user_image;
@@ -108,6 +110,20 @@ public class My_Team_Fragment extends Fragment implements View.OnClickListener {
 
                     teamDetails = viewTeam.getTeamDetails();
 
+                    name = teamDetails.getName();
+
+                    shorthand = teamDetails.getTeamLabel();
+                    teamid = teamDetails.getTeamId();
+                    imageUri = teamDetails.getLogo();
+
+                    my_team_name_edt_txt.setText(name);
+                    my_team_shorthand_edt_txt.setText(shorthand);
+                    Glide.with(context).load(imageUri).into(my_team_user_image);
+                    System.out.println("name"+name);
+
+
+
+
                 }
 
 
@@ -121,9 +137,8 @@ public class My_Team_Fragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        name = teamDetails.getName();
+       // System.out.println("number "+i);
 
-        System.out.println("name"+name);
 
     }
     @Override
@@ -221,6 +236,10 @@ public class My_Team_Fragment extends Fragment implements View.OnClickListener {
 
 
                     }
+                    int s = response.code();
+                    System.out.println("code"+s);
+                    Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
+
 
                     System.out.println("code");
                 }
