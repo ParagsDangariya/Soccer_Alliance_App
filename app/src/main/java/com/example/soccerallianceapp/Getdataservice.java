@@ -1,5 +1,6 @@
 package com.example.soccerallianceapp;
 
+import com.example.soccerallianceapp.pojo.Team;
 import com.example.soccerallianceapp.pojo.User;
 import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
 
@@ -38,6 +39,13 @@ public interface Getdataservice {
 
 
 
+    @POST("CreateTeam")
+    Call<Team> CreateTeam(@Body Team team);
+
+
+
+    @POST("UpdateTeam")
+    Call<Team> UpdateTeam(@Body Team team);
 
 
 

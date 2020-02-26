@@ -61,7 +61,7 @@ public class Team_mngr_my_profile_Fragment extends Fragment implements View.OnCl
     private Context context;
     private static final int GALLERY_REQUEST_CODE = 105;
     ImageView tmp_user_image;
-    String imageUri,email,name,gender,country,user_type,password,phone;
+    String imageUri,email,name,gender,country,user_type,phone;
     int age;
     FirebaseAuth fAuth;
     private AutoCompleteTextView tmp_gender_edit_text;
