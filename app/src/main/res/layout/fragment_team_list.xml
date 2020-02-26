@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_margin="8dp"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+   <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_team_btn"
         style="@style/Widget.Design.FloatingActionButton"
         android:layout_width="wrap_content"
@@ -24,6 +24,6 @@
         android:backgroundTint="@color/colorNormalButton"
         android:src="@drawable/plus_icon"
         app:maxImageSize="28dp"
-        app:tint="@android:color/white" />
+        app:tint="@android:color/white" />-->
 
 </FrameLayout>

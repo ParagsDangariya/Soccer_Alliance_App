@@ -16,9 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.soccer_alliance_project_test.R;
-import com.example.soccerallianceapp.pojo.matchListDashboard.MatchListDashboard;
-import com.example.soccerallianceapp.pojo.matchListDashboard.UpcomingMatchList;
-import com.google.android.material.card.MaterialCardView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -32,10 +30,8 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
     public NavController DashboardNavController;
     //private RecyclerView upcomingmatch_recycler_view;
     private Context context;
-    private ArrayList<Comman_Data_List> comman_data_List;
-    private Comman_adapter comman_adapter;
     FloatingActionButton add_player_btn;
-    MaterialCardView um_cardView1;
+    RecyclerView um_recycler_View,pm_recycler_View;
 
 
     @Override
@@ -52,12 +48,11 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
         DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
 
-        comman_data_List = new ArrayList<Comman_Data_List>();
+        um_recycler_View = view.findViewById(R.id.um_recycler_View);
+        pm_recycler_View = view.findViewById(R.id.pm_recycler_View);
 
-        comman_adapter = new Comman_adapter(comman_data_List, context);
-        um_cardView1 = view.findViewById(R.id.um_cardView1);
-//        um_cardView1.setOnClickListener(this);
 
+        /*
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
         Call<MatchListDashboard> matchlistcall =service.getupcomingMatches_guestDashboardCall();
         System.out.println("call "+ matchlistcall);
@@ -89,6 +84,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                 System.out.println("Error : " + t.getMessage());
             }
         });
+*/
 
 
 
@@ -96,9 +92,6 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if(view == um_cardView1){
-            DashboardNavController.navigate(R.id.upcomingMatchFragment);
-        }
 
     }
 

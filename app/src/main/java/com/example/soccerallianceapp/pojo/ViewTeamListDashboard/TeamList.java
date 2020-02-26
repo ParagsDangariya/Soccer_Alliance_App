@@ -20,7 +20,7 @@ public class TeamList {
     private String teamLabel;
     @SerializedName("User Id")
     @Expose
-    private Integer userId;
+    private String userId;
 
     public Integer getTeamId() {
         return teamId;
@@ -54,11 +54,11 @@ public class TeamList {
         this.teamLabel = teamLabel;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

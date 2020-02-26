@@ -33,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class TeamListFragment extends Fragment implements View.OnClickListener{
+public class TeamListFragment extends Fragment{
 
     public NavController DashboardNavController;
 
@@ -59,8 +59,8 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
         DashboardNavController = Navigation.findNavController(getActivity(), R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
 
-        add_team_btn = view.findViewById(R.id.add_team_btn);
-        add_team_btn.setOnClickListener(this);
+       // add_team_btn = view.findViewById(R.id.add_team_btn);
+        //add_team_btn.setOnClickListener(this);
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
         /*--------Teams Adapter Configuration--------*/
         team_recycler_view = view.findViewById(R.id.team_recycler_view);
@@ -187,19 +187,21 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
                 public void onResponse(Call<ViewTeamList> call, Response<ViewTeamList> response) {
                     Log.d("step2", "after onResponse");
                     ViewTeamList realData = response.body();
-                    System.out.println("response" + realData);
+
+                    System.out.println("response from teamlist fromguest menu" + realData);
 
                     if (response.body() != null) {
                         if (realData.getStatus() == 200) {
                             for (TeamList  getTeamList : realData.getTeamList()) {
 
                                 comman_data_List.add(new Comman_Data_List(
+                                        getTeamList.getTeamId(),
                                         getTeamList.getTeamName(),
                                         getTeamList.getLogo()));
                             }
                             comman_adapter.notifyDataSetChanged();
 
-                            comman_adapter.setOnClickListener(new View.OnClickListener() {
+                           comman_adapter.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
 
@@ -236,10 +238,10 @@ public class TeamListFragment extends Fragment implements View.OnClickListener{
 
     }
 
-    @Override
+   /* @Override
     public void onClick(View view) {
         if(view == add_team_btn){
             DashboardNavController.navigate(R.id.add_Team_in_League_Fragment);
         }
-    }
+    }*/
 }
