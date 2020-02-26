@@ -49,6 +49,12 @@ public interface Getdataservice {
 
 
 
+    @GET("viewPlayerListFromTeam&{team_id}")
+    Call<Team> viewPlayerListFromTeam(
+
+            @Path("team_id") int team_id
+    );
+    
 
 
 }
