@@ -28,6 +28,9 @@ import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.Team;
 import com.example.soccerallianceapp.pojo.User;
+
+import com.example.soccerallianceapp.pojo.ViewTeamDetail.TeamDetails;
+import com.example.soccerallianceapp.pojo.ViewTeamDetail.ViewTeamDetail;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
@@ -58,6 +61,7 @@ public class My_Team_Fragment extends Fragment implements View.OnClickListener {
     private static final int GALLERY_REQUEST_CODE = 106;
     private StorageReference mStorageRef;
     ImageView my_team_user_image;
+    TeamDetails teamDetails;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,6 +96,34 @@ public class My_Team_Fragment extends Fragment implements View.OnClickListener {
         mStorageRef = FirebaseStorage.getInstance().getReference();
         fAuth = FirebaseAuth.getInstance();
         uid =fAuth.getCurrentUser().getUid();
+
+        Call<ViewTeamDetail> call = service.ViewTeamDetail(uid);
+
+        call.enqueue(new Callback<ViewTeamDetail>() {
+            @Override
+            public void onResponse(Call<ViewTeamDetail> call, Response<ViewTeamDetail> response) {
+                ViewTeamDetail viewTeam = response.body();
+
+                if(viewTeam!= null){
+
+                    teamDetails = viewTeam.getTeamDetails();
+
+                }
+
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ViewTeamDetail> call, Throwable t) {
+
+            }
+        });
+
+        name = teamDetails.getName();
+
+        System.out.println("name"+name);
 
     }
     @Override

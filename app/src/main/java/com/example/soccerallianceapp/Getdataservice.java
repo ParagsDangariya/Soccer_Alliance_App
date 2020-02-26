@@ -2,6 +2,8 @@ package com.example.soccerallianceapp;
 
 import com.example.soccerallianceapp.pojo.Team;
 import com.example.soccerallianceapp.pojo.User;
+
+import com.example.soccerallianceapp.pojo.ViewTeamDetail.ViewTeamDetail;
 import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
 
 import retrofit2.Call;
@@ -37,6 +39,12 @@ public interface Getdataservice {
             @Path("uid") String uid
     );
 
+
+    @GET("ViewTeamDetail&{uid}")
+    Call<ViewTeamDetail> ViewTeamDetail(
+
+            @Path("uid") String uid
+    );
 
 
     @POST("CreateTeam")
