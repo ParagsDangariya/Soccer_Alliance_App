@@ -2,13 +2,13 @@ package com.example.soccerallianceapp.pojo;
 
 public class Team {
 
-    private String team_id;
+    private int team_id;
     private String name;
     private String logo;
     private String team_label;
     private String user_id;
 
-    public Team(String team_id, String name, String logo, String team_label, String user_id) {
+    public Team(int team_id, String name, String logo, String team_label, String user_id) {
         this.team_id = team_id;
         this.name = name;
         this.logo = logo;
@@ -16,11 +16,11 @@ public class Team {
         this.user_id = user_id;
     }
 
-    public String getTeam_id() {
+    public Integer getTeam_id() {
         return team_id;
     }
 
-    public void setTeam_id(String team_id) {
+    public void setTeam_id(Integer team_id) {
         this.team_id = team_id;
     }
 
