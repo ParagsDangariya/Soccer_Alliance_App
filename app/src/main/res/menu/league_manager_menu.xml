@@ -9,16 +9,17 @@
         android:title="My League"
         android:icon="@drawable/user"/>
 
-    <item android:id="@+id/league_my_profile_btn"
-        android:title="My Profile"
+
+    <item android:id="@+id/league_team_btn"
+        android:title="Team List"
         android:icon="@drawable/user"/>
 
-    <item android:id="@+id/league_team_list_btn"
-        android:title="Team List"
+    <item android:id="@+id/league_my_profile_btn"
+        android:title="My Profile"
+
         android:icon="@drawable/user"/>
 
     <item android:id="@+id/league_logout_btn"
         android:title="Logout"
         android:icon="@drawable/user"/>
-
 </menu>

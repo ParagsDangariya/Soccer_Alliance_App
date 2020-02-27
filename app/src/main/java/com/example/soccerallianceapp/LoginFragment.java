@@ -18,8 +18,9 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-
 import com.example.soccer_alliance_project_test.R;
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.UserDetails;
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
@@ -28,14 +29,15 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
 
+    Getdataservice service;
     public NavController navController;
     private Context context;
     MaterialButton guest_login_btn,login_btn;
@@ -45,10 +47,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     TextInputEditText email_edit_txt,password_edit_txt;
     FirebaseUser user;
 
-    /*
-    *Authication done by firebase .
-    * */
-    FirebaseAuth fAuth;
+   UserDetails userDetails;
+    //RequestQueue mqueue;
+    //VollyGetMethod volly;
+
+    FirebaseAuth fAuth ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,8 +91,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         fAuth = FirebaseAuth.getInstance();
 
+        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
-       // mqueue= Volley.newRequestQueue(context);
+        if(fAuth.getCurrentUser() != null){
+            uid = fAuth.getCurrentUser().getUid();
+            user = fAuth.getCurrentUser();
+            verifyuser(user);
+
+
+            System.out.println("userdata"+uid);
+        }
+        // mqueue= Volley.newRequestQueue(context);
 
     }
 
@@ -128,8 +140,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         //Toast.makeText(getContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
 
                         uid = fAuth.getCurrentUser().getUid();
-                         user = fAuth.getCurrentUser();
-                        verifieduser(user);
+                        user = fAuth.getCurrentUser();
+                        verifyuser(user);
 
 
                     }else {
@@ -146,7 +158,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             navController.navigate(R.id.signUp1_Fragment);
         }
 
-        
+
         else if(view == forget_password_txt){
             navController.navigate(R.id.forgot_pass1_Fragment);
         }
@@ -159,7 +171,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void verifieduser(FirebaseUser user) {
+    private void verifyuser(FirebaseUser user) {
 
         if(!user.isEmailVerified()){
             Toast.makeText(getContext(), "Verify your Account First.", Toast.LENGTH_LONG).show();
@@ -175,6 +187,42 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
 
             System.out.println("url" + url);
+
+
+            Call<ViewregisterUserDetail> call = service.ViewregisterUserDetail(uid);
+
+            call.enqueue(new Callback<ViewregisterUserDetail>() {
+                @Override
+                public void onResponse(Call<ViewregisterUserDetail> call, Response<ViewregisterUserDetail> response) {
+                    ViewregisterUserDetail viewregister = response.body();
+
+
+                    UserDetails userDetails = viewregister.getUserDetails();
+
+
+                    //user_type = userDetails.getUserType();
+
+
+                    user_type = userDetails.getUserType();
+
+                    System.out.println("string"+user_type);
+                    Toast.makeText(context,"succesfully login."+user_type,Toast.LENGTH_LONG).show();
+                    System.out.println("login"+user_type);
+                    Intent i = new Intent(context,Dashboard_Activity.class);
+                    i.putExtra("user_type",user_type);
+                    startActivity(i);
+                    getActivity().finish();
+                }
+
+                @Override
+                public void onFailure(Call<ViewregisterUserDetail> call, Throwable t) {
+
+                    System.out.println("error"+t.getMessage());
+                    Toast.makeText(context," no more hopes on log in....",Toast.LENGTH_LONG).show();
+
+                }
+            });
+
 
 
             /*
@@ -213,10 +261,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
              */
 
-            Intent i = new Intent(context,Dashboard_Activity.class);
-            i.putExtra("user_type","Team_Manager");
-            startActivity(i);
+
 
         }
     }
+
 }

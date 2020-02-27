@@ -103,7 +103,7 @@
                 app:counterTextColor="@color/colorPrimaryLight">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/my_team_shortgand_edt_txt"
+                    android:id="@+id/my_team_shorthand_edt_txt"
                     style="@style/TextInputEditTextStyleVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

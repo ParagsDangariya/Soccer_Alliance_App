@@ -61,6 +61,7 @@ public class Leagues_Fragment extends Fragment {
         league_recycler_view.setLayoutManager(new LinearLayoutManager(context));
         league_recycler_view.setAdapter(comman_adapter);
 
+
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
         Log.d("step1","after getService part");
         Call<ListLeagueDashboard> listleaguecall  = service.getListOfLeague_guestDashboardCall();
@@ -107,6 +108,7 @@ public class Leagues_Fragment extends Fragment {
                     Toast.makeText(getActivity() ,"REsponse empty",Toast.LENGTH_LONG).show();
                 }
             }
+
 
             @Override
             public void onFailure(Call<ListLeagueDashboard> call, Throwable t) {

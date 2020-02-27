@@ -32,6 +32,8 @@ dependencies {
 
     // firebase
     implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'com.google.firebase:firebase-storage:16.0.4'
+
 
 
     testImplementation 'junit:junit:4.12'
@@ -53,8 +55,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
 
-    //Gilde libary
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 
 }

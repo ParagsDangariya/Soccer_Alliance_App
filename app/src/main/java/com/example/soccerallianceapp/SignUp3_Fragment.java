@@ -1,3 +1,4 @@
+
 package com.example.soccerallianceapp;
 
 
@@ -16,21 +17,14 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-
 import com.example.soccer_alliance_project_test.R;
+import com.example.soccerallianceapp.pojo.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,7 +36,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
     public NavController navController;
     private Context context;
 
-    //Getdataservice service;
+    Getdataservice service;
     //RequestQueue mqueue;
     ImageButton signup3_next_btn;
     FirebaseAuth fAuth;
@@ -51,8 +45,9 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
     String uid ="";
     TextInputEditText signup3_new_password,signup3_confirm_password;
 
-    String email,name,gender,country,age,user_type,password,phone;
+    String email,name,gender,country,user_type,password,phone;
     //int phone;
+    int age;
 
 
     @Override
@@ -60,15 +55,16 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             email = getArguments().getString("email");
-            phone = getArguments().getString("phone");
+            phone = getArguments().getString("Phone");
             user_type = getArguments().getString("user-type");
             name = getArguments().getString("name");
             gender = getArguments().getString("gender");
             country = getArguments().getString("country");
-            age = getArguments().getString("age");
+            age = getArguments().getInt("age");
         }
+        System.out.println("phone3"+phone);
         System.out.println("s3"+gender);
-        //service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,10 +89,12 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
 
 
+        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
         System.out.println("email"+email);
 
     }
+
 
     @Override
     public void onClick(View view) {
@@ -114,51 +112,88 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                 signup3_confirm_password.setError("The confirm password is Required.");
                 return;
             }else if(!password.equals(confirmpassword)){
-                    signup3_confirm_password.setError("The confirm password conformation does not match!");
-                    return;
-                }
+                signup3_confirm_password.setError("The confirm password conformation does not match!");
+                return;
+            }
 
 
-            System.out.println("Pass"+password);
+            //System.out.println("Pass"+password);
 
 
-            System.out.println("Pass"+confirmpassword);
+            //System.out.println("Pass"+confirmpassword);
 
             fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                       // Toast.makeText(getContext(), "User Created.", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getContext(), "User Created.", Toast.LENGTH_SHORT).show();
 
                         uid =fAuth.getCurrentUser().getUid();
 
 
                         System.out.println("fire"+gender);
-                        String url = "https://soccerallianceapp.appspot.com/rest/api/registerUser&"+uid+"&"+name+"&"+email+"&"+phone+"&"+gender+"&"+country+"&"+age+"&"+user_type+"&noPhoto";
+                        String url = "https://soccerallianceapp.appspot.com/rest/api/registerUser&"+uid+"&"+name+"&"+email+"&"+phone+"&"+gender+"&"+country+"&"+age+"&"+user_type+"&nophoto";
 
+                        String user_photo = "nophone";
 
 
                         System.out.println("url"+url);
 
 
-                        /*
-                        Call<ResponseBody> call = service.registerUser(uid,name,email,
-                        phone,gender,country,age,user_type,"noPhoto");
 
-                        call.enqueue(new Callback<ResponseBody>() {
+                        User user = new User(uid,name,email,phone,gender,country,age,user_type,user_photo);
+
+
+                        Call<User> call = service.registerUser(user);
+
+                        call.enqueue(new Callback<User>() {
                             @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                try {
-                                    String s = response.body().string();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                if(!response.isSuccessful()){
+                                    int s = response.code();
+                                    System.out.println("code"+s);
+                                    //Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
+
+
                                 }
-                                Toast.makeText(context,"succesfully created....",Toast.LENGTH_LONG).show();
+
+
+                                int s = response.code();
+                                Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
                             }
 
+
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+
+                                System.out.println("error"+t.getMessage());
+                                Toast.makeText(context," no more hopes....",Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+
+                        /*
+
+                        call.enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+
+                                if(!response.isSuccessful()){
+                                    int s = response.code();
+                                    System.out.println("code"+s);
+                                    //Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
+
+
+                                }
+
+
+                                int s = response.code();
+                                Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
+                            }
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                                System.out.println("error"+t.getMessage());
                                 Toast.makeText(context," no more hopes....",Toast.LENGTH_LONG).show();
 
                             }
@@ -166,7 +201,9 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
 
 
-                         */
+*/
+
+
 
                        /* JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                                 new Response.Listener<JSONObject>() {
@@ -200,7 +237,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
                         */
 
-                       //String response = volly.volleyget(url,context);
+                        //String response = volly.volleyget(url,context);
 
                         navController.navigate(R.id.signUp4_Fragment);
 

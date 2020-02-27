@@ -3,6 +3,7 @@ package com.example.soccerallianceapp;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,9 +48,10 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             email = getArguments().getString("email");
-            phone = getArguments().getString("phone");
+            phone = getArguments().getString("Phone");
             user_type = getArguments().getString("user-type");
         }
+        System.out.println("phone"+phone);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,10 +92,27 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         if(view == signup2_next_btn){
 
+
+
             String name = signup2_name_edit_txt.getEditableText().toString().trim();
-            String age = signup2_age_edit_txt.getEditableText().toString().trim();
             String gender = signup2_gender_edit_text.getEditableText().toString().trim();
             String country = signup2_country_edit_text.getEditableText().toString().trim();
+
+            if(TextUtils.isEmpty(name)){
+                signup2_name_edit_txt.setError("Name is Required.");
+                return ;
+            }else if(TextUtils.isEmpty(signup2_age_edit_txt.getEditableText().toString().trim())){
+                signup2_age_edit_txt.setError("Age is Required.");
+                return ;
+            }else if(TextUtils.isEmpty(gender)){
+                signup2_gender_edit_text.setError("Gender is Required.");
+                return ;
+            }else if(TextUtils.isEmpty(country)){
+                signup2_country_edit_text.setError("Country is Required.");
+                return ;
+            }
+                System.out.println("phone2"+phone);
+            int age = Integer.parseInt(signup2_age_edit_txt.getEditableText().toString().trim());
 
             System.out.println("ge"+gender);
             Bundle bundle = new Bundle();
@@ -102,7 +121,7 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
             bundle.putString("Phone", phone);
             bundle.putString("user-type",user_type);
             bundle.putString("name", name);
-            bundle.putString("age", age);
+            bundle.putInt("age", age);
             bundle.putString("gender", gender);
             bundle.putString("country", country);
 

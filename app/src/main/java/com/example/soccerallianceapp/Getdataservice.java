@@ -11,6 +11,17 @@ import com.example.soccerallianceapp.pojo.matchListDashboard.MatchListDashboard;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
+
+import com.example.soccerallianceapp.pojo.Team;
+import com.example.soccerallianceapp.pojo.User;
+
+import com.example.soccerallianceapp.pojo.ViewTeamDetail.ViewTeamDetail;
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
+import retrofit2.http.Body;
+
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+
 import retrofit2.http.Path;
 
 public interface Getdataservice {
@@ -18,15 +29,27 @@ public interface Getdataservice {
 //    @GET("{geoId}")
 //    Call<Weather> getWeather(@Path("geoId")int geoId);
 
-    @GET("registerUser&{uid}&{Full_name}&{Email}&{Phone}&{gender}&{Country}&{Age}&{User_type}&{User_photo}")
-    Call<ResponseBody> registerUser(
 
-            @Path("uid") String uid,@Path("Full_name") String full_name,
-            @Path("Email") String email, @Path("Phone") String phone,
-            @Path("Gender") String gender, @Path("Country") String country,
-            @Path("Age") String age,
-            @Path("User_type") String user_type,
-            @Path("User_photo") String user_photo
+
+    //@FormUrlEncoded
+    @Headers({"Content-Type:application/json"})
+    @POST("registerUser")
+
+    Call<User> registerUser(@Body User user);
+
+
+
+    @POST("UpdateUserProfile")
+    Call<User> UpdateUserProfile(@Body User user);
+
+
+
+
+
+    @GET("ViewregisterUserDetail&{uid}")
+    Call<ViewregisterUserDetail> ViewregisterUserDetail(
+
+            @Path("uid") String uid
     );
 
     @GET("listOfLeague_guestDashboard")
@@ -54,6 +77,31 @@ public interface Getdataservice {
 
     @GET("ListOfLeaguesByCountry&{country}")
     Call<ListOfLeaguesByCountry> getListOfLeaguesByCountryCall(@Path("country") String country);
+
+    @GET("ViewTeamDetail&{uid}")
+    Call<ViewTeamDetail> ViewTeamDetail(
+
+            @Path("uid") String uid
+    );
+
+
+    @POST("CreateTeam")
+    Call<Team> CreateTeam(@Body Team team);
+
+
+
+    @POST("UpdateTeam")
+    Call<Team> UpdateTeam(@Body Team team);
+
+
+
+    @GET("viewPlayerListFromTeam&{team_id}")
+    Call<Team> viewPlayerListFromTeam(
+
+            @Path("team_id") int team_id
+    );
+
+
 
 }
 

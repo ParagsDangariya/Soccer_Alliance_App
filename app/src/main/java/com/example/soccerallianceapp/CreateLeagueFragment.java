@@ -3,8 +3,12 @@ package com.example.soccerallianceapp;
 
 
 import android.content.Context;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,17 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.Button;
-
-import android.widget.ImageView;
-
 import com.example.soccer_alliance_project_test.R;
-
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -47,8 +41,8 @@ public class CreateLeagueFragment extends Fragment implements View.OnClickListen
         super.onViewCreated(view, savedInstanceState);
 
         context = getActivity().getApplicationContext();
-        navController = Navigation.findNavController(getActivity(),R.id.host_fragment);
-        
+        navController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
+
         league_name = view.findViewById(R.id.league_name_layout);
         no_of_leagues = view.findViewById(R.id.number_team_layout);
         edt_league_name = view.findViewById(R.id.league_name_edt_txt);
@@ -61,19 +55,16 @@ public class CreateLeagueFragment extends Fragment implements View.OnClickListen
 
 
  */
-       // Constants.HideErrorOnTyping(league_name);
-       // Constants.HideErrorOnTyping(no_of_leagues);
+        // Constants.HideErrorOnTyping(league_name);
+        // Constants.HideErrorOnTyping(no_of_leagues);
     }
 
 
     @Override
     public void onClick(View v) {
 
+        if(v == create_league_btn){
+
+        }
     }
 }
-
-
-
-
-
-
