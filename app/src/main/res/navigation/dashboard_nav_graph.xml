@@ -143,6 +143,7 @@
         android:label="fragment_match_score_update"
         tools:layout="@layout/fragment_match_score_update" />
     <fragment
+
         android:id="@+id/leagues_Fragment"
         android:name="com.example.soccerallianceapp.Leagues_Fragment"
         android:label="Fragment_Leagues"
@@ -154,8 +155,7 @@
             android:id="@+id/action_leagues_Fragment_to_createLeagueFragment"
             app:destination="@id/createLeagueFragment" />
     </fragment>
-
-    <fragment
+   <fragment
         android:id="@+id/Line_Up_Fragment"
         android:name="com.example.soccerallianceapp.Line_Up_Fragment"
         android:label="fragment_line_up"

@@ -9,12 +9,14 @@
         android:title="My League"
         android:icon="@drawable/user"/>
 
+
     <item android:id="@+id/league_team_btn"
         android:title="Team List"
         android:icon="@drawable/user"/>
 
     <item android:id="@+id/league_my_profile_btn"
         android:title="My Profile"
+
         android:icon="@drawable/user"/>
 
     <item android:id="@+id/league_logout_btn"
