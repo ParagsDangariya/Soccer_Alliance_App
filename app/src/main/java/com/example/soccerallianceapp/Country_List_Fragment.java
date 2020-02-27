@@ -90,7 +90,7 @@ public class Country_List_Fragment extends Fragment {
                                 bundle.putString("Coming_from" ,"Country_Fragment_Class");
 
                                 //can not navigate from counrty to league frgment
-                               // DashboardNavController.navigate(R.id.Leagues_Fragment,bundle);
+                                DashboardNavController.navigate(R.id.Leagues_Fragment,bundle);
                             }
                         });
                     }

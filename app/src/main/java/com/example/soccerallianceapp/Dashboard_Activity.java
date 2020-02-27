@@ -130,11 +130,6 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                     DashboardNavController.navigate(R.id.country_List_Fragment);
                 }
                 break;
-            case R.id.guest_PlayedMatches_btn:
-                if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
-                    DashboardNavController.navigate(R.id.guest_PlayedMatches_fragment);
-                }
-                break;
 
             case R.id.guest_login_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {

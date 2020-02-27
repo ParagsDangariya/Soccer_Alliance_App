@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.soccer_alliance_project_test.R;
 
+import com.example.soccerallianceapp.pojo.matchListDashboard.MatchListDashboard;
+import com.example.soccerallianceapp.pojo.matchListDashboard.UpcomingMatchList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -32,6 +34,11 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
     private Context context;
     FloatingActionButton add_player_btn;
     RecyclerView um_recycler_View,pm_recycler_View;
+    private ArrayList<Comman_Data_List> comman_data_List;
+    private Comman_adapter comman_adapter;
+
+    private ArrayList<Comman_Data_List> comman_data_List1;
+    private Comman_adapter comman_adapter1;
 
 
     @Override
@@ -51,9 +58,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
         um_recycler_View = view.findViewById(R.id.um_recycler_View);
         pm_recycler_View = view.findViewById(R.id.pm_recycler_View);
 
-
-        /*
-        Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+     /*   Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
         Call<MatchListDashboard> matchlistcall =service.getupcomingMatches_guestDashboardCall();
         System.out.println("call "+ matchlistcall);
         matchlistcall.enqueue(new Callback<MatchListDashboard>() {
@@ -62,15 +67,21 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
             public void onResponse(Call<MatchListDashboard> call, Response<MatchListDashboard> response) {
 
                 MatchListDashboard realData = response.body();
-                System.out.println("response" + realData);
+                System.out.println("response from match frdgment" + response.body());
                 if (response.body() != null) {
-                    System.out.print("before status "+realData.getStatus());
+
+
                     if (realData.getStatus() == 200) {
+                        System.out.println("getting upcoming matches "+realData.getUpcomingMatchList());
                         for (UpcomingMatchList matchelist : realData.getUpcomingMatchList()) {
                             //set logo when imge gets done. here
-                            System.out.print("before loop "+matchelist.getName());
+
                             comman_data_List.add(new Comman_Data_List(
-                                    matchelist.getName()));
+                                    matchelist.getTeam1(),
+                                    matchelist.getTeam1Logo(),
+                                    matchelist.getTeam2(),
+                                    matchelist.getTeam2Logo(),
+                                    matchelist.getDateOfMatch()));
                         }
                     }
                     comman_adapter.notifyDataSetChanged();
@@ -84,15 +95,17 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                 System.out.println("Error : " + t.getMessage());
             }
         });
-*/
-
-
-
     }
 
     @Override
     public void onClick(View view) {
 
     }
+*/
+}
 
+    @Override
+    public void onClick(View view) {
+
+    }
 }

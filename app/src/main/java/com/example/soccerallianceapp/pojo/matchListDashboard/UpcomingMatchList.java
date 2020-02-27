@@ -6,22 +6,52 @@ import com.google.gson.annotations.SerializedName;
 
 public class UpcomingMatchList {
 
-    @SerializedName("name")
+    @SerializedName("team1")
     @Expose
-    private String name;
+    private String team1;
+    @SerializedName("team1_logo")
+    @Expose
+    private String team1Logo;
+    @SerializedName("team2")
+    @Expose
+    private String team2;
+    @SerializedName("team2_logo")
+    @Expose
+    private String team2Logo;
     @SerializedName("date_of_match")
     @Expose
     private String dateOfMatch;
-    @SerializedName("logo")
-    @Expose
-    private String logo;
 
-    public String getName() {
-        return name;
+    public String getTeam1() {
+        return team1;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTeam1(String team1) {
+        this.team1 = team1;
+    }
+
+    public String getTeam1Logo() {
+        return team1Logo;
+    }
+
+    public void setTeam1Logo(String team1Logo) {
+        this.team1Logo = team1Logo;
+    }
+
+    public String getTeam2() {
+        return team2;
+    }
+
+    public void setTeam2(String team2) {
+        this.team2 = team2;
+    }
+
+    public String getTeam2Logo() {
+        return team2Logo;
+    }
+
+    public void setTeam2Logo(String team2Logo) {
+        this.team2Logo = team2Logo;
     }
 
     public String getDateOfMatch() {
@@ -32,20 +62,14 @@ public class UpcomingMatchList {
         this.dateOfMatch = dateOfMatch;
     }
 
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
     @Override
     public String toString() {
         return "{" +
-                "name='" + name + '\'' +
+                "team1='" + team1 + '\'' +
+                ", team1Logo='" + team1Logo + '\'' +
+                ", team2='" + team2 + '\'' +
+                ", team2Logo='" + team2Logo + '\'' +
                 ", dateOfMatch='" + dateOfMatch + '\'' +
-                ", logo='" + logo + '\'' +
                 '}';
     }
 }
