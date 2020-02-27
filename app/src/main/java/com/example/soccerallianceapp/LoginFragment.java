@@ -93,7 +93,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
-        if(fAuth.getCurrentUser() != null){
+        if(fAuth.getCurrentUser() == null){
             uid = fAuth.getCurrentUser().getUid();
             user = fAuth.getCurrentUser();
             verifyuser(user);

@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_home_Fragment_to_leagues_Fragment"
-            app:destination="@id/leagues_Fragment" />
+            app:destination="@id/Leagues_Fragment" />
         <action
             android:id="@+id/action_home_Fragment_to_team_mngr_my_profile_Fragment"
             app:destination="@id/team_mngr_my_profile_Fragment" />
@@ -48,7 +48,7 @@
         tools:layout="@layout/fragment_country_list" >
         <action
             android:id="@+id/action_country_List_Fragment_to_leagues_Fragment"
-            app:destination="@id/leagues_Fragment" />
+            app:destination="@id/Leagues_Fragment" />
     </fragment>
     <fragment
         android:id="@+id/player_List_Fragment"
@@ -144,7 +144,7 @@
         tools:layout="@layout/fragment_match_score_update" />
     <fragment
 
-        android:id="@+id/leagues_Fragment"
+        android:id="@+id/Leagues_Fragment"
         android:name="com.example.soccerallianceapp.Leagues_Fragment"
         android:label="Fragment_Leagues"
         tools:layout="@layout/fragment_leagues" >
