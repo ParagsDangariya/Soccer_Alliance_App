@@ -46,7 +46,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
     String uid ="";
     TextInputEditText signup3_new_password,signup3_confirm_password;
 
-    String imageUri,shorthand;
+    String imageUri = "uri",shorthand = "SH";
     String email,name,gender,country,user_type,password,phone;
     //int phone;
     int age;

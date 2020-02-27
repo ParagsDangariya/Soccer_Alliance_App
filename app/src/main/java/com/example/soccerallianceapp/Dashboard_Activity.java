@@ -27,6 +27,7 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
     public NavController DashboardNavController;
     public TextView username;
     public ImageView userImage;
+    String usertype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +69,13 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
             if(getIntent().getStringExtra("user_type").equals("Team_Manager")){
                 DashboardNavigationView.getMenu().clear();
                 DashboardNavigationView.inflateMenu(R.menu.team_manager_menu);
+                usertype = "Team_Manager";
 
             }
             else if(getIntent().getStringExtra("user_type").equals("League_Manager")){
                 DashboardNavigationView.getMenu().clear();
                 DashboardNavigationView.inflateMenu(R.menu.league_manager_menu);
+                usertype ="League_Manager";
             }
 
 
@@ -81,6 +84,7 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
         else {
             DashboardNavigationView.getMenu().clear();
             DashboardNavigationView.inflateMenu(R.menu.guest_menu);
+            usertype = "Guest";
         }
         DashboardNavController = Navigation.findNavController(this,R.id.dashboard_host_fragment);
 
@@ -158,7 +162,9 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
 
             case R.id.team_player_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
-                    DashboardNavController.navigate(R.id.player_List_Fragment);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Coming_from",usertype);
+                    DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
                 }
                 break;
 
