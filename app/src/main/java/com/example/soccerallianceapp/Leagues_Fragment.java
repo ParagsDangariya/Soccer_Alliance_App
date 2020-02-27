@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.soccer_alliance_project_test.R;
@@ -56,11 +57,6 @@ public class Leagues_Fragment extends Fragment {
 
         /*--------league Adapter Configuration--------*/
         comman_data_List = new ArrayList<Comman_Data_List>();
-        league_recycler_view = view.findViewById(R.id.leagues_recycler_view);
-        comman_adapter = new Comman_adapter(comman_data_List, context);
-        league_recycler_view.setLayoutManager(new LinearLayoutManager(context));
-        league_recycler_view.setAdapter(comman_adapter);
-
 
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
         Log.d("step1","after getService part");
@@ -117,6 +113,15 @@ public class Leagues_Fragment extends Fragment {
             }
         });
 
+        league_recycler_view = view.findViewById(R.id.leagues_recycler_view);
+        comman_adapter = new Comman_adapter(comman_data_List, context);
+
+        league_recycler_view.setLayoutManager(new LinearLayoutManager(context));
+
+        //league_recycler_view.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+        //league_recycler_view.setItemAnimator(new DefaultItemAnimator());
+
+        league_recycler_view.setAdapter(comman_adapter);
 
     }
 
