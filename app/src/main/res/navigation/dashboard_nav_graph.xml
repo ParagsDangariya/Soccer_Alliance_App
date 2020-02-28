@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/country_List_Fragment"
         android:name="com.example.soccerallianceapp.Country_List_Fragment"
-        android:label="fragment_country_list"
+        android:label="Country List"
         tools:layout="@layout/fragment_country_list" >
         <action
             android:id="@+id/action_country_List_Fragment_to_leagues_Fragment"
@@ -53,17 +53,17 @@
     <fragment
         android:id="@+id/player_List_Fragment"
         android:name="com.example.soccerallianceapp.Player_List_Fragment"
-        android:label="fragment_player_list"
+        android:label="Player List"
         tools:layout="@layout/fragment_player_list" />
     <fragment
         android:id="@+id/upcomingMatchFragment"
         android:name="com.example.soccerallianceapp.UpcomingMatchFragment"
-        android:label="fragment_upcoming_match"
+        android:label="Upcoming Matches"
         tools:layout="@layout/fragment_upcoming_match" />
     <fragment
         android:id="@+id/match_Score_Fragment"
         android:name="com.example.soccerallianceapp.Match_Score_Fragment"
-        android:label="fragment_match_score"
+        android:label="Match Score"
         tools:layout="@layout/fragment_match_score" >
         <action
             android:id="@+id/action_match_Score_Fragment_to_upcomingMatchFragment"
@@ -78,27 +78,27 @@
     <fragment
         android:id="@+id/my_Team_Fragment"
         android:name="com.example.soccerallianceapp.My_Team_Fragment"
-        android:label="fragment_my_team"
+        android:label="My Team"
         tools:layout="@layout/fragment_my_team" />
     <fragment
         android:id="@+id/add_Player_Fragment"
         android:name="com.example.soccerallianceapp.Add_Player_Fragment"
-        android:label="fragment_add_team"
+        android:label="Add Team"
         tools:layout="@layout/fragment_add_player" />
     <fragment
         android:id="@+id/add_Team_in_League_Fragment"
         android:name="com.example.soccerallianceapp.Add_Team_in_League_Fragment"
-        android:label="fragment_add_team_in_league"
+        android:label="Add Team"
         tools:layout="@layout/fragment_add_team_in_league" />
     <fragment
         android:id="@+id/team_mngr_my_profile_Fragment"
         android:name="com.example.soccerallianceapp.Team_mngr_my_profile_Fragment"
-        android:label="fragment_team_mngr_my_profile_"
+        android:label="My Profile"
         tools:layout="@layout/fragment_team_mngr_my_profile_" />
     <fragment
         android:id="@+id/leagueOperationsFragment"
         android:name="com.example.soccerallianceapp.LeagueOperationsFragment"
-        android:label="fragment_league_operations"
+        android:label="League Concern"
         tools:layout="@layout/fragment_league_operations" >
         <action
             android:id="@+id/action_leagueOperationsFragment_to_add_Team_in_League_Fragment"
@@ -113,22 +113,22 @@
     <fragment
         android:id="@+id/createLeagueFragment"
         android:name="com.example.soccerallianceapp.CreateLeagueFragment"
-        android:label="fragment_create_league"
+        android:label="Create League"
         tools:layout="@layout/fragment_create_league" />
     <fragment
         android:id="@+id/scheduleMatchFragment"
         android:name="com.example.soccerallianceapp.ScheduleMatchFragment"
-        android:label="fragment_schedule_match"
+        android:label="Schedule Match"
         tools:layout="@layout/fragment_schedule_match" />
     <fragment
         android:id="@+id/rescheduleMatchFragment"
         android:name="com.example.soccerallianceapp.RescheduleMatchFragment"
-        android:label="fragment_reschedule_match"
+        android:label="Reschedule Match"
         tools:layout="@layout/fragment_reschedule_match" />
     <fragment
         android:id="@+id/matchScoreRescheduleFragment"
         android:name="com.example.soccerallianceapp.MatchScoreRescheduleFragment"
-        android:label="fragment_match_score_reschedule"
+        android:label="Reschedule Match Score"
         tools:layout="@layout/fragment_match_score_reschedule" >
         <action
             android:id="@+id/action_matchScoreRescheduleFragment_to_rescheduleMatchFragment"
@@ -146,7 +146,7 @@
 
         android:id="@+id/leagues_Fragment"
         android:name="com.example.soccerallianceapp.Leagues_Fragment"
-        android:label="Fragment_Leagues"
+        android:label="Leagues"
         tools:layout="@layout/fragment_leagues" >
         <action
             android:id="@+id/action_leagues_Fragment_to_leagueOperationsFragment"
@@ -158,13 +158,13 @@
    <fragment
         android:id="@+id/Line_Up_Fragment"
         android:name="com.example.soccerallianceapp.Line_Up_Fragment"
-        android:label="fragment_line_up"
+        android:label="Line up"
         tools:layout="@layout/fragment_line_up"
         />
     <fragment
         android:id="@+id/Statistics_Fragment"
         android:name="com.example.soccerallianceapp.Statistics_Fragment"
-        android:label="Fragment_statistics"
+        android:label="Statistics"
         tools:layout="@layout/fragment_statistics_"
         />
 </navigation>

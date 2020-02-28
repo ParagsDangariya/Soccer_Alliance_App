@@ -5,14 +5,13 @@ public class matches_data_list {
     int match_id;
     String team1_name,team1_logo,team2_name,team2_logo,match_date,match_time;
 
-    public matches_data_list(int match_id, String team1_name, String team1_logo, String team2_name, String team2_logo, String match_date, String match_time) {
+    public matches_data_list(int match_id, String team1_name, String team1_logo, String team2_name, String team2_logo, String match_date) {
         this.match_id = match_id;
         this.team1_name = team1_name;
         this.team1_logo = team1_logo;
         this.team2_name = team2_name;
         this.team2_logo = team2_logo;
         this.match_date = match_date;
-        this.match_time = match_time;
     }
 
     public int getMatch_id() {
