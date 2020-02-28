@@ -90,9 +90,17 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                                     matchelist.getTeam2(),
                                     matchelist.getTeam2Logo(),
                                     matchelist.getDateOfMatch()));
+
                         }
                     }
                     up_match_adapter.notifyDataSetChanged();
+                    up_match_adapter.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DashboardNavController.navigate(R.id.upcomingMatchFragment);
+                        }
+                    });
+                    //DashboardNavController.navigate(R.id.upcomingMatchFragment);
                 } else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
                 }
@@ -128,6 +136,13 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                         }
                     }
                     played_match_adapter.notifyDataSetChanged();
+                    played_match_adapter.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DashboardNavController.navigate(R.id.match_Score_Fragment);
+                        }
+                    });
+                    //DashboardNavController.navigate(R.id.match_Score_Fragment);
                 } else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
                 }
