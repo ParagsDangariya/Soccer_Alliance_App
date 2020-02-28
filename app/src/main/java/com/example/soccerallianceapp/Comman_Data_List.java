@@ -5,10 +5,7 @@ class Comman_Data_List {
     private int iteam_id;
     private String item_name;
     private String item_image;
-    private String item_name1;
-    private String item_image1;
     private String item_strenght;
-    private String date;
 
    /*  public Comman_Data_List(String item_name, String item_image) {
         this.item_name = item_name;
@@ -45,15 +42,6 @@ class Comman_Data_List {
         this.item_image=logo;
     }
 
-    public Comman_Data_List(String team1, String team1Logo, String team2, String team2Logo, String dateOfMatch) {
-
-        this.item_name=team1;
-        this.item_image=team1Logo;
-        this.item_name1=team2;
-        this.item_image1=team2Logo;
-        this.date=dateOfMatch;
-
-    }
 
     public int getIteam_id(){return iteam_id ;}
 
