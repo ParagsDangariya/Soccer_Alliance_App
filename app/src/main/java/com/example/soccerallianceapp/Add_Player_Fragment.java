@@ -205,23 +205,18 @@ public class Add_Player_Fragment extends Fragment implements View.OnClickListene
             public void onResponse(Call<Player> call, Response<Player> response) {
 
 
-                //AddPlayerInTeam addPlayerInTeam = response.body();
-
-                Player player = response.body();
-                player.getMessage();
-                if(player.getMessage() == null){
 
 
                 if(!response.isSuccessful()){
                     int s = response.code();
                     System.out.println("code"+s);
                 }
-                }
+
 
                 int s = response.code();
 
 
-                System.out.println("code"+player.getMessage());
+                System.out.println("code"+s);
             }
 
             @Override

@@ -129,7 +129,7 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
 
             case R.id.guest_Teams_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
-                    DashboardNavController.navigate(R.id.Leagues_Fragment);
+                    DashboardNavController.navigate(R.id.teamListFragment);
                 }
                 break;
 
@@ -193,7 +193,7 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 }
                 break;
 
-            case R.id.league_team_btn:
+            case R.id.league_team_list_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
                     DashboardNavController.navigate(R.id.player_List_Fragment);
                 }
