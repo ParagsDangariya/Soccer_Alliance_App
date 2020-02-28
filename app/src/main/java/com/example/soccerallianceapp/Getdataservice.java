@@ -1,7 +1,11 @@
 package com.example.soccerallianceapp;
 
 import com.example.soccerallianceapp.pojo.ListOfLeaguesByCountry.ListOfLeaguesByCountry;
+
 import com.example.soccerallianceapp.pojo.PlayedMatchListDashboard.PlayedmatchListDashboard;
+
+import com.example.soccerallianceapp.pojo.Player;
+
 import com.example.soccerallianceapp.pojo.ViewPlayerListByTeamDashboard.ViewPlayerListDashboard;
 import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
 import com.example.soccerallianceapp.pojo.ViewTeamListDashboard.ViewTeamList;
@@ -106,6 +110,8 @@ public interface Getdataservice {
             @Path("team_id") int team_id
     );
 
+    @POST("AddPlayerInTeam")
+    Call<Player> AddPlayerInTeam(@Body Player player);
 
 
 }

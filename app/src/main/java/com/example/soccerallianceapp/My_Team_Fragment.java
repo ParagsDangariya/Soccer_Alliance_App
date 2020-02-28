@@ -123,6 +123,8 @@ public class My_Team_Fragment extends Fragment implements View.OnClickListener {
                     System.out.println("name"+name);
 
 
+                    System.out.println("number of team "+teamid);
+
 
 
                 }
@@ -138,7 +140,7 @@ public class My_Team_Fragment extends Fragment implements View.OnClickListener {
             }
         });
 
-       // System.out.println("number "+i);
+       System.out.println("number of team "+teamid);
 
 
     }
@@ -206,7 +208,9 @@ public class My_Team_Fragment extends Fragment implements View.OnClickListener {
 
 
         if(view == my_team_update_details_btn ){
-             name = my_team_name_edt_txt.getEditableText().toString().trim();
+            System.out.println("number of on button "+teamid);
+
+            name = my_team_name_edt_txt.getEditableText().toString().trim();
              shorthand = my_team_shorthand_edt_txt.getEditableText().toString().trim();
 
             if (TextUtils.isEmpty(name)) {
@@ -222,40 +226,81 @@ public class My_Team_Fragment extends Fragment implements View.OnClickListener {
 
             System.out.println("uid on my team"+uid);
 
-            Team team  = new Team(name,imageUri,shorthand,uid);
+            Team team  = new Team(teamid,name,imageUri,shorthand,uid);
 
-            Call<Team> call = service.CreateTeam(team);
+            updateteam(team);
 
-            System.out.println("call pass");
-            call.enqueue(new Callback<Team>() {
-                @Override
-                public void onResponse(Call<Team> call, Response<Team> response) {
-                    if(!response.isSuccessful()){
-                        int s = response.code();
-                        System.out.println("code"+s);
-                        Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
+            //createteam(team);
 
-
-                    }
-                    int s = response.code();
-                    System.out.println("code"+s);
-                    Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
-
-
-                    System.out.println("code");
-                }
-
-                @Override
-                public void onFailure(Call<Team> call, Throwable t) {
-
-                    System.out.println("error"+t.getMessage());
-                    Toast.makeText(context," no more hopes....",Toast.LENGTH_LONG).show();
-
-                }
-            });
 
 
 
         }
     }
+
+    private void updateteam(Team team) {
+        Call<Team> call = service.UpdateTeam(team);
+
+        System.out.println("call pass");
+        call.enqueue(new Callback<Team>() {
+            @Override
+            public void onResponse(Call<Team> call, Response<Team> response) {
+                if(!response.isSuccessful()){
+                    int s = response.code();
+                    System.out.println("code"+s);
+
+
+                }
+                int s = response.code();
+                System.out.println("code"+s);
+                Toast.makeText(context,"succesfully updated...."+s,Toast.LENGTH_LONG).show();
+
+
+                System.out.println("code"+s);
+            }
+
+            @Override
+            public void onFailure(Call<Team> call, Throwable t) {
+
+                System.out.println("error"+t.getMessage());
+                Toast.makeText(context," no more hopes....",Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
+    /*
+    private void createteam(Team team) {
+        Call<Team> call = service.CreateTeam(team);
+
+        System.out.println("call pass");
+        call.enqueue(new Callback<Team>() {
+            @Override
+            public void onResponse(Call<Team> call, Response<Team> response) {
+                if(!response.isSuccessful()){
+                    int s = response.code();
+                    System.out.println("code"+s);
+                    Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
+
+
+                }
+                int s = response.code();
+                System.out.println("code"+s);
+                Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
+
+
+                System.out.println("code");
+            }
+
+            @Override
+            public void onFailure(Call<Team> call, Throwable t) {
+
+                System.out.println("error"+t.getMessage());
+                Toast.makeText(context," no more hopes....",Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
+     */
 }
