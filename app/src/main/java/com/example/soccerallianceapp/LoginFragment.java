@@ -101,7 +101,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
             System.out.println("userdata"+uid);
         }
-        // mqueue= Volley.newRequestQueue(context);
 
     }
 
