@@ -66,7 +66,9 @@ public class TeamListFragment extends Fragment{
         team_recycler_view = view.findViewById(R.id.team_recycler_view);
         comman_data_List = new ArrayList<Comman_Data_List>();
         comman_data_List.clear();
+
         comman_adapter = new Comman_adapter(comman_data_List, context);
+
         team_recycler_view.setLayoutManager(new LinearLayoutManager(context));
         team_recycler_view.setAdapter(comman_adapter);
 

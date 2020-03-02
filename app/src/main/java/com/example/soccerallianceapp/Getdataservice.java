@@ -1,10 +1,18 @@
 package com.example.soccerallianceapp;
 
+import com.example.soccerallianceapp.pojo.CreateSchedule.ScheduleMatch;
+import com.example.soccerallianceapp.pojo.leaguelistbyuserId.LeaguesFragment;
+import com.example.soccerallianceapp.pojo.matchScore.MatchScoreDisplay;
+import com.example.soccerallianceapp.pojo.viewTeamListFromLeagueId.ViewTeamListFromLeagueId;
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
+import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
+
 import com.example.soccerallianceapp.pojo.ListOfLeaguesByCountry.ListOfLeaguesByCountry;
 
 import com.example.soccerallianceapp.pojo.PlayedMatchListDashboard.PlayedmatchListDashboard;
 
 import com.example.soccerallianceapp.pojo.Player;
+
 
 import com.example.soccerallianceapp.pojo.ViewPlayerListByTeamDashboard.ViewPlayerListDashboard;
 import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
@@ -44,10 +52,9 @@ public interface Getdataservice {
 
 
 
+
     @POST("UpdateUserProfile")
     Call<User> UpdateUserProfile(@Body User user);
-
-
 
 
 
@@ -68,10 +75,21 @@ public interface Getdataservice {
     @GET("viewTeamListFromLeagueId&{league_id}")
     Call<ViewTeamListByLeague> getviewTeamListFromLeagueIdCall(@Path("league_id") String league_id);
 
+    @GET("LeagueListByUser&{user_id}")
+    Call<LeaguesFragment> getLeagueList(@Path("user_id") String user_id);
+
+    @GET("matchScore&{matchid}&{teamid}")
+    Call<MatchScoreDisplay> getMatchScores(@Path("matchid") int matchid, @Path("teamid") int teamid);
+
+    @GET("viewTeamListFromLeagueId&{League_id}")
+    Call<ViewTeamListFromLeagueId> viewTeamListFromLeagueId(@Path("League_id") int League_id);
 
     @GET("viewTeamList")
     Call<ViewTeamList> getviewTeamListCall();
 
+
+    @POST("CreateSchedule")
+    Call<ScheduleMatch> scheduleMatch(@Body ScheduleMatch schedulematch);
 
    @GET("upcomingMatches_guestDashboard")
    Call<MatchListDashboard> getupcomingMatches_guestDashboardCall();

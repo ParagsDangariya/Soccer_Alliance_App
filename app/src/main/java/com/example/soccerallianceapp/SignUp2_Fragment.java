@@ -74,6 +74,7 @@ public class SignUp2_Fragment extends Fragment implements View.OnClickListener{
 
         ArrayAdapter<String> genderadapter = new ArrayAdapter<String>(context,
                 simple_list_item_1, Countries_List.gender);
+
         signup2_name_edit_txt = view.findViewById(R.id.signup2_name_edit_txt);
         signup2_age_edit_txt = view.findViewById(R.id.signup2_age_edit_txt);
         signup2_country_edit_text = view.findViewById(R.id.signup2_country_edit_text);

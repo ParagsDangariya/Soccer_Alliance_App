@@ -84,7 +84,9 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
         player_recycler_view = view.findViewById(R.id.player_recycler_view);
         comman_data_List = new ArrayList<Comman_Data_List>();
         comman_data_List.clear();
+
         comman_adapter = new Comman_adapter(comman_data_List, context);
+
         player_recycler_view.setLayoutManager(new LinearLayoutManager(context));
         player_recycler_view.setAdapter(comman_adapter);
 

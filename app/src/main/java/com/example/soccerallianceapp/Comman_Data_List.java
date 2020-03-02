@@ -2,6 +2,7 @@ package com.example.soccerallianceapp;
 
 class Comman_Data_List {
 
+
     private int iteam_id;
     private String item_name;
     private String item_image;
@@ -40,6 +41,7 @@ class Comman_Data_List {
     public Comman_Data_List(String teamName, String logo) {
         this.item_name=teamName;
         this.item_image=logo;
+
     }
 
 
@@ -50,6 +52,7 @@ class Comman_Data_List {
     }
 
     public String getItem_image() {
+
         return item_image;
     }
 
@@ -58,6 +61,7 @@ class Comman_Data_List {
     }
 
     public String getItem_image1() {
+
         return item_image;
     }
 }
