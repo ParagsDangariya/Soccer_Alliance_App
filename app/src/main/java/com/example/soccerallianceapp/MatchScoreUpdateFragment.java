@@ -35,8 +35,14 @@ public class MatchScoreUpdateFragment extends Fragment {
 
     MatchScores matchscore;
 
+    MatchScores matchScoresteam2;
+
     int matchid = 1;
     int teamid = 1;
+    int matchid2= 2;
+    int team2id= 2;
+
+
 
     private Context context;
 
@@ -49,8 +55,15 @@ public class MatchScoreUpdateFragment extends Fragment {
 
     TextInputEditText passaccuracy_team1_edt_txt,redcard_team1_edt_txt,offsides_team1_edt_txt,corners_team1_edt_txt,yellowcards_team1_edt_txt;
 
+    TextInputEditText  team2_goal_edt_txt,shots_team2_edt_txt,shotsontarget_team2_edt_txt,possession_team2_edt_txt,passes_team2_edt_txt,fouls_team2_edt_txt;
+
+    TextInputEditText passaccuracy_team2_edt_txt,redcard_team2_edt_txt,offsides_team2_edt_txt,corners_team2_edt_txt,yellowcards_team2_edt_txt;
+
 
     int goal,shots,shotsontarget,possession,passes,passaccuracy,redcard,offsides,corners,fouls,yellowcard;
+
+    int goal2,shots2,shotsontarget2,possession2,passes2,passaccuracy2,redcard2,offsides2,corners2,fouls2,yellowcard2;
+
 
     Button Schedule_match_btn;
 
@@ -92,6 +105,17 @@ public class MatchScoreUpdateFragment extends Fragment {
         Schedule_match_btn = view.findViewById(R.id.Schedule_match_btn);
 
 
+        team2_goal_edt_txt = view.findViewById(R.id.team2_goal_edt_txt);
+        shots_team2_edt_txt = view.findViewById(R.id.shots_team2_edt_txt);
+        shotsontarget_team2_edt_txt = view.findViewById(R.id.shotsontarget_team2_edt_txt);
+        possession_team2_edt_txt = view.findViewById(R.id.possession_team2_edt_txt);
+        passes_team2_edt_txt = view.findViewById(R.id.passes_team2_edt_txt);
+        passaccuracy_team2_edt_txt = view.findViewById(R.id.passaccuracy_team2_edt_txt);
+        redcard_team2_edt_txt = view.findViewById(R.id.redcard_team2_edt_txt);
+        offsides_team2_edt_txt = view.findViewById(R.id.offsides_team2_edt_txt);
+        corners_team2_edt_txt = view.findViewById(R.id.corners_team2_edt_txt);
+        yellowcards_team2_edt_txt = view.findViewById(R.id.yellowcards_team2_edt_txt);
+        fouls_team2_edt_txt = view.findViewById(R.id.fouls_team2_edt_txt);
 
 
 
@@ -104,6 +128,9 @@ public class MatchScoreUpdateFragment extends Fragment {
             Log.d("step1", "after getService part");
 
             Call<MatchScoreDisplay> displayscore = service.getMatchScores(matchid, teamid);
+
+
+
 
             displayscore.enqueue(new Callback<MatchScoreDisplay>() {
                 @Override
@@ -161,6 +188,65 @@ public class MatchScoreUpdateFragment extends Fragment {
 
                 }
             });
+
+
+            Call<MatchScoreDisplay> displayscore2 = service.getMatchScores(matchid2,team2id);
+
+            displayscore2.enqueue(new Callback<MatchScoreDisplay>() {
+                @Override
+                public void onResponse(Call<MatchScoreDisplay> call, Response<MatchScoreDisplay> response) {
+
+                    Log.d("step2", "after 2nd onResponse");
+
+
+                    MatchScoreDisplay data1 = response.body();
+
+                    System.out.println(data1);
+
+                    System.out.println("response" + response.body().toString());
+
+                    matchscore = data1.getMatchScores();
+
+                    goal2 = matchscore.getGoal();
+                    shots2 = matchscore.getShots();
+                    shotsontarget2 = matchscore.getShotsOnTarget();
+                    passaccuracy2 = matchscore.getPassAccuracy();
+                    passes2 = matchscore.getPasses();
+                    redcard2 = matchscore.getRedCards();
+                    possession2 = matchscore.getPossession();
+                    corners2 = matchscore.getCorners();
+                    offsides2 = matchscore.getOffsides();
+                    fouls2 = matchscore.getFouls();
+                    yellowcard2 =matchscore.getYellowCards();
+
+                    team2_goal_edt_txt.setText(String.valueOf(goal2));
+                    shots_team2_edt_txt.setText(String.valueOf(shots2));
+                    shotsontarget_team2_edt_txt.setText(String.valueOf(shotsontarget2));
+                    possession_team2_edt_txt.setText(String.valueOf(possession2));
+                    passes_team2_edt_txt.setText(String.valueOf(passes2));
+                    passaccuracy_team2_edt_txt.setText(String.valueOf(passaccuracy2));
+                    redcard_team2_edt_txt.setText(String.valueOf(redcard2));
+                    corners_team2_edt_txt.setText(String.valueOf(corners2));
+
+                    offsides_team2_edt_txt.setText(String.valueOf(offsides2));
+                    yellowcards_team2_edt_txt.setText(String.valueOf(yellowcard2));
+                    fouls_team2_edt_txt.setText(String.valueOf(fouls2));
+
+
+                    System.out.println(team2_goal_edt_txt);
+
+
+
+
+
+                }
+
+                @Override
+                public void onFailure(Call<MatchScoreDisplay> call, Throwable t) {
+
+                }
+            });
+
 
 
             Schedule_match_btn.setOnClickListener(new View.OnClickListener() {
