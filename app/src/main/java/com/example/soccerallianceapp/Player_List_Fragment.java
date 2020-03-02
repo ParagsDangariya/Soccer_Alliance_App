@@ -72,6 +72,9 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
+        fAuth = FirebaseAuth.getInstance();
+        uid =fAuth.getCurrentUser().getUid();
+
         /*--------Teams Adapter Configuration--------*/
         player_recycler_view = view.findViewById(R.id.player_recycler_view);
         comman_data_List = new ArrayList<Comman_Data_List>();
@@ -92,10 +95,14 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
             }else if(getArguments().getString("Coming_from").equals("Team_Manager")){
                 add_player_btn.setVisibility(View.VISIBLE);
-                fAuth = FirebaseAuth.getInstance();
-                uid =fAuth.getCurrentUser().getUid();
 
-                getTeamid(uid,service);
+                team_id = getArguments().getInt("team_id");
+
+                //getTeamid(uid,service);
+
+
+                getPlayerlist(team_id,service);
+                Toast.makeText(context,"got success"+team_id, Toast.LENGTH_LONG).show();
 
                 System.out.println("team Id for team"+team_id);
 
@@ -150,6 +157,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
         });
     }
 
+    /*
     private void getTeamid(String uid, Getdataservice service) {
 
         Call<ViewTeamDetail> call = service.ViewTeamDetail(uid);
@@ -184,10 +192,14 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
         //getPlayerlist(team_id,service);
     }
 
+     */
+
     @Override
     public void onClick(View view) {
         if(view == add_player_btn){
-            DashboardNavController.navigate(R.id.add_Player_Fragment);
+            Bundle bundle = new Bundle();
+            bundle.putInt("team_id",team_id);
+            DashboardNavController.navigate(R.id.add_Player_Fragment,bundle);
         }
 
     }

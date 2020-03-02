@@ -16,8 +16,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.soccer_alliance_project_test.R;
+import com.example.soccerallianceapp.pojo.ViewTeamDetail.TeamDetails;
+import com.example.soccerallianceapp.pojo.ViewTeamDetail.ViewTeamDetail;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Dashboard_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -28,13 +34,25 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
     public TextView username;
     public ImageView userImage;
     String usertype;
+    FirebaseAuth fAuth;
+    String uid="";
+    int team_id;
+    Getdataservice service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+
+        fAuth = FirebaseAuth.getInstance();
+        uid =fAuth.getCurrentUser().getUid();
+
+        getTeamid(uid,service);
         setupNavigation();
+
     }
+
 
     public void setupNavigation(){
 
@@ -162,8 +180,10 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
 
             case R.id.team_player_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
+
                     Bundle bundle = new Bundle();
                     bundle.putString("Coming_from",usertype);
+                    bundle.putInt("team_id",team_id);
                     DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
                 }
                 break;
@@ -218,6 +238,40 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
 
         return true;
 
+    }
+
+    private void getTeamid(String uid, Getdataservice service) {
+
+        Call<ViewTeamDetail> call = service.ViewTeamDetail(uid);
+
+        call.enqueue(new Callback<ViewTeamDetail>() {
+            @Override
+            public void onResponse(Call<ViewTeamDetail> call, Response<ViewTeamDetail> response) {
+                ViewTeamDetail viewTeam = response.body();
+
+
+
+                TeamDetails teamDetails = viewTeam.getTeamDetails();
+
+                if(teamDetails!= null){
+
+                    team_id = teamDetails.getTeamId();
+
+                    System.out.println("id of team "+team_id);
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ViewTeamDetail> call, Throwable t) {
+
+            }
+        });
+
+        System.out.println("teamid"+team_id);
+
+        //getPlayerlist(team_id,service);
     }
 
 }
