@@ -27,7 +27,7 @@ import java.util.List;
 
 import com.example.soccerallianceapp.pojo.leaguelistbyuserId.LeagueList;
 import com.example.soccerallianceapp.pojo.leaguelistbyuserId.LeaguesFragment;
-import com.example.soccerallianceapp.pojo.test.LeagueModel;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
@@ -144,13 +144,13 @@ public class LeagueListFragment extends Fragment {
 
 
 
-                                   Integer league_id = comman_data_List.get(position).getItem_id();
+                                   Integer league_id = comman_data_List.get(position).getIteam_id();
 
                                     Toast.makeText(context, "leagueid"+league_id , Toast.LENGTH_LONG).show();
 
                                     System.out.println("League Id : " + league_id);
 
-                                    bundle.putInt("League_id", comman_data_List.get(position).getItem_id());
+                                    bundle.putInt("League_id", comman_data_List.get(position).getIteam_id());
 
                                     bundle.putString("League_name",String.valueOf(comman_data_List.get(position).getItem_name()));
                                     bundle.putString("League_Logo",String.valueOf(comman_data_List.get(position).getItem_image()));

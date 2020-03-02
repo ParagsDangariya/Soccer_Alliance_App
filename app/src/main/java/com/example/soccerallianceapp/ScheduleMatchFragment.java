@@ -23,7 +23,7 @@ import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.CreateSchedule.ScheduleMatch;
 import com.example.soccerallianceapp.pojo.viewTeamListFromLeagueId.TeamList;
 import com.example.soccerallianceapp.pojo.viewTeamListFromLeagueId.ViewTeamListFromLeagueId;
-import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;

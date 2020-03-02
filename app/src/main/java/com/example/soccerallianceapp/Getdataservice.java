@@ -4,7 +4,7 @@ import com.example.soccerallianceapp.pojo.CreateSchedule.ScheduleMatch;
 import com.example.soccerallianceapp.pojo.leaguelistbyuserId.LeaguesFragment;
 import com.example.soccerallianceapp.pojo.matchScore.MatchScoreDisplay;
 import com.example.soccerallianceapp.pojo.viewTeamListFromLeagueId.ViewTeamListFromLeagueId;
-import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
+
 import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
 
 import com.example.soccerallianceapp.pojo.ListOfLeaguesByCountry.ListOfLeaguesByCountry;
