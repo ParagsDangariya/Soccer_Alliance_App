@@ -128,6 +128,15 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                         }
                     }
                     played_match_adapter.notifyDataSetChanged();
+                    played_match_adapter.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                            int position = viewHolder.getAdapterPosition();
+                            DashboardNavController.navigate(R.id.match_Score_Fragment);
+                        }
+                    });
                 } else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
                 }
