@@ -43,12 +43,7 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
-        fAuth = FirebaseAuth.getInstance();
-        uid =fAuth.getCurrentUser().getUid();
-
-        getTeamid(uid,service);
         setupNavigation();
 
     }
@@ -88,6 +83,12 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 DashboardNavigationView.getMenu().clear();
                 DashboardNavigationView.inflateMenu(R.menu.team_manager_menu);
                 usertype = "Team_Manager";
+                service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+
+                fAuth = FirebaseAuth.getInstance();
+                uid =fAuth.getCurrentUser().getUid();
+
+                getTeamid(uid,service);
 
             }
             else if(getIntent().getStringExtra("user_type").equals("League_Manager")){
