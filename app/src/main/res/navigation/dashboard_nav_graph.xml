@@ -9,91 +9,182 @@
         android:id="@+id/home_Fragment"
         android:name="com.example.soccerallianceapp.Home_Fragment"
         android:label="Soccer Alliance"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_Fragment_to_leagues_Fragment"
+            app:destination="@id/Leagues_Fragment" />
+        <action
+            android:id="@+id/action_home_Fragment_to_team_mngr_my_profile_Fragment"
+            app:destination="@id/team_mngr_my_profile_Fragment" />
+        <action
+            android:id="@+id/action_home_Fragment_to_country_List_Fragment"
+            app:destination="@id/country_List_Fragment" />
+        <action
+            android:id="@+id/action_home_Fragment_to_teamListFragment"
+            app:destination="@id/teamListFragment" />
+        <action
+            android:id="@+id/action_home_Fragment_to_my_Team_Fragment"
+            app:destination="@id/my_Team_Fragment" />
+        <action
+            android:id="@+id/action_home_Fragment_to_match_Score_Fragment"
+            app:destination="@id/match_Score_Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/teamListFragment"
         android:name="com.example.soccerallianceapp.TeamListFragment"
         android:label="Teams"
-        tools:layout="@layout/fragment_team_list" />
+        tools:layout="@layout/fragment_team_list" >
+        <action
+            android:id="@+id/action_teamListFragment_to_player_List_Fragment"
+            app:destination="@id/player_List_Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/country_List_Fragment"
         android:name="com.example.soccerallianceapp.Country_List_Fragment"
-        android:label="fragment_country_list"
-        tools:layout="@layout/fragment_country_list" />
+        android:label="Country List"
+        tools:layout="@layout/fragment_country_list" >
+        <action
+            android:id="@+id/action_country_List_Fragment_to_leagues_Fragment"
+            app:destination="@id/Leagues_Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/player_List_Fragment"
         android:name="com.example.soccerallianceapp.Player_List_Fragment"
-        android:label="fragment_player_list"
-        tools:layout="@layout/fragment_player_list" />
+        android:label="Player List"
+        tools:layout="@layout/fragment_player_list" >
+        <action
+            android:id="@+id/action_player_List_Fragment_to_editTeamFragment"
+            app:destination="@id/editTeamFragment" />
+        <action
+            android:id="@+id/action_player_List_Fragment_to_add_Player_Fragment"
+            app:destination="@id/add_Player_Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/upcomingMatchFragment"
         android:name="com.example.soccerallianceapp.UpcomingMatchFragment"
-        android:label="fragment_upcoming_match"
+        android:label="Upcoming Matches"
         tools:layout="@layout/fragment_upcoming_match" />
     <fragment
         android:id="@+id/match_Score_Fragment"
         android:name="com.example.soccerallianceapp.Match_Score_Fragment"
-        android:label="fragment_match_score"
-        tools:layout="@layout/fragment_match_score" />
+        android:label="Match Score"
+        tools:layout="@layout/fragment_match_score" >
+        <action
+            android:id="@+id/action_match_Score_Fragment_to_upcomingMatchFragment"
+            app:destination="@id/upcomingMatchFragment" />
+        <action
+            android:id="@+id/action_match_Score_Fragment_to_Line_Up_Fragment"
+            app:destination="@id/Line_Up_Fragment" />
+        <action
+            android:id="@+id/action_match_Score_Fragment_to_Statistics_Fragment"
+            app:destination="@id/Statistics_Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/my_Team_Fragment"
         android:name="com.example.soccerallianceapp.My_Team_Fragment"
-        android:label="fragment_my_team"
+        android:label="My Team"
         tools:layout="@layout/fragment_my_team" />
     <fragment
         android:id="@+id/add_Player_Fragment"
         android:name="com.example.soccerallianceapp.Add_Player_Fragment"
-        android:label="fragment_add_team"
-        tools:layout="@layout/fragment_add_player" />
+        android:label="Add Team"
+        tools:layout="@layout/fragment_add_player" >
+        <action
+            android:id="@+id/action_add_Player_Fragment_to_player_List_Fragment"
+            app:destination="@id/player_List_Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/add_Team_in_League_Fragment"
         android:name="com.example.soccerallianceapp.Add_Team_in_League_Fragment"
-        android:label="fragment_add_team_in_league"
+        android:label="Add Team"
         tools:layout="@layout/fragment_add_team_in_league" />
     <fragment
         android:id="@+id/team_mngr_my_profile_Fragment"
         android:name="com.example.soccerallianceapp.Team_mngr_my_profile_Fragment"
-        android:label="fragment_team_mngr_my_profile_"
+        android:label="My Profile"
         tools:layout="@layout/fragment_team_mngr_my_profile_" />
     <fragment
         android:id="@+id/leagueOperationsFragment"
         android:name="com.example.soccerallianceapp.LeagueOperationsFragment"
-        android:label="fragment_league_operations"
-        tools:layout="@layout/fragment_league_operations" />
+        android:label="League Concern"
+        tools:layout="@layout/fragment_league_operations" >
+        <action
+            android:id="@+id/action_leagueOperationsFragment_to_add_Team_in_League_Fragment"
+            app:destination="@id/add_Team_in_League_Fragment" />
+        <action
+            android:id="@+id/action_leagueOperationsFragment_to_scheduleMatchFragment"
+            app:destination="@id/scheduleMatchFragment" />
+        <action
+            android:id="@+id/action_leagueOperationsFragment_to_matchScoreRescheduleFragment"
+            app:destination="@id/matchScoreRescheduleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createLeagueFragment"
         android:name="com.example.soccerallianceapp.CreateLeagueFragment"
-        android:label="fragment_create_league"
+        android:label="Create League"
         tools:layout="@layout/fragment_create_league" />
     <fragment
         android:id="@+id/scheduleMatchFragment"
         android:name="com.example.soccerallianceapp.ScheduleMatchFragment"
-        android:label="fragment_schedule_match"
+        android:label="Schedule Match"
         tools:layout="@layout/fragment_schedule_match" />
     <fragment
         android:id="@+id/rescheduleMatchFragment"
         android:name="com.example.soccerallianceapp.RescheduleMatchFragment"
-        android:label="fragment_reschedule_match"
+        android:label="Reschedule Match"
         tools:layout="@layout/fragment_reschedule_match" />
     <fragment
         android:id="@+id/matchScoreRescheduleFragment"
         android:name="com.example.soccerallianceapp.MatchScoreRescheduleFragment"
-        android:label="fragment_match_score_reschedule"
-        tools:layout="@layout/fragment_match_score_reschedule" />
+        android:label="Reschedule Match Score"
+        tools:layout="@layout/fragment_match_score_reschedule" >
+        <action
+            android:id="@+id/action_matchScoreRescheduleFragment_to_rescheduleMatchFragment"
+            app:destination="@id/rescheduleMatchFragment" />
+        <action
+            android:id="@+id/action_matchScoreRescheduleFragment_to_matchScoreUpdateFragment"
+            app:destination="@id/matchScoreUpdateFragment" />
+    </fragment>
     <fragment
         android:id="@+id/matchScoreUpdateFragment"
         android:name="com.example.soccerallianceapp.MatchScoreUpdateFragment"
-        android:label="fragment_match_score_update"
+        android:label="Update Match Score"
         tools:layout="@layout/fragment_match_score_update" />
-    <fragment
-        android:id="@+id/leagues_Fragment"
-        android:name="com.example.soccerallianceapp.Leagues_Fragment"
-        android:label="Fragment_Leagues"
-        tools:layout="@layout/fragment_leagues" />
+   
+
     <fragment
         android:id="@+id/LeagueListFragment"
         android:name="com.example.soccerallianceapp.LeagueListFragment"
         android:label="fragment_league_list"
         tools:layout="@layout/fragment_league_list" />
 
+    <fragment
+        android:id="@+id/Leagues_Fragment"
+        android:name="com.example.soccerallianceapp.Leagues_Fragment"
+        android:label="Leagues"
+        tools:layout="@layout/fragment_leagues" >
+        <action
+            android:id="@+id/action_leagues_Fragment_to_leagueOperationsFragment"
+            app:destination="@id/leagueOperationsFragment" />
+        <action
+            android:id="@+id/action_leagues_Fragment_to_createLeagueFragment"
+            app:destination="@id/createLeagueFragment" />
+    </fragment>
+   <fragment
+        android:id="@+id/Line_Up_Fragment"
+        android:name="com.example.soccerallianceapp.Line_Up_Fragment"
+        android:label="Line up"
+        tools:layout="@layout/fragment_line_up"
+        />
+    <fragment
+        android:id="@+id/Statistics_Fragment"
+        android:name="com.example.soccerallianceapp.Statistics_Fragment"
+        android:label="Statistics"
+        tools:layout="@layout/fragment_statistics_"
+        />
+    <fragment
+        android:id="@+id/editTeamFragment"
+        android:name="com.example.soccerallianceapp.EditTeamFragment"
+        android:label="Edit Team"
+        tools:layout="@layout/fragment_edit_team" />
 </navigation>

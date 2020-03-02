@@ -23,7 +23,7 @@ public class UserDetails {
     private String country;
     @SerializedName("age")
     @Expose
-    private String age;
+    private Integer age;
     @SerializedName("userType")
     @Expose
     private String userType;
@@ -71,11 +71,11 @@ public class UserDetails {
         this.country = country;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

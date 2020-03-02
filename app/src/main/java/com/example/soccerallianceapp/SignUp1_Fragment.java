@@ -41,8 +41,6 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
     //public static final String PHONE_VERIFICATION = "^[+0-9-\\(\\)\\s]*{6,14}$";
 
 
-    private static Pattern p;
-    private static Matcher m;
     String email ="";
     boolean isPhoneValid;
 
@@ -104,15 +102,7 @@ public class SignUp1_Fragment extends Fragment implements View.OnClickListener {
                     signup_phone_edit_txt.setError("The Phone number is NOT valid!");
                     return;
                 }
-                /*
 
-                if ((signup_phone_edit_txt.getEditableText().toString().length())<9 &&(signup_phone_edit_txt.getEditableText().toString().length())>11 ) {
-                    signup_phone_edit_txt.setError("The Phone number does not have valid number input.");
-                    return;
-
-                }
-
-                 */
 
             }
 

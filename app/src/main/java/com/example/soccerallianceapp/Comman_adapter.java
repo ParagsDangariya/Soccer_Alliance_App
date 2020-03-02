@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
 
 import java.util.ArrayList;
@@ -37,12 +38,11 @@ public class Comman_adapter extends RecyclerView.Adapter<Comman_adapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull Comman_adapter.ViewHolder holder, int position) {
 
-        //holder.league_id.setText(comman_data_lists.get(position).getItem_id());
+
+
         holder.item_name.setText(comman_data_lists.get(position).getItem_name());
-
-
-      // holder.item_image.setImageResource(comman_data_lists.get(position).getItem_image());
-
+       // holder.item_image.setImageResource(comman_data_lists.get(position).getItem_image());
+       Glide.with(context).load(comman_data_lists.get(position).getItem_image()).into(holder.item_image);
 
     }
 
@@ -59,8 +59,8 @@ public class Comman_adapter extends RecyclerView.Adapter<Comman_adapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-
         TextView item_name,league_id;
+
         ImageView item_image;
 
         public ViewHolder(@NonNull View itemView) {

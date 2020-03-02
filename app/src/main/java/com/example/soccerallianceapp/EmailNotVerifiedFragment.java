@@ -77,6 +77,7 @@ public class EmailNotVerifiedFragment extends Fragment implements View.OnClickLi
     }
 
 
+
     @Override
     public void onClick(View v) {
 

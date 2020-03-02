@@ -6,15 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <CheckBox
+    <ImageButton
         android:id="@+id/item_checkbox"
+        android:src="@drawable/addplayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:padding="8dp"
-        android:layout_marginStart="16dp" />
+        android:layout_marginStart="12dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
@@ -40,6 +41,7 @@
                 android:layout_height="80dp"
                 android:padding="16dp"
                 android:scaleType="centerCrop"
+                android:src="@drawable/splash_logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

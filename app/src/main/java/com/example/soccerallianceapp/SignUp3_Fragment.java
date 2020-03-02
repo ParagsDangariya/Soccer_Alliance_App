@@ -1,4 +1,6 @@
+
 package com.example.soccerallianceapp;
+
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,7 +18,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.soccer_alliance_project_test.R;
-import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
+import com.example.soccerallianceapp.pojo.Team;
+import com.example.soccerallianceapp.pojo.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -26,8 +29,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-//import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
 
 
 public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
@@ -45,6 +46,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
     String uid ="";
     TextInputEditText signup3_new_password,signup3_confirm_password;
 
+    String imageUri = "uri",shorthand = "SH";
     String email,name,gender,country,user_type,password,phone;
     //int phone;
     int age;
@@ -95,6 +97,38 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
     }
 
+
+    private void createteam(Team team) {
+        Call<Team> call = service.CreateTeam(team);
+
+        System.out.println("call pass");
+        call.enqueue(new Callback<Team>() {
+            @Override
+            public void onResponse(Call<Team> call, Response<Team> response) {
+                if(!response.isSuccessful()){
+                    int s = response.code();
+                    System.out.println("code"+s);
+                    Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
+
+
+                }
+                int s = response.code();
+                System.out.println("code"+s);
+                Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
+
+
+                System.out.println("code");
+            }
+
+            @Override
+            public void onFailure(Call<Team> call, Throwable t) {
+
+                System.out.println("error"+t.getMessage());
+                Toast.makeText(context," no more hopes....",Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
     @Override
     public void onClick(View view) {
         if(view == signup3_next_btn){
@@ -112,9 +146,9 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                 signup3_confirm_password.setError("The confirm password is Required.");
                 return;
             }else if(!password.equals(confirmpassword)){
-                    signup3_confirm_password.setError("The confirm password conformation does not match!");
-                    return;
-                }
+                signup3_confirm_password.setError("The confirm password conformation does not match!");
+                return;
+            }
 
 
             //System.out.println("Pass"+password);
@@ -126,7 +160,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                       // Toast.makeText(getContext(), "User Created.", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getContext(), "User Created.", Toast.LENGTH_SHORT).show();
 
                         uid =fAuth.getCurrentUser().getUid();
 
@@ -139,9 +173,13 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
                         System.out.println("url"+url);
 
+
+
                         User user = new User(uid,name,email,phone,gender,country,age,user_type,user_photo);
 
 
+
+                        Team team  = new Team(name,imageUri,shorthand,uid);
                         Call<User> call = service.registerUser(user);
 
                         call.enqueue(new Callback<User>() {
@@ -150,11 +188,9 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
                                 if(!response.isSuccessful()){
                                     int s = response.code();
                                     System.out.println("code"+s);
-                                    //Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
-
-
                                 }
 
+                                createteam(team);
 
                                 int s = response.code();
                                 Toast.makeText(context,"succesfully created...."+s,Toast.LENGTH_LONG).show();
@@ -235,7 +271,7 @@ public class SignUp3_Fragment extends Fragment implements View.OnClickListener{
 
                         */
 
-                       //String response = volly.volleyget(url,context);
+                        //String response = volly.volleyget(url,context);
 
                         navController.navigate(R.id.signUp4_Fragment);
 
