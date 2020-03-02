@@ -13,17 +13,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp" />
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_player_btn"
         style="@style/Widget.Design.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+
         android:layout_margin="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorNormalButton"
         android:src="@drawable/plus_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="28dp"
         app:tint="@android:color/white" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/edit_player_btn"
+        style="@style/Widget.Design.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="24dp"
+
+        android:backgroundTint="@color/colorNormalButton"
+        android:src="@drawable/edit"
+        app:layout_constraintBottom_toTopOf="@+id/add_player_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="28dp"
+        app:tint="@android:color/white" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

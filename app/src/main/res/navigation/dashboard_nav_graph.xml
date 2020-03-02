@@ -35,9 +35,6 @@
         android:label="Teams"
         tools:layout="@layout/fragment_team_list" >
         <action
-            android:id="@+id/action_teamListFragment_to_add_Player_Fragment"
-            app:destination="@id/add_Player_Fragment" />
-        <action
             android:id="@+id/action_teamListFragment_to_player_List_Fragment"
             app:destination="@id/player_List_Fragment" />
     </fragment>
@@ -54,7 +51,14 @@
         android:id="@+id/player_List_Fragment"
         android:name="com.example.soccerallianceapp.Player_List_Fragment"
         android:label="Player List"
-        tools:layout="@layout/fragment_player_list" />
+        tools:layout="@layout/fragment_player_list" >
+        <action
+            android:id="@+id/action_player_List_Fragment_to_editTeamFragment"
+            app:destination="@id/editTeamFragment" />
+        <action
+            android:id="@+id/action_player_List_Fragment_to_add_Player_Fragment"
+            app:destination="@id/add_Player_Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/upcomingMatchFragment"
         android:name="com.example.soccerallianceapp.UpcomingMatchFragment"
@@ -84,7 +88,11 @@
         android:id="@+id/add_Player_Fragment"
         android:name="com.example.soccerallianceapp.Add_Player_Fragment"
         android:label="Add Team"
-        tools:layout="@layout/fragment_add_player" />
+        tools:layout="@layout/fragment_add_player" >
+        <action
+            android:id="@+id/action_add_Player_Fragment_to_player_List_Fragment"
+            app:destination="@id/player_List_Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/add_Team_in_League_Fragment"
         android:name="com.example.soccerallianceapp.Add_Team_in_League_Fragment"
@@ -140,7 +148,7 @@
     <fragment
         android:id="@+id/matchScoreUpdateFragment"
         android:name="com.example.soccerallianceapp.MatchScoreUpdateFragment"
-        android:label="fragment_match_score_update"
+        android:label="Update Match Score"
         tools:layout="@layout/fragment_match_score_update" />
     <fragment
 
@@ -167,4 +175,9 @@
         android:label="Statistics"
         tools:layout="@layout/fragment_statistics_"
         />
+    <fragment
+        android:id="@+id/editTeamFragment"
+        android:name="com.example.soccerallianceapp.EditTeamFragment"
+        android:label="Edit Team"
+        tools:layout="@layout/fragment_edit_team" />
 </navigation>

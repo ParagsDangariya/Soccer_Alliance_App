@@ -39,7 +39,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
     private Context context;
     private ArrayList<Comman_Data_List> comman_data_List;
     private Comman_adapter comman_adapter;
-    FloatingActionButton add_player_btn;
+    FloatingActionButton add_player_btn,edit_player_btn;
     int team_id;
     FirebaseAuth fAuth;
     String uid="";
@@ -57,8 +57,13 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
         DashboardNavController = Navigation.findNavController(getActivity(), R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
+
         add_player_btn = view.findViewById(R.id.add_player_btn);
         add_player_btn.setOnClickListener(this);
+
+        edit_player_btn = view.findViewById(R.id.edit_player_btn);
+        edit_player_btn.setOnClickListener(this);
+
         if(getActivity().getIntent().getExtras()==null){
             add_player_btn.setVisibility(View.GONE);
         }
@@ -200,6 +205,10 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
             Bundle bundle = new Bundle();
             bundle.putInt("team_id",team_id);
             DashboardNavController.navigate(R.id.add_Player_Fragment,bundle);
+        }
+        if(view == edit_player_btn){
+            DashboardNavController.navigate(R.id.editTeamFragment);
+
         }
 
     }
