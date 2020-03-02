@@ -66,6 +66,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
         if(getActivity().getIntent().getExtras()==null){
             add_player_btn.setVisibility(View.GONE);
+            edit_player_btn.setVisibility(View.GONE);
         }
         /*if(getActivity().getIntent().getStringExtra("user_type").equals("Team_Manager")){
             add_player_btn.setVisibility(View.VISIBLE);
@@ -78,7 +79,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
         fAuth = FirebaseAuth.getInstance();
-        uid =fAuth.getCurrentUser().getUid();
+        uid =fAuth.getUid();
 
         /*--------Teams Adapter Configuration--------*/
         player_recycler_view = view.findViewById(R.id.player_recycler_view);
@@ -102,6 +103,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
             }else if(getArguments().getString("Coming_from").equals("Team_Manager")){
                 add_player_btn.setVisibility(View.VISIBLE);
+                edit_player_btn.setVisibility(View.VISIBLE);
 
                 team_id = getArguments().getInt("team_id");
 

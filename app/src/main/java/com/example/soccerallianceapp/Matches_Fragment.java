@@ -124,6 +124,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
 
                     if (realData.getStatus() == 200) {
                         System.out.println("getting upcoming matches "+realData.getPlayedMatchList());
+
                         for (PlayedMatchList matchelist : realData.getPlayedMatchList()) {
                             //set logo when imge gets done. here
                             played_matches_data_lists.add(new matches_data_list(
