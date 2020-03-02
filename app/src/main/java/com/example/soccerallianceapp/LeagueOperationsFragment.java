@@ -31,7 +31,7 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
     private Comman_adapter comman_adapter;
     TextView LeagueName;
     String league_name;
-    String league_id="";
+    int league_id;
 
 
 
@@ -88,18 +88,17 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
             if (getArguments() != null) {
                 if (getArguments().getString("Coming_from").equals("ListLeaguesFragment_Class")) {
 
-                    league_id = getArguments().getString("league_id");
-                    Toast.makeText(context, league_id, Toast.LENGTH_LONG).show();
+                    league_id = getArguments().getInt("League_id");
 
+                    Toast.makeText(context, "league Operation Fragment in League Id : "+ league_id, Toast.LENGTH_LONG).show();
 
                     league_name = getArguments().getString("League_name");
 
-                    //league_name = bundle.getString("League_name");
+
                     LeagueName.setText(league_name);
 
-
                     bundle.putString("League_name",league_name);
-                    bundle.putString("league_id",league_id);
+                    bundle.putInt("League_id",league_id);
 
                     league_operations_schedulematch_btn.setOnClickListener(new View.OnClickListener() {
                         @Override

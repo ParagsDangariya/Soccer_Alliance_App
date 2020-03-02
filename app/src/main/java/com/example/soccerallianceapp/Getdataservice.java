@@ -1,11 +1,11 @@
 package com.example.soccerallianceapp;
 
-import com.example.soccerallianceapp.pojo.leaguelistbyuserId.LeagueList;
+import com.example.soccerallianceapp.pojo.CreateSchedule.ScheduleMatch;
 import com.example.soccerallianceapp.pojo.leaguelistbyuserId.LeaguesFragment;
+import com.example.soccerallianceapp.pojo.matchScore.MatchScoreDisplay;
+import com.example.soccerallianceapp.pojo.viewTeamListFromLeagueId.ViewTeamListFromLeagueId;
 import com.example.soccerallianceapp.pojo.viewregisteruserdetail.User;
 import com.example.soccerallianceapp.pojo.viewregisteruserdetail.ViewregisterUserDetail;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -36,7 +36,18 @@ public interface Getdataservice {
     @GET("LeagueListByUser&{user_id}")
     Call<LeaguesFragment> getLeagueList(@Path("user_id") String user_id);
 
+    @GET("matchScore&{matchid}&{teamid}")
+    Call<MatchScoreDisplay> getMatchScores(@Path("matchid") int matchid, @Path("teamid") int teamid);
 
+    @POST("")
+
+
+
+    @GET("viewTeamListFromLeagueId&{League_id}")
+    Call<ViewTeamListFromLeagueId> viewTeamListFromLeagueId(@Path("League_id") int League_id);
+
+    @POST("CreateSchedule")
+    Call<ScheduleMatch> scheduleMatch(@Body ScheduleMatch schedulematch);
 
 
 

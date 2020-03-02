@@ -94,7 +94,7 @@ public class LeagueListFragment extends Fragment {
 
 
 
-         Call <LeaguesFragment> listleague = service.getLeagueList("SIFAABHyJHZ9cq3FSkn9YqfyamB2");
+        Call <LeaguesFragment> listleague = service.getLeagueList("SIFAABHyJHZ9cq3FSkn9YqfyamB2");
 
         System.out.println("call "+listleague);
 
@@ -112,13 +112,7 @@ public class LeagueListFragment extends Fragment {
 
                     System.out.println("response" + response.body().toString());
 
-//
-//                    LeagueModel lm = new LeagueModel();
-//
-//                    ArrayList<LeagueModel.Data> aarlist;
-//
-//
-//                    lm.getLeagueList();
+
                     if (response.body() != null) {
                         if (realData.getStatus() == 200) {
 
@@ -148,7 +142,16 @@ public class LeagueListFragment extends Fragment {
 
                                     Bundle bundle = new Bundle();
 
-                                    bundle.putString("League_id", String.valueOf(comman_data_List.get(position).getItem_id()));
+
+
+                                   Integer league_id = comman_data_List.get(position).getItem_id();
+
+                                    Toast.makeText(context, "leagueid"+league_id , Toast.LENGTH_LONG).show();
+
+                                    System.out.println("League Id : " + league_id);
+
+                                    bundle.putInt("League_id", comman_data_List.get(position).getItem_id());
+
                                     bundle.putString("League_name",String.valueOf(comman_data_List.get(position).getItem_name()));
                                     bundle.putString("League_Logo",String.valueOf(comman_data_List.get(position).getItem_image()));
 

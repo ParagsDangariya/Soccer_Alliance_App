@@ -24,6 +24,8 @@ public class Match_Score_Fragment extends Fragment {
     private Match_Score_ViewPageAdapter ms_viewPageAdapter;
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
