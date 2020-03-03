@@ -3,7 +3,7 @@
 
     <item android:id="@+id/guest_dashboard_btn"
         android:title="Dashboard"
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/dashboard"/>
 
     <item android:id="@+id/guest_list_of_country_btn"
         android:title="List Of Country"
@@ -17,6 +17,6 @@
 
     <item android:id="@+id/guest_login_btn"
         android:title="Login/SignUp"
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/login"/>
 
 </menu>
