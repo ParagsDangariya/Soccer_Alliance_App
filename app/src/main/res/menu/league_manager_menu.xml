@@ -3,23 +3,23 @@
 
     <item android:id="@+id/league_dashboard_btn"
         android:title="Dashboard"
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/dashboard"/>
 
     <item android:id="@+id/league_my_league_btn"
         android:title="My League"
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/myleague"/>
 
 
     <item android:id="@+id/league_team_list_btn"
         android:title="Team List"
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/playerlist"/>
 
     <item android:id="@+id/league_my_profile_btn"
         android:title="My Profile"
 
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/myprofile"/>
 
     <item android:id="@+id/league_logout_btn"
         android:title="Logout"
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/logout"/>
 </menu>
