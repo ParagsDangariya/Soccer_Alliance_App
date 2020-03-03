@@ -89,7 +89,7 @@ public interface Getdataservice {
 
 
     @POST("CreateSchedule")
-    Call<ScheduleMatch> scheduleMatch(@Body ScheduleMatch schedulematch);
+    Call<ScheduleMatch> SCHEDULE_MATCH_CALL(@Body ScheduleMatch schedulematch);
 
    @GET("upcomingMatches_guestDashboard")
    Call<MatchListDashboard> getupcomingMatches_guestDashboardCall();

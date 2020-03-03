@@ -40,7 +40,7 @@ import static android.R.layout.simple_list_item_1;
 
 public class ScheduleMatchFragment extends Fragment implements View.OnClickListener {
 
-    public NavController navController;
+    public NavController DashboardNavController;
     private Context context;
     private ArrayList<Comman_Data_List> comman_data_List;
     private Comman_adapter comman_adapter;
@@ -68,9 +68,9 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     String time;
     String location;
 
-    int team1id, team2id;
+    int team1id = 1, team2id= 17;
 
-    int league_id;
+    int league_id= 1;
 
     public ScheduleMatchFragment() {
     }
@@ -127,6 +127,8 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
 //        Toast.makeText(context, "Schedule MAtch Fragment (League Id ): " + League_id, Toast.LENGTH_LONG).show();
 
+
+
         Call<ViewTeamListFromLeagueId> call = service.viewTeamListFromLeagueId(League_id);
 
         System.out.println(call);
@@ -176,71 +178,85 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
-        if (view == Schedule_match_btn) {
-
-            team1 = (AutoCompleteTextView) schedule_match_edt_txt.getText();
-            team2 = schedule_match_team2_edt_txt.getEditableText().toString().trim();
-
-            date = schedule_match_date_edt_txt.getEditableText().toString();
-
-            if (TextUtils.isEmpty((CharSequence) team1)) {
-                schedule_match_edt_txt.setError("Team1 Required.");
-                return;
-            }
-        } else if (TextUtils.isEmpty(team2)) {
-            schedule_match_team2_edt_txt.setError("Team2 is Required.");
-            return;
-        } else if (team1.equals(team2)) {
-            schedule_match_team2_edt_txt.setError("Both Team name must be different.");
-            return;
-        }
-
+//        if (view == Schedule_match_btn) {
+//
+//            team1 = (AutoCompleteTextView) schedule_match_edt_txt.getText();
+//            team2 = schedule_match_team2_edt_txt.getEditableText().toString().trim();
+//
+//            date = schedule_match_date_edt_txt.getEditableText().toString();
+//
+//            if (TextUtils.isEmpty((CharSequence) team1)) {
+//                schedule_match_edt_txt.setError("Team1 Required.");
+//                return;
+//            }
+//        } else if (TextUtils.isEmpty(team2)) {
+//            schedule_match_team2_edt_txt.setError("Team2 is Required.");
+//            return;
+//        } else if (team1.equals(team2)) {
+//            schedule_match_team2_edt_txt.setError("Both Team name must be different.");
+//            return;
+//        }
+//
         date = schedule_match_date_edt_txt.getEditableText().toString();
         location = schedule_match_location_layout_edt_txt.getEditableText().toString();
         time = schedule_match_time_layout_edt_txt.getEditableText().toString();
 
-        league_id = getArguments().getInt("League_id");
+        //league_id = getArguments().getInt("League_id");
+
+        Getdataservice service1 = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
 
-        String url = "https://soccerallianceapp.appspot.com/rest/api/CreateSchedule&" + location + "&" + date + "&" + time + "&" + team1 + "&" + team2 + "&" + league_id + "";
+        String url = "https://soccerallianceapp.appspot.com/rest/api/CreateSchedule&" + location + "&" + date + "&" + time + "&" + team1id + "&" + team2id + "&" + league_id + "";
 
 
         System.out.println("url" + url);
 
         ScheduleMatch schedulematch = new ScheduleMatch(location, date, time, team1id, team2id, league_id);
 
-        Call<ScheduleMatch> call = service.scheduleMatch(schedulematch);
+        System.out.println("Schedulematch : " + schedulematch);
+        try {
 
-        call.enqueue(new Callback<ScheduleMatch>() {
-            @Override
-            public void onResponse(Call<ScheduleMatch> call, Response<ScheduleMatch> response) {
+            Call<ScheduleMatch> data = service1.SCHEDULE_MATCH_CALL(schedulematch);
 
-                if(!response.isSuccessful()){
+            System.out.println("data : " + data);
+
+            data.enqueue(new Callback<ScheduleMatch>() {
+                @Override
+                public void onResponse(Call<ScheduleMatch> data, Response<ScheduleMatch> response) {
+
+                    if (!response.isSuccessful()) {
+                        int sm = response.code();
+                        System.out.println("code" + sm);
+                        Toast.makeText(context, "Schedule Match Successfully " + sm, Toast.LENGTH_LONG).show();
+
+
+                    }
+
                     int sm = response.code();
-                    System.out.println("code"+sm);
-                    Toast.makeText(context,"Schedule Match Successfully "+sm,Toast.LENGTH_LONG).show();
+                    System.out.println("code" + sm);
 
+
+                    Toast.makeText(context, "Schedule Match Successfully " + sm, Toast.LENGTH_LONG).show();
+
+
+                    //DashboardNavController.navigate(R.id.leagueOperationsFragment);
 
                 }
 
-                int sm = response.code();
-                System.out.println("code"+sm);
-                Toast.makeText(context,"Schedule Match Successfully "+sm,Toast.LENGTH_LONG).show();
+
+                @Override
+                public void onFailure(Call<ScheduleMatch> data, Throwable t) {
 
 
-                navController.navigate(R.id.leagueOperationsFragment);
-            }
+                    System.out.println("error" + t.getMessage());
+                    Toast.makeText(context, "Wrong thing happened", Toast.LENGTH_LONG).show();
 
-            @Override
-            public void onFailure(Call<ScheduleMatch> call, Throwable t) {
+                }
+            });
 
-
-                System.out.println("error"+t.getMessage());
-                Toast.makeText(context,"Wrong thing happened",Toast.LENGTH_LONG).show();
-
-            }
-        });
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
