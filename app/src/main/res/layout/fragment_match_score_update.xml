@@ -930,7 +930,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
 
-                    android:id="@+id/Schedule_match_btn"
+                    android:id="@+id/Update_Score_btn"
                     style="@style/NormalButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="30pt"

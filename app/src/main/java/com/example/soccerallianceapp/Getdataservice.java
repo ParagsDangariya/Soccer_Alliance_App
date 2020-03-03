@@ -70,6 +70,22 @@ public interface Getdataservice {
     @GET("matchScore&{matchid}&{teamid}")
     Call<MatchScoreDisplay> getMatchScores(@Path("matchid") int matchid, @Path("teamid") int teamid);
 
+    @GET("UpdateMatchScore&{match_id}&{team_id1}&{goal1}&{shots1}&{shots_on_target1}&{possession1}&{passes1}&{pass_accuracy1}&{fouls1}&{yellow_cards1}&{red_cards1}&{offsides1}&{corners1}&{team_id2}&{goal2}&{shots2}&{shots_on_target2}&{possession2}&{passes2}&{pass_accuracy2}&{fouls2}&{yellow_cards2}&{red_cards2}&{offsides2}&{corners2}")
+    Call<ResponseBody> updateMatchScore(@Path("match_id") int Match_Id, @Path("team_id1") int Team_Id1,
+                                             @Path("goal1") int Goal1, @Path("shots1") int Shots1,
+                                             @Path("shots_on_target1") int Shots_On_Target1, @Path("possession1") int Possession1,
+                                             @Path("passes1") int Passes1, @Path("pass_accuracy1") int Pass_Accuracy1,
+                                             @Path("fouls1") int Fouls1, @Path("yellow_cards1") int Yellow_Cards1,
+                                             @Path("red_cards1") int Red_Cards1, @Path("offsides1") int Offsides1,
+                                             @Path("corners1") int Corners1, @Path("team_id2") int Team_Id2, @Path("goal2") int Goal2,
+                                             @Path("shots2") int Shots2, @Path("shots_on_target2") int Shots_On_Target2,
+                                             @Path("possession2") int Possession2, @Path("passes2") int Passes2,
+                                             @Path("pass_accuracy2") int Pass_Accuracy2, @Path("fouls2") int Fouls2,
+                                             @Path("yellow_cards2") int Yellow_Cards2, @Path("red_cards2") int Red_Cards2,
+                                             @Path("offsides2") int Offsides2, @Path("corners2") int Corners2);
+
+
+
     @GET("viewTeamListFromLeagueId&{League_id}")
     Call<ViewTeamListFromLeagueId> viewTeamListFromLeagueId(@Path("League_id") int League_id);
 

@@ -8,12 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 import com.example.soccer_alliance_project_test.R;
 
 import com.example.soccerallianceapp.pojo.CreateSchedule.ScheduleMatch;
+import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
 import com.example.soccerallianceapp.pojo.viewTeamListFromLeagueId.TeamList;
 import com.example.soccerallianceapp.pojo.viewTeamListFromLeagueId.ViewTeamListFromLeagueId;
 
@@ -56,19 +59,19 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     String uid = "";
 
 
-    AutoCompleteTextView schedule_match_edt_txt;
+    AutoCompleteTextView schedule_match_edt_txt,schedule_match_team2_edt_txt;
 
 
-    TextInputEditText schedule_match_date_edt_txt, schedule_match_time_layout_edt_txt, schedule_match_location_layout_edt_txt, schedule_match_team2_edt_txt;
+    TextInputEditText schedule_match_date_edt_txt,schedule_match_time_layout_edt_txt, schedule_match_location_layout_edt_txt;
 
 
-    AutoCompleteTextView team1;
+
     String team2;
     String date;
     String time;
     String location;
 
-    int team1id = 1, team2id= 17;
+    int team1id, team2id;
 
     int league_id= 1;
 
@@ -99,9 +102,18 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         super.onViewCreated(view, savedInstanceState);
 
         fAuth = FirebaseAuth.getInstance();
+
+
+        comman_data_List = new ArrayList<Comman_Data_List>();
+
+        comman_adapter = new Comman_adapter(comman_data_List,context);
+
+
+
         context = getActivity().getApplicationContext();
 
-        schedule_match_edt_txt = view.findViewById(R.id.schedule_match_edt_txt);
+        schedule_match_edt_txt = (AutoCompleteTextView) view.findViewById(R.id.schedule_match_edt_txt);
+
         schedule_match_team2_edt_txt = view.findViewById(R.id.schedule_match_team2_edt_txt);
         schedule_match_date_edt_txt = view.findViewById(R.id.schedule_match_date_edt_txt);
         schedule_match_time_layout_edt_txt = view.findViewById(R.id.schedule_match_time_layout_edt_txt);
@@ -139,15 +151,36 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
                 Log.d("Response : ", " " + response);
 
+                ViewTeamListFromLeagueId maindata = response.body();
+
+                System.out.println("Maindata" + maindata);
+
 
                 if (response.body() != null) {
-                    List<TeamList> teamLists = response.body().getTeamList();
 
-                    String[] listofteam = new String[teamLists.size()];
+                 //   List<TeamList> teamLists = response.body().getTeamList();
+
+                    for (TeamList teamList : maindata.getTeamList()) {
+                        comman_data_List.add(new Comman_Data_List(
 
 
-                    for (int i = 0; i < teamLists.size(); i++) {
-                        listofteam[i] = teamLists.get(i).getTeamName();
+                                teamList.getTeamName(),
+                                teamList.getLogo(),
+                                teamList.getTeamid()
+                        ));
+
+                    }
+
+
+
+
+                    String[] listofteam = new String[comman_data_List.size()];
+
+
+
+
+                    for (int i = 0; i < comman_data_List.size(); i++) {
+                        listofteam[i] = comman_data_List.get(i).getItem_name();
                         System.out.print("teamlists." + listofteam[i]);
                     }
 
@@ -156,6 +189,73 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
 
                     schedule_match_edt_txt.setAdapter(teamadapter);
+
+                    schedule_match_team2_edt_txt.setAdapter(teamadapter);
+
+                    schedule_match_edt_txt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View arg1, int position, long id) {
+
+
+                            Object item = parent.getItemAtPosition(position);
+
+                            if (item instanceof TeamList){
+                                TeamList tl=(TeamList) item;
+
+                                 team1id = ((TeamList) item).getTeamid();
+
+                        }
+
+                        }
+                    });
+
+
+//                    schedule_match_date_edt_txt.setOnI   (new AdapterView.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(AdapterView<?> parent, View arg1, int position, long id) {
+//
+//                           Object item = parent.getItemAtPosition(position);
+//
+//                            if (item instanceof TeamList){
+//                                TeamList tl=(TeamList) item;
+//
+//                                 team1id = tl.getTeamid();
+//
+//
+//
+//                            }
+//
+//
+//                        }
+//                    });
+
+
+
+
+
+                            comman_adapter.notifyDataSetChanged();
+
+                            comman_adapter.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
+
+                                    int position = viewHolder.getAdapterPosition();
+
+                                     team1id = comman_data_List.get(position).getIteam_id();
+
+                                     team2id = comman_data_List.get(position).getIteam_id();
+
+                                    System.out.println("Team1 id (Selected from Dropdown) : " + team1id);
+
+                                    System.out.println("Team2 id (Selected from Dropdown) : " + team2id);
+
+                                }
+                            });
+
+
+
 
 
                 } else {
@@ -213,7 +313,12 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
         ScheduleMatch schedulematch = new ScheduleMatch(location, date, time, team1id, team2id, league_id);
 
-        System.out.println("Schedulematch : " + schedulematch);
+
+        System.out.println("Team1 id (Selected from Dropdown) : " + team1id);
+
+        System.out.println("Team2 id (Selected from Dropdown) : " + team2id);
+
+        System.out.println("Schedulematch : " + schedulematch.toString());
         try {
 
             Call<ScheduleMatch> data = service1.SCHEDULE_MATCH_CALL(schedulematch);

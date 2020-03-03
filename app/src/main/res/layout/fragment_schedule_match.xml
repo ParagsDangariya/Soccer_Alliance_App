@@ -60,15 +60,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/schedule_match_team1_layout">
 
-                <com.google.android.material.textfield.TextInputEditText
+
+
+
+
+                <AutoCompleteTextView
                     android:id="@+id/schedule_match_team2_edt_txt"
-                    style="@style/TextInputEditTextStyleVarient"
+                    style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Team2 Name"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
+                    android:hint="Team1 Name"
                     android:textColorHint="@color/colorPrimaryLight" />
+
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
