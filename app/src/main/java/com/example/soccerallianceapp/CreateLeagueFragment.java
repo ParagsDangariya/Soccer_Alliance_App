@@ -195,6 +195,7 @@ public class CreateLeagueFragment extends Fragment implements View.OnClickListen
                 int s = response.code();
 
                 System.out.println("code"+s);
+                navController.navigate(R.id.LeagueListFragment);
             }
 
             @Override
