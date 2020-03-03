@@ -161,7 +161,7 @@ public class CreateLeagueFragment extends Fragment implements View.OnClickListen
 
 
 
-            if (TextUtils.isEmpty(leaguename)) {
+            if (TextUtils.isEmpty(edt_league_name.getEditableText().toString().trim())) {
                 edt_league_name.setError("League name is Required.");
                 return;
 
