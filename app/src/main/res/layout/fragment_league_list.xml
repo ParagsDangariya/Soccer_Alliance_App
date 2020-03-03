@@ -16,7 +16,7 @@
         android:layout_margin="8dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/create_league_btn"
+        android:id="@+id/create_league_floating_btn"
         style="@style/Widget.Design.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

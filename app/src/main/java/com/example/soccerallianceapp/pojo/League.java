@@ -9,13 +9,14 @@ public class League {
     private int no_of_teams;
     private String user_id;
 
-    public League(int league_id, String name, String logo, int no_of_teams, String user_id) {
-        this.league_id = league_id;
+    public League(String name, String logo, int no_of_teams, String user_id) {
         this.name = name;
         this.logo = logo;
         this.no_of_teams = no_of_teams;
         this.user_id = user_id;
     }
+
+
 
     public int getLeague_id() {
         return league_id;

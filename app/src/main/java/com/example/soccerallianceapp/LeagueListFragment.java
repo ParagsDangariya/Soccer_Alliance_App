@@ -1,44 +1,35 @@
 package com.example.soccerallianceapp;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.ListFragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.soccer_alliance_project_test.R;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
 import com.example.soccerallianceapp.pojo.leaguelistbyuserId.LeagueList;
 import com.example.soccerallianceapp.pojo.leaguelistbyuserId.LeaguesFragment;
-
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class LeagueListFragment extends Fragment {
+public class LeagueListFragment extends Fragment implements View.OnClickListener {
 
     public NavController DashboardNavController;
 
@@ -49,8 +40,9 @@ public class LeagueListFragment extends Fragment {
     private ArrayList<Comman_Data_List> comman_data_List;
 
     private Comman_adapter comman_adapter;
-
-    String user_id="SIFAABHyJHZ9cq3FSkn9YqfyamB2";
+    FirebaseAuth fAuth;
+    FloatingActionButton create_league_floating_btn;
+    String user_id="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,13 +80,15 @@ public class LeagueListFragment extends Fragment {
         league_recycler_view.setAdapter(comman_adapter);
 
 
+        create_league_floating_btn = view.findViewById(R.id.create_league_floating_btn);
+        create_league_floating_btn.setOnClickListener(this);
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
-
+        user_id = fAuth.getInstance().getCurrentUser().getUid();
         Log.d("step1","after getService part");
 
 
 
-        Call <LeaguesFragment> listleague = service.getLeagueList("SIFAABHyJHZ9cq3FSkn9YqfyamB2");
+        Call <LeaguesFragment> listleague = service.getLeagueList(user_id);
 
         System.out.println("call "+listleague);
 
@@ -226,5 +220,11 @@ public class LeagueListFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View view) {
 
+        if(view == create_league_floating_btn){
+            DashboardNavController.navigate(R.id.createLeagueFragment);
+        }
+    }
 }
