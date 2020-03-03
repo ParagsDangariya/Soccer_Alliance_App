@@ -15,6 +15,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.ViewTeamDetail.TeamDetails;
 import com.example.soccerallianceapp.pojo.ViewTeamDetail.ViewTeamDetail;
@@ -35,7 +36,7 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
     public ImageView userImage;
     String usertype;
     FirebaseAuth fAuth;
-    String uid="";
+    String uid="",name,imageUri;
     int team_id;
     Getdataservice service;
 
@@ -83,6 +84,12 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 DashboardNavigationView.getMenu().clear();
                 DashboardNavigationView.inflateMenu(R.menu.team_manager_menu);
                 usertype = "Team_Manager";
+                name = getIntent().getStringExtra("name");
+                imageUri = getIntent().getStringExtra("imageUri");
+                username.setText("Welcome \n"+name);
+
+                Glide.with(this).load(imageUri).into(userImage);
+
                 service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
                 fAuth = FirebaseAuth.getInstance();
@@ -95,6 +102,11 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 DashboardNavigationView.getMenu().clear();
                 DashboardNavigationView.inflateMenu(R.menu.league_manager_menu);
                 usertype ="League_Manager";
+                name = getIntent().getStringExtra("name");
+                imageUri = getIntent().getStringExtra("imageUri");
+                username.setText("Welcome \n"+name);
+
+                Glide.with(this).load(imageUri).into(userImage);
             }
 
 

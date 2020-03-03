@@ -43,7 +43,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     MaterialButton guest_login_btn,login_btn;
     TextView register_btn_on_login_page,forget_password_txt;
 
-    String uid ="",user_type;
+
+    String uid ="",user_type,name,imageUri;
     TextInputEditText email_edit_txt,password_edit_txt;
     FirebaseUser user;
 
@@ -202,6 +203,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     //user_type = userDetails.getUserType();
 
 
+
+                    name = userDetails.getFullName();
+                    imageUri = userDetails.getUserPhoto();
                     user_type = userDetails.getUserType();
 
                     System.out.println("string"+user_type);
@@ -209,6 +213,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     System.out.println("login"+user_type);
                     Intent i = new Intent(context,Dashboard_Activity.class);
                     i.putExtra("user_type",user_type);
+                    i.putExtra("name",name);
+                    i.putExtra("imageUri",imageUri);
                     startActivity(i);
                     getActivity().finish();
                 }

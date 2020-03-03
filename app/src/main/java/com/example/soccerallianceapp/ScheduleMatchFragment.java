@@ -259,7 +259,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
 
                 } else {
-                    Toast.makeText(getActivity(), "REsponse empty", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
 
                 }
 

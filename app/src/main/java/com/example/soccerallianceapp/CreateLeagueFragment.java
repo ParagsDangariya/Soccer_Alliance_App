@@ -195,13 +195,14 @@ public class CreateLeagueFragment extends Fragment implements View.OnClickListen
                 int s = response.code();
 
                 System.out.println("code"+s);
+                navController.navigate(R.id.LeagueListFragment);
             }
 
             @Override
             public void onFailure(Call<League> call, Throwable t) {
 
                 System.out.println("error"+t.getMessage());
-                Toast.makeText(context," no more hopes....",Toast.LENGTH_LONG).show();
+                Toast.makeText(context," Something Went Wrong. Try Again....",Toast.LENGTH_LONG).show();
             }
         });
     }
