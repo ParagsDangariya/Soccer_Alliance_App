@@ -14,7 +14,7 @@ public class TeamList {
     private String teamName;
     @SerializedName("Logo")
     @Expose
-    private Object logo;
+    private String logo;
 
     public Integer getTeamid() {
         return teamid;
@@ -32,11 +32,11 @@ public class TeamList {
         this.teamName = teamName;
     }
 
-    public Object getLogo() {
+    public String getLogo() {
         return logo;
     }
 
-    public void setLogo(Object logo) {
+    public void setLogo(String logo) {
         this.logo = logo;
     }
 

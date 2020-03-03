@@ -14,22 +14,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.matchScore.MatchScoreDisplay;
 import com.example.soccerallianceapp.pojo.matchScore.MatchScores;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MatchScoreUpdateFragment extends Fragment {
+public class MatchScoreUpdateFragment extends Fragment implements View.OnClickListener {
 
     public NavController DashboardNavController;
 
@@ -37,10 +38,10 @@ public class MatchScoreUpdateFragment extends Fragment {
 
     MatchScores matchScoresteam2;
 
-    int matchid = 1;
+    int matchid = 3;
     int teamid = 1;
-    int matchid2= 2;
-    int team2id= 2;
+    int matchid2= 3;
+    int team2id= 17;
 
 
 
@@ -51,6 +52,7 @@ public class MatchScoreUpdateFragment extends Fragment {
     private Comman_adapter comman_adapter;
 
 
+    Getdataservice service;
      TextInputEditText team1_goal_edt_txt,shots_team1_edt_txt,shotsontarget_team1_edt_txt,possession_team1_edt_txt,passes_team1_edt_txt,fouls_team1_edt_txt;
 
     TextInputEditText passaccuracy_team1_edt_txt,redcard_team1_edt_txt,offsides_team1_edt_txt,corners_team1_edt_txt,yellowcards_team1_edt_txt;
@@ -59,13 +61,14 @@ public class MatchScoreUpdateFragment extends Fragment {
 
     TextInputEditText passaccuracy_team2_edt_txt,redcard_team2_edt_txt,offsides_team2_edt_txt,corners_team2_edt_txt,yellowcards_team2_edt_txt;
 
+    MaterialButton Update_Score_btn;
 
-    int goal,shots,shotsontarget,possession,passes,passaccuracy,redcard,offsides,corners,fouls,yellowcard;
+    int goalteam1,shots,shotsontarget,possession,passes,passaccuracy,redcard,offsides,corners,fouls,yellowcard;
 
     int goal2,shots2,shotsontarget2,possession2,passes2,passaccuracy2,redcard2,offsides2,corners2,fouls2,yellowcard2;
 
 
-    Button Schedule_match_btn;
+    //Button Schedule_match_btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,7 +105,6 @@ public class MatchScoreUpdateFragment extends Fragment {
         yellowcards_team1_edt_txt = view.findViewById(R.id.yellowcards_team1_edt_txt);
         fouls_team1_edt_txt = view.findViewById(R.id.fouls_team1_edt_txt);
 
-        Schedule_match_btn = view.findViewById(R.id.Schedule_match_btn);
 
 
         team2_goal_edt_txt = view.findViewById(R.id.team2_goal_edt_txt);
@@ -118,12 +120,14 @@ public class MatchScoreUpdateFragment extends Fragment {
         fouls_team2_edt_txt = view.findViewById(R.id.fouls_team2_edt_txt);
 
 
+        Update_Score_btn = view.findViewById(R.id.Update_Score_btn);
+        Update_Score_btn.setOnClickListener(this);
 
 
         try {
 
 
-            Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+            service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
             Log.d("step1", "after getService part");
 
@@ -147,7 +151,7 @@ public class MatchScoreUpdateFragment extends Fragment {
 
                     matchscore = data.getMatchScores();
 
-                    goal = matchscore.getGoal();
+                    goalteam1 = matchscore.getGoal();
                     shots = matchscore.getShots();
                     shotsontarget = matchscore.getShotsOnTarget();
                     passaccuracy = matchscore.getPassAccuracy();
@@ -159,7 +163,7 @@ public class MatchScoreUpdateFragment extends Fragment {
                     fouls = matchscore.getFouls();
                     yellowcard =matchscore.getYellowCards();
 
-                    team1_goal_edt_txt.setText(String.valueOf(goal));
+                    team1_goal_edt_txt.setText(String.valueOf(goalteam1));
                     shots_team1_edt_txt.setText(String.valueOf(shots));
                     shotsontarget_team1_edt_txt.setText(String.valueOf(shotsontarget));
                     possession_team1_edt_txt.setText(String.valueOf(possession));
@@ -232,11 +236,7 @@ public class MatchScoreUpdateFragment extends Fragment {
                     yellowcards_team2_edt_txt.setText(String.valueOf(yellowcard2));
                     fouls_team2_edt_txt.setText(String.valueOf(fouls2));
 
-
                     System.out.println(team2_goal_edt_txt);
-
-
-
 
 
                 }
@@ -248,31 +248,77 @@ public class MatchScoreUpdateFragment extends Fragment {
             });
 
 
-
-            Schedule_match_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-
-
-
-
-
-
-
-                }
-            });
-
-
-
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == Update_Score_btn){
+
+            goalteam1 = Integer.parseInt(team1_goal_edt_txt.getEditableText().toString().trim());
+            shots = Integer.parseInt(shots_team1_edt_txt.getEditableText().toString().trim());
+            shotsontarget = Integer.parseInt(shotsontarget_team1_edt_txt.getEditableText().toString().trim());
+            possession2 = Integer.parseInt(possession_team1_edt_txt.getEditableText().toString().trim());
+            fouls2 = Integer.parseInt(fouls_team1_edt_txt.getEditableText().toString().trim());
+            corners2 = Integer.parseInt(corners_team1_edt_txt.getEditableText().toString().trim());
+            yellowcard2 = Integer.parseInt(yellowcards_team1_edt_txt.getEditableText().toString().trim());
+            redcard2 = Integer.parseInt(redcard_team1_edt_txt.getEditableText().toString().trim());
+            offsides2 = Integer.parseInt(offsides_team1_edt_txt.getEditableText().toString().trim());
+            passaccuracy2 = Integer.parseInt(passaccuracy_team1_edt_txt.getEditableText().toString().trim());
+
+            goal2 = Integer.parseInt(team2_goal_edt_txt.getEditableText().toString().trim());
+            shots2 = Integer.parseInt(team1_goal_edt_txt.getEditableText().toString().trim());
+            shotsontarget2 = Integer.parseInt(team1_goal_edt_txt.getEditableText().toString().trim());
+            possession = Integer.parseInt(possession_team2_edt_txt.getEditableText().toString().trim());
+            fouls = Integer.parseInt(fouls_team2_edt_txt.getEditableText().toString().trim());
+            corners = Integer.parseInt(corners_team2_edt_txt.getEditableText().toString().trim());
+            yellowcard = Integer.parseInt(yellowcards_team2_edt_txt.getEditableText().toString().trim());
+            redcard = Integer.parseInt(redcard_team2_edt_txt.getEditableText().toString().trim());
+            offsides = Integer.parseInt(offsides_team2_edt_txt.getEditableText().toString().trim());
+            passaccuracy = Integer.parseInt(passaccuracy_team2_edt_txt.getEditableText().toString().trim());
+            passes = Integer.parseInt(passes_team2_edt_txt.getEditableText().toString().trim());
+
+            service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+
+            Log.d("step1", "after getService part in update score");
+
+            Call<ResponseBody> updatescore = service.updateMatchScore(matchid,teamid,goalteam1,shots,shotsontarget,possession,passes,passaccuracy,fouls,yellowcard,redcard,offsides,corners,team2id,goal2,shots2,shotsontarget2,possession2,passes2,passaccuracy2,fouls2,yellowcard2,redcard2,offsides2,redcard2);
+
+            System.out.println(updatescore);
+
+           updatescore.enqueue(new Callback<ResponseBody>() {
+               @Override
+               public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                   if(!response.isSuccessful()){
+                       int s = response.code();
+                       System.out.println("code"+s);
+                       Toast.makeText(context,"succesfully not update...."+s,Toast.LENGTH_LONG).show();
+
+
+                   }
+                   int s = response.code();
+                   System.out.println("code"+s);
+                   String str = response.body().toString();
+                   System.out.println("codestring"+str);
+                   Toast.makeText(context,"succesfully updated...."+s,Toast.LENGTH_LONG).show();
+               }
+
+               @Override
+               public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+
+                   System.out.println("error"+t.getMessage());
+                   Toast.makeText(context," noot working",Toast.LENGTH_LONG).show();
+
+               }
+           });
+
+
+
+        }
     }
 }
