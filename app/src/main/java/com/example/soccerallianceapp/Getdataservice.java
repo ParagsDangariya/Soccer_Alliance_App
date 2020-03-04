@@ -2,6 +2,7 @@ package com.example.soccerallianceapp;
 
 import com.example.soccerallianceapp.pojo.ListOfLeaguesByCountry.ListOfLeaguesByCountry;
 
+import com.example.soccerallianceapp.pojo.MatchScore_PlayedMatchStatastics.MatchScorePlayedmatchStatastics;
 import com.example.soccerallianceapp.pojo.PlayedMatchListDashboard.PlayedmatchListDashboard;
 
 import com.example.soccerallianceapp.pojo.Player;
@@ -49,8 +50,6 @@ public interface Getdataservice {
 
 
 
-
-
     @GET("ViewregisterUserDetail&{uid}")
     Call<ViewregisterUserDetail> ViewregisterUserDetail(
 
@@ -75,6 +74,9 @@ public interface Getdataservice {
 
    @GET("upcomingMatches_guestDashboard")
    Call<MatchListDashboard> getupcomingMatches_guestDashboardCall();
+
+    @GET("matchScore&{match_id}&{team_id}")
+    Call<MatchScorePlayedmatchStatastics> getMatchscore(@Path("match_id") int match_id ,@Path("team_id") int team_id );
 
 
     @GET("playedMatches_guestDashboard")

@@ -8,6 +8,17 @@
     android:background="@color/colorNavDrawerBackground"
     tools:context="com.example.soccerallianceapp.Matches_Fragment">
 
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="256dp"
+            app:layout_constraintHorizontal_bias="0.532"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/leagues_recycler_view"
+            android:indeterminateTint="@color/colorPrimaryLight"></ProgressBar>
+
         <TextView
             android:id="@+id/upcoming_matches_txt_view"
             android:layout_width="match_parent"
