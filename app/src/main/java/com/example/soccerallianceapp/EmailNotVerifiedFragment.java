@@ -27,9 +27,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class EmailNotVerifiedFragment extends Fragment implements View.OnClickListener {
     public NavController navController;
-    MaterialButton Resend_email_btn;
+    MaterialButton Resend_email_btn,back_btn;
     FirebaseAuth fAuth;
     private Context context;
+    int verifynumber = 1;
 
 
 
@@ -67,6 +68,9 @@ public class EmailNotVerifiedFragment extends Fragment implements View.OnClickLi
 
         Resend_email_btn = view.findViewById(R.id.Resend_email_btn);
         Resend_email_btn.setOnClickListener(this);
+
+        back_btn = view.findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(this);
     }
 
     @Override
@@ -81,6 +85,8 @@ public class EmailNotVerifiedFragment extends Fragment implements View.OnClickLi
     @Override
     public void onClick(View v) {
 
+        Bundle bundle = new Bundle();
+        bundle.putInt("verify", verifynumber);
         if (v == Resend_email_btn) {
 
             FirebaseUser fuser = fAuth.getCurrentUser();
@@ -88,7 +94,8 @@ public class EmailNotVerifiedFragment extends Fragment implements View.OnClickLi
                 @Override
                 public void onSuccess(Void aVoid) {
                     Toast.makeText(context,"Verification Email has been sent.",Toast.LENGTH_SHORT).show();
-                    navController.navigate(R.id.loginFragment);
+
+                    navController.navigate(R.id.loginFragment,bundle);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -100,6 +107,11 @@ public class EmailNotVerifiedFragment extends Fragment implements View.OnClickLi
 
 
         }
+        if(v == back_btn){
+
+            navController.navigate(R.id.loginFragment,bundle);
+        }
+
 
     }
 }

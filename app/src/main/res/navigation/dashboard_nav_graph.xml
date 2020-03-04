@@ -155,7 +155,7 @@
     <fragment
         android:id="@+id/LeagueListFragment"
         android:name="com.example.soccerallianceapp.LeagueListFragment"
-        android:label="fragment_league_list"
+        android:label="League List"
         tools:layout="@layout/fragment_league_list" />
 
     <fragment
