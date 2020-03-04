@@ -39,7 +39,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
     private Context context;
     private ArrayList<Comman_Data_List> comman_data_List;
     private Comman_adapter comman_adapter;
-    FloatingActionButton add_player_btn,edit_player_btn;
+    FloatingActionButton add_player_btn;
     int team_id;
     FirebaseAuth fAuth;
     String uid="";
@@ -61,12 +61,10 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
         add_player_btn = view.findViewById(R.id.add_player_btn);
         add_player_btn.setOnClickListener(this);
 
-        edit_player_btn = view.findViewById(R.id.edit_player_btn);
-        edit_player_btn.setOnClickListener(this);
+
 
         if(getActivity().getIntent().getExtras()==null){
             add_player_btn.setVisibility(View.GONE);
-            edit_player_btn.setVisibility(View.GONE);
         }
         /*if(getActivity().getIntent().getStringExtra("user_type").equals("Team_Manager")){
             add_player_btn.setVisibility(View.VISIBLE);
@@ -101,19 +99,24 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
                 getPlayerlist(team_id,service);
 
 
-            }else if(getArguments().getString("Coming_from").equals("Team_Manager")){
+            }
+            if(getArguments().getString("Coming_from").equals("dashboard")){
                 add_player_btn.setVisibility(View.VISIBLE);
-                edit_player_btn.setVisibility(View.VISIBLE);
 
-                team_id = getArguments().getInt("team_id");
+
+                int teamidfromdashboard = getArguments().getInt("team_id");
 
                 //getTeamid(uid,service);
+                System.out.println("team Id for teamlist"+team_id);
+                if(team_id == teamidfromdashboard){
 
 
-                getPlayerlist(team_id,service);
+                geteditPlayerlist(team_id,service);
                 Toast.makeText(context,"got success"+team_id, Toast.LENGTH_LONG).show();
 
-                System.out.println("team Id for team"+team_id);
+
+                }
+
 
 /*
                 if(team_id != 0){
@@ -128,6 +131,43 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
  */
             }
         }
+    }
+
+    private void geteditPlayerlist(int team_id, Getdataservice service) {
+
+        Call viewPlayerLIstByTeam = service.getviewPlayerListFromTeamDashboardCall(team_id);
+        System.out.println("Before respon");
+        viewPlayerLIstByTeam.enqueue(new Callback<ViewPlayerListDashboard>() {
+            @Override
+            public void onResponse(Call<ViewPlayerListDashboard> call, Response<ViewPlayerListDashboard> response) {
+
+                ViewPlayerListDashboard playerListDashboard = response.body();
+                System.out.println("after get response "+response.body());
+                if(response.body() != null){
+                    if (playerListDashboard.getStatus() == 200) {
+                        System.out.println("status from player frag "+playerListDashboard.getStatus());
+                        for (PlayerList playerList : playerListDashboard.getPlayerList()) {
+
+                            comman_data_List.add(new Comman_Data_List(
+                                    playerList.getFullName(),
+                                    playerList.getPlayerPhoto(),
+                                    playerList.getStrength()
+                            ));
+                        }
+                        comman_adapter.notifyDataSetChanged();
+                    }
+
+                }else{
+                    Toast.makeText(getActivity() ,"Response empty",Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                System.out.println("Error : "+t.getMessage());
+
+            }
+        });
+
     }
 
     private void getPlayerlist(int team_id, Getdataservice service) {
@@ -210,10 +250,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
             bundle.putInt("team_id",team_id);
             DashboardNavController.navigate(R.id.add_Player_Fragment,bundle);
         }
-        if(view == edit_player_btn){
-            DashboardNavController.navigate(R.id.editTeamFragment);
 
-        }
 
     }
 }
