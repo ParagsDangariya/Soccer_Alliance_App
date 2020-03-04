@@ -15,11 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.ViewPlayerListByTeamDashboard.PlayerList;
 import com.example.soccerallianceapp.pojo.ViewPlayerListByTeamDashboard.ViewPlayerListDashboard;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
@@ -31,7 +33,9 @@ import retrofit2.Response;
 public class EditTeamFragment extends Fragment implements View.OnClickListener{
 
     public NavController DashboardNavController;
-
+    MaterialButton edit_new_player_btn;
+    TextView edit_player_name_edt_txt,edit_player_role_edt_txt,edit_player_strength_edt_txt;
+    String name,role,strength,imageUri ="nophoto",uid="";
     private Context context;
     Getdataservice service;
 
@@ -54,12 +58,7 @@ public class EditTeamFragment extends Fragment implements View.OnClickListener{
         DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
 
-
-
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
-
-
-
 
 
     }

@@ -195,7 +195,7 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
 
                     Bundle bundle = new Bundle();
-                    bundle.putString("Coming_from",usertype);
+                    bundle.putString("Coming_from","dashboard");
                     bundle.putInt("team_id",team_id);
                     DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
                 }
