@@ -3,6 +3,7 @@ package com.example.soccerallianceapp;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,8 @@ import retrofit2.Response;
 public class Player_List_Fragment extends Fragment implements View.OnClickListener {
 
 
+    String TAG ="playerlist";
+    Getdataservice service;
     public NavController DashboardNavController;
     private RecyclerView player_recycler_view;
     private Context context;
@@ -65,6 +68,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
         if(getActivity().getIntent().getExtras()==null){
             add_player_btn.setVisibility(View.GONE);
+            Log.i(TAG,"visibility is gone guest");
         }
         /*if(getActivity().getIntent().getStringExtra("user_type").equals("Team_Manager")){
             add_player_btn.setVisibility(View.VISIBLE);
@@ -74,7 +78,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
          */
 
-        Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
         fAuth = FirebaseAuth.getInstance();
         uid =fAuth.getUid();
@@ -92,6 +96,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
         if(getArguments()!=null){
             if(getArguments().getString("Coming_from").equals("TeamList_Fragment_Class")){
+                add_player_btn.setVisibility(View.GONE);
                 team_id = getArguments().getInt("team_id");
                 Toast.makeText(context,""+team_id, Toast.LENGTH_LONG).show();
                 System.out.println("team Id "+team_id);
@@ -99,23 +104,29 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
                 getPlayerlist(team_id,service);
 
 
+                Log.i(TAG,"coming for team list");
+
             }
             if(getArguments().getString("Coming_from").equals("dashboard")){
-                add_player_btn.setVisibility(View.VISIBLE);
 
 
-                int teamidfromdashboard = getArguments().getInt("team_id");
+                Log.i(TAG,"coming from dashboard");
 
-                //getTeamid(uid,service);
+                int team_id = getArguments().getInt("team_id");
+
+                //team_id = getTeamid(uid,service);
+                //System.out.println("team Id for teamlist"+team_id);
                 System.out.println("team Id for teamlist"+team_id);
-                if(team_id == teamidfromdashboard){
 
 
+
+                    Log.i(TAG,"both team id are same...");
+                    add_player_btn.setVisibility(View.VISIBLE);
                 geteditPlayerlist(team_id,service);
                 Toast.makeText(context,"got success"+team_id, Toast.LENGTH_LONG).show();
 
 
-                }
+
 
 
 /*
@@ -206,8 +217,8 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
         });
     }
 
-    /*
-    private void getTeamid(String uid, Getdataservice service) {
+
+    private int getTeamid(String uid, Getdataservice service) {
 
         Call<ViewTeamDetail> call = service.ViewTeamDetail(uid);
 
@@ -233,15 +244,16 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
             @Override
             public void onFailure(Call<ViewTeamDetail> call, Throwable t) {
 
+                team_id = 0;
             }
         });
 
         System.out.println("teamid"+team_id);
 
         //getPlayerlist(team_id,service);
+        return team_id;
     }
 
-     */
 
     @Override
     public void onClick(View view) {

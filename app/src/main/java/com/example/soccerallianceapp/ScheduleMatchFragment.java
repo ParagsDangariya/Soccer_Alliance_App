@@ -1,5 +1,6 @@
 package com.example.soccerallianceapp;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+//import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -79,7 +80,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
     String stime;
 
-     DatePickerDialog.OnDateSetListener dateListner;
+     //DatePickerDialog.OnDateSetListener dateListner;
 
     public ScheduleMatchFragment() {
     }
@@ -89,46 +90,6 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         super.onCreate(savedInstanceState);
 
           context = getActivity().getApplicationContext();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     @Override
@@ -175,10 +136,13 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         day = calendar.get(Calendar.DAY_OF_MONTH);
         month = calendar.get(Calendar.MONTH);
         year = calendar.get(Calendar.YEAR);
+        /*
 
                 schedule_match_date_edt_txt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+
 
 
 
@@ -194,13 +158,15 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                             }
                         },year,month,day) ;
 
-                             dialog.show(getActivity().getFragmentManager(),"DatePickerDialog");
+                             dialog.show(context,"DatePickerDialog");
                                                                                                                                                      
 
 
 
                     }
                 });
+
+         */
 
 
 

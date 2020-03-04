@@ -106,7 +106,7 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 imageUri = getIntent().getStringExtra("imageUri");
                 username.setText("Welcome \n"+name);
 
-                Glide.with(this).load(imageUri).into(userImage);
+                Glide.with(this).load(imageUri).centerCrop().into(userImage);
             }
 
 

@@ -34,20 +34,7 @@
         app:maxImageSize="28dp"
         app:tint="@android:color/white" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/edit_player_btn"
-        style="@style/Widget.Design.FloatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="24dp"
 
-        android:backgroundTint="@color/colorNormalButton"
-        android:src="@drawable/edit"
-        app:layout_constraintBottom_toTopOf="@+id/add_player_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="28dp"
-        app:tint="@android:color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
