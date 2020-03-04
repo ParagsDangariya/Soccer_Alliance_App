@@ -40,6 +40,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.R.layout.simple_list_item_1;
+import static android.R.layout.simple_selectable_list_item;
+import static android.R.layout.simple_spinner_dropdown_item;
 
 public class ScheduleMatchFragment extends Fragment implements View.OnClickListener {
 
@@ -59,11 +61,10 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     String uid = "";
 
 
-    AutoCompleteTextView schedule_match_edt_txt,schedule_match_team2_edt_txt;
+    private AutoCompleteTextView schedule_match_edt_txt, schedule_match_team2_edt_txt;
 
 
-    TextInputEditText schedule_match_date_edt_txt,schedule_match_time_layout_edt_txt, schedule_match_location_layout_edt_txt;
-
+    TextInputEditText schedule_match_date_edt_txt, schedule_match_time_layout_edt_txt, schedule_match_location_layout_edt_txt;
 
 
     String team2;
@@ -73,7 +74,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
     int team1id, team2id;
 
-    int league_id= 1;
+    int league_id = 1;
 
     public ScheduleMatchFragment() {
     }
@@ -106,15 +107,15 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
         comman_data_List = new ArrayList<Comman_Data_List>();
 
-        comman_adapter = new Comman_adapter(comman_data_List,context);
-
+        comman_adapter = new Comman_adapter(comman_data_List, context);
 
 
         context = getActivity().getApplicationContext();
 
         schedule_match_edt_txt = (AutoCompleteTextView) view.findViewById(R.id.schedule_match_edt_txt);
 
-        schedule_match_team2_edt_txt = view.findViewById(R.id.schedule_match_team2_edt_txt);
+        schedule_match_team2_edt_txt = (AutoCompleteTextView) view.findViewById(R.id.schedule_match_team2_edt_txt);
+
         schedule_match_date_edt_txt = view.findViewById(R.id.schedule_match_date_edt_txt);
         schedule_match_time_layout_edt_txt = view.findViewById(R.id.schedule_match_time_layout_edt_txt);
         schedule_match_location_layout_edt_txt = view.findViewById(R.id.schedule_match_location_layout_edt_txt);
@@ -140,7 +141,6 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 //        Toast.makeText(context, "Schedule MAtch Fragment (League Id ): " + League_id, Toast.LENGTH_LONG).show();
 
 
-
         Call<ViewTeamListFromLeagueId> call = service.viewTeamListFromLeagueId(League_id);
 
         System.out.println(call);
@@ -158,106 +158,68 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
                 if (response.body() != null) {
 
-                 //   List<TeamList> teamLists = response.body().getTeamList();
+                    //   List<TeamList> teamLists = response.body().getTeamList();
 
                     for (TeamList teamList : maindata.getTeamList()) {
                         comman_data_List.add(new Comman_Data_List(
 
 
+                                teamList.getTeamid(),
                                 teamList.getTeamName(),
-                                teamList.getLogo(),
-                                teamList.getTeamid()
+                                teamList.getLogo()
+
                         ));
 
                     }
 
 
-
-
                     String[] listofteam = new String[comman_data_List.size()];
-
-
 
 
                     for (int i = 0; i < comman_data_List.size(); i++) {
                         listofteam[i] = comman_data_List.get(i).getItem_name();
+
                         System.out.print("teamlists." + listofteam[i]);
                     }
 
+
                     ArrayAdapter<String> teamadapter = new ArrayAdapter<>(context,
-                            simple_list_item_1, listofteam);
+                            simple_selectable_list_item, listofteam);
 
 
                     schedule_match_edt_txt.setAdapter(teamadapter);
 
-                    schedule_match_team2_edt_txt.setAdapter(teamadapter);
+
+                    ArrayAdapter<String> teamadapter2 = new ArrayAdapter<>(context,
+                            simple_selectable_list_item, listofteam);
+
+                    schedule_match_team2_edt_txt.setAdapter(teamadapter2);
 
                     schedule_match_edt_txt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View arg1, int position, long id) {
 
 
-                            Object item = parent.getItemAtPosition(position);
+                            team1id = comman_data_List.get(position).getIteam_id();
 
-                            if (item instanceof TeamList){
-                                TeamList tl=(TeamList) item;
 
-                                 team1id = ((TeamList) item).getTeamid();
+                            System.out.println("Team1 id (Selected from Dropdown) : " + team1id);
 
-                        }
 
                         }
                     });
 
+                      schedule_match_team2_edt_txt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int p, long id) {
 
-//                    schedule_match_date_edt_txt.setOnI   (new AdapterView.OnItemClickListener() {
-//                        @Override
-//                        public void onItemClick(AdapterView<?> parent, View arg1, int position, long id) {
-//
-//                           Object item = parent.getItemAtPosition(position);
-//
-//                            if (item instanceof TeamList){
-//                                TeamList tl=(TeamList) item;
-//
-//                                 team1id = tl.getTeamid();
-//
-//
-//
-//                            }
-//
-//
-//                        }
-//                    });
+                            team2id = comman_data_List.get(p).getIteam_id();
+
+                            System.out.println("Team2 id SM 2 : " + team2id);
 
 
-
-
-
-                            comman_adapter.notifyDataSetChanged();
-
-                            comman_adapter.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
-
-                                    int position = viewHolder.getAdapterPosition();
-
-                                     team1id = comman_data_List.get(position).getIteam_id();
-
-                                     team2id = comman_data_List.get(position).getIteam_id();
-
-                                    System.out.println("Team1 id (Selected from Dropdown) : " + team1id);
-
-                                    System.out.println("Team2 id (Selected from Dropdown) : " + team2id);
-
-                                }
-                            });
-
-
-
-
-
+                        }
+                    });
                 } else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
 
