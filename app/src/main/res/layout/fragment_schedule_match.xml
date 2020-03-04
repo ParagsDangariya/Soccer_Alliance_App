@@ -42,6 +42,8 @@
                     android:id="@+id/schedule_match_edt_txt"
                     style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
+                    android:completionThreshold="1"
+
                     android:layout_height="wrap_content"
                     android:hint="Team1 Name"
                     android:textColorHint="@color/colorPrimaryLight" />
@@ -69,7 +71,7 @@
                     style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Team1 Name"
+                    android:hint="Team2 Name"
                     android:textColorHint="@color/colorPrimaryLight" />
 
 
