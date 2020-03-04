@@ -90,7 +90,7 @@
     <fragment
         android:id="@+id/add_Player_Fragment"
         android:name="com.example.soccerallianceapp.Add_Player_Fragment"
-        android:label="Add Team"
+        android:label="Add Player"
         tools:layout="@layout/fragment_add_player" >
         <action
             android:id="@+id/action_add_Player_Fragment_to_player_List_Fragment"
