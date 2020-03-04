@@ -95,7 +95,7 @@
                     style="@style/TextInputEditTextStyleVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Date"
+                    android:hint="Select Date"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:textColorHint="@color/colorPrimaryLight" />

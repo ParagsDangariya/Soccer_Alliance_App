@@ -1,16 +1,7 @@
 package com.example.soccerallianceapp;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,28 +11,31 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
-import com.example.soccer_alliance_project_test.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 
+import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.CreateSchedule.ScheduleMatch;
-import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
 import com.example.soccerallianceapp.pojo.viewTeamListFromLeagueId.TeamList;
 import com.example.soccerallianceapp.pojo.viewTeamListFromLeagueId.ViewTeamListFromLeagueId;
-
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.R.layout.simple_list_item_1;
 import static android.R.layout.simple_selectable_list_item;
-import static android.R.layout.simple_spinner_dropdown_item;
 
 public class ScheduleMatchFragment extends Fragment implements View.OnClickListener {
 
@@ -60,6 +54,8 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
     String uid = "";
 
+    int day,month,year;
+
 
     private AutoCompleteTextView schedule_match_edt_txt, schedule_match_team2_edt_txt;
 
@@ -76,6 +72,8 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
     int league_id = 1;
 
+     DatePickerDialog.OnDateSetListener dateListner;
+
     public ScheduleMatchFragment() {
     }
 
@@ -83,13 +81,47 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-/*
-        if (getArguments() != null) {
-            league_id = getArguments().getInt("league_id");
+          context = getActivity().getApplicationContext();
 
-        }
 
- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     @Override
@@ -110,13 +142,14 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         comman_adapter = new Comman_adapter(comman_data_List, context);
 
 
-        context = getActivity().getApplicationContext();
+
 
         schedule_match_edt_txt = (AutoCompleteTextView) view.findViewById(R.id.schedule_match_edt_txt);
 
         schedule_match_team2_edt_txt = (AutoCompleteTextView) view.findViewById(R.id.schedule_match_team2_edt_txt);
 
-        schedule_match_date_edt_txt = view.findViewById(R.id.schedule_match_date_edt_txt);
+        schedule_match_date_edt_txt =  view.findViewById(R.id.schedule_match_date_edt_txt);
+
         schedule_match_time_layout_edt_txt = view.findViewById(R.id.schedule_match_time_layout_edt_txt);
         schedule_match_location_layout_edt_txt = view.findViewById(R.id.schedule_match_location_layout_edt_txt);
 
@@ -124,9 +157,57 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         Schedule_match_btn.setOnClickListener(this);
 
 
+
+        // get Current Date
+
+        Calendar calendar = Calendar.getInstance();
+
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        month = calendar.get(Calendar.MONTH);
+        year = calendar.get(Calendar.YEAR);
+
+                schedule_match_date_edt_txt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+
+
+
+                        DatePickerDialog dialog = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+
+                                String strdate = year + "-" + (monthOfYear+1) + "-" + dayOfMonth;
+                                  schedule_match_date_edt_txt.setText(strdate);
+
+                            }
+                        },year,month,day) ;
+
+                             dialog.show(getActivity().getFragmentManager(),"DatePickerDialog");
+                                                                                                                                                     
+
+
+
+                    }
+                });
+
+
+
+
+
+
+
+
+
+
+
+
         uid = fAuth.getCurrentUser().getUid();
         Toast.makeText(getActivity(), "UID : " + uid, Toast.LENGTH_LONG).show();
         System.out.println("User Id : " + uid);
+
+
 
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
@@ -240,28 +321,28 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
-//        if (view == Schedule_match_btn) {
-//
-//            team1 = (AutoCompleteTextView) schedule_match_edt_txt.getText();
-//            team2 = schedule_match_team2_edt_txt.getEditableText().toString().trim();
-//
-//            date = schedule_match_date_edt_txt.getEditableText().toString();
-//
-//            if (TextUtils.isEmpty((CharSequence) team1)) {
-//                schedule_match_edt_txt.setError("Team1 Required.");
-//                return;
-//            }
-//        } else if (TextUtils.isEmpty(team2)) {
-//            schedule_match_team2_edt_txt.setError("Team2 is Required.");
-//            return;
-//        } else if (team1.equals(team2)) {
-//            schedule_match_team2_edt_txt.setError("Both Team name must be different.");
-//            return;
-//        }
-//
-        date = schedule_match_date_edt_txt.getEditableText().toString();
-        location = schedule_match_location_layout_edt_txt.getEditableText().toString();
-        time = schedule_match_time_layout_edt_txt.getEditableText().toString();
+        if (view == Schedule_match_btn) {
+
+
+            date = schedule_match_date_edt_txt.getEditableText().toString();
+
+            location = schedule_match_location_layout_edt_txt.getEditableText().toString();
+
+            time = schedule_match_time_layout_edt_txt.getEditableText().toString();
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
 
         //league_id = getArguments().getInt("League_id");
 
@@ -324,6 +405,12 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+    public static void valDOB()
+    {
+        DateFormat df = new SimpleDateFormat();
+
 
     }
 
