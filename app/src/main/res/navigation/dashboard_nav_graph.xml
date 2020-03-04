@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_home_Fragment_to_match_Score_Fragment"
             app:destination="@id/match_Score_Fragment" />
+        <action
+            android:id="@+id/action_home_Fragment_to_LeagueListFragment"
+            app:destination="@id/LeagueListFragment" />
     </fragment>
     <fragment
         android:id="@+id/teamListFragment"
@@ -117,12 +120,28 @@
         <action
             android:id="@+id/action_leagueOperationsFragment_to_matchScoreRescheduleFragment"
             app:destination="@id/matchScoreRescheduleFragment" />
+        <action
+            android:id="@+id/action_leagueOperationsFragment_to_leagueUpcomingMatchFragment"
+            app:destination="@id/leagueUpcomingMatchFragment" />
+        <action
+            android:id="@+id/action_leagueOperationsFragment_to_leaguePlayedMatchFragment"
+            app:destination="@id/leaguePlayedMatchFragment" />
+        <action
+            android:id="@+id/action_leagueOperationsFragment_to_removeTeaminLeagueFragment"
+            app:destination="@id/removeTeaminLeagueFragment" />
+        <action
+            android:id="@+id/action_leagueOperationsFragment_to_teamListFragment"
+            app:destination="@id/teamListFragment" />
     </fragment>
     <fragment
         android:id="@+id/createLeagueFragment"
         android:name="com.example.soccerallianceapp.CreateLeagueFragment"
         android:label="Create League"
-        tools:layout="@layout/fragment_create_league" />
+        tools:layout="@layout/fragment_create_league" >
+        <action
+            android:id="@+id/action_createLeagueFragment_to_LeagueListFragment"
+            app:destination="@id/LeagueListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/scheduleMatchFragment"
         android:name="com.example.soccerallianceapp.ScheduleMatchFragment"
@@ -156,7 +175,11 @@
         android:id="@+id/LeagueListFragment"
         android:name="com.example.soccerallianceapp.LeagueListFragment"
         android:label="League List"
-        tools:layout="@layout/fragment_league_list" />
+        tools:layout="@layout/fragment_league_list" >
+        <action
+            android:id="@+id/action_LeagueListFragment_to_createLeagueFragment"
+            app:destination="@id/createLeagueFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/Leagues_Fragment"
@@ -166,9 +189,6 @@
         <action
             android:id="@+id/action_leagues_Fragment_to_leagueOperationsFragment"
             app:destination="@id/leagueOperationsFragment" />
-        <action
-            android:id="@+id/action_leagues_Fragment_to_createLeagueFragment"
-            app:destination="@id/createLeagueFragment" />
     </fragment>
    <fragment
         android:id="@+id/Line_Up_Fragment"
@@ -187,4 +207,19 @@
         android:name="com.example.soccerallianceapp.EditTeamFragment"
         android:label="Edit Team"
         tools:layout="@layout/fragment_edit_team" />
+    <fragment
+        android:id="@+id/leagueUpcomingMatchFragment"
+        android:name="com.example.soccerallianceapp.LeagueUpcomingMatchFragment"
+        android:label="fragment_league_upcoming_match"
+        tools:layout="@layout/fragment_league_upcoming_match" />
+    <fragment
+        android:id="@+id/leaguePlayedMatchFragment"
+        android:name="com.example.soccerallianceapp.LeaguePlayedMatchFragment"
+        android:label="fragment_league_played_match"
+        tools:layout="@layout/fragment_league_played_match" />
+    <fragment
+        android:id="@+id/removeTeaminLeagueFragment"
+        android:name="com.example.soccerallianceapp.RemoveTeaminLeagueFragment"
+        android:label="fragment_remove_teamin_league"
+        tools:layout="@layout/fragment_remove_teamin_league" />
 </navigation>
