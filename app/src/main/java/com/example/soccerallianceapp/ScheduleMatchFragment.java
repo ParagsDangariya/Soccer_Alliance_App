@@ -1,5 +1,6 @@
 package com.example.soccerallianceapp;
 
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 
@@ -37,7 +40,7 @@ import retrofit2.Response;
 
 import static android.R.layout.simple_selectable_list_item;
 
-public class ScheduleMatchFragment extends Fragment implements View.OnClickListener {
+public class ScheduleMatchFragment extends Fragment implements View.OnClickListener, TimePickerDialog.OnTimeSetListener {
 
     public NavController DashboardNavController;
     private Context context;
@@ -57,6 +60,8 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     int day,month,year;
 
 
+
+
     private AutoCompleteTextView schedule_match_edt_txt, schedule_match_team2_edt_txt;
 
 
@@ -71,6 +76,8 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     int team1id, team2id;
 
     int league_id = 1;
+
+    String stime;
 
      DatePickerDialog.OnDateSetListener dateListner;
 
@@ -129,6 +136,9 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         return inflater.inflate(R.layout.fragment_schedule_match, container, false);
 
     }
+
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -194,6 +204,19 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
 
 
+                schedule_match_time_layout_edt_txt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        DialogFragment timepicker = new TimePickerFragment();
+
+                        timepicker.show(getActivity().getSupportFragmentManager(),"time Picker");
+
+
+
+
+                    }
+                });
 
 
 
@@ -411,6 +434,17 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     {
         DateFormat df = new SimpleDateFormat();
 
+
+    }
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+
+        stime = hourOfDay + ":" + minute;
+
+        schedule_match_time_layout_edt_txt.setText("H : "+hourOfDay + "M: "+minute );
+
+        System.out.println("Ontime set : " + schedule_match_date_edt_txt);
 
     }
 
