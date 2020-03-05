@@ -68,9 +68,7 @@ public class Team_mngr_my_profile_Fragment extends Fragment implements View.OnCl
     TextInputEditText tmp_name_edt_txt,tmp_age_edt_txt,tmp_country_edt_txt,tmp_phone_edt_txt;
     String uid ="";
     MaterialButton tmp_update_btn;
-
     UserDetails userDetails;
-
     private StorageReference mStorageRef;
 
     @Override

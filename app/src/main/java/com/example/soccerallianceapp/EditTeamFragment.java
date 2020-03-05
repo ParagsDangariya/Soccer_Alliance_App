@@ -15,7 +15,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.soccer_alliance_project_test.R;
+import com.example.soccerallianceapp.pojo.PlayerDetail.PlayerDetail;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import retrofit2.Call;
 
 
 public class EditTeamFragment extends Fragment implements View.OnClickListener{
@@ -27,6 +33,8 @@ public class EditTeamFragment extends Fragment implements View.OnClickListener{
     private Context context;
     Getdataservice service;
     int player_id;
+    FirebaseAuth fAuth;
+    private StorageReference mStorageRef;
 
 
     @Override
@@ -63,7 +71,17 @@ public class EditTeamFragment extends Fragment implements View.OnClickListener{
         edit_player_name_edt_txt = view.findViewById(R.id.edit_player_name_edt_txt);
         edit_player_role_edt_txt = view.findViewById(R.id.edit_player_role_edt_txt);
         edit_player_strength_edt_txt = view.findViewById(R.id.edit_player_strength_edt_txt);
+        mStorageRef = FirebaseStorage.getInstance().getReference();
 
+
+        fAuth = FirebaseAuth.getInstance();
+
+        uid =fAuth.getCurrentUser().getUid();
+
+        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+
+
+        Call<PlayerDetail> call = service.PlayerDetail(player_id);
     }
 
     @Override
