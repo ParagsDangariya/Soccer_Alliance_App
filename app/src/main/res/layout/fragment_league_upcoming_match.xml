@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.soccerallianceapp.LeagueUpcomingMatchFragment">
+    android:background="@color/colorNavDrawerBackground"
+    tools:context="com.example.soccerallianceapp.Matches_Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
+<!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/upcoming_matches_txt_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="8dp"
+        android:text="Upcoming Matches"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <View
+        android:id="@+id/um_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/upcoming_matches_txt_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/um_recycler_View"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/um_divider"
+        android:layout_margin="8dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

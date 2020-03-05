@@ -81,9 +81,6 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
         comman_data_List.clear();
         comman_adapter = new Comman_adapter(comman_data_List, context);
 
-
-
-
         try {
             if (getArguments() != null) {
                 if (getArguments().getString("Coming_from").equals("ListLeaguesFragment_Class")) {
@@ -99,6 +96,15 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
 
                     bundle.putString("League_name",league_name);
                     bundle.putInt("League_id",league_id);
+                    bundle.putString("ComingFrom" ,"LeagueUpcomingMatchFragment");
+                    league_operations_upmatch_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            System.out.println("forward form opration fragment");
+                            DashboardNavController.navigate(R.id.leagueUpcomingMatchFragment,bundle);
+
+                        }
+                    });
 
                     league_operations_schedulematch_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -108,11 +114,6 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
 
                         }
                     });
-
-
-
-
-
                 }
 
 

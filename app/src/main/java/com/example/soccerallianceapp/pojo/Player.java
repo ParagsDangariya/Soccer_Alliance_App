@@ -15,6 +15,14 @@ public class Player {
     @Expose
     private String message;
 
+    public Player(int player_id, String full_name, String player_photo, String position, String strength) {
+        this.player_id = player_id;
+        this.full_name = full_name;
+        this.player_photo = player_photo;
+        this.position = position;
+        this.strength = strength;
+    }
+
     public Player(String full_name, String player_photo, String position, String strength, String user_id) {
         this.full_name = full_name;
         this.player_photo = player_photo;

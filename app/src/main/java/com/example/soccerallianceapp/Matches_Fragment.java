@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ import retrofit2.Response;
 public class Matches_Fragment extends Fragment implements View.OnClickListener {
 
     public NavController DashboardNavController;
+
     private Context context;
     FloatingActionButton add_player_btn;
     RecyclerView um_recycler_View,pm_recycler_View;
@@ -49,7 +51,6 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
 
@@ -96,14 +97,25 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                     up_match_adapter.notifyDataSetChanged();
                     up_match_adapter.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
-                            DashboardNavController.navigate(R.id.upcomingMatchFragment);
+                        public void onClick(View view) {
+
+                            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                            int position = viewHolder.getAdapterPosition();
+                            Bundle upcoming_match_bundle = new Bundle();
+                            upcoming_match_bundle.putInt("up_match_id",up_matches_data_lists.get(position).getMatch_id());
+                            upcoming_match_bundle.putString("up_team1_name",up_matches_data_lists.get(position).getTeam1_name());
+                            upcoming_match_bundle.putString("up_team2_name",up_matches_data_lists.get(position).getTeam2_name());
+                            upcoming_match_bundle.putString("up_team1_logo",up_matches_data_lists.get(position).getTeam1_logo());
+                            upcoming_match_bundle.putString("up_team2_logo",up_matches_data_lists.get(position).getTeam2_logo());
+                            upcoming_match_bundle.putString("up_date",up_matches_data_lists.get(position).getMatch_date());
+                            upcoming_match_bundle.putString("up_time",up_matches_data_lists.get(position).getMatch_time());
+                            DashboardNavController.navigate(R.id.upcomingMatchFragment,upcoming_match_bundle);
                         }
                     });
-                    //DashboardNavController.navigate(R.id.upcomingMatchFragment);
+
                 } else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
-                }
+                           }
             }
             @Override
             public void onFailure(Call<MatchListDashboard> call, Throwable t) {
@@ -112,7 +124,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
             }
         });
 
-       Call<PlayedmatchListDashboard> playmatchList = service.getplayedMatches_guestDashboardCall();
+        Call<PlayedmatchListDashboard> playmatchList = service.getplayedMatches_guestDashboardCall();
         playmatchList.enqueue(new Callback<PlayedmatchListDashboard>() {
             @Override
             public void onResponse(Call<PlayedmatchListDashboard> call, Response<PlayedmatchListDashboard> response) {
@@ -139,11 +151,15 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                     played_match_adapter.notifyDataSetChanged();
                     played_match_adapter.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
+
+                        public void onClick(View view) {
+
+                            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                            int position = viewHolder.getAdapterPosition();
                             DashboardNavController.navigate(R.id.match_Score_Fragment);
                         }
                     });
-                    //DashboardNavController.navigate(R.id.match_Score_Fragment);
+
                 } else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
                 }

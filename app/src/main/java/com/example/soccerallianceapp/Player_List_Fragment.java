@@ -106,13 +106,12 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
                 Log.i(TAG,"coming for team list");
 
-            }
-            if(getArguments().getString("Coming_from").equals("dashboard")){
+            }else if(getArguments().getString("Coming_from").equals("dashboard")){
 
 
                 Log.i(TAG,"coming from dashboard");
 
-                int team_id = getArguments().getInt("team_id");
+                team_id = getArguments().getInt("team_id");
 
                 //team_id = getTeamid(uid,service);
                 //System.out.println("team Id for teamlist"+team_id);
@@ -120,13 +119,10 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
 
 
-                    Log.i(TAG,"both team id are same...");
-                    add_player_btn.setVisibility(View.VISIBLE);
+                Log.i(TAG,"both team id are same...");
+                add_player_btn.setVisibility(View.VISIBLE);
                 geteditPlayerlist(team_id,service);
                 Toast.makeText(context,"got success"+team_id, Toast.LENGTH_LONG).show();
-
-
-
 
 
 /*
@@ -137,9 +133,26 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
                 }
                 Toast.makeText(context,"take time to get player list"+team_id, Toast.LENGTH_LONG).show();
 
-
-
  */
+            }else if(getArguments().getString("Coming_from").equals("EditScreen")){
+
+
+                Log.i(TAG,"coming from edit Screen");
+
+                team_id = getArguments().getInt("team_id");
+
+                //team_id = getTeamid(uid,service);
+                //System.out.println("team Id for teamlist"+team_id);
+                System.out.println("team Id for teamlist"+team_id);
+
+
+
+                Log.i(TAG,"both team id are same...");
+                add_player_btn.setVisibility(View.VISIBLE);
+                geteditPlayerlist(team_id,service);
+                Toast.makeText(context,"got success"+team_id, Toast.LENGTH_LONG).show();
+
+
             }
         }
     }
@@ -162,10 +175,23 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
                             comman_data_List.add(new Comman_Data_List(
                                     playerList.getFullName(),
                                     playerList.getPlayerPhoto(),
-                                    playerList.getStrength()
+                                    playerList.getPlayerid()
+
                             ));
                         }
                         comman_adapter.notifyDataSetChanged();
+                        comman_adapter.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
+                                int position = viewHolder.getAdapterPosition();
+
+                                Bundle bundlePlayer = new Bundle();
+                                bundlePlayer.putString("player_id",String.valueOf(comman_data_List.get(position).getIteam_id()));
+                                bundlePlayer.putInt("team_id",team_id);
+                                DashboardNavController.navigate(R.id.editTeamFragment,bundlePlayer);
+                            }
+                        });
                     }
 
                 }else{

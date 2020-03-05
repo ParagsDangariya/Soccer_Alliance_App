@@ -41,12 +41,4 @@ public class ViewPlayerListDashboard {
         this.playerList = playerList;
     }
 
-    @Override
-    public String toString() {
-        return "ViewPlayerListDashboard{" +
-                "status=" + status +
-                ", timestamp=" + timestamp +
-                ", playerList=" + playerList +
-                '}';
-    }
 }

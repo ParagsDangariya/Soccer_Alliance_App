@@ -1,33 +1,33 @@
 
-package com.example.soccerallianceapp.pojo.ViewPlayerListByTeamDashboard;
+package com.example.soccerallianceapp.pojo.PlayerDetail;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PlayerList {
+public class PlayerDetails {
 
-    @SerializedName("Playerid")
+    @SerializedName("player_id")
     @Expose
-    private Integer playerid;
-    @SerializedName("FullName")
+    private Integer playerId;
+    @SerializedName("full_name")
     @Expose
     private String fullName;
-    @SerializedName("PlayerPhoto")
+    @SerializedName("player_photo")
     @Expose
     private String playerPhoto;
-    @SerializedName("Strength")
-    @Expose
-    private String strength;
     @SerializedName("position")
     @Expose
     private String position;
+    @SerializedName("strength")
+    @Expose
+    private String strength;
 
-    public Integer getPlayerid() {
-        return playerid;
+    public Integer getPlayerId() {
+        return playerId;
     }
 
-    public void setPlayerid(Integer playerid) {
-        this.playerid = playerid;
+    public void setPlayerId(Integer playerId) {
+        this.playerId = playerId;
     }
 
     public String getFullName() {
@@ -46,20 +46,20 @@ public class PlayerList {
         this.playerPhoto = playerPhoto;
     }
 
-    public String getStrength() {
-        return strength;
-    }
-
-    public void setStrength(String strength) {
-        this.strength = strength;
-    }
-
     public String getPosition() {
         return position;
     }
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getStrength() {
+        return strength;
+    }
+
+    public void setStrength(String strength) {
+        this.strength = strength;
     }
 
 }

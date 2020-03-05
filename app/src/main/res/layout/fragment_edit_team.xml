@@ -37,7 +37,7 @@
                 <ImageView
                     android:layout_gravity="center"
                     android:src="@drawable/user"
-                    android:id="@+id/Edit_player_user_image"
+                    android:id="@+id/edit_player_user_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"/>
@@ -73,7 +73,7 @@
                 app:layout_constraintTop_toBottomOf="@id/add_player_update_image_txt">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Edit_player_name_edt_txt"
+                    android:id="@+id/edit_player_name_edt_txt"
                     style="@style/TextInputEditTextStyleVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                 app:layout_constraintTop_toBottomOf="@id/add_player_name_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Edit_player_role_edt_txt"
+                    android:id="@+id/edit_player_role_edt_txt"
                     style="@style/TextInputEditTextStyleVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 app:layout_constraintTop_toBottomOf="@id/add_player_role_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Edit_player_strength_edt_txt"
+                    android:id="@+id/edit_player_strength_edt_txt"
                     style="@style/TextInputEditTextStyleVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -185,7 +185,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/add_new_player_btn"
+                android:id="@+id/update_new_player_btn"
                 style="@style/NormalButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="30pt"

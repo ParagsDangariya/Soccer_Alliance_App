@@ -101,7 +101,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         fAuth = FirebaseAuth.getInstance();
 
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
-
+/*
 
         if(verifynumber != 1){
 
@@ -116,6 +116,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             }
 
         }
+
+ */
     }
 
     @Override

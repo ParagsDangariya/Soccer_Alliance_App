@@ -8,7 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ProgressBar;
+
+
 import android.widget.Button;
+
 
 import android.widget.Toast;
 
@@ -25,13 +29,7 @@ import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.listLeagueDashboard.League;
 import com.example.soccerallianceapp.pojo.listLeagueDashboard.ListLeagueDashboard;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,6 +43,7 @@ public class Leagues_Fragment extends Fragment {
     private ArrayList<Comman_Data_List> comman_data_List;
     private Comman_adapter comman_adapter;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,12 +55,11 @@ public class Leagues_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
+         DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
 
         /*--------league Adapter Configuration--------*/
         comman_data_List = new ArrayList<Comman_Data_List>();
-
 
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
         Log.d("step1","after getService part");
@@ -88,6 +86,7 @@ public class Leagues_Fragment extends Fragment {
                                     league.getLeagueId()));
                         }
                         comman_adapter.notifyDataSetChanged();
+
                         comman_adapter.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -107,7 +106,7 @@ public class Leagues_Fragment extends Fragment {
 
                 }else{
                     Toast.makeText(getActivity() ,"REsponse empty",Toast.LENGTH_LONG).show();
-                }
+                    }
             }
 
 

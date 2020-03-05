@@ -1,5 +1,5 @@
 
-package com.example.soccerallianceapp.pojo.matchListDashboard;
+package com.example.soccerallianceapp.pojo.UpcomingMatchByLeague;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

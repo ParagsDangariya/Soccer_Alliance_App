@@ -3,9 +3,14 @@ package com.example.soccerallianceapp;
 import com.example.soccerallianceapp.pojo.CreateSchedule.ScheduleMatch;
 import com.example.soccerallianceapp.pojo.League;
 import com.example.soccerallianceapp.pojo.ListOfLeaguesByCountry.ListOfLeaguesByCountry;
+
+import com.example.soccerallianceapp.pojo.MatchScore_PlayedMatchStatastics.MatchScorePlayedmatchStatastics;
+
 import com.example.soccerallianceapp.pojo.PlayedMatchListDashboard.PlayedmatchListDashboard;
 import com.example.soccerallianceapp.pojo.Player;
+import com.example.soccerallianceapp.pojo.PlayerDetail.PlayerDetail;
 import com.example.soccerallianceapp.pojo.Team;
+import com.example.soccerallianceapp.pojo.UpcomingMatchByLeague.UpcomingMatchByLeague;
 import com.example.soccerallianceapp.pojo.User;
 import com.example.soccerallianceapp.pojo.ViewPlayerListByTeamDashboard.ViewPlayerListDashboard;
 import com.example.soccerallianceapp.pojo.ViewTeamDetail.ViewTeamDetail;
@@ -103,6 +108,9 @@ public interface Getdataservice {
    @GET("upcomingMatches_guestDashboard")
    Call<MatchListDashboard> getupcomingMatches_guestDashboardCall();
 
+    @GET("matchScore&{match_id}&{team_id}")
+    Call<MatchScorePlayedmatchStatastics> getMatchscore(@Path("match_id") int match_id ,@Path("team_id") int team_id );
+
 
     @GET("playedMatches_guestDashboard")
     Call<PlayedmatchListDashboard> getplayedMatches_guestDashboardCall();
@@ -145,6 +153,23 @@ public interface Getdataservice {
 
     @POST("createLeague")
     Call<League> createLeague(@Body League league);
+
+    @GET("upcomingMatches_league&{league_id}")
+    Call<UpcomingMatchByLeague> getUpcomingMatchesByLeague(
+
+            @Path("league_id") int league_id
+    );
+
+
+    @GET("PlayerDetail&{player_id}")
+    Call<PlayerDetail> PlayerDetail(@Path("player_id") int player_id);
+
+    @POST("ModifyPlayerDetails")
+    Call<Player> ModifyPlayerDetails(@Body Player player);
+
+    @GET("removePlayerFromTeam&{player_id}&{team_id}")
+    Call<ResponseBody> removePlayerFromTeam(@Path("player_id") int player_id,@Path("team_id") int team_id);
+
 
 
 }

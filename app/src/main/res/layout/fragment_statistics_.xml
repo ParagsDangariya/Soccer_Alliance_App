@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="20dp">
 
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
             android:layout_width="match_parent"
@@ -37,13 +38,13 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:id="@+id/team1_logo"
+                        android:id="@+id/sts_team1_logo"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/splash_logo"
                         />
                     <TextView
-                        android:id="@+id/team1"
+                        android:id="@+id/sts_team1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -56,7 +57,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/team1_goal"
+                    android:id="@+id/sts_team1_goal"
                     android:text="0"
                     android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-black"
@@ -70,8 +71,8 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:id="@+id/secondLinear"
-                    app:layout_constraintStart_toEndOf="@id/team1_goal"
-                    app:layout_constraintEnd_toStartOf="@id/team2_goal"
+                    app:layout_constraintStart_toEndOf="@id/sts_team1_goal"
+                    app:layout_constraintEnd_toStartOf="@id/sts_team2_goal"
                     app:layout_constraintTop_toTopOf="parent">
                     <TextView
                         android:id="@+id/vs"
@@ -84,7 +85,7 @@
                         android:layout_marginTop="10dp"
                         />
                     <TextView
-                        android:id="@+id/date"
+                        android:id="@+id/sts_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -93,7 +94,7 @@
                         android:textSize="18dp"
                         />
                     <TextView
-                        android:id="@+id/time"
+                        android:id="@+id/sts_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -107,7 +108,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/team2_goal"
+                    android:id="@+id/sts_team2_goal"
                     android:text="0"
                     android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-black"
@@ -127,13 +128,13 @@
 
 
                     <ImageView
-                        android:id="@+id/team2_logo"
+                        android:id="@+id/sts_team2_logo"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/splash_logo"
                         />
                     <TextView
-                        android:id="@+id/team2"
+                        android:id="@+id/sts_team2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -144,10 +145,6 @@
                         />
 
                 </LinearLayout>
-
-
-
-
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -163,8 +160,7 @@
             app:strokeWidth="1dp"
             app:cardElevation="12dp"
             android:layout_margin="15dp"
-            app:strokeColor="@color/cardview_dark_background"
-            >
+            app:strokeColor="@color/cardview_dark_background">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -172,107 +168,377 @@
                 android:layout_margin="5dp"
                 android:padding="5dp"
                 android:orientation="vertical">
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="shots"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:fontFamily="sans-serif-black"
-                    android:padding="5dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
+                    <TextView
+                        android:id="@+id/shot_t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Shots"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/shot_t2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="shots on target"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:fontFamily="sans-serif-black"
-                    android:padding="5dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/shot_on_target_t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Shots On Target"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/shot_on_target_t2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Possession"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:fontFamily="sans-serif-black"
-                    android:padding="5dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/possession_t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Possession"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/possession_t2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Passes"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:fontFamily="sans-serif-black"
-                    android:padding="5dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/passes_t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Passes"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/passes_t2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pass accuracy"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:fontFamily="sans-serif-black"
-                    android:padding="5dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/pass_accuracy_t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Pass accuracy"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/pass_accuracy_t2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Fouls"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:fontFamily="sans-serif-black"
-                    android:padding="5dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/fouls_t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Fouls"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/fouls_t2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Yellow cards"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:fontFamily="sans-serif-black"
-                    android:padding="5dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/yellow_cards_t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Yellow Cards"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/yellow_cards_t2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Red Cards"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:fontFamily="sans-serif-black"
-                    android:padding="5dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/red_cards_t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Red Cards"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/red_cards_t2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Offsides"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:fontFamily="sans-serif-black"
-                    android:padding="5dp"
-                    android:textSize="16dp"
-                    />
-                <TextView
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/offsides_t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Offsides"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/offsides_t2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Corners"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:fontFamily="sans-serif-black"
-                    android:padding="5dp"
-                    android:textSize="16dp"
-                    />
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/corners_t1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Corners"
+                        android:gravity="center"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/corners_t2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="5dp"
+                        android:textSize="16dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>

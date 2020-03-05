@@ -14,6 +14,15 @@ public class matches_data_list {
         this.match_date = match_date;
     }
 
+    /*public matches_data_list(String team1, String team1Logo, String team2, String team2Logo, String dateOfMatch) {
+        this.team1_name = team1_name;
+        this.team1_logo = team1_logo;
+        this.team2_name = team2_name;
+        this.team2_logo = team2_logo;
+        this.match_date = match_date;
+
+    }*/
+
     public int getMatch_id() {
         return match_id;
     }
