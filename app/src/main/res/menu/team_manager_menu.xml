@@ -3,22 +3,22 @@
 
     <item android:id="@+id/team_dashboard_btn"
         android:title="Dashboard"
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/dashboard"/>
 
     <item android:id="@+id/team_my_team_btn"
         android:title="My Team"
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/myteam"/>
 
     <item android:id="@+id/team_player_btn"
         android:title="Player List"
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/playerlist"/>
 
     <item android:id="@+id/team_my_profile_btn"
         android:title="My Profile"
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/myprofile"/>
 
     <item android:id="@+id/team_logout_btn"
         android:title="Logout"
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/logout"/>
 
 </menu>

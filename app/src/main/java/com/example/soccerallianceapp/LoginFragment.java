@@ -42,16 +42,25 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private Context context;
     MaterialButton guest_login_btn,login_btn;
     TextView register_btn_on_login_page,forget_password_txt;
-
-    String uid ="",user_type;
+    int verifynumber =0;
+    String uid ="",user_type,name,imageUri;
     TextInputEditText email_edit_txt,password_edit_txt;
     FirebaseUser user;
 
-   UserDetails userDetails;
+    UserDetails userDetails;
     //RequestQueue mqueue;
     //VollyGetMethod volly;
 
     FirebaseAuth fAuth ;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if(getArguments() != null){
+            verifynumber = getArguments().getInt("verify");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,15 +102,20 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
-        if(fAuth.getCurrentUser() != null){
-            uid = fAuth.getCurrentUser().getUid();
-            user = fAuth.getCurrentUser();
-            verifyuser(user);
+
+        if(verifynumber != 1){
 
 
-            System.out.println("userdata"+uid);
+            if(fAuth.getCurrentUser() != null){
+                uid = fAuth.getCurrentUser().getUid();
+                user = fAuth.getCurrentUser();
+                verifyuser(user);
+
+
+                System.out.println("userdata"+uid);
+            }
+
         }
-
     }
 
     @Override
@@ -174,6 +188,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         if(!user.isEmailVerified()){
             Toast.makeText(getContext(), "Verify your Account First.", Toast.LENGTH_LONG).show();
+            //Bundle bundle = new Bundle();
+            //bundle.putInt("verify",verifynumber);
+
             navController.navigate(R.id.emailNotVerifiedFragment);
         }else {
             Toast.makeText(getContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
@@ -202,6 +219,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     //user_type = userDetails.getUserType();
 
 
+
+                    name = userDetails.getFullName();
+                    imageUri = userDetails.getUserPhoto();
                     user_type = userDetails.getUserType();
 
                     System.out.println("string"+user_type);
@@ -209,6 +229,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     System.out.println("login"+user_type);
                     Intent i = new Intent(context,Dashboard_Activity.class);
                     i.putExtra("user_type",user_type);
+                    i.putExtra("name",name);
+                    i.putExtra("imageUri",imageUri);
                     startActivity(i);
                     getActivity().finish();
                 }

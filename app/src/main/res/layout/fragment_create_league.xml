@@ -123,7 +123,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/login_progress"
-                android:id="@+id/tmp_update_btn"
+                android:id="@+id/create_league_btn"
                 style="@style/NormalButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="30pt"

@@ -94,6 +94,14 @@
                 android:layout_margin="16dp"
                 android:text="Resend Email" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/back_btn"
+                style="@style/NormalButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="30pt"
+                android:layout_margin="16dp"
+                android:text="Back to Login" />
+
         </LinearLayout>
     </RelativeLayout>
 

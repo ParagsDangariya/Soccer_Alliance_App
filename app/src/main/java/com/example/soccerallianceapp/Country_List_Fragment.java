@@ -54,6 +54,7 @@ public class Country_List_Fragment extends Fragment {
         country_recycler_view = view.findViewById(R.id.country_recycler_view);
         comman_data_List = new ArrayList<Comman_Data_List>();
         comman_data_List.clear();
+
         comman_adapter = new Comman_adapter(comman_data_List, context);
         country_recycler_view.setLayoutManager(new LinearLayoutManager(context));
         country_recycler_view.setAdapter(comman_adapter);
@@ -111,3 +112,4 @@ public class Country_List_Fragment extends Fragment {
         });
     }
 }
+

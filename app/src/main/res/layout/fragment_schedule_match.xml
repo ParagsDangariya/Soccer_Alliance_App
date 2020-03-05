@@ -38,14 +38,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/schedule_match_edt_txt"
-                    style="@style/TextInputEditTextStyleVarient"
+                    style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
+                    android:completionThreshold="1"
+
                     android:layout_height="wrap_content"
                     android:hint="Team1 Name"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
                     android:textColorHint="@color/colorPrimaryLight" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,15 +62,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/schedule_match_team1_layout">
 
-                <com.google.android.material.textfield.TextInputEditText
+
+
+
+
+                <AutoCompleteTextView
                     android:id="@+id/schedule_match_team2_edt_txt"
-                    style="@style/TextInputEditTextStyleVarient"
+                    style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Team2 Name"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
                     android:textColorHint="@color/colorPrimaryLight" />
+
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -91,7 +95,7 @@
                     style="@style/TextInputEditTextStyleVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Date"
+                    android:hint="Select Date"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:textColorHint="@color/colorPrimaryLight" />

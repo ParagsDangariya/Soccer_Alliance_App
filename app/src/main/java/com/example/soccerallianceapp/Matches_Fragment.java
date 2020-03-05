@@ -94,9 +94,11 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                                     matchelist.getTeam2(),
                                     matchelist.getTeam2Logo(),
                                     matchelist.getDateOfMatch()));
+
                         }
                     }
                     up_match_adapter.notifyDataSetChanged();
+
                     progressbar.setVisibility(View.GONE);
                     up_match_adapter.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -115,6 +117,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                             DashboardNavController.navigate(R.id.upcomingMatchFragment,upcoming_match_bundle);
                         }
                     });
+
                 } else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
                     progressbar.setVisibility(View.GONE);
@@ -139,6 +142,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
 
                     if (realData.getStatus() == 200) {
                         System.out.println("getting upcoming matches "+realData.getPlayedMatchList());
+
                         for (PlayedMatchList matchelist : realData.getPlayedMatchList()) {
                             //set logo when imge gets done. here
                             played_matches_data_lists.add(new matches_data_list(
@@ -153,6 +157,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                     played_match_adapter.notifyDataSetChanged();
                     played_match_adapter.setOnClickListener(new View.OnClickListener() {
                         @Override
+
                         public void onClick(View view) {
 
                             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
@@ -160,6 +165,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                             DashboardNavController.navigate(R.id.match_Score_Fragment);
                         }
                     });
+
                 } else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
                 }

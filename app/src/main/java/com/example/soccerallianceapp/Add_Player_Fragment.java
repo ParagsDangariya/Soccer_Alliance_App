@@ -34,6 +34,7 @@ import com.example.soccerallianceapp.pojo.listLeagueDashboard.ListLeagueDashboar
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -58,16 +59,26 @@ public class Add_Player_Fragment extends Fragment implements View.OnClickListene
     private Context context;
     MaterialButton add_new_player_btn;
     TextView add_player_name_edt_txt,add_player_role_edt_txt,add_player_strength_edt_txt;
-    String name,role,strength,imageUri,uid="",position;
-
+    String name,role,strength,imageUri ="nophoto",uid="";
+    int team_id;
     private static final int GALLERY_REQUEST_CODE = 107;
     ImageView add_player_user_image;
     private StorageReference mStorageRef;
+    FirebaseAuth fAuth;
+
 
     public Add_Player_Fragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if(getArguments()!=null){
+           team_id = getArguments().getInt("team_id");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,7 +108,10 @@ public class Add_Player_Fragment extends Fragment implements View.OnClickListene
 
         add_player_user_image = view.findViewById(R.id.add_player_user_image);
         add_player_user_image.setOnClickListener(this);
+       // fAuth.getInstance().getCurrentUser();
 
+        uid = fAuth.getInstance().getCurrentUser().getUid();
+//        uid = fAuth.getCurrentUser().getUid();
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
@@ -189,6 +203,8 @@ public class Add_Player_Fragment extends Fragment implements View.OnClickListene
                 return;
 
             }
+
+            System.out.println("player name"+name+" role"+role+" strength"+strength+" image"+imageUri+" uid"+uid);
             Player player = new Player(name,imageUri,role,strength,uid);
 
             addPlayer(player);
@@ -205,23 +221,25 @@ public class Add_Player_Fragment extends Fragment implements View.OnClickListene
             public void onResponse(Call<Player> call, Response<Player> response) {
 
 
-                //AddPlayerInTeam addPlayerInTeam = response.body();
-
-                Player player = response.body();
-                player.getMessage();
-                if(player.getMessage() == null){
 
 
                 if(!response.isSuccessful()){
                     int s = response.code();
                     System.out.println("code"+s);
                 }
-                }
+
+                Toast.makeText(context," Successfully added..",Toast.LENGTH_LONG).show();
 
                 int s = response.code();
 
+                System.out.println("code"+s);
+                Bundle bundle = new Bundle();
+                bundle.putString("Coming_from","Team_Manager");
+                bundle.putInt("team_id",team_id);
+                navController.navigate(R.id.player_List_Fragment,bundle);
 
-                System.out.println("code"+player.getMessage());
+
+
             }
 
             @Override
