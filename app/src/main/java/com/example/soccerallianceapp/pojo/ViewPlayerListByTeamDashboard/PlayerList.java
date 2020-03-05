@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class PlayerList {
 
+    @SerializedName("Playerid")
+    @Expose
+    private Integer playerid;
     @SerializedName("FullName")
     @Expose
     private String fullName;
@@ -15,6 +18,17 @@ public class PlayerList {
     @SerializedName("Strength")
     @Expose
     private String strength;
+    @SerializedName("position")
+    @Expose
+    private String position;
+
+    public Integer getPlayerid() {
+        return playerid;
+    }
+
+    public void setPlayerid(Integer playerid) {
+        this.playerid = playerid;
+    }
 
     public String getFullName() {
         return fullName;
@@ -40,12 +54,12 @@ public class PlayerList {
         this.strength = strength;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "fullName='" + fullName + '\'' +
-                ", playerPhoto='" + playerPhoto + '\'' +
-                ", strength='" + strength + '\'' +
-                '}';
+    public String getPosition() {
+        return position;
     }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
 }

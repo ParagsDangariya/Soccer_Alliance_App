@@ -162,10 +162,23 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
                             comman_data_List.add(new Comman_Data_List(
                                     playerList.getFullName(),
                                     playerList.getPlayerPhoto(),
-                                    playerList.getStrength()
+                                    playerList.getPlayerid()
+
                             ));
                         }
                         comman_adapter.notifyDataSetChanged();
+                        comman_adapter.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
+                                int position = viewHolder.getAdapterPosition();
+
+                                Bundle bundlePlayer = new Bundle();
+                                bundlePlayer.putString("player_id",String.valueOf(comman_data_List.get(position).getIteam_id()));
+
+                                DashboardNavController.navigate(R.id.editTeamFragment,bundlePlayer);
+                            }
+                        });
                     }
 
                 }else{
