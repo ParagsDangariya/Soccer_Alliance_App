@@ -112,7 +112,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
                 Log.i(TAG,"coming from dashboard");
 
-                int team_id = getArguments().getInt("team_id");
+                team_id = getArguments().getInt("team_id");
 
                 //team_id = getTeamid(uid,service);
                 //System.out.println("team Id for teamlist"+team_id);
@@ -175,7 +175,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
                                 Bundle bundlePlayer = new Bundle();
                                 bundlePlayer.putString("player_id",String.valueOf(comman_data_List.get(position).getIteam_id()));
-
+                                bundlePlayer.putInt("team_id",team_id);
                                 DashboardNavController.navigate(R.id.editTeamFragment,bundlePlayer);
                             }
                         });

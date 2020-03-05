@@ -246,7 +246,7 @@ public class Add_Player_Fragment extends Fragment implements View.OnClickListene
             public void onFailure(Call<Player> call, Throwable t) {
 
                 System.out.println("error"+t.getMessage());
-                Toast.makeText(context," no more hopes....",Toast.LENGTH_LONG).show();
+                Toast.makeText(context," go in failure....",Toast.LENGTH_LONG).show();
 
             }
         });

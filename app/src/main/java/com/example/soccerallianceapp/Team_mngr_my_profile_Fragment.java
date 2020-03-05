@@ -152,7 +152,7 @@ public class Team_mngr_my_profile_Fragment extends Fragment implements View.OnCl
                 tmp_country_edt_txt.setText(country);
 
                 if(!(TextUtils.equals("nophoto",imageUri))){
-                    Glide.with(context).load(imageUri).into(tmp_user_image);
+                    Glide.with(context).load(imageUri).centerCrop().into(tmp_user_image);
                 }
 
 

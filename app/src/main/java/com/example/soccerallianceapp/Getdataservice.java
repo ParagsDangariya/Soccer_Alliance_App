@@ -159,6 +159,13 @@ public interface Getdataservice {
     @GET("PlayerDetail&{player_id}")
     Call<PlayerDetail> PlayerDetail(@Path("player_id") int player_id);
 
+    @POST("ModifyPlayerDetails")
+    Call<Player> ModifyPlayerDetails(@Body Player player);
+
+    @GET("removePlayerFromTeam&{player_id}&{team_id}")
+    Call<ResponseBody> removePlayerFromTeam(@Path("player_id") int player_id,@Path("team_id") int team_id);
+
+
 
 }
 

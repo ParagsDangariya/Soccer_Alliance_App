@@ -37,7 +37,7 @@
                 <ImageView
                     android:layout_gravity="center"
                     android:src="@drawable/user"
-                    android:id="@+id/Edit_player_user_image"
+                    android:id="@+id/edit_player_user_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"/>
