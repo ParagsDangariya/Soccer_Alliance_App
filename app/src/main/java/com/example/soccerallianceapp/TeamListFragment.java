@@ -56,10 +56,10 @@ public class TeamListFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        progressBar =view.findViewById(R.id.progressbar);
+       // progressBar =view.findViewById(R.id.progressbar);
         DashboardNavController = Navigation.findNavController(getActivity(), R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
-        progressBar.setVisibility(View.VISIBLE);
+        //progressBar.setVisibility(View.VISIBLE);
        // add_team_btn = view.findViewById(R.id.add_team_btn);
         //add_team_btn.setOnClickListener(this);
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
@@ -96,7 +96,7 @@ public class TeamListFragment extends Fragment{
                                             teamList.getLogo()));
                                 }
                                 comman_adapter.notifyDataSetChanged();
-                                progressBar.setVisibility(View.VISIBLE);
+                              //  progressBar.setVisibility(View.VISIBLE);
                                 comman_adapter.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
@@ -116,7 +116,7 @@ public class TeamListFragment extends Fragment{
                         }else{
 
                             Toast.makeText(getActivity() ,"Response empty",Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.VISIBLE);
+                           // progressBar.setVisibility(View.VISIBLE);
                         }
                     }
 
