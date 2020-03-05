@@ -20,7 +20,6 @@ import android.widget.Toast;
 import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.UpcomingMatchByLeague.UpcomingMatchByLeague;
 import com.example.soccerallianceapp.pojo.UpcomingMatchByLeague.UpcomingMatchList;
-import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -37,14 +36,14 @@ public class LeagueUpcomingMatchFragment extends Fragment {
     private Context context;
     FloatingActionButton add_player_btn;
     RecyclerView um_recycler_View, pm_recycler_View;
-    private ArrayList<matches_data_list> up_matches_data_lists, played_matches_data_lists;
-    private Matches_adapter up_match_adapter, played_match_adapter;
+    private ArrayList<matches_data_list> up_matches_data_lists;
+    private Matches_adapter up_match_adapter;
     int league_id;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_matches, container, false);
+        return inflater.inflate(R.layout.fragment_league_upcoming_match, container, false);
     }
 
 
@@ -64,9 +63,10 @@ public class LeagueUpcomingMatchFragment extends Fragment {
 
         if(getArguments()!=null){
 
-            if(getArguments().getString("Coming_from").equals("Leagues_Fragment_Class")){
-                league_id = getArguments().getInt("league_id");
-                Toast.makeText(context,league_id, Toast.LENGTH_LONG).show();
+            if(getArguments().getString("ComingFrom").equals("LeagueUpcomingMatchFragment")){
+                league_id = getArguments().getInt("League_id");
+                System.out.println("league id from league upcoming match "+league_id);
+               // Toast.makeText(context,league_id, Toast.LENGTH_LONG).show();
                 Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
                 Call matchesByLeague = service.getUpcomingMatchesByLeague(league_id);
@@ -74,35 +74,41 @@ public class LeagueUpcomingMatchFragment extends Fragment {
                 matchesByLeague.enqueue(new Callback<UpcomingMatchByLeague>() {
                     @Override
                     public void onResponse(Call<UpcomingMatchByLeague> call, Response<UpcomingMatchByLeague> response) {
-
+                        System.out.println("response from league opration fragment get into response");
                         UpcomingMatchByLeague realData = response.body();
-                        System.out.println("response pojo"+realData);
+                        System.out.println("response from league opration fragment "+response.body());
                         if(response.body() != null){
                             if (realData.getStatus() == 200) {
-                                for (UpcomingMatchList matchList : realData.getUpcomingMatchList()) {
-                                   /* up_matches_data_lists.add(new matches_data_list(
-                                            matchList.getTeam1(),
-                                            matchList.getTeam1Logo(),
-                                            matchList.getTeam2(),
-                                            matchList.getTeam2Logo(),
-                                            matchList.getDateOfMatch()));*/
+                                for (UpcomingMatchList matchelist : realData.getUpcomingMatchList()) {
+                                    System.out.println("getting match list from league in upcoming "+realData.getUpcomingMatchList());
+                                    up_matches_data_lists.add(new matches_data_list(
+                                            1,
+                                            matchelist.getTeam1(),
+                                            matchelist.getTeam1Logo(),
+                                            matchelist.getTeam2(),
+                                            matchelist.getTeam2Logo(),
+                                            matchelist.getDateOfMatch()));
+
                                 }
                                 up_match_adapter.notifyDataSetChanged();
-                                //  progressBar.setVisibility(View.VISIBLE);
-                               /* comman_adapter.setOnClickListener(new View.OnClickListener() {
+                                up_match_adapter.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
 
                                         RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
                                         int position = viewHolder.getAdapterPosition();
-
-                                        Bundle bundle = new Bundle();
-                                        bundle.putInt("team_id",comman_data_List.get(position).getIteam_id());
-                                        bundle.putString("Coming_from" ,"TeamList_Fragment_Class");
-
-                                        DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
+                                        Bundle upcoming_match_bundle = new Bundle();
+                                        upcoming_match_bundle.putInt("up_match_id",up_matches_data_lists.get(position).getMatch_id());
+                                        upcoming_match_bundle.putString("up_team1_name",up_matches_data_lists.get(position).getTeam1_name());
+                                        upcoming_match_bundle.putString("up_team2_name",up_matches_data_lists.get(position).getTeam2_name());
+                                        upcoming_match_bundle.putString("up_team1_logo",up_matches_data_lists.get(position).getTeam1_logo());
+                                        upcoming_match_bundle.putString("up_team2_logo",up_matches_data_lists.get(position).getTeam2_logo());
+                                        upcoming_match_bundle.putString("up_date",up_matches_data_lists.get(position).getMatch_date());
+                                        upcoming_match_bundle.putString("up_time",up_matches_data_lists.get(position).getMatch_time());
+                                        DashboardNavController.navigate(R.id.matchScoreRescheduleFragment,upcoming_match_bundle);
                                     }
-                                });*/
+                                });
+
                             }
 
                         }else{

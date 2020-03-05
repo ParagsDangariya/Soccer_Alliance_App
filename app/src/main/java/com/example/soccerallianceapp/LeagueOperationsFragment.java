@@ -97,6 +97,14 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
                     bundle.putString("League_name",league_name);
                     bundle.putInt("League_id",league_id);
                     bundle.putString("ComingFrom" ,"LeagueUpcomingMatchFragment");
+                    league_operations_upmatch_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            System.out.println("forward form opration fragment");
+                            DashboardNavController.navigate(R.id.leagueUpcomingMatchFragment,bundle);
+
+                        }
+                    });
 
                     league_operations_schedulematch_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
