@@ -33,7 +33,7 @@ import retrofit2.Response;
 public class Matches_Fragment extends Fragment implements View.OnClickListener {
 
     public NavController DashboardNavController;
-   // private ProgressBar progressbar;
+
     private Context context;
     FloatingActionButton add_player_btn;
     RecyclerView um_recycler_View,pm_recycler_View;
@@ -51,12 +51,9 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //progressbar = view.findViewById(R.id.progressbar);
         DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
 
-
-       // progressbar.setVisibility(View.VISIBLE);
         pm_recycler_View = view.findViewById(R.id.pm_recycler_View);
         played_matches_data_lists = new ArrayList<matches_data_list>();
         played_matches_data_lists.clear();
@@ -98,8 +95,6 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                         }
                     }
                     up_match_adapter.notifyDataSetChanged();
-
-                   // progressbar.setVisibility(View.GONE);
                     up_match_adapter.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -120,8 +115,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
 
                 } else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
-                   // progressbar.setVisibility(View.GONE);
-                }
+                           }
             }
             @Override
             public void onFailure(Call<MatchListDashboard> call, Throwable t) {

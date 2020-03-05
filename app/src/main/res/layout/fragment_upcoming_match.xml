@@ -12,18 +12,6 @@
         android:layout_height="match_parent"
         android:paddingBottom="50dp">
 
-        <ProgressBar
-            android:id="@+id/progressbar"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="256dp"
-            app:layout_constraintHorizontal_bias="0.532"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/leagues_recycler_view"
-            android:indeterminateTint="@color/colorPrimaryLight"></ProgressBar>
-
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
             android:layout_width="match_parent"

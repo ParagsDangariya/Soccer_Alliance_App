@@ -35,8 +35,7 @@ public class UpcomingMatchFragment extends Fragment {
     String Team1_Players="",Team2_Players="";
     Context context;
 
-    private ProgressBar progressBar;
-    @Override
+     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -48,7 +47,7 @@ public class UpcomingMatchFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         context = getActivity().getApplicationContext();
-        progressBar =view.findViewById(R.id.progressbar);
+
         umf_team1 = view.findViewById(R.id.umf_team1);
         umf_team2 = view.findViewById(R.id.umf_team2);
         umf_date = view.findViewById(R.id.umf_date);
@@ -62,7 +61,6 @@ public class UpcomingMatchFragment extends Fragment {
         umf_league_icon = view.findViewById(R.id.umf_league_icon);
         umf_league_name = view.findViewById(R.id.umf_league_name);
 
-        progressBar.setVisibility(View.VISIBLE);
         if(getArguments()!=null){
             umf_team1.setText(getArguments().getString("up_team1_name"));
             umf_team2.setText(getArguments().getString("up_team2_name"));
@@ -90,11 +88,10 @@ public class UpcomingMatchFragment extends Fragment {
                         }
                         team1_player_list.setText(Team1_Players.trim());
                     }
-                    progressBar.setVisibility(View.GONE);
                 }
                 else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
+
                 }
             }
 
@@ -123,7 +120,7 @@ public class UpcomingMatchFragment extends Fragment {
 
                 } else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
+
                 }
             }
 
