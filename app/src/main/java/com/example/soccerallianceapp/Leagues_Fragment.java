@@ -8,7 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ProgressBar;
+
+
 import android.widget.Button;
+
 
 import android.widget.Toast;
 
@@ -25,13 +29,7 @@ import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.listLeagueDashboard.League;
 import com.example.soccerallianceapp.pojo.listLeagueDashboard.ListLeagueDashboard;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,6 +42,7 @@ public class Leagues_Fragment extends Fragment {
     private Context context;
     private ArrayList<Comman_Data_List> comman_data_List;
     private Comman_adapter comman_adapter;
+    private ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,8 +55,11 @@ public class Leagues_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        progressBar = view.findViewById(R.id.progressbar);
         DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
+
+        progressBar.setVisibility(View.VISIBLE);
 
         /*--------league Adapter Configuration--------*/
         comman_data_List = new ArrayList<Comman_Data_List>();
@@ -88,6 +90,7 @@ public class Leagues_Fragment extends Fragment {
                                     league.getLeagueId()));
                         }
                         comman_adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
                         comman_adapter.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -107,7 +110,10 @@ public class Leagues_Fragment extends Fragment {
 
                 }else{
                     Toast.makeText(getActivity() ,"REsponse empty",Toast.LENGTH_LONG).show();
-                }
+                    progressBar.setVisibility(View.GONE);
+                    /*explore_sad_icon.setVisibility(View.VISIBLE);
+                    explore_progress_txt.setText(getResources().getString(R.string.some_wrong));
+               */ }
             }
 
 
