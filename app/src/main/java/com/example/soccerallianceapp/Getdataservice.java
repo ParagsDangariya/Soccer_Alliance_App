@@ -8,6 +8,7 @@ import com.example.soccerallianceapp.pojo.MatchScore_PlayedMatchStatastics.Match
 
 import com.example.soccerallianceapp.pojo.PlayedMatchListDashboard.PlayedmatchListDashboard;
 import com.example.soccerallianceapp.pojo.Player;
+import com.example.soccerallianceapp.pojo.PlayerDetail.PlayerDetail;
 import com.example.soccerallianceapp.pojo.Team;
 import com.example.soccerallianceapp.pojo.UpcomingMatchByLeague.UpcomingMatchByLeague;
 import com.example.soccerallianceapp.pojo.User;
@@ -153,6 +154,18 @@ public interface Getdataservice {
 
             @Path("league_id") int league_id
     );
+
+
+    @GET("PlayerDetail&{player_id}")
+    Call<PlayerDetail> PlayerDetail(@Path("player_id") int player_id);
+
+    @POST("ModifyPlayerDetails")
+    Call<Player> ModifyPlayerDetails(@Body Player player);
+
+    @GET("removePlayerFromTeam&{player_id}&{team_id}")
+    Call<ResponseBody> removePlayerFromTeam(@Path("player_id") int player_id,@Path("team_id") int team_id);
+
+
 
 }
 
