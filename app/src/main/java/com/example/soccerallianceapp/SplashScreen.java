@@ -64,7 +64,7 @@ public class SplashScreen extends AppCompatActivity {
             finish();
 
         }else {
-            Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
 
 
             uid = user.getUid();

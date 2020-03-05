@@ -106,8 +106,7 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
                 Log.i(TAG,"coming for team list");
 
-            }
-            if(getArguments().getString("Coming_from").equals("dashboard")){
+            }else if(getArguments().getString("Coming_from").equals("dashboard")){
 
 
                 Log.i(TAG,"coming from dashboard");
@@ -126,9 +125,6 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
                 Toast.makeText(context,"got success"+team_id, Toast.LENGTH_LONG).show();
 
 
-
-
-
 /*
                 if(team_id != 0){
                     getPlayerlist(team_id,service);
@@ -137,9 +133,26 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
                 }
                 Toast.makeText(context,"take time to get player list"+team_id, Toast.LENGTH_LONG).show();
 
-
-
  */
+            }else if(getArguments().getString("Coming_from").equals("EditScreen")){
+
+
+                Log.i(TAG,"coming from edit Screen");
+
+                team_id = getArguments().getInt("team_id");
+
+                //team_id = getTeamid(uid,service);
+                //System.out.println("team Id for teamlist"+team_id);
+                System.out.println("team Id for teamlist"+team_id);
+
+
+
+                Log.i(TAG,"both team id are same...");
+                add_player_btn.setVisibility(View.VISIBLE);
+                geteditPlayerlist(team_id,service);
+                Toast.makeText(context,"got success"+team_id, Toast.LENGTH_LONG).show();
+
+
             }
         }
     }
