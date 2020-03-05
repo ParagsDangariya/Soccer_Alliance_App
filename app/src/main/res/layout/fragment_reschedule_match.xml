@@ -151,7 +151,7 @@
                 app:layout_constraintBottom_toTopOf="@id/schedule_match_time_layout" >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/schedule_match_date_edt_txt"
+                    android:id="@+id/reschedule_match_date_edt_txt"
                     style="@style/TextInputEditTextStyleVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
                 app:layout_constraintTop_toBottomOf="@id/schedule_match_date_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/schedule_match_time_layout_edt_txt"
+                    android:id="@+id/reschedule_match_time_layout_edt_txt"
                     style="@style/TextInputEditTextStyleVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -201,7 +201,7 @@
                 app:layout_constraintTop_toBottomOf="@id/schedule_match_time_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/schedule_match_location_layout_edt_txt"
+                    android:id="@+id/reschedule_match_location_layout_edt_txt"
                     style="@style/TextInputEditTextStyleVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -246,7 +246,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
 
-                android:id="@+id/Schedule_match_btn"
+                android:id="@+id/reSchedule_match_btn"
                 style="@style/NormalButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="30pt"

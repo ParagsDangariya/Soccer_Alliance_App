@@ -47,27 +47,16 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     private Context context;
     private ArrayList<Comman_Data_List> comman_data_List;
     private Comman_adapter comman_adapter;
-
     FirebaseAuth fAuth;
-
     Getdataservice service;
-
-    Integer League_id = 1;
-
     MaterialButton Schedule_match_btn;
 
+    Integer League_id = 1;
     String uid = "";
-
-    int day,month,year;
-
-
-
+    int day, month, year;
 
     private AutoCompleteTextView schedule_match_edt_txt, schedule_match_team2_edt_txt;
-
-
     TextInputEditText schedule_match_date_edt_txt, schedule_match_time_layout_edt_txt, schedule_match_location_layout_edt_txt;
-
 
     String team2;
     String date;
@@ -75,21 +64,15 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     String location;
 
     int team1id, team2id;
-
     int league_id = 1;
-
     String stime;
-
-     //DatePickerDialog.OnDateSetListener dateListner;
-
-    public ScheduleMatchFragment() {
-    }
+    String team1name = "", team2name = "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-          context = getActivity().getApplicationContext();
+        context = getActivity().getApplicationContext();
     }
 
     @Override
@@ -99,97 +82,67 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     }
 
 
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         fAuth = FirebaseAuth.getInstance();
-
-
         comman_data_List = new ArrayList<Comman_Data_List>();
-
         comman_adapter = new Comman_adapter(comman_data_List, context);
 
-
-
-
         schedule_match_edt_txt = (AutoCompleteTextView) view.findViewById(R.id.schedule_match_edt_txt);
-
         schedule_match_team2_edt_txt = (AutoCompleteTextView) view.findViewById(R.id.schedule_match_team2_edt_txt);
-
-        schedule_match_date_edt_txt =  view.findViewById(R.id.schedule_match_date_edt_txt);
-
+        schedule_match_date_edt_txt = view.findViewById(R.id.schedule_match_date_edt_txt);
         schedule_match_time_layout_edt_txt = view.findViewById(R.id.schedule_match_time_layout_edt_txt);
         schedule_match_location_layout_edt_txt = view.findViewById(R.id.schedule_match_location_layout_edt_txt);
 
         Schedule_match_btn = view.findViewById(R.id.Schedule_match_btn);
         Schedule_match_btn.setOnClickListener(this);
 
-
-
         // get Current Date
-
         Calendar calendar = Calendar.getInstance();
 
         day = calendar.get(Calendar.DAY_OF_MONTH);
         month = calendar.get(Calendar.MONTH);
         year = calendar.get(Calendar.YEAR);
-        /*
 
-                schedule_match_date_edt_txt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-
-
-
-
-
-
-                        DatePickerDialog dialog = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-
-                                String strdate = year + "-" + (monthOfYear+1) + "-" + dayOfMonth;
-                                  schedule_match_date_edt_txt.setText(strdate);
-
-                            }
-                        },year,month,day) ;
-
-                             dialog.show(context,"DatePickerDialog");
-                                                                                                                                                     
-
-
-
-                    }
-                });
-
-         */
-
-
-
-                schedule_match_time_layout_edt_txt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        DialogFragment timepicker = new TimePickerFragment();
-
-                        timepicker.show(getActivity().getSupportFragmentManager(),"time Picker");
+//
+//                schedule_match_date_edt_txt.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        DatePickerDialog dialog = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
+//                            @Override
+//                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+//
+//                                String strdate = year + "-" + (monthOfYear+1) + "-" + dayOfMonth;
+//                                  schedule_match_date_edt_txt.setText(strdate);
+//
+//                            }
+//                        },year,month,day) ;
+//
+//                             dialog.show();
+//
+//
+//
+//
+//                    }
+//                });
 
 
 
 
-                    }
-                });
+        schedule_match_time_layout_edt_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DialogFragment timepicker = new TimePickerFragment();
+
+                timepicker.show(getActivity().getSupportFragmentManager(), "time Picker");
 
 
-
-
-
-
-
+            }
+        });
 
 
         uid = fAuth.getCurrentUser().getUid();
@@ -197,8 +150,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         System.out.println("User Id : " + uid);
 
 
-
-        Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
 
         // Call<ScheduleMatch> scheduleMatchCall = service.scheduleMatch(scdulematch);
@@ -249,6 +201,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                     for (int i = 0; i < comman_data_List.size(); i++) {
                         listofteam[i] = comman_data_List.get(i).getItem_name();
 
+
                         System.out.print("teamlists." + listofteam[i]);
                     }
 
@@ -269,17 +222,15 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                         @Override
                         public void onItemClick(AdapterView<?> parent, View arg1, int position, long id) {
 
+                            Object item = parent.getItemIdAtPosition(position);
 
-                            team1id = comman_data_List.get(position).getIteam_id();
-
-
-                            System.out.println("Team1 id (Selected from Dropdown) : " + team1id);
+                            System.out.println("Team1 id (Selected from Dropdown) : " + item);
 
 
                         }
                     });
 
-                      schedule_match_team2_edt_txt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    schedule_match_team2_edt_txt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int p, long id) {
 
@@ -320,17 +271,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
             time = schedule_match_time_layout_edt_txt.getEditableText().toString();
 
 
-
-
-
-
-
-
-
         }
-
-
-
 
 
         //league_id = getArguments().getInt("League_id");
@@ -396,19 +337,15 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         }
 
     }
-    public static void valDOB()
-    {
-        DateFormat df = new SimpleDateFormat();
 
 
-    }
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
 
         stime = hourOfDay + ":" + minute;
 
-        schedule_match_time_layout_edt_txt.setText("H : "+hourOfDay + "M: "+minute );
+        schedule_match_time_layout_edt_txt.setText("H : " + hourOfDay + "M: " + minute);
 
         System.out.println("Ontime set : " + schedule_match_date_edt_txt);
 
