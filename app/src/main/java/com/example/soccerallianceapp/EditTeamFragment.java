@@ -211,7 +211,11 @@ public class EditTeamFragment extends Fragment implements View.OnClickListener{
                     int s = response.code();
 
                     System.out.println("code"+s);
-                    DashboardNavController.navigate(R.id.player_List_Fragment);
+                    Bundle bundleeditplayer = new Bundle();
+                    bundleeditplayer.putInt("team_id",team_id);
+                    bundleeditplayer.putString("Coming_from","EditScreen");
+                    //bundleeditplayer.putInt("player_id",player_id);
+                    DashboardNavController.navigate(R.id.player_List_Fragment,bundleeditplayer);
                 }
 
                 @Override
@@ -277,7 +281,12 @@ public class EditTeamFragment extends Fragment implements View.OnClickListener{
                 int s = response.code();
 
                 System.out.println("code"+s);
-                DashboardNavController.navigate(R.id.player_List_Fragment);
+
+                Bundle bundleeditplayer = new Bundle();
+                bundleeditplayer.putInt("team_id",team_id);
+                bundleeditplayer.putString("Coming_from","EditScreen");
+                //bundleeditplayer.putInt("player_id",player_id);
+                DashboardNavController.navigate(R.id.player_List_Fragment,bundleeditplayer);
             }
 
             @Override
