@@ -1,6 +1,5 @@
 package com.example.soccerallianceapp;
 
-import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -28,6 +27,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 //import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.text.DateFormat;
@@ -72,7 +72,6 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        context = getActivity().getApplicationContext();
     }
 
     @Override
@@ -85,6 +84,8 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        context = getActivity().getApplicationContext();
+
 
         fAuth = FirebaseAuth.getInstance();
         comman_data_List = new ArrayList<Comman_Data_List>();
@@ -106,28 +107,31 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         month = calendar.get(Calendar.MONTH);
         year = calendar.get(Calendar.YEAR);
 
+
+                schedule_match_date_edt_txt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 //
-//                schedule_match_date_edt_txt.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//
-//                        DatePickerDialog dialog = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
-//                            @Override
-//                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-//
-//                                String strdate = year + "-" + (monthOfYear+1) + "-" + dayOfMonth;
-//                                  schedule_match_date_edt_txt.setText(strdate);
-//
-//                            }
-//                        },year,month,day) ;
-//
-//                             dialog.show();
-//
-//
-//
-//
-//                    }
-//                });
+
+                        DatePickerDialog dialog = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+
+                                String strdate = year + "-" + (monthOfYear+1) + "-" + dayOfMonth;
+                                  schedule_match_date_edt_txt.setText(strdate);
+
+                            }
+                        },year,month,day);
+
+
+                        dialog.show(getActivity().getFragmentManager(),"DatePicketDialog");
+
+
+
+
+
+                    }
+                });
 
 
 
