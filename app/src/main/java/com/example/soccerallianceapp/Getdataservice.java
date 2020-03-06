@@ -103,7 +103,7 @@ public interface Getdataservice {
     Call<ScheduleMatch> SCHEDULE_MATCH_CALL(@Body ScheduleMatch schedulematch);
 
     @POST("ReSchedule")
-    Call<ScheduleMatch> Reschedule_match_call(@Body ScheduleMatch scheduleMatch);
+    Call<ScheduleMatch> Reschedule_match_call(@Body ScheduleMatch rescheduleMatch);
 
    @GET("upcomingMatches_guestDashboard")
    Call<MatchListDashboard> getupcomingMatches_guestDashboardCall();

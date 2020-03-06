@@ -47,7 +47,7 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
 
     TextInputEditText reschedule_match_date_edt_txt,reschedule_match_time_layout_edt_txt,reschedule_match_location_layout_edt_txt;
 
-    int team1id,team2id,leagueid;
+    int team1id = 17,team2id = 2,leagueid = 20 ;
     String date;
     String time;
     String location;
@@ -101,9 +101,6 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
 
                              dialog.show(getActivity().getFragmentManager(),"DatepickerDialog");
 
-
-
-
                     }
                 });
 
@@ -128,10 +125,8 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
             public void onClick(View v) {
 
 
-                date = reschedule_match_date_edt_txt.getEditableText().toString();
-
+                date = reschedule_match_date_edt_txt.getText().toString();
                 location = reschedule_match_location_layout_edt_txt.getEditableText().toString();
-
                 time = reschedule_match_time_layout_edt_txt.getEditableText().toString();
 
 
@@ -155,13 +150,15 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
                             if (!response.isSuccessful()) {
                                 int sm = response.code();
                                 System.out.println("code" + sm);
-                                Toast.makeText(context, "ReSchedule Match Successfully " + sm, Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, "ReSchedule Match not Successfully " + sm, Toast.LENGTH_LONG).show();
 
 
                             }
 
                             int sm = response.code();
                             System.out.println("code" + sm);
+                            Toast.makeText(context, "ReSchedule Match Successfully done " + sm, Toast.LENGTH_LONG).show();
+
 
                         }
 
