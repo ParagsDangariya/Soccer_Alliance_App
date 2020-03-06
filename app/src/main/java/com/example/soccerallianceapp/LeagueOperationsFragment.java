@@ -1,7 +1,6 @@
 package com.example.soccerallianceapp;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +18,7 @@ import android.widget.Toast;
 import com.example.soccer_alliance_project_test.R;
 import com.google.android.material.button.MaterialButton;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 
@@ -39,6 +39,16 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
             league_operations_teamlist_btn,league_operations_upmatch_btn,
             league_operations_schedulematch_btn,league_operations_playedmatch_btn;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+
+
+            league_id = getArguments().getInt("League_id");
+
+        }
+            }
 
     public LeagueOperationsFragment() {
         // Required empty public constructor
@@ -51,7 +61,7 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
         DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
 
-        LeagueName = view.findViewById(R.id.league_name);
+        LeagueName = view.findViewById(R.id.team_name);
 
         league_operations_addteam_btn = view.findViewById(R.id.league_operations_addteam_btn);
         league_operations_addteam_btn.setOnClickListener(this);
@@ -140,6 +150,15 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
             bundleLeague.putString("Coming_from","Leagues_Fragment_Class");
             bundleLeague.putString("league_id",String.valueOf(league_id));
             DashboardNavController.navigate(R.id.teamListFragment);
+        }
+
+        if( v == league_operations_addteam_btn){
+
+            Bundle bundleleague = new Bundle();
+            bundleleague.putString("Coming_from","AddTeamInLeague");
+            bundleleague.putInt("League_id",league_id);
+            System.out.println("league"+league_id);
+            DashboardNavController.navigate(R.id.teamListFragment,bundleleague);
         }
 
     }

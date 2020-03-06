@@ -73,10 +73,10 @@ public class TeamListFragment extends Fragment{
         team_recycler_view.setLayoutManager(new LinearLayoutManager(context));
         team_recycler_view.setAdapter(comman_adapter);
 
-        if(getArguments()!=null){
-            if(getArguments().getString("Coming_from").equals("Leagues_Fragment_Class")){
+        if(getArguments()!=null) {
+            if (getArguments().getString("Coming_from").equals("Leagues_Fragment_Class")) {
                 league_id = getArguments().getString("league_id");
-                Toast.makeText(context,league_id, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, league_id, Toast.LENGTH_LONG).show();
 
                 Call viewTeamListByLeague = service.getviewTeamListFromLeagueIdCall(league_id);
 
@@ -85,8 +85,8 @@ public class TeamListFragment extends Fragment{
                     public void onResponse(Call<ViewTeamListByLeague> call, Response<ViewTeamListByLeague> response) {
 
                         ViewTeamListByLeague teamListByLeague = response.body();
-                        System.out.println("response pojo"+teamListByLeague);
-                        if(response.body() != null){
+                        System.out.println("response pojo" + teamListByLeague);
+                        if (response.body() != null) {
                             if (teamListByLeague.getStatus() == 200) {
                                 for (com.example.soccerallianceapp.pojo.ViewTeamListByLeague.TeamList teamList : teamListByLeague.getTeamList()) {
 
@@ -105,33 +105,33 @@ public class TeamListFragment extends Fragment{
                                         int position = viewHolder.getAdapterPosition();
 
                                         Bundle bundle = new Bundle();
-                                        bundle.putInt("team_id",comman_data_List.get(position).getIteam_id());
-                                        bundle.putString("Coming_from" ,"TeamList_Fragment_Class");
+                                        bundle.putInt("team_id", comman_data_List.get(position).getIteam_id());
+                                        bundle.putString("Coming_from", "TeamList_Fragment_Class");
 
-                                        DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
+                                        DashboardNavController.navigate(R.id.player_List_Fragment, bundle);
                                     }
                                 });
                             }
 
-                        }else{
+                        } else {
 
-                            Toast.makeText(getActivity() ,"Response empty",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
 
                         }
                     }
 
                     @Override
                     public void onFailure(Call call, Throwable t) {
-                        System.out.println("Error : "+t.getMessage());
+                        System.out.println("Error : " + t.getMessage());
 
                     }
                 });
 
             }
-            if(getArguments().getString("Coming_from").equals("Country_Fragment_Class")){
+            if (getArguments().getString("Coming_from").equals("Country_Fragment_Class")) {
                 country = getArguments().getString("country");
-                Toast.makeText(context,country, Toast.LENGTH_LONG).show();
-                   System.out.println("COuntry name form team fragment "+country);
+                Toast.makeText(context, country, Toast.LENGTH_LONG).show();
+                System.out.println("COuntry name form team fragment " + country);
                 Call listOfLeaguesByCountry = service.getListOfLeaguesByCountryCall(country);
 
                 listOfLeaguesByCountry.enqueue(new Callback<ListOfLeaguesByCountry>() {
@@ -139,8 +139,8 @@ public class TeamListFragment extends Fragment{
                     public void onResponse(Call<ListOfLeaguesByCountry> call, Response<ListOfLeaguesByCountry> response) {
 
                         ListOfLeaguesByCountry listOfLeaguesByCountry = response.body();
-                        System.out.println("response pojo"+listOfLeaguesByCountry);
-                        if(response.body() != null){
+                        System.out.println("response pojo" + listOfLeaguesByCountry);
+                        if (response.body() != null) {
                             if (listOfLeaguesByCountry.getStatus() == 200) {
                                 for (Leagues leaguesList : listOfLeaguesByCountry.getLeagues()) {
 
@@ -158,88 +158,148 @@ public class TeamListFragment extends Fragment{
                                         int position = viewHolder.getAdapterPosition();
 
                                         Bundle bundle = new Bundle();
-                                        bundle.putString("team_id",String.valueOf(1));
-                                        bundle.putString("Coming_from" ,"TeamList_Fragment_Class");
+                                        bundle.putString("team_id", String.valueOf(1));
+                                        bundle.putString("Coming_from", "TeamList_Fragment_Class");
 
-                                        DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
+                                        DashboardNavController.navigate(R.id.player_List_Fragment, bundle);
                                     }
                                 });
                             }
 
-                        }else{
+                        } else {
 
-                            Toast.makeText(getActivity() ,"Response empty",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
 
                         }
                     }
 
                     @Override
                     public void onFailure(Call call, Throwable t) {
-                        System.out.println("Error : "+t.getMessage());
+                        System.out.println("Error : " + t.getMessage());
 
                     }
                 });
 
-            }
-        }
-         else{
-            Call<ViewTeamList> viewTeamListcall = service.getviewTeamListCall();
-            System.out.println("call " + viewTeamListcall);
-            viewTeamListcall.enqueue(new Callback<ViewTeamList>() {
+            } else if (getArguments().getString("Coming_from").equals("AddTeamInLeague")) {
+                Call<ViewTeamList> viewTeamListcall = service.getviewTeamListCall();
+                System.out.println("call " + viewTeamListcall);
+                viewTeamListcall.enqueue(new Callback<ViewTeamList>() {
 
-                @Override
-                public void onResponse(Call<ViewTeamList> call, Response<ViewTeamList> response) {
-                    Log.d("step2", "after onResponse");
-                    ViewTeamList realData = response.body();
+                    @Override
+                    public void onResponse(Call<ViewTeamList> call, Response<ViewTeamList> response) {
+                        Log.d("step2", "after onResponse");
+                        ViewTeamList realData = response.body();
 
-                    System.out.println("response from teamlist fromguest menu" + realData);
+                        System.out.println("response from teamlist  menu" + realData);
 
-                    if (response.body() != null) {
-                        if (realData.getStatus() == 200) {
-                            for (TeamList  getTeamList : realData.getTeamList()) {
+                        if (response.body() != null) {
+                            if (realData.getStatus() == 200) {
+                                if (realData.getTeamList() != null) {
 
-                                comman_data_List.add(new Comman_Data_List(
-                                        getTeamList.getTeamId(),
-                                        getTeamList.getTeamName(),
-                                        getTeamList.getLogo()));
-                            }
-                            comman_adapter.notifyDataSetChanged();
 
-                           comman_adapter.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
+                                    for (TeamList getTeamList : realData.getTeamList()) {
 
-                                    RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
-                                    int position = viewHolder.getAdapterPosition();
+                                        comman_data_List.add(new Comman_Data_List(
+                                                getTeamList.getTeamId(),
+                                                getTeamList.getTeamName(),
+                                                getTeamList.getLogo()));
+                                    }
+                                    comman_adapter.notifyDataSetChanged();
 
-                                    Bundle bundle = new Bundle();
-                                    bundle.putInt("team_id",comman_data_List.get(position).getIteam_id());
-                                    bundle.putString("Coming_from" ,"TeamList_Fragment_Class");
+                                    comman_adapter.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
 
-                                    DashboardNavController.navigate(R.id.player_List_Fragment,bundle);
+                                            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                                            int position = viewHolder.getAdapterPosition();
+
+                                            Bundle bundle = new Bundle();
+                                            bundle.putInt("team_id", comman_data_List.get(position).getIteam_id());
+                                            bundle.putInt("League_id", Integer.parseInt(league_id));
+                                            //bundle.putString("Coming_from" ,"TeamList_Fragment_Class");
+
+                                            DashboardNavController.navigate(R.id.addTeaminLeague, bundle);
+                                        }
+                                    });
+
                                 }
-                            });
+                            }
+
+                        } else {
+                            Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
 
                         }
 
-                    } else {
-                        Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
-
+                        comman_adapter.notifyDataSetChanged();
                     }
 
-                    comman_adapter.notifyDataSetChanged();
-                }
+                    @Override
+                    public void onFailure(Call<ViewTeamList> call, Throwable t) {
 
-                @Override
-                public void onFailure(Call<ViewTeamList> call, Throwable t) {
+                        System.out.println("Error : " + t.getMessage());
+                    }
+                });
 
-                    System.out.println("Error : " + t.getMessage());
-                }
-            });
 
+            } else {
+                Call<ViewTeamList> viewTeamListcall = service.getviewTeamListCall();
+                System.out.println("call " + viewTeamListcall);
+                viewTeamListcall.enqueue(new Callback<ViewTeamList>() {
+
+                    @Override
+                    public void onResponse(Call<ViewTeamList> call, Response<ViewTeamList> response) {
+                        Log.d("step2", "after onResponse");
+                        ViewTeamList realData = response.body();
+
+                        System.out.println("response from teamlist fromguest menu" + realData);
+
+                        if (response.body() != null) {
+                            if (realData.getStatus() == 200) {
+                                for (TeamList getTeamList : realData.getTeamList()) {
+
+                                    comman_data_List.add(new Comman_Data_List(
+                                            getTeamList.getTeamId(),
+                                            getTeamList.getTeamName(),
+                                            getTeamList.getLogo()));
+                                }
+                                comman_adapter.notifyDataSetChanged();
+
+                                comman_adapter.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                                        int position = viewHolder.getAdapterPosition();
+
+                                        Bundle bundle = new Bundle();
+                                        bundle.putInt("team_id", comman_data_List.get(position).getIteam_id());
+                                        bundle.putString("Coming_from", "TeamList_Fragment_Class");
+
+                                        DashboardNavController.navigate(R.id.player_List_Fragment, bundle);
+                                    }
+                                });
+
+                            }
+
+                        } else {
+                            Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
+
+                        }
+
+                        comman_adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFailure(Call<ViewTeamList> call, Throwable t) {
+
+                        System.out.println("Error : " + t.getMessage());
+                    }
+                });
+
+
+            }
 
         }
-
     }
 
    /* @Override

@@ -132,6 +132,9 @@
         <action
             android:id="@+id/action_leagueOperationsFragment_to_teamListFragment"
             app:destination="@id/teamListFragment" />
+        <action
+            android:id="@+id/action_leagueOperationsFragment_to_addTeaminLeague"
+            app:destination="@id/addTeaminLeague" />
     </fragment>
     <fragment
         android:id="@+id/createLeagueFragment"
@@ -222,4 +225,9 @@
         android:name="com.example.soccerallianceapp.RemoveTeaminLeagueFragment"
         android:label="fragment_remove_teamin_league"
         tools:layout="@layout/fragment_remove_teamin_league" />
+    <fragment
+        android:id="@+id/addTeaminLeague"
+        android:name="com.example.soccerallianceapp.addTeaminLeague"
+        android:label="fragment_add_teamin_league"
+        tools:layout="@layout/fragment_add_teamin_league" />
 </navigation>

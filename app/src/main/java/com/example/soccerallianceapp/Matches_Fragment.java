@@ -82,7 +82,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
 
                     if (realData.getStatus() == 200) {
                         if (realData.getUpcomingMatchList() == null) {
-                            Toast.makeText(context,"No Matches Found...",Toast.LENGTH_LONG).show();
+                            Toast.makeText(context,"No Matches Found...Upcoming matches...",Toast.LENGTH_LONG).show();
 
                         } else {
 
@@ -144,7 +144,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
 
                     if (realData.getStatus() == 200) {
                         if (realData.getPlayedMatchList() == null) {
-                            Toast.makeText(context, "No Matches Found...", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "No Matches Found.....Played matches...", Toast.LENGTH_LONG).show();
 
                         } else {
 
