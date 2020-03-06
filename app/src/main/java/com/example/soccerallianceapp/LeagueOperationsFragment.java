@@ -135,6 +135,12 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+        if(v == league_operations_teamlist_btn){
+            Bundle bundleLeague = new Bundle();
+            bundleLeague.putString("Coming_from","Leagues_Fragment_Class");
+            bundleLeague.putString("league_id",String.valueOf(league_id));
+            DashboardNavController.navigate(R.id.teamListFragment);
+        }
 
     }
 }

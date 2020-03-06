@@ -2,6 +2,7 @@ package com.example.soccerallianceapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,12 +40,14 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
     String uid="",name,imageUri;
     int team_id;
     Getdataservice service;
+    String TAG= "Dashboard activity screen";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        Log.i(TAG, "onCreate: before setup navigation");
         setupNavigation();
 
     }
@@ -57,28 +60,14 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        Log.i(TAG, "setupNavigation: ");
         DashboarddrawerLayout = findViewById(R.id.dashboard_drawer_layout);
 
         DashboardNavigationView = findViewById(R.id.dashboard_navigationview);
         username = DashboardNavigationView.getHeaderView(0).findViewById(R.id.nav_header_user_name);
         userImage = DashboardNavigationView.getHeaderView(0).findViewById(R.id.nav_header_userprofile_image);
 
-        /*if(!PreferenceData.getUserName(this).equals("")){
-            username.setText(PreferenceData.getUserName(this));
-            DashboardNavigationView.getMenu().clear();
-            DashboardNavigationView.inflateMenu(R.menu.drawer_menu);
-        }
-        else {
-            DashboardNavigationView.getMenu().clear();
-            DashboardNavigationView.inflateMenu(R.menu.guest_menu);
-        }
-        if(!PreferenceData.getUserprofile(this).equals("") && !PreferenceData.getUserprofile(this).equals("no image")){
-            Glide.with(this)
-                    .load("https://dinierecettes.online/images/"+PreferenceData.getUserprofile(this)+".jpg")
-                    .centerCrop()
-                    .into(userImage);
-        }
-*/
+
         if(getIntent().getExtras()!=null){
             if(getIntent().getStringExtra("user_type").equals("Team_Manager")){
                 DashboardNavigationView.getMenu().clear();
@@ -88,7 +77,7 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 imageUri = getIntent().getStringExtra("imageUri");
                 username.setText("Welcome \n"+name);
 
-                Glide.with(this).load(imageUri).into(userImage);
+                Glide.with(this).load(imageUri).centerCrop().into(userImage);
 
                 service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
@@ -99,6 +88,7 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
 
             }
             else if(getIntent().getStringExtra("user_type").equals("League_Manager")){
+                Log.i(TAG, "setupNavigation: league manager");
                 DashboardNavigationView.getMenu().clear();
                 DashboardNavigationView.inflateMenu(R.menu.league_manager_menu);
                 usertype ="League_Manager";
@@ -146,11 +136,14 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         menuItem.setCheckable(true);
 
+        Log.i(TAG, "onNavigationItemSelected: menu on top");
         DashboarddrawerLayout.closeDrawers();
 
         int id = menuItem.getItemId();
 
         switch (id) {
+            
+            //Log.i(TAG, "onNavigationItemSelected: inside switch");
 
             case R.id.guest_dashboard_btn:
                 if (DashboardNavController.getCurrentDestination().getId() != R.id.home_Fragment) {
@@ -173,9 +166,10 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
             case R.id.guest_login_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
 
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    Log.i(TAG, "onNavigationItemSelected: login guest");
+                    startActivity(new Intent(Dashboard_Activity.this,MainActivity.class));
                     finish();
-                    //DashboardNavController.navigate(R.id.home_Fragment);
+                    DashboardNavController.navigate(R.id.home_Fragment);
                 }
                 break;
 
@@ -208,8 +202,9 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
                 break;
             case R.id.team_logout_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
+                    Log.i(TAG, "onNavigationItemSelected: team");
                     FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    startActivity(new Intent(Dashboard_Activity.this,MainActivity.class));
                     finish();
                 }
                 break;
@@ -228,7 +223,7 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
 
             case R.id.league_team_list_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
-                    DashboardNavController.navigate(R.id.player_List_Fragment);
+                    DashboardNavController.navigate(R.id.teamListFragment);
                 }
                 break;
 
@@ -241,8 +236,9 @@ public class Dashboard_Activity extends AppCompatActivity implements NavigationV
 
             case R.id.league_logout_btn:
                 if (DashboardNavController.getCurrentDestination().getId() == R.id.home_Fragment) {
+                    Log.i(TAG, "onNavigationItemSelected: league");
                     FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    startActivity(new Intent(Dashboard_Activity.this,MainActivity.class));
                     finish();
                 }
                 break;

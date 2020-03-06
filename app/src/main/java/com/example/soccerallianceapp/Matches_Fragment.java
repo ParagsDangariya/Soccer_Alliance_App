@@ -35,7 +35,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
     public NavController DashboardNavController;
 
     private Context context;
-    FloatingActionButton add_player_btn;
+    //FloatingActionButton add_player_btn;
     RecyclerView um_recycler_View,pm_recycler_View;
     private ArrayList<matches_data_list> up_matches_data_lists,played_matches_data_lists;
     private Matches_adapter up_match_adapter,played_match_adapter;
@@ -81,37 +81,45 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                 if (response.body() != null) {
 
                     if (realData.getStatus() == 200) {
-                        System.out.println("getting upcoming matches "+realData.getUpcomingMatchList());
-                        for (UpcomingMatchList matchelist : realData.getUpcomingMatchList()) {
-                            //set logo when imge gets done. here
-                            up_matches_data_lists.add(new matches_data_list(
-                                    1,
-                                    matchelist.getTeam1(),
-                                    matchelist.getTeam1Logo(),
-                                    matchelist.getTeam2(),
-                                    matchelist.getTeam2Logo(),
-                                    matchelist.getDateOfMatch()));
+                        if (realData.getUpcomingMatchList() == null) {
+                            Toast.makeText(context,"No Matches Found...",Toast.LENGTH_LONG).show();
 
+                        } else {
+
+
+                            System.out.println("getting upcoming matches " + realData.getUpcomingMatchList());
+
+                            for (UpcomingMatchList matchelist : realData.getUpcomingMatchList()) {
+                                //set logo when imge gets done. here
+                                up_matches_data_lists.add(new matches_data_list(
+                                        1,
+                                        matchelist.getTeam1(),
+                                        matchelist.getTeam1Logo(),
+                                        matchelist.getTeam2(),
+                                        matchelist.getTeam2Logo(),
+                                        matchelist.getDateOfMatch()));
+
+                            }
                         }
+                        up_match_adapter.notifyDataSetChanged();
+                        up_match_adapter.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                                int position = viewHolder.getAdapterPosition();
+                                Bundle upcoming_match_bundle = new Bundle();
+                                upcoming_match_bundle.putInt("up_match_id", up_matches_data_lists.get(position).getMatch_id());
+                                upcoming_match_bundle.putString("up_team1_name", up_matches_data_lists.get(position).getTeam1_name());
+                                upcoming_match_bundle.putString("up_team2_name", up_matches_data_lists.get(position).getTeam2_name());
+                                upcoming_match_bundle.putString("up_team1_logo", up_matches_data_lists.get(position).getTeam1_logo());
+                                upcoming_match_bundle.putString("up_team2_logo", up_matches_data_lists.get(position).getTeam2_logo());
+                                upcoming_match_bundle.putString("up_date", up_matches_data_lists.get(position).getMatch_date());
+                                upcoming_match_bundle.putString("up_time", up_matches_data_lists.get(position).getMatch_time());
+                                DashboardNavController.navigate(R.id.upcomingMatchFragment, upcoming_match_bundle);
+                            }
+                        });
                     }
-                    up_match_adapter.notifyDataSetChanged();
-                    up_match_adapter.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
-                            int position = viewHolder.getAdapterPosition();
-                            Bundle upcoming_match_bundle = new Bundle();
-                            upcoming_match_bundle.putInt("up_match_id",up_matches_data_lists.get(position).getMatch_id());
-                            upcoming_match_bundle.putString("up_team1_name",up_matches_data_lists.get(position).getTeam1_name());
-                            upcoming_match_bundle.putString("up_team2_name",up_matches_data_lists.get(position).getTeam2_name());
-                            upcoming_match_bundle.putString("up_team1_logo",up_matches_data_lists.get(position).getTeam1_logo());
-                            upcoming_match_bundle.putString("up_team2_logo",up_matches_data_lists.get(position).getTeam2_logo());
-                            upcoming_match_bundle.putString("up_date",up_matches_data_lists.get(position).getMatch_date());
-                            upcoming_match_bundle.putString("up_time",up_matches_data_lists.get(position).getMatch_time());
-                            DashboardNavController.navigate(R.id.upcomingMatchFragment,upcoming_match_bundle);
-                        }
-                    });
 
                 } else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
@@ -135,30 +143,36 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                 if (response.body() != null) {
 
                     if (realData.getStatus() == 200) {
-                        System.out.println("getting upcoming matches "+realData.getPlayedMatchList());
+                        if (realData.getPlayedMatchList() == null) {
+                            Toast.makeText(context, "No Matches Found...", Toast.LENGTH_LONG).show();
 
-                        for (PlayedMatchList matchelist : realData.getPlayedMatchList()) {
-                            //set logo when imge gets done. here
-                            played_matches_data_lists.add(new matches_data_list(
-                                    1,
-                                    matchelist.getTeam1(),
-                                    matchelist.getTeam1Logo(),
-                                    matchelist.getTeam2(),
-                                    matchelist.getTeam2Logo(),
-                                    matchelist.getDateOfMatch()));
+                        } else {
+
+                            System.out.println("getting upcoming matches " + realData.getPlayedMatchList());
+
+                            for (PlayedMatchList matchelist : realData.getPlayedMatchList()) {
+                                //set logo when imge gets done. here
+                                played_matches_data_lists.add(new matches_data_list(
+                                        1,
+                                        matchelist.getTeam1(),
+                                        matchelist.getTeam1Logo(),
+                                        matchelist.getTeam2(),
+                                        matchelist.getTeam2Logo(),
+                                        matchelist.getDateOfMatch()));
+                            }
                         }
+                        played_match_adapter.notifyDataSetChanged();
+                        played_match_adapter.setOnClickListener(new View.OnClickListener() {
+                            @Override
+
+                            public void onClick(View view) {
+
+                                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+                                int position = viewHolder.getAdapterPosition();
+                                DashboardNavController.navigate(R.id.match_Score_Fragment);
+                            }
+                        });
                     }
-                    played_match_adapter.notifyDataSetChanged();
-                    played_match_adapter.setOnClickListener(new View.OnClickListener() {
-                        @Override
-
-                        public void onClick(View view) {
-
-                            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
-                            int position = viewHolder.getAdapterPosition();
-                            DashboardNavController.navigate(R.id.match_Score_Fragment);
-                        }
-                    });
 
                 } else {
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();

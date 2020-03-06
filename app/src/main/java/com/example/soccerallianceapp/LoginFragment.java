@@ -101,7 +101,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         fAuth = FirebaseAuth.getInstance();
 
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
-/*
+
 
         if(verifynumber != 1){
 
@@ -117,7 +117,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         }
 
- */
+
     }
 
     @Override
@@ -248,41 +248,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
 
 
-            /*
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                JSONArray jsonArray = response.getJSONArray("UserDetails");
-
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject employee = jsonArray.getJSONObject(i);
-
-                                    String user_type = employee.getString("user_type");
-                                   System.out.println("usertype"+user_type);
-                                    //mTextViewResult.append(firstName + ", " + String.valueOf(age) + ", " + mail + "\n\n");
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    error.printStackTrace();
-                    System.out.println("error" + error.getMessage());
-                }
-            });
-
-            mqueue.add(request);
-
-
-
-
-            System.out.println("user" + user_type);
-
-             */
 
 
 
