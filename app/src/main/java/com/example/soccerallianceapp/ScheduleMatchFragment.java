@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.CreateSchedule.ScheduleMatch;
@@ -85,9 +86,9 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
-
-
         fAuth = FirebaseAuth.getInstance();
         comman_data_List = new ArrayList<Comman_Data_List>();
         comman_adapter = new Comman_adapter(comman_data_List, context);
@@ -251,17 +252,18 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                     if (!response.isSuccessful()) {
                         int sm = response.code();
                         System.out.println("code" + sm);
-                        Toast.makeText(context, "Schedule Match Successfully " + sm, Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Error(in If Else) : " + sm, Toast.LENGTH_LONG).show();
                     }
 
                     int sm = response.code();
                     System.out.println("code" + sm);
-                    Toast.makeText(context, "Schedule Match Successfully " + sm, Toast.LENGTH_LONG).show();
-                    //DashboardNavController.navigate(R.id.leagueOperationsFragment);
+                    Toast.makeText(context, "Schedule Match Successfully (After if) : " + sm, Toast.LENGTH_LONG).show();
+                    DashboardNavController.navigate(R.id.leagueOperationsFragment);
+
                 }
                 @Override
                 public void onFailure(Call<ScheduleMatch> data, Throwable t) {
-                    System.out.println("error" + t.getMessage());
+                    System.out.println("error : " + t.getMessage());
                     Toast.makeText(context, "Wrong thing happened", Toast.LENGTH_LONG).show();
                 }
             });
