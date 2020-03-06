@@ -106,10 +106,10 @@ public class Player_List_Fragment extends Fragment implements View.OnClickListen
 
                 Log.i(TAG,"coming for team list");
 
-            }else if(getArguments().getString("Coming_from").equals("dashboard")){
+            }else if(getArguments().getString("Coming_from").equals("dashboard")||getArguments().getString("Coming_from").equals("Team_Manager")){
 
 
-                Log.i(TAG,"coming from dashboard");
+                Log.i(TAG,"coming from dashboard or add team");
 
                 team_id = getArguments().getInt("team_id");
 

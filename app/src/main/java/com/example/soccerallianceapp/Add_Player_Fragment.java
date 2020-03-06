@@ -221,8 +221,6 @@ public class Add_Player_Fragment extends Fragment implements View.OnClickListene
             public void onResponse(Call<Player> call, Response<Player> response) {
 
 
-
-
                 if(!response.isSuccessful()){
                     int s = response.code();
                     System.out.println("code"+s);
@@ -236,6 +234,7 @@ public class Add_Player_Fragment extends Fragment implements View.OnClickListene
                 Bundle bundle = new Bundle();
                 bundle.putString("Coming_from","Team_Manager");
                 bundle.putInt("team_id",team_id);
+                System.out.println("teamid is"+team_id);
                 navController.navigate(R.id.player_List_Fragment,bundle);
 
 
