@@ -47,7 +47,8 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
 
     TextInputEditText reschedule_match_date_edt_txt,reschedule_match_time_layout_edt_txt,reschedule_match_location_layout_edt_txt;
 
-    int team1id = 17,team2id = 2,leagueid = 20 ;
+    int team1id = 1,team2id = 17,leagueid = 1, scheduleid = 10 ;
+
     String date;
     String time;
     String location;
@@ -130,7 +131,7 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
                 time = reschedule_match_time_layout_edt_txt.getEditableText().toString();
 
 
-                String url = "https://soccerallianceapp.appspot.com/rest/api/ReSchedule&" + location + "&" + date + "&" + time + "&" + team1id + "&" + team2id + "&" + leagueid + "";
+                String url = "https://soccerallianceapp.appspot.com/rest/api/ReSchedule&" + location + "&" + date + "&" + time + "&" + team1id + "&" + team2id + "&" + leagueid + "&" + scheduleid + "";
 
                 System.out.println("url" + url);
 
