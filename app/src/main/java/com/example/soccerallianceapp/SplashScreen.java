@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.soccer_alliance_project_test.R;
@@ -19,18 +20,39 @@ import retrofit2.Response;
 
 public class SplashScreen extends AppCompatActivity {
 
+
+    String TAG= "splash screen";
     FirebaseAuth fAuth ;
     FirebaseUser user;
     Getdataservice service;
     String uid ="",user_type,name,imageUri;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+    protected void onStart() {
+        super.onStart();
         fAuth = FirebaseAuth.getInstance();
 
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+/*
+        if(fAuth.getCurrentUser() != null){
+            uid = fAuth.getCurrentUser().getUid();
+            user = fAuth.getCurrentUser();
+            verifyuser(user);
+
+
+            System.out.println("userdata"+uid);
+        }
+
+ */
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash_screen);
+
+        Log.i(TAG, "onCreate: ");
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -42,14 +64,7 @@ public class SplashScreen extends AppCompatActivity {
         },3000);
 
 
-        if(fAuth.getCurrentUser() != null){
-            uid = fAuth.getCurrentUser().getUid();
-            user = fAuth.getCurrentUser();
-            verifyuser(user);
 
-
-            System.out.println("userdata"+uid);
-        }
     }
 
     private void verifyuser(FirebaseUser user) {
@@ -64,7 +79,7 @@ public class SplashScreen extends AppCompatActivity {
             finish();
 
         }else {
-            //Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
 
 
             uid = user.getUid();
@@ -96,7 +111,7 @@ public class SplashScreen extends AppCompatActivity {
                     user_type = userDetails.getUserType();
 
                     System.out.println("string"+user_type);
-                    Toast.makeText(getApplicationContext(),"succesfully login."+user_type,Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),"succesfully login."+user_type,Toast.LENGTH_LONG).show();
                     System.out.println("login"+user_type);
                     Intent i = new Intent(SplashScreen.this,Dashboard_Activity.class);
                     i.putExtra("user_type",user_type);
@@ -116,42 +131,6 @@ public class SplashScreen extends AppCompatActivity {
             });
 
 
-
-            /*
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                JSONArray jsonArray = response.getJSONArray("UserDetails");
-
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject employee = jsonArray.getJSONObject(i);
-
-                                    String user_type = employee.getString("user_type");
-                                   System.out.println("usertype"+user_type);
-                                    //mTextViewResult.append(firstName + ", " + String.valueOf(age) + ", " + mail + "\n\n");
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    error.printStackTrace();
-                    System.out.println("error" + error.getMessage());
-                }
-            });
-
-            mqueue.add(request);
-
-
-
-
-            System.out.println("user" + user_type);
-
-             */
 
 
 

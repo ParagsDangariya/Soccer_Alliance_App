@@ -105,7 +105,7 @@ public class Leagues_Fragment extends Fragment {
                     }
 
                 }else{
-                    Toast.makeText(getActivity() ,"REsponse empty",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity() ,"Response empty",Toast.LENGTH_LONG).show();
                     }
             }
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
 
 import java.util.ArrayList;
@@ -45,8 +46,9 @@ public class Matches_adapter extends RecyclerView.Adapter<Matches_adapter.ViewHo
         /*---Set Team 1 and Team 2 Logo Here---*/
 
         // holder.item_image.setImageResource(matches_data_lists.get(position).getItem_image());
-        //  Glide.with(context).load("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.iconfinder.com%2Ficons%2F3222456%2Fbadge_club_football_shield_soccer_team_icon&psig=AOvVaw14UmH91fAPljOtw9wTLAfq&ust=1582501135750000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjOk6Wq5ucCFQAAAAAdAAAAABAr").into(holder.item_image);
+          Glide.with(context).load(matches_data_lists.get(position).team1_logo).into(holder.m_team1_logo);
 
+        Glide.with(context).load(matches_data_lists.get(position).team2_logo).into(holder.m_team2_logo);
     }
 
     public void setOnClickListener(View.OnClickListener clickListener){

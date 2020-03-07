@@ -13,39 +13,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <com.google.android.material.card.MaterialCardView
 
+            android:id="@+id/materialCardView"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="104dp"
             android:layout_margin="20dp"
             android:padding="5dp"
-            android:id="@+id/materialCardView"
 
-            app:strokeColor="@color/colorPrimaryDark"
-            app:strokeWidth="1dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            >
+            app:strokeColor="@color/colorPrimaryDark"
+            app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/league_icon"
+                    android:id="@+id/Team_icon"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:padding="16dp"
-                    android:src="@drawable/splash_logo"
                     android:scaleType="centerCrop"
+                    android:src="@drawable/splash_logo"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/team_name"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/league_name"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
-                    android:id="@+id/league_name"
+                    android:id="@+id/team_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:elevation="16dp"
@@ -55,7 +55,7 @@
                     android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/league_icon"
+                    app:layout_constraintStart_toEndOf="@id/Team_icon"
 
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>

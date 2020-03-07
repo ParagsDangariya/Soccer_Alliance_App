@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,6 +50,7 @@ public class Add_Team_in_League_Fragment extends Fragment {
         add_team_recycler_view = view.findViewById(R.id.add_team_recycler_view);
         comman_checkbox_data_lists = new ArrayList<Comman_Checkbox_Data_List>();
         comman_checkbox_data_lists.clear();
+        /*
 
         comman_checkbox_data_lists.add(new Comman_Checkbox_Data_List("Add Team 1", R.drawable.user));
         comman_checkbox_data_lists.add(new Comman_Checkbox_Data_List("Add Team 2", R.drawable.user));
@@ -56,6 +58,9 @@ public class Add_Team_in_League_Fragment extends Fragment {
         comman_checkbox_data_lists.add(new Comman_Checkbox_Data_List("Add Team 4", R.drawable.user));
         comman_checkbox_data_lists.add(new Comman_Checkbox_Data_List("Add Team 5", R.drawable.user));
 
+
+
+         */
         comman_checkbox_adapter = new Comman_checkbox_adapter(comman_checkbox_data_lists,context);
         comman_checkbox_adapter.notifyDataSetChanged();
         add_team_recycler_view.setLayoutManager(new LinearLayoutManager(context));
@@ -65,6 +70,7 @@ public class Add_Team_in_League_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                Toast.makeText(context,"player selected.",Toast.LENGTH_SHORT).show();
             }
         });
 
