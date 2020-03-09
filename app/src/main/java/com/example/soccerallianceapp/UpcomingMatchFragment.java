@@ -64,8 +64,8 @@ public class UpcomingMatchFragment extends Fragment {
         if(getArguments()!=null){
             umf_team1.setText(getArguments().getString("up_team1_name"));
             umf_team2.setText(getArguments().getString("up_team2_name"));
-            Glide.with(context).load(getArguments().getString("up_team1_logo")).centerCrop().into(umf_team1_logo);
-            Glide.with(context).load(getArguments().getString("up_team2_logo")).centerCrop().into(umf_team2_logo);
+            Glide.with(context).load(getArguments().getString("up_team1_logo")).fitCenter().into(umf_team1_logo);
+            Glide.with(context).load(getArguments().getString("up_team2_logo")).fitCenter().into(umf_team2_logo);
             umf_date.setText(getArguments().getString("up_date"));
             umf_time.setText(getArguments().getString("up_time"));
         }

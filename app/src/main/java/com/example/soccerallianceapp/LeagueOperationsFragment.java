@@ -12,9 +12,11 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
 import com.google.android.material.button.MaterialButton;
 
@@ -30,8 +32,10 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
     private ArrayList<Comman_Data_List> comman_data_List;
     private Comman_adapter comman_adapter;
     TextView LeagueName;
-    String league_name;
+    String league_name,league_icon;
     int league_id;
+    ImageView league_logo;
+
 
 
 
@@ -46,6 +50,7 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
 
 
             league_id = getArguments().getInt("League_id");
+            System.out.println("league_id on operation screen on create.."+league_id);
 
         }
             }
@@ -78,6 +83,8 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
         league_operations_playedmatch_btn = view.findViewById(R.id.league_operations_playedmatch_btn);
         league_operations_playedmatch_btn.setOnClickListener(this);
 
+        league_logo = view.findViewById(R.id.league_icon);
+
 
         Bundle bundle = getArguments();
 
@@ -102,7 +109,10 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
                     league_name = getArguments().getString("League_name");
 
 
+                    league_icon = getArguments().getString("League_Logo");
+
                     LeagueName.setText(league_name);
+                    Glide.with(context).load(league_icon).centerCrop().into(league_logo);
 
                     bundle.putString("League_name",league_name);
                     bundle.putInt("League_id",league_id);
@@ -147,16 +157,29 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
     public void onClick(View v) {
         if(v == league_operations_teamlist_btn){
             Bundle bundleLeague = new Bundle();
-            bundleLeague.putString("Coming_from","Leagues_Fragment_Class");
-            bundleLeague.putString("league_id",String.valueOf(league_id));
-            DashboardNavController.navigate(R.id.teamListFragment);
+            bundleLeague.putString("Coming_from","TeamListInLeague");
+            //bundleLeague.putString("Coming_from","Leagues_Fragment_Class");
+            //bundleLeague.putString("league_id", String.valueOf(league_id));
+            bundleLeague.putInt("League_id from operation",league_id);
+            DashboardNavController.navigate(R.id.teamListFragment,bundleLeague);
         }
 
         if( v == league_operations_addteam_btn){
 
+            System.out.println("league_id on operation screen..add team"+league_id);
             Bundle bundleleague = new Bundle();
             bundleleague.putString("Coming_from","AddTeamInLeague");
-            bundleleague.putInt("League_id",league_id);
+            bundleleague.putInt("League_id from operation",league_id);
+            System.out.println("league"+league_id);
+            DashboardNavController.navigate(R.id.teamListFragment,bundleleague);
+        }
+
+        if(v == league_operations_removeteam_btn){
+
+            System.out.println("league_id on operation screen..remove team"+league_id);
+            Bundle bundleleague = new Bundle();
+            bundleleague.putString("Coming_from","RemoveTeamInLeague");
+            bundleleague.putInt("League_id from operation",league_id);
             System.out.println("league"+league_id);
             DashboardNavController.navigate(R.id.teamListFragment,bundleleague);
         }

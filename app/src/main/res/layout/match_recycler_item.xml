@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/matches_cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,13 +12,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
-
+        android:padding="4dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            tools:ignore="MissingConstraints">
         <LinearLayout
             android:id="@+id/m_firstLinear"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_weight="1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -25,6 +31,7 @@
                 android:id="@+id/m_team1_logo"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_gravity="center"
                 android:src="@drawable/splash_logo" />
 
             <TextView
@@ -35,7 +42,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Team 1"
-                android:textSize="18dp" />
+                android:textSize="14dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -43,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_weight="1"
             app:layout_constraintEnd_toStartOf="@id/m_thirdLinear"
             app:layout_constraintStart_toEndOf="@id/m_firstLinear"
             app:layout_constraintTop_toTopOf="parent">
@@ -64,7 +72,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-black"
                 android:text="Date"
-                android:textSize="18dp" />
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/m_time"
@@ -73,7 +81,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-black"
                 android:text="Time"
-                android:textSize="18dp"
+                android:textSize="12dp"
 
                 />
 
@@ -84,6 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_weight="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -92,6 +101,7 @@
                 android:id="@+id/m_team2_logo"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_gravity="center"
                 android:src="@drawable/splash_logo" />
 
             <TextView
@@ -102,10 +112,11 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Team 2"
-                android:textSize="18dp" />
+                android:textSize="14dp" />
 
         </LinearLayout>
 
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

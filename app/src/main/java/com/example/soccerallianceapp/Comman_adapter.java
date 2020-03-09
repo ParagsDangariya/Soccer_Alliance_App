@@ -42,7 +42,7 @@ public class Comman_adapter extends RecyclerView.Adapter<Comman_adapter.ViewHold
 
         holder.item_name.setText(comman_data_lists.get(position).getItem_name());
        // holder.item_image.setImageResource(comman_data_lists.get(position).getItem_image());
-       Glide.with(context).load(comman_data_lists.get(position).getItem_image()).into(holder.item_image);
+       Glide.with(context).load(comman_data_lists.get(position).getItem_image()).centerCrop().into(holder.item_image);
 
     }
 

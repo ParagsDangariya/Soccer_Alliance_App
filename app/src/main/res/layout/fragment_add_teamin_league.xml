@@ -24,7 +24,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/Team_icon"
+                android:id="@+id/league_icon"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="16dp"
@@ -47,7 +47,7 @@
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/Team_icon"
+                app:layout_constraintStart_toEndOf="@id/league_icon"
 
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,7 +51,7 @@
                         android:layout_marginTop="10dp"
                         android:fontFamily="sans-serif-black"
                         android:text="Team 1"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -118,7 +118,7 @@
                         android:layout_marginTop="10dp"
                         android:fontFamily="sans-serif-black"
                         android:text="Team 2"
-                        android:textSize="18dp" />
+                        android:textSize="14dp" />
 
                 </LinearLayout>
 

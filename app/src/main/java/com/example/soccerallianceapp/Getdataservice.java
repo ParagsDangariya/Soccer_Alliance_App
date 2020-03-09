@@ -70,6 +70,9 @@ public interface Getdataservice {
     @GET("viewTeamListFromLeagueId&{league_id}")
     Call<ViewTeamListByLeague> getviewTeamListFromLeagueIdCall(@Path("league_id") String league_id);
 
+    @GET("viewTeamListFromLeagueId&{league_id}")
+    Call<ViewTeamListByLeague> viewTeamListFromLeagueIdCall(@Path("league_id") int league_id);
+
     @GET("LeagueListByUser&{user_id}")
     Call<LeaguesFragment> getLeagueList(@Path("user_id") String user_id);
 
@@ -169,6 +172,15 @@ public interface Getdataservice {
 
     @GET("removePlayerFromTeam&{player_id}&{team_id}")
     Call<ResponseBody> removePlayerFromTeam(@Path("player_id") int player_id,@Path("team_id") int team_id);
+
+
+
+    @GET("AddTeamInLeague&{league_id}&{team_id}")
+    Call<LeaguesFragment> AddTeamInLeague(@Path("league_id") int league_id, @Path("team_id") int team_id);
+
+
+    @GET("RemoveTeamFromLeague&{league_id}&{team_id}")
+    Call<LeaguesFragment> removeTeamFromLeague(@Path("league_id") int league_id, @Path("team_id") int team_id);
 
 
 

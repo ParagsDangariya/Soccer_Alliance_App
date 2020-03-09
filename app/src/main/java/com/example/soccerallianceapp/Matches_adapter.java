@@ -46,9 +46,9 @@ public class Matches_adapter extends RecyclerView.Adapter<Matches_adapter.ViewHo
         /*---Set Team 1 and Team 2 Logo Here---*/
 
         // holder.item_image.setImageResource(matches_data_lists.get(position).getItem_image());
-          Glide.with(context).load(matches_data_lists.get(position).team1_logo).into(holder.m_team1_logo);
+          Glide.with(context).load(matches_data_lists.get(position).team1_logo).fitCenter().into(holder.m_team1_logo);
 
-        Glide.with(context).load(matches_data_lists.get(position).team2_logo).into(holder.m_team2_logo);
+        Glide.with(context).load(matches_data_lists.get(position).team2_logo).fitCenter().into(holder.m_team2_logo);
     }
 
     public void setOnClickListener(View.OnClickListener clickListener){
