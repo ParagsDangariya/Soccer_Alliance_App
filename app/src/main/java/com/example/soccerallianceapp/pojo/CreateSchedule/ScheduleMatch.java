@@ -9,6 +9,8 @@ public class ScheduleMatch {
     private int team1_id;
     private int team2_id;
     private int league_id;
+    private int schedule_id;
+
 
     public ScheduleMatch(String location, String date_of_match, String time_of_match, int team1_id, int team2_id, int league_id) {
 
@@ -18,6 +20,17 @@ public class ScheduleMatch {
         this.team1_id = team1_id;
         this.team2_id = team2_id;
         this.league_id = league_id;
+    }
+
+
+    public ScheduleMatch(String location, String date_of_match, String time_of_match, int team1_id, int team2_id, int league_id, int schedule_id) {
+        this.location = location;
+        this.date_of_match = date_of_match;
+        this.time_of_match = time_of_match;
+        this.team1_id = team1_id;
+        this.team2_id = team2_id;
+        this.league_id = league_id;
+        this.schedule_id = schedule_id;
     }
 
 
@@ -58,4 +71,11 @@ public class ScheduleMatch {
         this.league_id = league_id;
     }
 
+    public int getSchedule_id() {
+        return schedule_id;
+    }
+
+    public void setSchedule_id(int schedule_id) {
+        this.schedule_id = schedule_id;
+    }
 }
