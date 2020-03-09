@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,17 +45,20 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
     FirebaseAuth fAuth;
     Getdataservice service;
     MaterialButton reSchedule_match_btn;
+    private TimePickerDialog timePickerDialog;
 
-    TextInputEditText reschedule_match_date_edt_txt,reschedule_match_time_layout_edt_txt,reschedule_match_location_layout_edt_txt;
 
-    int team1id = 1,team2id = 17,leagueid = 1, scheduleid = 10 ;
+    TextInputEditText reschedule_match_date_edt_txt, reschedule_match_time_layout_edt_txt, reschedule_match_location_layout_edt_txt;
+
+    int team1id = 1, team2id = 17, leagueid = 1, scheduleid = 10;
 
     String date;
     String time;
     String location;
 
     int day, month, year;
-
+    int currenthour, currentminiute;
+    String ampm;
 
 
     @Override
@@ -67,6 +71,8 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        DashboardNavController = Navigation.findNavController(getActivity(), R.id.dashboard_host_fragment);
 
         context = getActivity().getApplicationContext();
 
@@ -87,35 +93,49 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
 
 
         reschedule_match_date_edt_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatePickerDialog dialog = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
 
-                        DatePickerDialog dialog = DatePickerDialog.newInstance(new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-
-                                String strdate = year + "-" + (monthOfYear+1) + "-" + dayOfMonth;
-                                reschedule_match_date_edt_txt.setText(strdate);
-
-                            }
-                        },year,month,day) ;
-
-                             dialog.show(getActivity().getFragmentManager(),"DatepickerDialog");
+                        String strdate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                        reschedule_match_date_edt_txt.setText(strdate);
 
                     }
-                });
+                }, year, month, day);
+
+                dialog.show(getActivity().getFragmentManager(), "DatepickerDialog");
+
+            }
+        });
 
         reschedule_match_time_layout_edt_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                currenthour = calendar.get(Calendar.HOUR_OF_DAY);
+                currentminiute = calendar.get(Calendar.MINUTE);
 
-                DialogFragment timepicker = new TimePickerFragment();
+                timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        if (hourOfDay >= 12) {
+                            ampm = "PM";
+                        } else {
+                            ampm = "AM";
+                        }
+                        reschedule_match_time_layout_edt_txt.setText(hourOfDay + ":" + minute + ampm);
+                    }
+                }, currenthour, currentminiute, false);
 
-                timepicker.show(getActivity().getSupportFragmentManager(), "time Picker");
-
-
+                timePickerDialog.show();
             }
+
+
         });
+
 
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
         Log.d("step1", "after getService part");
@@ -135,10 +155,10 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
 
                 System.out.println("url" + url);
 
-                ScheduleMatch reschedulematch = new ScheduleMatch(location,date,time,team1id,team2id,leagueid,scheduleid);
+                ScheduleMatch reschedulematch = new ScheduleMatch(location, date, time, team1id, team2id, leagueid, scheduleid);
 
                 System.out.println("Schedulematch : " + reschedulematch.toString());
-                try{
+                try {
 
                     Call<ScheduleMatch> call = service.Reschedule_match_call(reschedulematch);
 
@@ -160,6 +180,8 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
                             System.out.println("code" + sm);
                             Toast.makeText(context, "ReSchedule Match Successfully done " + sm, Toast.LENGTH_LONG).show();
 
+                            DashboardNavController.navigate(R.id.leagueOperationsFragment);
+
 
                         }
 
@@ -169,10 +191,8 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
                             System.out.println("error" + t.getMessage());
                             Toast.makeText(context, "Wrong thing happened", Toast.LENGTH_LONG).show();
 
-
                         }
                     });
-
 
 
                 } catch (Exception e) {

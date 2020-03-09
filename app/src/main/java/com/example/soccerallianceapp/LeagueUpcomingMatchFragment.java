@@ -50,7 +50,7 @@ public class LeagueUpcomingMatchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
+        DashboardNavController = Navigation.findNavController(getActivity(), R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
 
         um_recycler_View = view.findViewById(R.id.um_recycler_View);
@@ -61,12 +61,12 @@ public class LeagueUpcomingMatchFragment extends Fragment {
         um_recycler_View.setAdapter(up_match_adapter);
 
 
-        if(getArguments()!=null){
+        if (getArguments() != null) {
 
-            if(getArguments().getString("ComingFrom").equals("LeagueUpcomingMatchFragment")){
+            if (getArguments().getString("ComingFrom").equals("LeagueUpcomingMatchFragment")) {
                 league_id = getArguments().getInt("League_id");
-                System.out.println("league id from league upcoming match "+league_id);
-               // Toast.makeText(context,league_id, Toast.LENGTH_LONG).show();
+                System.out.println("league id from league upcoming match " + league_id);
+                // Toast.makeText(context,league_id, Toast.LENGTH_LONG).show();
                 Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
                 Call matchesByLeague = service.getUpcomingMatchesByLeague(league_id);
@@ -76,11 +76,11 @@ public class LeagueUpcomingMatchFragment extends Fragment {
                     public void onResponse(Call<UpcomingMatchByLeague> call, Response<UpcomingMatchByLeague> response) {
                         System.out.println("response from league opration fragment get into response");
                         UpcomingMatchByLeague realData = response.body();
-                        System.out.println("response from league opration fragment "+response.body());
-                        if(response.body() != null){
+                        System.out.println("response from league opration fragment " + response.body());
+                        if (response.body() != null) {
                             if (realData.getStatus() == 200) {
                                 for (UpcomingMatchList matchelist : realData.getUpcomingMatchList()) {
-                                    System.out.println("getting match list from league in upcoming "+realData.getUpcomingMatchList());
+                                    System.out.println("getting match list from league in upcoming " + realData.getUpcomingMatchList());
                                     up_matches_data_lists.add(new matches_data_list(
                                             1,
                                             matchelist.getTeam1(),
@@ -98,35 +98,34 @@ public class LeagueUpcomingMatchFragment extends Fragment {
                                         RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
                                         int position = viewHolder.getAdapterPosition();
                                         Bundle upcoming_match_bundle = new Bundle();
-                                        upcoming_match_bundle.putInt("up_match_id",up_matches_data_lists.get(position).getMatch_id());
-                                        upcoming_match_bundle.putString("up_team1_name",up_matches_data_lists.get(position).getTeam1_name());
-                                        upcoming_match_bundle.putString("up_team2_name",up_matches_data_lists.get(position).getTeam2_name());
-                                        upcoming_match_bundle.putString("up_team1_logo",up_matches_data_lists.get(position).getTeam1_logo());
-                                        upcoming_match_bundle.putString("up_team2_logo",up_matches_data_lists.get(position).getTeam2_logo());
-                                        upcoming_match_bundle.putString("up_date",up_matches_data_lists.get(position).getMatch_date());
-                                        upcoming_match_bundle.putString("up_time",up_matches_data_lists.get(position).getMatch_time());
-                                        DashboardNavController.navigate(R.id.matchScoreRescheduleFragment,upcoming_match_bundle);
+                                        upcoming_match_bundle.putInt("up_match_id", up_matches_data_lists.get(position).getMatch_id());
+                                        upcoming_match_bundle.putString("up_team1_name", up_matches_data_lists.get(position).getTeam1_name());
+                                        upcoming_match_bundle.putString("up_team2_name", up_matches_data_lists.get(position).getTeam2_name());
+                                        upcoming_match_bundle.putString("up_team1_logo", up_matches_data_lists.get(position).getTeam1_logo());
+                                        upcoming_match_bundle.putString("up_team2_logo", up_matches_data_lists.get(position).getTeam2_logo());
+                                        upcoming_match_bundle.putString("up_date", up_matches_data_lists.get(position).getMatch_date());
+                                        upcoming_match_bundle.putString("up_time", up_matches_data_lists.get(position).getMatch_time());
+                                        DashboardNavController.navigate(R.id.matchScoreRescheduleFragment, upcoming_match_bundle);
                                     }
                                 });
 
                             }
 
-                        }else{
+                        } else {
 
-                            Toast.makeText(getActivity() ,"Response empty",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
                             // progressBar.setVisibility(View.VISIBLE);
                         }
                     }
 
                     @Override
                     public void onFailure(Call call, Throwable t) {
-                        System.out.println("Error : "+t.getMessage());
+                        System.out.println("Error : " + t.getMessage());
 
                     }
                 });
 
             }
-
 
 
         }

@@ -126,6 +126,8 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
                         }
                     });
 
+
+
                     league_operations_schedulematch_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

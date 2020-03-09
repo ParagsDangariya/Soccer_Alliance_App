@@ -117,5 +117,7 @@
         <item name="listPreferredItemHeightSmall">55dp</item><!-- menu item height- vary as u need -->
     </style>
 
+    <style name="DialogTheme"></style>
+
 
 </resources>
