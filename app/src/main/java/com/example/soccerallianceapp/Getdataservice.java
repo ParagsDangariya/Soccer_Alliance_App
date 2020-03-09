@@ -161,6 +161,8 @@ public interface Getdataservice {
     );
 
 
+
+
     @GET("PlayerDetail&{player_id}")
     Call<PlayerDetail> PlayerDetail(@Path("player_id") int player_id);
 

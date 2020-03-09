@@ -34,6 +34,7 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -53,10 +54,14 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     Getdataservice service;
     MaterialButton Schedule_match_btn;
     ArrayList<TeamList> testlist;
+    private SimpleDateFormat timeformatter;
+    private TimePickerDialog timePickerDialog;
 
     int League_id;
     String uid = "";
     int day, month, year;
+    int currenthour,currentminiute;
+    String ampm;
 
     private AutoCompleteTextView schedule_match_edt_txt, schedule_match_team2_edt_txt;
     TextInputEditText schedule_match_date_edt_txt, schedule_match_time_layout_edt_txt, schedule_match_location_layout_edt_txt;
@@ -87,7 +92,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
+        DashboardNavController = Navigation.findNavController(getActivity(), R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
         fAuth = FirebaseAuth.getInstance();
         comman_data_List = new ArrayList<Comman_Data_List>();
@@ -129,13 +134,36 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                 dialog.show(getActivity().getFragmentManager(), "DatePicketDialog");
             }
         });
+
+
+
         schedule_match_time_layout_edt_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment timepicker = new TimePickerFragment();
-                timepicker.show(getActivity().getSupportFragmentManager(), "time Picker");
+                Calendar calendar = Calendar.getInstance();
+                currenthour =calendar.get(Calendar.HOUR_OF_DAY);
+                currentminiute = calendar.get(Calendar.MINUTE);
+
+                timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        if (hourOfDay >= 12)
+                        {
+                            ampm = "PM";
+                        }
+                        else{
+                            ampm = "AM";
+                        }
+                        schedule_match_time_layout_edt_txt.setText(hourOfDay+":"+minute+ampm);
+                    }
+                },currenthour,currentminiute,false );
+
+                timePickerDialog.show();
             }
+
+
         });
+
         uid = fAuth.getCurrentUser().getUid();
         //Toast.makeText(getActivity(), "UID : " + uid, Toast.LENGTH_LONG).show();
         System.out.println("User Id : " + uid);
@@ -182,7 +210,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                         public void onItemClick(AdapterView<?> parent, View arg1, int position, long id) {
                             Object item = parent.getItemIdAtPosition(position);
                             System.out.println("Team1 id (Selected from Dropdown) : " + item);
-                            Log.i("Test Size",String.valueOf(testlist.size()));
+                            Log.i("Test Size", String.valueOf(testlist.size()));
                             checkMe(testlist);
                         }
                     });
@@ -199,12 +227,14 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                     Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
                 }
             }
+
             @Override
             public void onFailure(Call<ViewTeamListFromLeagueId> call, Throwable t) {
                 System.out.println("On Failure in ViewTeamList" + t);
             }
         });
     }
+
     @Override
     public void onClick(View view) {
         if (view == Schedule_match_btn) {
@@ -215,23 +245,22 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
             location = schedule_match_location_layout_edt_txt.getText().toString();
             time = schedule_match_time_layout_edt_txt.getText().toString();
 
-            if(TextUtils.isEmpty(team1name)){
+            if (TextUtils.isEmpty(team1name)) {
                 schedule_match_edt_txt.setError("Team 1 is Required.");
-                return ;
-            }else if(TextUtils.isEmpty(team2name)){
+                return;
+            } else if (TextUtils.isEmpty(team2name)) {
                 schedule_match_team2_edt_txt.setError("Team 2 is Required");
                 return;
-            }else if(TextUtils.isEmpty(date)) {
+            } else if (TextUtils.isEmpty(date)) {
                 schedule_match_date_edt_txt.setError("Date is Required.");
                 return;
-            }else if(TextUtils.isEmpty(time)) {
+            } else if (TextUtils.isEmpty(time)) {
                 schedule_match_time_layout_edt_txt.setError("Time is Required.");
                 return;
-            }else if(TextUtils.isEmpty(location)) {
+            } else if (TextUtils.isEmpty(location)) {
                 schedule_match_location_layout_edt_txt.setError("Location is Required.");
                 return;
-            }
-            else if(team1name.equals(team2name)){
+            } else if (team1name.equals(team2name)) {
                 schedule_match_team2_edt_txt.setError("Team 1 and Team 2 must be Different!");
                 return;
             }
@@ -261,6 +290,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                     DashboardNavController.navigate(R.id.leagueOperationsFragment);
 
                 }
+
                 @Override
                 public void onFailure(Call<ScheduleMatch> data, Throwable t) {
                     System.out.println("error : " + t.getMessage());
@@ -272,30 +302,34 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
             e.printStackTrace();
         }
     }
+
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        stime = hourOfDay + ":" + minute;
-        schedule_match_time_layout_edt_txt.setText("H : " + hourOfDay + "M: " + minute);
-        System.out.println("Ontime set : " + schedule_match_date_edt_txt);
+
+        java.util.Calendar newTime = java.util.Calendar.getInstance();
+        newTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        newTime.set(Calendar.MINUTE, minute);
+
+        System.out.println("Ontime set : " + newTime);
+
+        schedule_match_time_layout_edt_txt.setText(timeformatter.format(newTime.getTime()));
+
     }
-    public void checkMe(ArrayList<TeamList> testlist1)
-    {
+
+    public void checkMe(ArrayList<TeamList> testlist1) {
         team1name = schedule_match_edt_txt.getText().toString();
         team2name = schedule_match_team2_edt_txt.getText().toString();
-        for (int x=0;x<testlist1.size();x++)
-        {
-            Log.i("Test Size in for loop",String.valueOf(testlist1.size()));
+        for (int x = 0; x < testlist1.size(); x++) {
+            Log.i("Test Size in for loop", String.valueOf(testlist1.size()));
             System.out.println("Team Name" + schedule_match_edt_txt.getText());
 
-            if (testlist1.get(x).getTeamName().equals(team1name))
-            {
-                team1id =  testlist.get(x).getTeamid();
+            if (testlist1.get(x).getTeamName().equals(team1name)) {
+                team1id = testlist.get(x).getTeamid();
                 System.out.println("Found team1 id : " + team1id);
                 //Log.i("Id of team",testlist1.get(x).getTeamid().toString());
             }
-            if (testlist1.get(x).getTeamName().equals(team2name))
-            {
-                team2id =  testlist.get(x).getTeamid();
+            if (testlist1.get(x).getTeamName().equals(team2name)) {
+                team2id = testlist.get(x).getTeamid();
                 System.out.println("Found team 2 id : " + team2id);
                 //Log.i("Id of team",testlist1.get(x).getTeamid().toString());
             }
@@ -303,6 +337,10 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         }
 
     }
+
+
+
+
 
 }
 
