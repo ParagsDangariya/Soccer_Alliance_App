@@ -135,7 +135,7 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
 
                 System.out.println("url" + url);
 
-                ScheduleMatch reschedulematch = new ScheduleMatch(location,date,time,team1id,team2id,leagueid);
+                ScheduleMatch reschedulematch = new ScheduleMatch(location,date,time,team1id,team2id,leagueid,scheduleid);
 
                 System.out.println("Schedulematch : " + reschedulematch.toString());
                 try{
