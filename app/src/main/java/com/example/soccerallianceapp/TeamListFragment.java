@@ -364,9 +364,7 @@ public class TeamListFragment extends Fragment{
 
                                         bundle.putString("Coming_from", "TeamList_Fragment_for add_team");
 
-                                        DashboardNavController.navigate(R.id.addTeaminLeague, bundle,new NavOptions.Builder()
-                                                .setPopUpTo(R.id.leagueOperationsFragment,
-                                                        true).build());
+                                        DashboardNavController.navigate(R.id.addTeaminLeague, bundle);
                                     }
 
                                 });
@@ -437,9 +435,7 @@ public class TeamListFragment extends Fragment{
 
                                         bundle.putInt("League_id",leagueoperationid);
 
-                                         DashboardNavController.navigate(R.id.removeTeaminLeagueFragment, bundle,new NavOptions.Builder()
-                                                 .setPopUpTo(R.id.leagueOperationsFragment,
-                                                         true).build());
+                                         DashboardNavController.navigate(R.id.removeTeaminLeagueFragment, bundle);
                                     }
                                 });
                             }

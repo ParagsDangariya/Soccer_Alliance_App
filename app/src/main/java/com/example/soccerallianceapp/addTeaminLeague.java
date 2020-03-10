@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -141,7 +142,10 @@ public class addTeaminLeague extends Fragment implements View.OnClickListener{
 
                     System.out.println("league"+league_id);
 
-                    DashboardNavController.navigate(R.id.teamListFragment,bundleleague);
+                    DashboardNavController.navigate(R.id.teamListFragment,bundleleague,
+                            new NavOptions.Builder()
+                                    .setPopUpTo(R.id.teamListFragment,
+                                            true).build());
                 }
 
                 @Override
