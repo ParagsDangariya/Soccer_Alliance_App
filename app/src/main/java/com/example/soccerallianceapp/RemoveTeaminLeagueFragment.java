@@ -76,7 +76,7 @@ public class RemoveTeaminLeagueFragment extends Fragment implements View.OnClick
 
         Team_name.setText(team_name);
 
-        Glide.with(context).load(team_logo).centerCrop().into(Team_icon);
+        Glide.with(context).load(team_logo).fitCenter().into(Team_icon);
 
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
     }

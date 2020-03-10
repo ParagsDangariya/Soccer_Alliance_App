@@ -79,7 +79,7 @@ public class addTeaminLeague extends Fragment implements View.OnClickListener{
 
         add_team_in_league_btn = view.findViewById(R.id.add_team_in_league_btn);
         add_team_in_league_btn.setOnClickListener(this);
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+        /*OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
 
@@ -91,12 +91,14 @@ public class addTeaminLeague extends Fragment implements View.OnClickListener{
         };
         getActivity().getOnBackPressedDispatcher().addCallback(this,callback);
 
+
+         */
         Team_name = view.findViewById(R.id.team_name);
         Team_icon = view.findViewById(R.id.league_icon);
 
         Team_name.setText(team_name);
 
-        Glide.with(context).load(team_logo).centerCrop().into(Team_icon);
+        Glide.with(context).load(team_logo).fitCenter().into(Team_icon);
 
 
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
