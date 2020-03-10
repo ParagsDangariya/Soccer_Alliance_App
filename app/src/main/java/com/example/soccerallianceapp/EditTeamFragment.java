@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
@@ -215,7 +216,9 @@ public class EditTeamFragment extends Fragment implements View.OnClickListener{
                     bundleeditplayer.putInt("team_id",team_id);
                     bundleeditplayer.putString("Coming_from","EditScreen");
                     //bundleeditplayer.putInt("player_id",player_id);
-                    DashboardNavController.navigate(R.id.player_List_Fragment,bundleeditplayer);
+                    DashboardNavController.navigate(R.id.player_List_Fragment,bundleeditplayer,new NavOptions.Builder()
+                            .setPopUpTo(R.id.editTeamFragment,
+                                    true).build());
                 }
 
                 @Override
@@ -286,7 +289,9 @@ public class EditTeamFragment extends Fragment implements View.OnClickListener{
                 bundleeditplayer.putInt("team_id",team_id);
                 bundleeditplayer.putString("Coming_from","EditScreen");
                 //bundleeditplayer.putInt("player_id",player_id);
-                DashboardNavController.navigate(R.id.player_List_Fragment,bundleeditplayer);
+                DashboardNavController.navigate(R.id.player_List_Fragment,bundleeditplayer,new NavOptions.Builder()
+                        .setPopUpTo(R.id.editTeamFragment,
+                                true).build());
             }
 
             @Override

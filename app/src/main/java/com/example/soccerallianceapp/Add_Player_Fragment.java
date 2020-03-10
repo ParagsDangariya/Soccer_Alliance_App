@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
@@ -235,7 +236,9 @@ public class Add_Player_Fragment extends Fragment implements View.OnClickListene
                 bundle.putString("Coming_from","Team_Manager");
                 bundle.putInt("team_id",team_id);
                 System.out.println("teamid is"+team_id);
-                navController.navigate(R.id.player_List_Fragment,bundle);
+                navController.navigate(R.id.player_List_Fragment,bundle,new NavOptions.Builder()
+                        .setPopUpTo(R.id.player_List_Fragment,
+                                true).build());
 
 
 
