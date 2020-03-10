@@ -3,6 +3,7 @@ package com.example.soccerallianceapp;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,13 @@ public class forgot_pass1_Fragment extends Fragment implements View.OnClickListe
 
 
             String email = fp1_email_edit_txt.getEditableText().toString().trim();
+
+            if(TextUtils.isEmpty(email)){
+                fp1_email_edit_txt.setError("Email is Required. For Reset Password.");
+                return;
+            }
+
+
             fAuth.sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {

@@ -109,7 +109,7 @@
     <fragment
         android:id="@+id/leagueOperationsFragment"
         android:name="com.example.soccerallianceapp.LeagueOperationsFragment"
-        android:label="League Concern"
+        android:label="League Operations"
         tools:layout="@layout/fragment_league_operations" >
         <action
             android:id="@+id/action_leagueOperationsFragment_to_add_Team_in_League_Fragment"
@@ -213,21 +213,21 @@
     <fragment
         android:id="@+id/leagueUpcomingMatchFragment"
         android:name="com.example.soccerallianceapp.LeagueUpcomingMatchFragment"
-        android:label="fragment_league_upcoming_match"
+        android:label="Upcoming Match"
         tools:layout="@layout/fragment_league_upcoming_match" />
     <fragment
         android:id="@+id/leaguePlayedMatchFragment"
         android:name="com.example.soccerallianceapp.LeaguePlayedMatchFragment"
-        android:label="fragment_league_played_match"
+        android:label="Played Match"
         tools:layout="@layout/fragment_league_played_match" />
     <fragment
         android:id="@+id/removeTeaminLeagueFragment"
         android:name="com.example.soccerallianceapp.RemoveTeaminLeagueFragment"
-        android:label="fragment_remove_teamin_league"
+        android:label="Remove Team"
         tools:layout="@layout/fragment_remove_teamin_league" />
     <fragment
         android:id="@+id/addTeaminLeague"
         android:name="com.example.soccerallianceapp.addTeaminLeague"
-        android:label="fragment_add_teamin_league"
+        android:label="Add Team"
         tools:layout="@layout/fragment_add_teamin_league" />
 </navigation>

@@ -112,7 +112,7 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
                     league_icon = getArguments().getString("League_Logo");
 
                     LeagueName.setText(league_name);
-                    Glide.with(context).load(league_icon).centerCrop().into(league_logo);
+                    Glide.with(context).load(league_icon).fitCenter().into(league_logo);
 
                     bundle.putString("League_name",league_name);
                     bundle.putInt("League_id",league_id);

@@ -3,6 +3,7 @@ package com.example.soccerallianceapp;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -49,6 +50,9 @@ public class addTeaminLeague extends Fragment implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         if (getArguments() != null) {
 
             league_id = getArguments().getInt("League_id");
@@ -56,6 +60,7 @@ public class addTeaminLeague extends Fragment implements View.OnClickListener{
             team_name = getArguments().getString("team_name");
             team_logo = getArguments().getString("logo_url");
         }
+
     }
 
     @Override
@@ -74,7 +79,17 @@ public class addTeaminLeague extends Fragment implements View.OnClickListener{
 
         add_team_in_league_btn = view.findViewById(R.id.add_team_in_league_btn);
         add_team_in_league_btn.setOnClickListener(this);
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
 
+                Bundle bundle = new Bundle();
+                bundle.putString("Coming_from","AddTeamInLeague");
+                bundle.putInt("League_id from operation",league_id);
+                DashboardNavController.navigate(R.id.teamListFragment,bundle);
+            }
+        };
+        getActivity().getOnBackPressedDispatcher().addCallback(this,callback);
 
         Team_name = view.findViewById(R.id.team_name);
         Team_icon = view.findViewById(R.id.league_icon);

@@ -21,4 +21,9 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "onCreate: main ");
         navController = Navigation.findNavController(this,R.id.host_fragment);
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return navController.navigateUp();
+    }
 }

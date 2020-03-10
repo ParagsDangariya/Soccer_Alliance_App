@@ -16,6 +16,11 @@
         <action
             android:id="@+id/action_loginFragment_to_emailNotVerifiedFragment"
             app:destination="@id/emailNotVerifiedFragment" />
+        <action
+            app:popUpTo="@+id/loginFragment"
+            app:popUpToInclusive="false"
+            android:id="@+id/action_loginFragment_to_forgot_pass1_Fragment"
+            app:destination="@id/forgot_pass1_Fragment" />
     </fragment>
     <fragment
         android:id="@+id/signUp1_Fragment"
@@ -41,6 +46,8 @@
         android:label="fragment_sign_up3"
         tools:layout="@layout/fragment_sign_up3" >
         <action
+            app:popUpTo="@+id/loginFragment"
+            app:popUpToInclusive="true"
             android:id="@+id/action_signUp3_Fragment_to_signUp4_Fragment"
             app:destination="@id/signUp4_Fragment" />
     </fragment>
@@ -48,7 +55,9 @@
         android:id="@+id/signUp4_Fragment"
         android:name="com.example.soccerallianceapp.SignUp4_Fragment"
         android:label="fragment_sign_up4"
-        tools:layout="@layout/fragment_sign_up4" />
+        tools:layout="@layout/fragment_sign_up4" >
+
+    </fragment>
     <fragment
         android:id="@+id/splash_Screen"
         android:name="com.example.soccerallianceapp.Splash_Screen_Fragment"
@@ -56,7 +65,9 @@
         tools:layout="@layout/fragment_splash__screen" >
         <action
             android:id="@+id/action_splash_Screen_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@+id/splash_Screen"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
