@@ -40,6 +40,12 @@
         <action
             android:id="@+id/action_teamListFragment_to_player_List_Fragment"
             app:destination="@id/player_List_Fragment" />
+        <action
+            android:id="@+id/action_teamListFragment_to_addTeaminLeague"
+            app:destination="@id/addTeaminLeague" />
+        <action
+            android:id="@+id/action_teamListFragment_to_removeTeaminLeagueFragment"
+            app:destination="@id/removeTeaminLeagueFragment" />
     </fragment>
     <fragment
         android:id="@+id/country_List_Fragment"
@@ -127,14 +133,9 @@
             android:id="@+id/action_leagueOperationsFragment_to_leaguePlayedMatchFragment"
             app:destination="@id/leaguePlayedMatchFragment" />
         <action
-            android:id="@+id/action_leagueOperationsFragment_to_removeTeaminLeagueFragment"
-            app:destination="@id/removeTeaminLeagueFragment" />
-        <action
             android:id="@+id/action_leagueOperationsFragment_to_teamListFragment"
-            app:destination="@id/teamListFragment" />
-        <action
-            android:id="@+id/action_leagueOperationsFragment_to_addTeaminLeague"
-            app:destination="@id/addTeaminLeague" />
+            app:destination="@id/teamListFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/createLeagueFragment"
@@ -224,10 +225,18 @@
         android:id="@+id/removeTeaminLeagueFragment"
         android:name="com.example.soccerallianceapp.RemoveTeaminLeagueFragment"
         android:label="Remove Team"
-        tools:layout="@layout/fragment_remove_teamin_league" />
+        tools:layout="@layout/fragment_remove_teamin_league" >
+        <action
+            android:id="@+id/action_removeTeaminLeagueFragment_to_leagueOperationsFragment"
+            app:destination="@id/leagueOperationsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addTeaminLeague"
         android:name="com.example.soccerallianceapp.addTeaminLeague"
         android:label="Add Team"
-        tools:layout="@layout/fragment_add_teamin_league" />
+        tools:layout="@layout/fragment_add_teamin_league" >
+        <action
+            android:id="@+id/action_addTeaminLeague_to_leagueOperationsFragment"
+            app:destination="@id/leagueOperationsFragment" />
+    </fragment>
 </navigation>

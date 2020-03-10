@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -95,7 +96,9 @@ public class EmailNotVerifiedFragment extends Fragment implements View.OnClickLi
                 public void onSuccess(Void aVoid) {
                     Toast.makeText(context,"Verification Email has been sent.",Toast.LENGTH_SHORT).show();
 
-                    navController.navigate(R.id.loginFragment,bundle);
+                    navController.navigate(R.id.loginFragment,bundle,new NavOptions.Builder()
+                            .setPopUpTo(R.id.loginFragment,
+                                    true).build());
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -109,7 +112,9 @@ public class EmailNotVerifiedFragment extends Fragment implements View.OnClickLi
         }
         if(v == back_btn){
 
-            navController.navigate(R.id.loginFragment,bundle);
+            navController.navigate(R.id.loginFragment,bundle,new NavOptions.Builder()
+                    .setPopUpTo(R.id.loginFragment,
+                            true).build());
         }
 
 

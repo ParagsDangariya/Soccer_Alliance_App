@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -363,7 +364,9 @@ public class TeamListFragment extends Fragment{
 
                                         bundle.putString("Coming_from", "TeamList_Fragment_for add_team");
 
-                                        DashboardNavController.navigate(R.id.addTeaminLeague, bundle);
+                                        DashboardNavController.navigate(R.id.addTeaminLeague, bundle,new NavOptions.Builder()
+                                                .setPopUpTo(R.id.leagueOperationsFragment,
+                                                        true).build());
                                     }
 
                                 });
@@ -434,7 +437,9 @@ public class TeamListFragment extends Fragment{
 
                                         bundle.putInt("League_id",leagueoperationid);
 
-                                         DashboardNavController.navigate(R.id.removeTeaminLeagueFragment, bundle);
+                                         DashboardNavController.navigate(R.id.removeTeaminLeagueFragment, bundle,new NavOptions.Builder()
+                                                 .setPopUpTo(R.id.leagueOperationsFragment,
+                                                         true).build());
                                     }
                                 });
                             }

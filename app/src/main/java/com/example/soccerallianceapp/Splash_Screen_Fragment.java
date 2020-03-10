@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import com.example.soccer_alliance_project_test.R;
@@ -44,7 +45,17 @@ public class Splash_Screen_Fragment extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                navController.navigate(R.id.loginFragment);
+
+                //navController.navigate(R.id.loginFragment);
+
+                navController.navigate(R.id.loginFragment,null,
+                        new NavOptions.Builder()
+                                .setPopUpTo(R.id.splash_Screen,
+                                        true).build());
+
+
+
+
             }
         },3000);
     }

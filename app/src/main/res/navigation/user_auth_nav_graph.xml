@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/user_auth_nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/splash_Screen">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -66,8 +66,8 @@
         <action
             android:id="@+id/action_splash_Screen_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@+id/splash_Screen"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/splash_Screen"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
