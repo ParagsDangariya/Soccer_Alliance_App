@@ -99,15 +99,16 @@ public class LeagueUpcomingMatchFragment extends Fragment {
                                         RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
                                         int position = viewHolder.getAdapterPosition();
                                         Bundle upcoming_match_bundle = new Bundle();
+                                        upcoming_match_bundle.putString("ComingFrom" ,"LeagueUpcomingMatchFragment");
                                         upcoming_match_bundle.putInt("up_match_id", up_matches_data_lists.get(position).getMatch_id());
-                                        upcoming_match_bundle.putInt("played_team1_id",up_matches_data_lists.get(position).getTeam1Id());
-                                        upcoming_match_bundle.putInt("played_team2_id",up_matches_data_lists.get(position).getTeam2Id());
-                                        upcoming_match_bundle.putString("played_team1name",up_matches_data_lists.get(position).getTeam1_name());
-                                        upcoming_match_bundle.putString("played_team2name",up_matches_data_lists.get(position).getTeam2_name());
-                                        upcoming_match_bundle.putString("played_team1logo",up_matches_data_lists.get(position).getTeam1_logo());
-                                        upcoming_match_bundle.putString("played_team2logo",up_matches_data_lists.get(position).getTeam2_logo());
-                                        upcoming_match_bundle.putString("played_match_date",up_matches_data_lists.get(position).getMatch_date());
-                                        upcoming_match_bundle.putString("played_match_time",up_matches_data_lists.get(position).getMatch_time());
+                                        upcoming_match_bundle.putInt("up_team1_id",up_matches_data_lists.get(position).getTeam1Id());
+                                        upcoming_match_bundle.putInt("up_team2_id",up_matches_data_lists.get(position).getTeam2Id());
+                                        upcoming_match_bundle.putString("up_team1name",up_matches_data_lists.get(position).getTeam1_name());
+                                        upcoming_match_bundle.putString("up_team2name",up_matches_data_lists.get(position).getTeam2_name());
+                                        upcoming_match_bundle.putString("up_team1logo",up_matches_data_lists.get(position).getTeam1_logo());
+                                        upcoming_match_bundle.putString("up_team2logo",up_matches_data_lists.get(position).getTeam2_logo());
+                                        upcoming_match_bundle.putString("up_match_date",up_matches_data_lists.get(position).getMatch_date());
+                                        upcoming_match_bundle.putString("up_match_time",up_matches_data_lists.get(position).getMatch_time());
                                         DashboardNavController.navigate(R.id.matchScoreRescheduleFragment, upcoming_match_bundle);
                                     }
                                 });
