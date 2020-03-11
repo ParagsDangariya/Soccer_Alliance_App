@@ -33,9 +33,7 @@ import retrofit2.Response;
 public class MatchScoreUpdateFragment extends Fragment implements View.OnClickListener {
 
     public NavController DashboardNavController;
-
     MatchScores matchscore;
-
     MatchScores matchScoresteam2;
 
     int matchid = 3;
@@ -46,25 +44,17 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
 
 
     private Context context;
-
     private ArrayList<Comman_Data_List> comman_data_List;
-
     private Comman_adapter comman_adapter;
-
-
     Getdataservice service;
+
     TextInputEditText team1_goal_edt_txt,shots_team1_edt_txt,shotsontarget_team1_edt_txt,possession_team1_edt_txt,passes_team1_edt_txt,fouls_team1_edt_txt;
-
     TextInputEditText passaccuracy_team1_edt_txt,redcard_team1_edt_txt,offsides_team1_edt_txt,corners_team1_edt_txt,yellowcards_team1_edt_txt;
-
     TextInputEditText  team2_goal_edt_txt,shots_team2_edt_txt,shotsontarget_team2_edt_txt,possession_team2_edt_txt,passes_team2_edt_txt,fouls_team2_edt_txt;
-
     TextInputEditText passaccuracy_team2_edt_txt,redcard_team2_edt_txt,offsides_team2_edt_txt,corners_team2_edt_txt,yellowcards_team2_edt_txt;
-
     MaterialButton Update_Score_btn;
 
     int goalteam1,shots,shotsontarget,possession,passes,passaccuracy,redcard,offsides,corners,fouls,yellowcard;
-
     int goal2,shots2,shotsontarget2,possession2,passes2,passaccuracy2,redcard2,offsides2,corners2,fouls2,yellowcard2;
 
 

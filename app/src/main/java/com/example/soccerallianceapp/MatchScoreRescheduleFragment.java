@@ -48,18 +48,19 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
 
         DashboardNavController = Navigation.findNavController(getActivity(), R.id.dashboard_host_fragment);
         context = getActivity().getApplicationContext();
+
         team1_logo = view.findViewById(R.id.team1_logo);
         team2_logo = view.findViewById(R.id.team2_logo);
         team1 = view.findViewById(R.id.team1);
         team2 = view.findViewById(R.id.team2);
         ReSchedule_match_btn = view.findViewById(R.id.ReSchedule_match_btn);
+        ReSchedule_match_btn.setOnClickListener(this);
         Update_Score_btn = view.findViewById(R.id.Update_Score_btn);
+        Update_Score_btn.setOnClickListener(this);
         Cancel_match_btn = view.findViewById(R.id.Cancel_match_btn);
+        Cancel_match_btn.setOnClickListener(this);
 
-
-
-
-        Bundle bundle = new Bundle();
+        Bundle bundle = getArguments();
 
         if (getArguments() != null) {
             if (getArguments().getString("ComingFrom").equals("LeagueUpcomingMatchFragment")) {
@@ -82,37 +83,50 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
                 Glide.with(context).load(up_team1icon).fitCenter().into(team1_logo);
                 Glide.with(context).load(up_team2icon).fitCenter().into(team2_logo);
 
-
-
-
-
-
-
-
-
-
                 // DashboardNavController.navigate(R.id.matchScoreUpdateFragment, bundle);
-
 
             }
 
         }
-
-
-
-
-
-
-
     }
-
     @Override
     public void onClick(View v) {
 
         if (v == ReSchedule_match_btn){
+            Bundle bundlematch = new Bundle();
+            bundlematch.putString("Coming_from","Reschedulematch");
+            bundlematch.putInt("League_id",league_id);
+            bundlematch.putInt("up_match_id", up_match_id);
+            bundlematch.putInt("up_team1_id" ,up_team1_id);
+            bundlematch.putInt("up_team2_id",up_team2_id);
+            bundlematch.putString("up_team1name",up_team1name);
+            bundlematch.putString("up_team2name",up_team2name);
+            bundlematch.putString("up_team1logo",up_team1icon);
+            bundlematch.putString("up_team2logo",up_team2icon);
+            bundlematch.putString("up_match_date",up_match_date);
+            bundlematch.putString("up_match_time",up_match_time);
 
+            DashboardNavController.navigate(R.id.rescheduleMatchFragment,bundlematch);
+        }
+        if (v == Update_Score_btn){
+            Bundle bundlematch = new Bundle();
+            bundlematch.putString("Coming_from","updateScore");
+
+            bundlematch.putInt("League_id",league_id);
+            bundlematch.putInt("up_match_id", up_match_id);
+            bundlematch.putInt("up_team1_id" ,up_team1_id);
+            bundlematch.putInt("up_team2_id",up_team2_id);
+            bundlematch.putString("up_team1name",up_team1name);
+            bundlematch.putString("up_team2name",up_team2name);
+            bundlematch.putString("up_team1logo",up_team1icon);
+            bundlematch.putString("up_team2logo",up_team2icon);
+            bundlematch.putString("up_match_date",up_match_date);
+            bundlematch.putString("up_match_time",up_match_time);
+
+            DashboardNavController.navigate(R.id.matchScoreUpdateFragment,bundlematch);
 
         }
+
 
 
 
