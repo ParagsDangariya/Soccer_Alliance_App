@@ -40,7 +40,21 @@ public class Statistics_Fragment extends Fragment {
             red_cards_t1, red_cards_t2,
             offsides_t1, offsides_t2,
             corners_t1,corners_t2;
+    int matchid;
      private ProgressBar progressBar;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (this.getArguments() != null){
+            matchid = getArguments().getInt("match_id");
+            System.out.println("on create of statistics"+matchid);
+        }
+        System.out.println("on create of statistics outside");
+
+
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

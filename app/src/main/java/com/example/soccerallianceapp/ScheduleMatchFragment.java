@@ -70,7 +70,6 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     String date;
     String time;
     String location;
-
     int team1id, team2id;
     String stime;
     String team1name = "", team2name = "";
@@ -78,15 +77,12 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_schedule_match, container, false);
-
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -114,7 +110,6 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
         Schedule_match_btn = view.findViewById(R.id.Schedule_match_btn);
         Schedule_match_btn.setOnClickListener(this);
-
         // get Current Date
         Calendar calendar = Calendar.getInstance();
         day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -134,8 +129,6 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                 dialog.show(getActivity().getFragmentManager(), "DatePicketDialog");
             }
         });
-
-
 
         schedule_match_time_layout_edt_txt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,17 +153,13 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
                 timePickerDialog.show();
             }
-
-
         });
 
         uid = fAuth.getCurrentUser().getUid();
         //Toast.makeText(getActivity(), "UID : " + uid, Toast.LENGTH_LONG).show();
         System.out.println("User Id : " + uid);
-
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
         Log.d("step1", "after getService part (View match list by leagueID)");
-
         Call<ViewTeamListFromLeagueId> call = service.viewTeamListFromLeagueId(League_id);
         call.enqueue(new Callback<ViewTeamListFromLeagueId>() {
             @Override
@@ -194,12 +183,10 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                         listofteam[i] = comman_data_List.get(i).getItem_name();
                         System.out.print("teamlists." + listofteam[i]);
                     }
-
                     ArrayAdapter<String> teamadapter = new ArrayAdapter<>(context,
                             simple_selectable_list_item, listofteam);
 
                     schedule_match_edt_txt.setAdapter(teamadapter);
-
                     ArrayAdapter<String> teamadapter2 = new ArrayAdapter<>(context,
                             simple_selectable_list_item, listofteam);
 

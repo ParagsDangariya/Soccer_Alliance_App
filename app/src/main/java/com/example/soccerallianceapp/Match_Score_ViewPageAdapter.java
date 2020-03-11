@@ -1,5 +1,7 @@
 package com.example.soccerallianceapp;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -19,10 +21,18 @@ public class Match_Score_ViewPageAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
+        Fragment fragment=null;
         switch (position){
             case 0:
+
+
+
+
                 return new Line_Up_Fragment();
             case 1:
+
+
+
                 return new Statistics_Fragment();
             default:
                     return null;

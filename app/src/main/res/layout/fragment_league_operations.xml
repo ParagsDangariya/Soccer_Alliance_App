@@ -18,7 +18,7 @@
 
             android:id="@+id/materialCardView"
             android:layout_width="match_parent"
-            android:layout_height="104dp"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:padding="5dp"
 

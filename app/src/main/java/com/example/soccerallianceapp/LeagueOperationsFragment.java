@@ -185,6 +185,13 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
             System.out.println("league"+league_id);
             DashboardNavController.navigate(R.id.teamListFragment,bundleleague);
         }
+        if( v == league_operations_playedmatch_btn){
+
+            Bundle bundle = new Bundle();
+            //bundle.putString("League_name",league_name);
+            bundle.putInt("League_id",league_id);
+            DashboardNavController.navigate(R.id.leaguePlayedMatchFragment,bundle);
+        }
 
     }
 }

@@ -23,8 +23,20 @@ public class Match_Score_Fragment extends Fragment {
     private ViewPager ms_tabs_view_pager;
     private Match_Score_ViewPageAdapter ms_viewPageAdapter;
 
+    int matchid;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null){
+            matchid = getArguments().getInt("played_match_id");
+            System.out.println("on create on match score"+matchid);
 
 
+        }
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
