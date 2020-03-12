@@ -39,6 +39,7 @@ tools:context="com.example.soccerallianceapp.Line_Up_Fragment">
                     android:id="@+id/team1_logo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:layout_gravity="left"
                     android:src="@drawable/splash_logo"
                     />
                 <TextView
@@ -129,6 +130,7 @@ tools:context="com.example.soccerallianceapp.Line_Up_Fragment">
                     android:id="@+id/team2_logo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:layout_gravity="right"
                     android:src="@drawable/splash_logo"
                     />
                 <TextView

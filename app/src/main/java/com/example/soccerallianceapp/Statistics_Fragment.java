@@ -1,6 +1,7 @@
 package com.example.soccerallianceapp;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.MatchScore_PlayedMatchStatastics.MatchScorePlayedmatchStatastics;
 import com.example.soccerallianceapp.pojo.MatchScore_PlayedMatchStatastics.MatchScores;
@@ -27,6 +29,7 @@ import retrofit2.Response;
 public class Statistics_Fragment extends Fragment {
 
 
+    private Context context;
     TextView sts_team1,sts_team2,sts_date,sts_time,sts_team1_goal,sts_team2_goal;
     ImageView sts_team1_logo,sts_team2_logo;
 
@@ -40,17 +43,45 @@ public class Statistics_Fragment extends Fragment {
             red_cards_t1, red_cards_t2,
             offsides_t1, offsides_t2,
             corners_t1,corners_t2;
-    int matchid;
+    int matchid,team1id,team2id;
+    String team1,team2,logo1,logo2,date,time;
+
+    Bundle bundle;
      private ProgressBar progressBar;
+
+
+    public Statistics_Fragment() {
+    }
+
+    public Statistics_Fragment(Bundle bundle) {
+        this.bundle = bundle;
+    }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (this.getArguments() != null){
+
+
+
+     /*   if (getArguments() != null){
             matchid = getArguments().getInt("match_id");
             System.out.println("on create of statistics"+matchid);
-        }
-        System.out.println("on create of statistics outside");
+
+        }*/
+     if(bundle!=null){
+         matchid = bundle.getInt("match_id");
+         team1id = bundle.getInt("team1id");
+         team2id = bundle.getInt("team2id");
+         team1 = bundle.getString("team1");
+         team2 = bundle.getString("team2");
+         logo1 = bundle.getString("logo1");
+         logo2 = bundle.getString("logo2");
+         date = bundle.getString("date");
+         time = bundle.getString("time");
+         System.out.println("on create of statistics inside "+matchid);
+     }
+
 
 
 
@@ -66,6 +97,7 @@ public class Statistics_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        context = getActivity().getApplicationContext();
 
        /* progressBar=view.findViewById(R.id.progressbar);
         progressBar.setVisibility(View.VISIBLE);
@@ -100,13 +132,24 @@ public class Statistics_Fragment extends Fragment {
         corners_t1 = view.findViewById(R.id.corners_t1);
         corners_t2 = view.findViewById(R.id.corners_t2);
 
+        sts_team1_goal.setText("0");
+        sts_team2_goal.setText("0");
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getTeam1Score(1,1);
-        getTeam2Score(2,1);
+        sts_team1.setText(team1);
+        sts_team2.setText(team2);
+        Glide.with(context).load(logo1).fitCenter().circleCrop().into(sts_team1_logo);
+        Glide.with(context).load(logo2).fitCenter().circleCrop().into(sts_team2_logo);
+
+        sts_date.setText(date);
+        sts_time.setText(time);
+
+        getTeam1Score(matchid,team1id);
+        getTeam2Score(matchid,team2id);
     }
 
     private void getTeam1Score(int match_id,int team_id){

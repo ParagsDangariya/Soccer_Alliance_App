@@ -12,28 +12,25 @@ public class Match_Score_ViewPageAdapter extends FragmentPagerAdapter {
 
     private int numOfTabs;
     private String[] tabTitles = new String[]{"Line Up", "Statistics"};
+    private Bundle bundle;
 
-    public Match_Score_ViewPageAdapter(@NonNull FragmentManager fm, int behavior, int numOfTabs) {
+    public Match_Score_ViewPageAdapter(@NonNull FragmentManager fm, int behavior, int numOfTabs, Bundle bundle) {
         super(fm, behavior);
         this.numOfTabs = numOfTabs;
+        this.bundle = bundle;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment=null;
+
         switch (position){
             case 0:
 
-
-
-
-                return new Line_Up_Fragment();
+                return new Line_Up_Fragment(bundle);
             case 1:
 
-
-
-                return new Statistics_Fragment();
+                return new Statistics_Fragment(bundle);
             default:
                     return null;
         }
