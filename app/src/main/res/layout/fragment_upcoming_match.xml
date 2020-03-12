@@ -41,6 +41,7 @@
                         android:id="@+id/umf_team1_logo"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
+                        android:layout_gravity="left"
                         android:src="@drawable/splash_logo" />
 
                     <TextView
@@ -108,6 +109,7 @@
                         android:id="@+id/umf_team2_logo"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
+                        android:layout_gravity="right"
                         android:src="@drawable/splash_logo" />
 
                     <TextView
@@ -277,74 +279,11 @@
                         android:textSize="16sp" />
 
                 </LinearLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            app:cardElevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/materialCardView3"
-            app:strokeColor="@color/cardview_dark_background"
-            app:strokeWidth="1dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp">
-
-                <TextView
-                    android:id="@+id/league"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
-                    android:gravity="center"
-                    android:text="League By"
-                    android:textAlignment="center"
-                    android:textSize="22dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                </TextView>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/league">
-
-                    <ImageView
-                        android:id="@+id/umf_league_icon"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/splash_logo"
-                        android:paddingTop="12dp"/>
-
-
-                    <TextView
-                        android:id="@+id/umf_league_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="5dp"
-                        android:text="League Name"
-                        android:textColor="@android:color/black"
-                        android:textSize="22sp"
-                        android:gravity="start|center"
-                        android:paddingStart="8dp"/>
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

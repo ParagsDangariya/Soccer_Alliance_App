@@ -35,7 +35,14 @@ public class UpcomingMatchFragment extends Fragment {
     String Team1_Players="",Team2_Players="";
     Context context;
 
-     @Override
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -58,16 +65,15 @@ public class UpcomingMatchFragment extends Fragment {
         team2_manager_name = view.findViewById(R.id.team2_manager_name);
         umf_team1_logo = view.findViewById(R.id.umf_team1_logo);
         umf_team2_logo = view.findViewById(R.id.umf_team2_logo);
-        umf_league_icon = view.findViewById(R.id.umf_league_icon);
-        umf_league_name = view.findViewById(R.id.umf_league_name);
+
 
         if(getArguments()!=null){
-            umf_team1.setText(getArguments().getString("up_team1_name"));
-            umf_team2.setText(getArguments().getString("up_team2_name"));
-            Glide.with(context).load(getArguments().getString("up_team1_logo")).fitCenter().into(umf_team1_logo);
-            Glide.with(context).load(getArguments().getString("up_team2_logo")).fitCenter().into(umf_team2_logo);
-            umf_date.setText(getArguments().getString("up_date"));
-            umf_time.setText(getArguments().getString("up_time"));
+            umf_team1.setText(getArguments().getString("team1name"));
+            umf_team2.setText(getArguments().getString("team2name"));
+            Glide.with(context).load(getArguments().getString("team1logo")).fitCenter().into(umf_team1_logo);
+            Glide.with(context).load(getArguments().getString("team2logo")).fitCenter().into(umf_team2_logo);
+            umf_date.setText(getArguments().getString("match_date"));
+            umf_time.setText(getArguments().getString("match_time"));
         }
 
         Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);

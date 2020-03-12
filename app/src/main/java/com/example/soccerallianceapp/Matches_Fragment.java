@@ -111,13 +111,16 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                                 int position = viewHolder.getAdapterPosition();
                                 Bundle upcoming_match_bundle = new Bundle();
                                 upcoming_match_bundle.putInt("up_match_id", up_matches_data_lists.get(position).getMatch_id());
-                                upcoming_match_bundle.putInt("played_team1_id",up_matches_data_lists.get(position).getTeam1Id());
-                                upcoming_match_bundle.putInt("played_team2_id",up_matches_data_lists.get(position).getTeam2Id());
-                                upcoming_match_bundle.putString("played_team1name",up_matches_data_lists.get(position).getTeam1_name());
-                                upcoming_match_bundle.putString("played_team2name",up_matches_data_lists.get(position).getTeam2_name());
-                                upcoming_match_bundle.putString("played_team1logo",up_matches_data_lists.get(position).getTeam1_logo());
-                                upcoming_match_bundle.putString("played_team2logo",up_matches_data_lists.get(position).getTeam2_logo());
-                                upcoming_match_bundle.putString("played_match_date",up_matches_data_lists.get(position).getMatch_date());
+                                upcoming_match_bundle.putInt("team1_id",up_matches_data_lists.get(position).getTeam1Id());
+                                upcoming_match_bundle.putInt("team2_id",up_matches_data_lists.get(position).getTeam2Id());
+                                upcoming_match_bundle.putString("team1name",up_matches_data_lists.get(position).getTeam1_name());
+                                upcoming_match_bundle.putString("team2name",up_matches_data_lists.get(position).getTeam2_name());
+                                upcoming_match_bundle.putString("team1logo",up_matches_data_lists.get(position).getTeam1_logo());
+                                upcoming_match_bundle.putString("team2logo",up_matches_data_lists.get(position).getTeam2_logo());
+                                upcoming_match_bundle.putString("match_date",up_matches_data_lists.get(position).getMatch_date());
+                                upcoming_match_bundle.putString("match_time",up_matches_data_lists.get(position).getMatch_time());
+
+
                                 DashboardNavController.navigate(R.id.upcomingMatchFragment, upcoming_match_bundle);
                             }
                         });
@@ -185,6 +188,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                                 bundle.putString("played_team2logo",played_matches_data_lists.get(position).getTeam2_logo());
                                 bundle.putString("played_match_date",played_matches_data_lists.get(position).getMatch_date());
 
+                                bundle.putString("played_match_time",played_matches_data_lists.get(position).getMatch_time());
 
                                 DashboardNavController.navigate(R.id.match_Score_Fragment,bundle);
                             }
