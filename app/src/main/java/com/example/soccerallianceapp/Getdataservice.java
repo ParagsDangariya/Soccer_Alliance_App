@@ -110,6 +110,9 @@ public interface Getdataservice {
     @POST("ReSchedule")
     Call<ScheduleMatch> Reschedule_match_call(@Body ScheduleMatch rescheduleMatch);
 
+    @GET("CancelMatch&{match_id}")
+    Call<ResponseBody> cancelmatch(@Path("match_id") int match_id);
+
    @GET("upcomingMatches_guestDashboard")
    Call<MatchListDashboard> getupcomingMatches_guestDashboardCall();
 
