@@ -19,6 +19,8 @@ import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.ViewPlayerListByTeamDashboard.PlayerList;
 import com.example.soccerallianceapp.pojo.ViewPlayerListByTeamDashboard.ViewPlayerListDashboard;
+import com.example.soccerallianceapp.pojo.ViewTeamManagerDetail.TeamManagerDetails;
+import com.example.soccerallianceapp.pojo.ViewTeamManagerDetail.ViewTeamManagerDetail;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +35,11 @@ public class UpcomingMatchFragment extends Fragment {
     TextView umf_team1,umf_team2,umf_date,umf_time,team1_player_list, team2_player_list, team1_manager_name,team2_manager_name,umf_league_name;
     ImageView umf_team1_logo,umf_team2_logo,umf_league_icon;
     String Team1_Players="",Team2_Players="";
+    String team1manager,team2manager;
+    int team1,team2;
     Context context;
+    String teamManger;
+    Getdataservice service;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,9 +80,19 @@ public class UpcomingMatchFragment extends Fragment {
             Glide.with(context).load(getArguments().getString("team2logo")).fitCenter().into(umf_team2_logo);
             umf_date.setText(getArguments().getString("match_date"));
             umf_time.setText(getArguments().getString("match_time"));
-        }
 
-        Getdataservice service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+            team1= getArguments().getInt("team1_id");
+            team2 = getArguments().getInt("team2_id");
+
+        }
+        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+
+        getteam1manager(team1,service);
+        getteam2manager(team2,service);
+
+
+        team2_manager_name.setText(team2manager);
+
 
         Call<ViewPlayerListDashboard> viewPlayerListDashboardCall = service.getviewPlayerListFromTeamDashboardCall(1);
         System.out.println("call " + viewPlayerListDashboardCall);
@@ -100,6 +116,7 @@ public class UpcomingMatchFragment extends Fragment {
 
                 }
             }
+
 
             @Override
             public void onFailure(Call<ViewPlayerListDashboard> call, Throwable t) {
@@ -135,6 +152,82 @@ public class UpcomingMatchFragment extends Fragment {
                 System.out.println("Error : " + t.getMessage());
             }
         });
+    }
+
+    private String getteam1manager(int team1, Getdataservice service) {
+
+
+
+       Call<ViewTeamManagerDetail> call = service.ViewTeamManagerDetail(team1);
+
+       call.enqueue(new Callback<ViewTeamManagerDetail>() {
+
+           @Override
+           public void onResponse(Call<ViewTeamManagerDetail> call, Response<ViewTeamManagerDetail> response) {
+
+               Log.d("step2", "after onResponse");
+               ViewTeamManagerDetail realData = response.body();
+               System.out.println("response" + realData);
+               if (response.body() != null) {
+                   if (realData.getStatus() == 200) {
+
+                       TeamManagerDetails teamManagerDetails = realData.getTeamManagerDetails();
+                       teamManger = teamManagerDetails.getFullName();
+                       System.out.println("managername"+teamManger);
+                       team1_manager_name.setText(teamManger);
+
+                   }
+
+               } else {
+                   Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
+
+               }
+           }
+
+           @Override
+           public void onFailure(Call<ViewTeamManagerDetail> call, Throwable t) {
+
+           }
+       });
+        return teamManger;
+    }
+
+    private String getteam2manager(int team1, Getdataservice service) {
+
+
+
+        Call<ViewTeamManagerDetail> call = service.ViewTeamManagerDetail(team1);
+
+        call.enqueue(new Callback<ViewTeamManagerDetail>() {
+
+            @Override
+            public void onResponse(Call<ViewTeamManagerDetail> call, Response<ViewTeamManagerDetail> response) {
+
+                Log.d("step2", "after onResponse");
+                ViewTeamManagerDetail realData = response.body();
+                System.out.println("response" + realData);
+                if (response.body() != null) {
+                    if (realData.getStatus() == 200) {
+
+                        TeamManagerDetails teamManagerDetails = realData.getTeamManagerDetails();
+                        teamManger = teamManagerDetails.getFullName();
+                        System.out.println("managername"+teamManger);
+                        team2_manager_name.setText(teamManger);
+
+                    }
+
+                } else {
+                    Toast.makeText(getActivity(), "Response empty", Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ViewTeamManagerDetail> call, Throwable t) {
+
+            }
+        });
+        return teamManger;
     }
 
 }

@@ -17,6 +17,7 @@ import com.example.soccerallianceapp.pojo.ViewPlayerListByTeamDashboard.ViewPlay
 import com.example.soccerallianceapp.pojo.ViewTeamDetail.ViewTeamDetail;
 import com.example.soccerallianceapp.pojo.ViewTeamListByLeague.ViewTeamListByLeague;
 import com.example.soccerallianceapp.pojo.ViewTeamListDashboard.ViewTeamList;
+import com.example.soccerallianceapp.pojo.ViewTeamManagerDetail.ViewTeamManagerDetail;
 import com.example.soccerallianceapp.pojo.leaguelistbyuserId.LeaguesFragment;
 import com.example.soccerallianceapp.pojo.listLeagueDashboard.ListLeagueDashboard;
 import com.example.soccerallianceapp.pojo.listOfCountries.ListOfCountries;
@@ -189,6 +190,8 @@ public interface Getdataservice {
     @GET("RemoveTeamFromLeague&{league_id}&{team_id}")
     Call<LeaguesFragment> removeTeamFromLeague(@Path("league_id") int league_id, @Path("team_id") int team_id);
 
+    @GET("ViewTeamManagerDetail&{team_id}")
+    Call<ViewTeamManagerDetail> ViewTeamManagerDetail(@Path("team_id") int team_id);
 
 
 }
