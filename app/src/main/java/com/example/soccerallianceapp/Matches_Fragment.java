@@ -117,7 +117,6 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                                 upcoming_match_bundle.putString("played_team1logo",up_matches_data_lists.get(position).getTeam1_logo());
                                 upcoming_match_bundle.putString("played_team2logo",up_matches_data_lists.get(position).getTeam2_logo());
                                 upcoming_match_bundle.putString("played_match_date",up_matches_data_lists.get(position).getMatch_date());
-                                upcoming_match_bundle.putString("played_match_time",up_matches_data_lists.get(position).getMatch_time());
                                 DashboardNavController.navigate(R.id.upcomingMatchFragment, upcoming_match_bundle);
                             }
                         });
@@ -184,7 +183,6 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                                 bundle.putString("played_team1logo",played_matches_data_lists.get(position).getTeam1_logo());
                                 bundle.putString("played_team2logo",played_matches_data_lists.get(position).getTeam2_logo());
                                 bundle.putString("played_match_date",played_matches_data_lists.get(position).getMatch_date());
-                                bundle.putString("played_match_time",played_matches_data_lists.get(position).getMatch_time());
 
                                 Statistics_Fragment fragment=new Statistics_Fragment();
                                 Bundle bundlestat = new Bundle();

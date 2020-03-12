@@ -83,12 +83,14 @@ public class LeagueUpcomingMatchFragment extends Fragment {
                                     up_matches_data_lists.add(new matches_data_list(
                                             matchelist.getMatchId(),
                                             matchelist.getTeam1Id(),
+                                            matchelist.getTeam2Id(),
+                                            matchelist.getScheduleId(),
                                             matchelist.getTeam1(),
                                             matchelist.getTeam1Logo(),
-                                            matchelist.getTeam2Id(),
                                             matchelist.getTeam2(),
                                             matchelist.getTeam2Logo(),
-                                            matchelist.getDateOfMatch()));
+                                            matchelist.getDateOfMatch()
+                                    ));
 
                                 }
                                 up_match_adapter.notifyDataSetChanged();
@@ -100,6 +102,7 @@ public class LeagueUpcomingMatchFragment extends Fragment {
                                         int position = viewHolder.getAdapterPosition();
                                         Bundle upcoming_match_bundle = new Bundle();
                                         upcoming_match_bundle.putString("ComingFrom" ,"LeagueUpcomingMatchFragment");
+                                        upcoming_match_bundle.putInt("League_id",league_id);
                                         upcoming_match_bundle.putInt("up_match_id", up_matches_data_lists.get(position).getMatch_id());
                                         upcoming_match_bundle.putInt("up_team1_id",up_matches_data_lists.get(position).getTeam1Id());
                                         upcoming_match_bundle.putInt("up_team2_id",up_matches_data_lists.get(position).getTeam2Id());
@@ -108,7 +111,9 @@ public class LeagueUpcomingMatchFragment extends Fragment {
                                         upcoming_match_bundle.putString("up_team1logo",up_matches_data_lists.get(position).getTeam1_logo());
                                         upcoming_match_bundle.putString("up_team2logo",up_matches_data_lists.get(position).getTeam2_logo());
                                         upcoming_match_bundle.putString("up_match_date",up_matches_data_lists.get(position).getMatch_date());
-                                        upcoming_match_bundle.putString("up_match_time",up_matches_data_lists.get(position).getMatch_time());
+                                        upcoming_match_bundle.putInt("up_schedule_id",up_matches_data_lists.get(position).getSchedule_id());
+
+
                                         DashboardNavController.navigate(R.id.matchScoreRescheduleFragment, upcoming_match_bundle);
                                     }
                                 });

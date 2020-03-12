@@ -26,8 +26,8 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
     public NavController DashboardNavController;
     // private ProgressBar progressbar;
     private Context context;
-    int league_id,up_match_id,up_team1_id,up_team2_id;
-    String up_team1name,up_team2name,up_team1icon,up_team2icon,up_match_date,up_match_time;
+    int league_id,up_match_id,up_team1_id,up_team2_id,up_schedule_id;
+    String up_team1name,up_team2name,up_team1icon,up_team2icon,up_match_date;
 
     ImageView team1_logo,team2_logo;
     TextView team1,team2;
@@ -64,8 +64,9 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
 
         if (getArguments() != null) {
             if (getArguments().getString("ComingFrom").equals("LeagueUpcomingMatchFragment")) {
+
                 league_id = getArguments().getInt("League_id");
-                System.out.println("league id from league upcoming match " + league_id);
+                System.out.println("league id from Match score Operation Screen " + league_id);
                 up_match_id = getArguments().getInt("up_match_id");
                 up_team1_id = getArguments().getInt("up_team1_id");
                 up_team2_id = getArguments().getInt("up_team2_id");
@@ -74,7 +75,8 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
                 up_team1icon = getArguments().getString("up_team1logo");
                 up_team2icon = getArguments().getString("up_team2logo");
                 up_match_date = getArguments().getString("up_match_date");
-                up_match_time = getArguments().getString("up_match_time");
+                up_schedule_id = getArguments().getInt("up_schedule_id");
+
 
 
                 team1.setText(up_team1name);
@@ -104,7 +106,7 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
             bundlematch.putString("up_team1logo",up_team1icon);
             bundlematch.putString("up_team2logo",up_team2icon);
             bundlematch.putString("up_match_date",up_match_date);
-            bundlematch.putString("up_match_time",up_match_time);
+            bundlematch.putInt("up_schedule_id",up_schedule_id);
 
             DashboardNavController.navigate(R.id.rescheduleMatchFragment,bundlematch);
         }
@@ -121,7 +123,6 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
             bundlematch.putString("up_team1logo",up_team1icon);
             bundlematch.putString("up_team2logo",up_team2icon);
             bundlematch.putString("up_match_date",up_match_date);
-            bundlematch.putString("up_match_time",up_match_time);
 
             DashboardNavController.navigate(R.id.matchScoreUpdateFragment,bundlematch);
 

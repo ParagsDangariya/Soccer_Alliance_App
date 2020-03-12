@@ -50,13 +50,10 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
     MaterialButton reSchedule_match_btn;
     private TimePickerDialog timePickerDialog;
 
-
     TextInputEditText reschedule_match_date_edt_txt, reschedule_match_time_layout_edt_txt, reschedule_match_location_layout_edt_txt;
 
-    int team1id, team2id, leagueid, scheduleid=10;
-
-    int league_id,up_match_id,up_team1_id,up_team2_id;
-    String up_team1name,up_team2name,up_team1icon,up_team2icon,up_match_date,up_match_time;
+    int league_id,up_match_id,up_team1_id,up_team2_id,up_schedule_id;
+    String up_team1name,up_team2name,up_team1icon,up_team2icon,up_match_date;
 
     ImageView team1_logo,team2_logo;
     TextView team1,team2;
@@ -106,7 +103,7 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
                 up_team1icon = getArguments().getString("up_team1logo");
                 up_team2icon = getArguments().getString("up_team2logo");
                 up_match_date = getArguments().getString("up_match_date");
-                up_match_time = getArguments().getString("up_match_time");
+                up_schedule_id = getArguments().getInt("up_schedule_id");
 
                 Log.d("RESChedule Match", "in if else");
 
@@ -189,11 +186,11 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
                 time = reschedule_match_time_layout_edt_txt.getEditableText().toString();
 
 
-                String url = "https://soccerallianceapp.appspot.com/rest/api/ReSchedule&" + location + "&" + date + "&" + time + "&" + team1id + "&" + team2id + "&" + leagueid + "&" + scheduleid + "";
+                String url = "https://soccerallianceapp.appspot.com/rest/api/ReSchedule&" + location + "&" + date + "&" + time + "&" + up_team1_id + "&" + up_team2_id + "&" + league_id + "&" + up_schedule_id + "";
 
                 System.out.println("url" + url);
 
-                ScheduleMatch reschedulematch = new ScheduleMatch(location, date, time, team1id, team2id, leagueid, scheduleid);
+                ScheduleMatch reschedulematch = new ScheduleMatch(location, date, time, up_team1_id, up_team2_id, league_id, up_schedule_id);
 
                 System.out.println("Schedulematch : " + reschedulematch.toString());
                 try {

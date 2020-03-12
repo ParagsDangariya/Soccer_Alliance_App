@@ -41,7 +41,6 @@ public class Matches_adapter extends RecyclerView.Adapter<Matches_adapter.ViewHo
         holder.m_team1.setText(matches_data_lists.get(position).getTeam1_name());
         holder.m_team2.setText(matches_data_lists.get(position).getTeam2_name());
         holder.m_date.setText(matches_data_lists.get(position).getMatch_date());
-        holder.m_time.setText(matches_data_lists.get(position).getMatch_time());
 
         /*---Set Team 1 and Team 2 Logo Here---*/
 

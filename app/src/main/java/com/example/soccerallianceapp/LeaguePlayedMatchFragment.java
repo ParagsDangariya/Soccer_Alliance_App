@@ -83,9 +83,10 @@ public class LeaguePlayedMatchFragment extends Fragment implements View.OnClickL
                             played_matches_data_lists.add(new matches_data_list(
                                     matchelist.getMatchId(),
                                     matchelist.getTeam1Id(),
+                                    matchelist.getTeam2Id(),
+                                    matchelist.getScheduleId(),
                                     matchelist.getTeam1(),
                                     matchelist.getTeam1Logo(),
-                                    matchelist.getTeam2Id(),
                                     matchelist.getTeam2(),
                                     matchelist.getTeam2Logo(),
                                     matchelist.getDateOfMatch()
@@ -109,7 +110,6 @@ public class LeaguePlayedMatchFragment extends Fragment implements View.OnClickL
                                 bundle.putString("played_team1logo",played_matches_data_lists.get(position).getTeam1_logo());
                                 bundle.putString("played_team2logo",played_matches_data_lists.get(position).getTeam2_logo());
                                 bundle.putString("played_match_date",played_matches_data_lists.get(position).getMatch_date());
-                                bundle.putString("played_match_time",played_matches_data_lists.get(position).getMatch_time());
 
                                 DashboardNavController.navigate(R.id.matchScoreUpdateFragment,bundle);
                             }

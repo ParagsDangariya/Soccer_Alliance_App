@@ -36,11 +36,12 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
     MatchScores matchscore;
     MatchScores matchScoresteam2;
 
-    int matchid = 3;
-    int teamid = 1;
-    int matchid2= 3;
-    int team2id= 17;
+    int matchid;
+    int team1id;
+    int team2id;
 
+    int league_id,up_match_id,up_team1_id,up_team2_id;
+    String up_team1name,up_team2name,up_team1icon,up_team2icon,up_match_date,up_match_time;
 
 
     private Context context;
@@ -54,11 +55,46 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
     TextInputEditText passaccuracy_team2_edt_txt,redcard_team2_edt_txt,offsides_team2_edt_txt,corners_team2_edt_txt,yellowcards_team2_edt_txt;
     MaterialButton Update_Score_btn;
 
-    int goalteam1,shots,shotsontarget,possession,passes,passaccuracy,redcard,offsides,corners,fouls,yellowcard;
-    int goal2,shots2,shotsontarget2,possession2,passes2,passaccuracy2,redcard2,offsides2,corners2,fouls2,yellowcard2;
+    int goalteam1=0,shots=0,shotsontarget=0,possession=0,passes=0,passaccuracy=0,redcard=0,offsides=0,corners=0,fouls=0,yellowcard=0;
+    int goal2=0,shots2=0,shotsontarget2=0,possession2=0,passes2=0,passaccuracy2=0,redcard2=0,offsides2=0,corners2=0,fouls2=0,yellowcard2=0;
 
 
     //Button Schedule_match_btn;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            if (getArguments().getString("Coming_from").equals("updateScore")) {
+
+                league_id = getArguments().getInt("League_id");
+                System.out.println("league id from league - Match score update : " + league_id);
+                matchid = getArguments().getInt("up_match_id");
+                team1id = getArguments().getInt("up_team1_id");
+                team2id = getArguments().getInt("up_team2_id");
+
+                System.out.println("Match id in Match score update :" + matchid);
+                System.out.println("Team1 id in Match score update :" + team1id);
+                System.out.println("Team 2 id in Match score update :" + team2id);
+
+
+                up_team1name = getArguments().getString("up_team1name");
+                up_team2name = getArguments().getString("up_team2name");
+                up_team1icon = getArguments().getString("up_team1logo");
+                up_team2icon = getArguments().getString("up_team2logo");
+                up_match_date = getArguments().getString("up_match_date");
+                up_match_time = getArguments().getString("up_match_time");
+
+
+
+
+
+            }
+        }
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,13 +110,8 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
         super.onViewCreated(view, savedInstanceState);
 
         DashboardNavController = Navigation.findNavController(getActivity(),R.id.dashboard_host_fragment);
-
-        /*--------league Adapter Configuration--------*/
-
         context = getActivity().getApplicationContext();
-
         comman_data_List = new ArrayList<Comman_Data_List>();
-
         comman_adapter = new Comman_adapter(comman_data_List,context);
 
         team1_goal_edt_txt = view.findViewById(R.id.team1_goal_edt_txt);
@@ -119,26 +150,28 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
 
             service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
-            Log.d("step1", "after getService part");
+            Log.d("step1", "after getService part in match score display ");
 
-            Call<MatchScoreDisplay> displayscore = service.getMatchScores(matchid, teamid);
+            System.out.println("matchid"+matchid);
+            System.out.println("Match id in Match :" + matchid);
+            System.out.println("Team1 id in Match :" + team1id);
+            System.out.println("Team 2 id in Match :" + team2id);
+            Call<MatchScoreDisplay> displayscore = service.getMatchScores(matchid, team1id);
 
+            Log.d("step2", "after displayscore part in match score display ");
 
-
+            System.out.println(displayscore.toString());
 
             displayscore.enqueue(new Callback<MatchScoreDisplay>() {
                 @Override
                 public void onResponse(Call<MatchScoreDisplay> call, Response<MatchScoreDisplay> response) {
 
-                    Log.d("step2", "after onResponse");
+                    Log.d("step3", "after onResponse");
 
 
                     MatchScoreDisplay data = response.body();
-
                     System.out.println(data);
-
                     System.out.println("response" + response.body().toString());
-
                     matchscore = data.getMatchScores();
 
                     goalteam1 = matchscore.getGoal();
@@ -161,7 +194,6 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
                     passaccuracy_team1_edt_txt.setText(String.valueOf(passaccuracy));
                     redcard_team1_edt_txt.setText(String.valueOf(redcard));
                     corners_team1_edt_txt.setText(String.valueOf(corners));
-
                     offsides_team1_edt_txt.setText(String.valueOf(offsides));
                     yellowcards_team1_edt_txt.setText(String.valueOf(yellowcard));
                     fouls_team1_edt_txt.setText(String.valueOf(fouls));
@@ -184,7 +216,7 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
             });
 
 
-            Call<MatchScoreDisplay> displayscore2 = service.getMatchScores(matchid2,team2id);
+            Call<MatchScoreDisplay> displayscore2 = service.getMatchScores(matchid,team2id);
 
             displayscore2.enqueue(new Callback<MatchScoreDisplay>() {
                 @Override
@@ -276,7 +308,7 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
 
             Log.d("step1", "after getService part in update score");
 
-            Call<ResponseBody> updatescore = service.updateMatchScore(matchid,teamid,goalteam1,shots,shotsontarget,possession,passes,passaccuracy,fouls,yellowcard,redcard,offsides,corners,team2id,goal2,shots2,shotsontarget2,possession2,passes2,passaccuracy2,fouls2,yellowcard2,redcard2,offsides2,redcard2);
+            Call<ResponseBody> updatescore = service.updateMatchScore(matchid,team1id,goalteam1,shots,shotsontarget,possession,passes,passaccuracy,fouls,yellowcard,redcard,offsides,corners,team2id,goal2,shots2,shotsontarget2,possession2,passes2,passaccuracy2,fouls2,yellowcard2,redcard2,offsides2,redcard2);
 
             System.out.println(updatescore);
 

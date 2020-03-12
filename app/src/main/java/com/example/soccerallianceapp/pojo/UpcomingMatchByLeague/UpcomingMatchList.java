@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class UpcomingMatchList {
 
+    @SerializedName("schedule_id")
+    @Expose
+    private Integer scheduleId;
     @SerializedName("team1_id")
     @Expose
     private Integer team1Id;
@@ -106,6 +109,14 @@ public class UpcomingMatchList {
         this.matchId = matchId;
     }
 
+    public Integer getScheduleId() {
+        return scheduleId;
+    }
+
+    public void setScheduleId(Integer scheduleId) {
+        this.scheduleId = scheduleId;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -118,6 +129,7 @@ public class UpcomingMatchList {
                 ", dateOfMatch='" + dateOfMatch + '\'' +
                 ", leagueId=" + leagueId +
                 ", matchId=" + matchId +
+                ", scheduleId="+scheduleId+
                 '}';
     }
 }
