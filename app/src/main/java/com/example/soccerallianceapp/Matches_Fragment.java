@@ -1,6 +1,7 @@
 package com.example.soccerallianceapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -186,10 +187,7 @@ public class Matches_Fragment extends Fragment implements View.OnClickListener {
                                 bundle.putString("played_match_date",played_matches_data_lists.get(position).getMatch_date());
                                 bundle.putString("played_match_time",played_matches_data_lists.get(position).getMatch_time());
 
-                                Statistics_Fragment fragment=new Statistics_Fragment();
-                                Bundle bundlestat = new Bundle();
-                                bundlestat.putInt("match_id", 1234);
-                                fragment.setArguments(bundlestat);
+
                                 DashboardNavController.navigate(R.id.match_Score_Fragment,bundle);
                             }
                         });
