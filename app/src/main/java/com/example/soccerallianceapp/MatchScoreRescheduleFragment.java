@@ -8,17 +8,27 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
+
+import java.util.ArrayList;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MatchScoreRescheduleFragment extends Fragment implements View.OnClickListener{
@@ -28,6 +38,9 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
     private Context context;
     int league_id,up_match_id,up_team1_id,up_team2_id,up_schedule_id;
     String up_team1name,up_team2name,up_team1icon,up_team2icon,up_match_date;
+    Getdataservice service;
+    private ArrayList<Comman_Data_List> comman_data_List;
+    private Comman_adapter comman_adapter;
 
     ImageView team1_logo,team2_logo;
     TextView team1,team2;
@@ -77,8 +90,6 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
                 up_match_date = getArguments().getString("up_match_date");
                 up_schedule_id = getArguments().getInt("up_schedule_id");
 
-
-
                 team1.setText(up_team1name);
                 team2.setText(up_team2name);
 
@@ -123,8 +134,78 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
             bundlematch.putString("up_team1logo",up_team1icon);
             bundlematch.putString("up_team2logo",up_team2icon);
             bundlematch.putString("up_match_date",up_match_date);
-
             DashboardNavController.navigate(R.id.matchScoreUpdateFragment,bundlematch);
+        }
+        if (v == Cancel_match_btn){
+
+            try {
+
+                service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+                Log.d("step1", "after getService part in match cancel");
+
+                System.out.println("Match id (Cancel match) : "+ up_match_id);
+
+
+                Call<ResponseBody> call = service.cancelmatch(up_match_id);
+
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                        Log.d("step", "In response part in match cancel");
+
+                        if(!response.isSuccessful()){
+                            int s = response.code();
+                            System.out.println("code"+s);
+                            Toast.makeText(context," error in response..",Toast.LENGTH_LONG).show();
+
+                        }
+                        Toast.makeText(context," Successfully Match Canceled..",Toast.LENGTH_LONG).show();
+
+                        int s = response.code();
+
+                        System.out.println("code"+s);
+
+                        DashboardNavController.navigate(R.id.leagueOperationsFragment);
+
+//                        DashboardNavController.navigate(R.id.player_List_Fragment,bundleeditplayer,new NavOptions.Builder()
+//                                .setPopUpTo(R.id.editTeamFragment,
+//                                        true).build());
+                    }
+
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                        System.out.println("error"+t.getMessage());
+                        Toast.makeText(context,"IN failure....",Toast.LENGTH_LONG).show();
+
+
+                    }
+                });
+
+
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            Bundle bundlematch = new Bundle();
+            bundlematch.putString("Coming_from","cancelMatch");
+
+            bundlematch.putInt("League_id",league_id);
+            bundlematch.putInt("up_match_id", up_match_id);
+            bundlematch.putInt("up_team1_id" ,up_team1_id);
+            bundlematch.putInt("up_team2_id",up_team2_id);
+            bundlematch.putString("up_team1name",up_team1name);
+            bundlematch.putString("up_team2name",up_team2name);
+            bundlematch.putString("up_team1logo",up_team1icon);
+            bundlematch.putString("up_team2logo",up_team2icon);
+            bundlematch.putString("up_match_date",up_match_date);
+
 
         }
 
