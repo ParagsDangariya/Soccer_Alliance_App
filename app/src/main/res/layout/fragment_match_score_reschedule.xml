@@ -150,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30pt"
                 android:layout_margin="8dp"
-                android:text="CANCEL"
+                android:text="CANCEL MATCH"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/Update_Score_btn" />
