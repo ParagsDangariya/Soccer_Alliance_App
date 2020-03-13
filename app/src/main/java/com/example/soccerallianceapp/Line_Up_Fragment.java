@@ -94,8 +94,8 @@ public class Line_Up_Fragment extends Fragment {
 
         sts_team1.setText(team1);
         sts_team2.setText(team2);
-        Glide.with(context).load(logo1).fitCenter().into(sts_team1_logo);
-        Glide.with(context).load(logo2).fitCenter().into(sts_team2_logo);
+        Glide.with(context).load(logo1).fitCenter().circleCrop().into(sts_team1_logo);
+        Glide.with(context).load(logo2).fitCenter().circleCrop().into(sts_team2_logo);
 
         sts_date.setText(date);
         sts_time.setText(time);
