@@ -214,6 +214,11 @@ public class RescheduleMatchFragment extends Fragment  {
                             int sm = response.code();
                             System.out.println("code" + sm);
                             Toast.makeText(context, "ReSchedule Match Successfully done " + sm, Toast.LENGTH_LONG).show();
+
+                            reschedule_match_date_edt_txt.getText().clear();
+                            reschedule_match_time_layout_edt_txt.getText().clear();
+                            reschedule_match_location_layout_edt_txt.getText().clear();
+
                             DashboardNavController.navigate(R.id.leagueOperationsFragment);
                         }
 

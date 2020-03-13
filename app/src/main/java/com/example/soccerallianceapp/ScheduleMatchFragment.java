@@ -273,7 +273,14 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
                     int sm = response.code();
                     System.out.println("code" + sm);
-                    Toast.makeText(context, "Schedule Match Successfully (After if) : " + sm, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Schedule Match Successfully : " + sm, Toast.LENGTH_LONG).show();
+
+                            schedule_match_edt_txt.getText().clear();
+                            schedule_match_team2_edt_txt.getText().clear();
+                            schedule_match_date_edt_txt.getText().clear();
+                            schedule_match_time_layout_edt_txt.getText().clear();
+                            schedule_match_location_layout_edt_txt.getText().clear();
+
                     DashboardNavController.navigate(R.id.leagueOperationsFragment);
 
                 }
