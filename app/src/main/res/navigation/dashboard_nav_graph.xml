@@ -165,9 +165,15 @@
             android:id="@+id/action_matchScoreRescheduleFragment_to_rescheduleMatchFragment"
             app:destination="@id/rescheduleMatchFragment" />
         <action
-            android:id="@+id/action_matchScoreRescheduleFragment_to_matchScoreUpdateFragment"
-            app:destination="@id/matchScoreUpdateFragment" />
+            android:id="@+id/action_matchScoreRescheduleFragment_to_matchScoreaddFragment"
+            app:destination="@id/matchScoreaddFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/matchScoreaddFragment"
+        android:name="com.example.soccerallianceapp.MatchScoreaddFragment"
+        android:label="Add Match Score"
+        tools:layout="@layout/fragment_match_score_add" />
+
     <fragment
         android:id="@+id/matchScoreUpdateFragment"
         android:name="com.example.soccerallianceapp.MatchScoreUpdateFragment"

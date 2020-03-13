@@ -120,6 +120,8 @@ public class LeaguePlayedMatchFragment extends Fragment implements View.OnClickL
                                             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
                                             int position = viewHolder.getAdapterPosition();
                                             Bundle bundle = new Bundle();
+                                            bundle.putString("ComingFrom","PlayedMatch");
+
                                             bundle.putInt("played_match_id", played_matches_data_lists.get(position).getMatch_id());
                                             bundle.putInt("played_team1_id", played_matches_data_lists.get(position).getTeam1Id());
                                             bundle.putInt("played_team2_id", played_matches_data_lists.get(position).getTeam2Id());
