@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -114,6 +115,7 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
             }
         }
 
+
         team1.setText(up_team1name);
         team2.setText(up_team2name);
         Glide.with(context).load(up_team1icon).fitCenter().into(team1_logo);
@@ -185,6 +187,16 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
                 location = reschedule_match_location_layout_edt_txt.getEditableText().toString();
                 time = reschedule_match_time_layout_edt_txt.getEditableText().toString();
 
+                if (TextUtils.isEmpty(date)) {
+                    reschedule_match_date_edt_txt.setError("Date is Required.");
+                    return;
+                } else if (TextUtils.isEmpty(time)) {
+                    reschedule_match_time_layout_edt_txt.setError("Time is Required.");
+                    return;
+                } else if (TextUtils.isEmpty(location)) {
+                    reschedule_match_location_layout_edt_txt.setError("Location is Required.");
+                    return;
+                }
 
                 String url = "https://soccerallianceapp.appspot.com/rest/api/ReSchedule&" + location + "&" + date + "&" + time + "&" + up_team1_id + "&" + up_team2_id + "&" + league_id + "&" + up_schedule_id + "";
 
