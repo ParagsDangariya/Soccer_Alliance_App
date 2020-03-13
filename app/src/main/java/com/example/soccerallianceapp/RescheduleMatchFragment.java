@@ -40,7 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class RescheduleMatchFragment extends Fragment implements TimePickerDialog.OnTimeSetListener {
+public class RescheduleMatchFragment extends Fragment  {
 
     public NavController DashboardNavController;
     private Context context;
@@ -53,11 +53,11 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
 
     TextInputEditText reschedule_match_date_edt_txt, reschedule_match_time_layout_edt_txt, reschedule_match_location_layout_edt_txt;
 
-    int league_id,up_match_id,up_team1_id,up_team2_id,up_schedule_id;
-    String up_team1name,up_team2name,up_team1icon,up_team2icon,up_match_date;
+    int league_id, up_match_id, up_team1_id, up_team2_id, up_schedule_id;
+    String up_team1name, up_team2name, up_team1icon, up_team2icon, up_match_date;
 
-    ImageView team1_logo,team2_logo;
-    TextView team1,team2;
+    ImageView team1_logo, team2_logo;
+    TextView team1, team2;
 
     String date;
     String time;
@@ -111,7 +111,6 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
                 System.out.println("UP_match id " + up_match_id);
 
 
-
             }
         }
 
@@ -123,7 +122,6 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
 
         // get Current Date
         Calendar calendar = Calendar.getInstance();
-
         day = calendar.get(Calendar.DAY_OF_MONTH);
         month = calendar.get(Calendar.MONTH);
         year = calendar.get(Calendar.YEAR);
@@ -182,7 +180,6 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
             @Override
             public void onClick(View v) {
 
-
                 date = reschedule_match_date_edt_txt.getText().toString();
                 location = reschedule_match_location_layout_edt_txt.getEditableText().toString();
                 time = reschedule_match_time_layout_edt_txt.getEditableText().toString();
@@ -199,67 +196,37 @@ public class RescheduleMatchFragment extends Fragment implements TimePickerDialo
                 }
 
                 String url = "https://soccerallianceapp.appspot.com/rest/api/ReSchedule&" + location + "&" + date + "&" + time + "&" + up_team1_id + "&" + up_team2_id + "&" + league_id + "&" + up_schedule_id + "";
-
                 System.out.println("url" + url);
 
                 ScheduleMatch reschedulematch = new ScheduleMatch(location, date, time, up_team1_id, up_team2_id, league_id, up_schedule_id);
-
                 System.out.println("Schedulematch : " + reschedulematch.toString());
                 try {
-
                     Call<ScheduleMatch> call = service.Reschedule_match_call(reschedulematch);
-
                     System.out.println("data : " + call);
-
                     call.enqueue(new Callback<ScheduleMatch>() {
                         @Override
                         public void onResponse(Call<ScheduleMatch> call, Response<ScheduleMatch> response) {
-
                             if (!response.isSuccessful()) {
                                 int sm = response.code();
                                 System.out.println("code" + sm);
                                 Toast.makeText(context, "ReSchedule Match not Successfully " + sm, Toast.LENGTH_LONG).show();
                             }
-
                             int sm = response.code();
                             System.out.println("code" + sm);
                             Toast.makeText(context, "ReSchedule Match Successfully done " + sm, Toast.LENGTH_LONG).show();
                             DashboardNavController.navigate(R.id.leagueOperationsFragment);
-
-
                         }
 
                         @Override
                         public void onFailure(Call<ScheduleMatch> call, Throwable t) {
-
                             System.out.println("error" + t.getMessage());
                             Toast.makeText(context, "Wrong thing happened", Toast.LENGTH_LONG).show();
-
                         }
                     });
-
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
             }
         });
-
     }
-
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-
-        // stime = hourOfDay + ":" + minute;
-
-        reschedule_match_time_layout_edt_txt.setText("H : " + hourOfDay + "M: " + minute);
-
-        System.out.println("Ontime set : " + reschedule_match_time_layout_edt_txt);
-
-    }
-
-
 }
