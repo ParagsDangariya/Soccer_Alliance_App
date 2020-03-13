@@ -134,7 +134,7 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
             bundlematch.putString("up_team1logo",up_team1icon);
             bundlematch.putString("up_team2logo",up_team2icon);
             bundlematch.putString("up_match_date",up_match_date);
-            DashboardNavController.navigate(R.id.matchScoreUpdateFragment,bundlematch);
+            DashboardNavController.navigate(R.id.matchScoreaddFragment,bundlematch);
         }
         if (v == Cancel_match_btn){
             try {

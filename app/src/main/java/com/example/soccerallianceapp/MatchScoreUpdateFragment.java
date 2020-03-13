@@ -140,6 +140,8 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
         getTeam1Score(matchid,team1id);
         getTeam2Score(matchid,team2id);
 
+       // updateScore(matchid,team1id,team2id);
+
 
 //        if (getArguments() != null) {
 //            if (getArguments().getString("Coming_from").equals("updateScore")) {
@@ -276,7 +278,6 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
         if (v == Update_Score_btn) {
 
 
-            updateScore(matchid,team1id,team2id);
 
         }
     }
@@ -402,6 +403,8 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
                             fouls_team2_edt_txt.setText(String.valueOf(fouls2));
 
                             System.out.println(team2_goal_edt_txt);
+
+
 
 
                         }
