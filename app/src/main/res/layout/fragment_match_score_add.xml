@@ -935,7 +935,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30pt"
                     android:layout_margin="8dp"
-                    android:text="UPDATE SCORE" />
+                    android:text="ADD SCORE" />
 
 
 
