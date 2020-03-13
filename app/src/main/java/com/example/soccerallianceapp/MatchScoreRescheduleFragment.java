@@ -137,80 +137,35 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
             DashboardNavController.navigate(R.id.matchScoreUpdateFragment,bundlematch);
         }
         if (v == Cancel_match_btn){
-
             try {
-
                 service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
                 Log.d("step1", "after getService part in match cancel");
-
                 System.out.println("Match id (Cancel match) : "+ up_match_id);
 
-
                 Call<ResponseBody> call = service.cancelmatch(up_match_id);
-
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
                         Log.d("step", "In response part in match cancel");
-
                         if(!response.isSuccessful()){
                             int s = response.code();
                             System.out.println("code"+s);
                             Toast.makeText(context," error in response..",Toast.LENGTH_LONG).show();
-
                         }
                         Toast.makeText(context," Successfully Match Canceled..",Toast.LENGTH_LONG).show();
-
                         int s = response.code();
-
                         System.out.println("code"+s);
-
                         DashboardNavController.navigate(R.id.leagueOperationsFragment);
-
-//                        DashboardNavController.navigate(R.id.player_List_Fragment,bundleeditplayer,new NavOptions.Builder()
-//                                .setPopUpTo(R.id.editTeamFragment,
-//                                        true).build());
                     }
-
-
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-
                         System.out.println("error"+t.getMessage());
                         Toast.makeText(context,"IN failure....",Toast.LENGTH_LONG).show();
-
-
                     }
                 });
-
-
-
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
-            Bundle bundlematch = new Bundle();
-            bundlematch.putString("Coming_from","cancelMatch");
-
-            bundlematch.putInt("League_id",league_id);
-            bundlematch.putInt("up_match_id", up_match_id);
-            bundlematch.putInt("up_team1_id" ,up_team1_id);
-            bundlematch.putInt("up_team2_id",up_team2_id);
-            bundlematch.putString("up_team1name",up_team1name);
-            bundlematch.putString("up_team2name",up_team2name);
-            bundlematch.putString("up_team1logo",up_team1icon);
-            bundlematch.putString("up_team2logo",up_team2icon);
-            bundlematch.putString("up_match_date",up_match_date);
-
-
         }
-
-
-
-
     }
 }

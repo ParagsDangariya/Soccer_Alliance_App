@@ -85,9 +85,7 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
 
         league_logo = view.findViewById(R.id.league_icon);
 
-
         Bundle bundle = getArguments();
-
         league_operations_schedulematch_btn = view.findViewById(R.id.league_operations_schedulematch_btn);
 
 
@@ -107,16 +105,12 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
                     Toast.makeText(context, "league Operation Fragment in League Id : "+ league_id, Toast.LENGTH_LONG).show();
 
                     league_name = getArguments().getString("League_name");
-
-
                     league_icon = getArguments().getString("League_Logo");
-
-                    LeagueName.setText(league_name);
-                    Glide.with(context).load(league_icon).fitCenter().into(league_logo);
 
                     bundle.putString("League_name",league_name);
                     bundle.putInt("League_id",league_id);
                     bundle.putString("ComingFrom" ,"LeagueUpcomingMatchFragment");
+
                     league_operations_upmatch_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -126,6 +120,19 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
 
                         }
                     });
+
+                    league_operations_playedmatch_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            System.out.println("forward form opration fragment");
+                            bundle.putInt("League_id",league_id);
+                            bundle.putString("Coming_from","PlayedMatchInLeague");
+                            DashboardNavController.navigate(R.id.leaguePlayedMatchFragment,bundle);
+
+                        }
+                    });
+
+
 
 
 
@@ -137,6 +144,9 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
 
                         }
                     });
+
+
+
                 }
 
 
@@ -146,6 +156,11 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        LeagueName.setText(league_name);
+        Glide.with(context).load(league_icon).fitCenter().into(league_logo);
+
 
 
     }
@@ -191,6 +206,7 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
             Bundle bundle = new Bundle();
             //bundle.putString("League_name",league_name);
             bundle.putInt("League_id",league_id);
+            bundle.putString("Coming_from","PlayedMatchInLeague");
             DashboardNavController.navigate(R.id.leaguePlayedMatchFragment,bundle);
         }
 

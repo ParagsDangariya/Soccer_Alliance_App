@@ -300,9 +300,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         System.out.println("Ontime set : " + newTime);
 
         schedule_match_time_layout_edt_txt.setText(timeformatter.format(newTime.getTime()));
-
     }
-
     public void checkMe(ArrayList<TeamList> testlist1) {
         team1name = schedule_match_edt_txt.getText().toString();
         team2name = schedule_match_team2_edt_txt.getText().toString();
@@ -320,14 +318,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                 System.out.println("Found team 2 id : " + team2id);
                 //Log.i("Id of team",testlist1.get(x).getTeamid().toString());
             }
-
         }
-
     }
-
-
-
-
-
 }
 

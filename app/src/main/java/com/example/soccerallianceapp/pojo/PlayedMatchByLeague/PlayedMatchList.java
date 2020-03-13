@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class PlayedMatchList {
 
+    @SerializedName("schedule_id")
+    @Expose
+    private Integer scheduleId;
     @SerializedName("team1_id")
     @Expose
     private Integer team1Id;
@@ -33,9 +36,8 @@ public class PlayedMatchList {
     @SerializedName("match_id")
     @Expose
     private Integer matchId;
-    @SerializedName("schedule_id")
-    @Expose
-    private Integer scheduleId;
+
+
 
     public Integer getTeam1Id() {
         return team1Id;
@@ -115,6 +117,22 @@ public class PlayedMatchList {
 
     public void setScheduleId(Integer scheduleId) {
         this.scheduleId = scheduleId;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "team1Id=" + team1Id +
+                ", team1='" + team1 + '\'' +
+                ", team1Logo='" + team1Logo + '\'' +
+                ", team2Id=" + team2Id +
+                ", team2='" + team2 + '\'' +
+                ", team2Logo='" + team2Logo + '\'' +
+                ", dateOfMatch='" + dateOfMatch + '\'' +
+                ", leagueId=" + leagueId +
+                ", matchId=" + matchId +
+                ", scheduleId="+scheduleId+
+                '}';
     }
 
 }

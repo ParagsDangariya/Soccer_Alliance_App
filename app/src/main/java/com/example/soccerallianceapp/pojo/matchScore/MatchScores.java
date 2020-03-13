@@ -161,4 +161,23 @@ public class MatchScores {
         this.corners = corners;
     }
 
+    @Override
+    public String toString() {
+        return "MatchScores{" +
+                "scoreId=" + scoreId +
+                ", matchId=" + matchId +
+                ", teamId=" + teamId +
+                ", goal=" + goal +
+                ", shots=" + shots +
+                ", shotsOnTarget=" + shotsOnTarget +
+                ", possession=" + possession +
+                ", passes=" + passes +
+                ", passAccuracy=" + passAccuracy +
+                ", fouls=" + fouls +
+                ", yellowCards=" + yellowCards +
+                ", redCards=" + redCards +
+                ", offsides=" + offsides +
+                ", corners=" + corners +
+                '}';
+    }
 }

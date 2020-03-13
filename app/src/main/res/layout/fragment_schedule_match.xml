@@ -96,6 +96,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Select Date"
+                    android:clickable="true"
+                    android:drawableRight="@drawable/datepickerblue"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:textColorHint="@color/colorPrimaryLight" />
@@ -120,7 +122,9 @@
                     style="@style/TextInputEditTextStyleVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Time"
+                    android:hint="Select Time"
+                    android:clickable="true"
+                    android:drawableRight="@drawable/timepicker"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:textColorHint="@color/colorPrimaryLight" />
@@ -145,7 +149,7 @@
                     style="@style/TextInputEditTextStyleVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Location"
+                    android:hint="Enter Location"
                     android:imeOptions="actionDone"
                     android:inputType="text"
                     android:textColorHint="@color/colorPrimaryLight" />

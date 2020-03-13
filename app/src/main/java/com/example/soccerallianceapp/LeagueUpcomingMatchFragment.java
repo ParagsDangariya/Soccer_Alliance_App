@@ -63,6 +63,7 @@ public class LeagueUpcomingMatchFragment extends Fragment {
         if (getArguments() != null) {
 
             if (getArguments().getString("ComingFrom").equals("LeagueUpcomingMatchFragment")) {
+
                 league_id = getArguments().getInt("League_id");
                 System.out.println("league id from league upcoming match " + league_id);
                 // Toast.makeText(context,league_id, Toast.LENGTH_LONG).show();

@@ -15,7 +15,7 @@ public class matches_data_list {
         this.team2_name = team2_name;
         this.team2_logo = team2_logo;
         this.match_date = match_date;
-        }
+    }
 
 
         public matches_data_list(Integer matchId, int match_id, String team1_name, String team1_logo, Integer team2Id, String team2_name, String team2_logo, String match_date) {
