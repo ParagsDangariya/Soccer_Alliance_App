@@ -287,7 +287,10 @@ public class Team_mngr_my_profile_Fragment extends Fragment implements View.OnCl
             }
 
             System.out.println("phone2"+phone);
-            age = Integer.parseInt(tmp_age_edt_txt.getEditableText().toString().trim());
+            if(tmp_age_edt_txt.getEditableText().toString().trim()!= null){
+                age = Integer.parseInt(tmp_age_edt_txt.getEditableText().toString().trim());
+
+            }
 
             User user = new User(uid,name,email,phone,gender,country,age,user_type,imageUri);
 

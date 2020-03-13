@@ -140,7 +140,6 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
         getTeam1Score(matchid,team1id);
         getTeam2Score(matchid,team2id);
 
-       // updateScore(matchid,team1id,team2id);
 
 
 //        if (getArguments() != null) {
@@ -277,6 +276,8 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
     public void onClick(View v) {
         if (v == Update_Score_btn) {
 
+
+            updateScore(matchid,team1id,team2id);
 
 
         }
@@ -420,28 +421,75 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
 
     private void updateScore(int matchid,int team1id,int team2id){
 
-        goalteam1 = Integer.parseInt(team1_goal_edt_txt.getEditableText().toString().trim());
-        shots = Integer.parseInt(shots_team1_edt_txt.getEditableText().toString().trim());
-        shotsontarget = Integer.parseInt(shotsontarget_team1_edt_txt.getEditableText().toString().trim());
-        possession2 = Integer.parseInt(possession_team1_edt_txt.getEditableText().toString().trim());
-        fouls2 = Integer.parseInt(fouls_team1_edt_txt.getEditableText().toString().trim());
-        corners2 = Integer.parseInt(corners_team1_edt_txt.getEditableText().toString().trim());
-        yellowcard2 = Integer.parseInt(yellowcards_team1_edt_txt.getEditableText().toString().trim());
-        redcard2 = Integer.parseInt(redcard_team1_edt_txt.getEditableText().toString().trim());
-        offsides2 = Integer.parseInt(offsides_team1_edt_txt.getEditableText().toString().trim());
-        passaccuracy2 = Integer.parseInt(passaccuracy_team1_edt_txt.getEditableText().toString().trim());
+       if(team1_goal_edt_txt.getEditableText().toString().trim()!=null &&
+               team2_goal_edt_txt.getEditableText().toString().trim()!=null) {
+           goalteam1 = Integer.parseInt(team1_goal_edt_txt.getEditableText().toString().trim());
+           goal2 = Integer.parseInt(team2_goal_edt_txt.getEditableText().toString().trim());
+       }
+       if(shots_team1_edt_txt.getEditableText().toString().trim() != null &&
+               shots_team2_edt_txt.getEditableText().toString().trim() != null){
+           shots = Integer.parseInt(shots_team1_edt_txt.getEditableText().toString().trim());
+           shots2 = Integer.parseInt(shots_team2_edt_txt.getEditableText().toString().trim());
+       }
+        if(shotsontarget_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                shotsontarget_team2_edt_txt.getEditableText().toString().trim()!=null){
+            shotsontarget = Integer.parseInt(shotsontarget_team1_edt_txt.getEditableText().toString().trim());
+            shotsontarget2 = Integer.parseInt(shotsontarget_team2_edt_txt.getEditableText().toString().trim());
 
-        goal2 = Integer.parseInt(team2_goal_edt_txt.getEditableText().toString().trim());
-        shots2 = Integer.parseInt(team1_goal_edt_txt.getEditableText().toString().trim());
-        shotsontarget2 = Integer.parseInt(team1_goal_edt_txt.getEditableText().toString().trim());
-        possession = Integer.parseInt(possession_team2_edt_txt.getEditableText().toString().trim());
-        fouls = Integer.parseInt(fouls_team2_edt_txt.getEditableText().toString().trim());
-        corners = Integer.parseInt(corners_team2_edt_txt.getEditableText().toString().trim());
-        yellowcard = Integer.parseInt(yellowcards_team2_edt_txt.getEditableText().toString().trim());
-        redcard = Integer.parseInt(redcard_team2_edt_txt.getEditableText().toString().trim());
-        offsides = Integer.parseInt(offsides_team2_edt_txt.getEditableText().toString().trim());
-        passaccuracy = Integer.parseInt(passaccuracy_team2_edt_txt.getEditableText().toString().trim());
-        passes = Integer.parseInt(passes_team2_edt_txt.getEditableText().toString().trim());
+        }
+        if(possession_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                possession_team2_edt_txt.getEditableText().toString().trim()!=null){
+            possession = Integer.parseInt(possession_team1_edt_txt.getEditableText().toString().trim());
+            possession2 = Integer.parseInt(possession_team2_edt_txt.getEditableText().toString().trim());
+        }
+
+        if(fouls_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                fouls_team2_edt_txt.getEditableText().toString().trim()!=null){
+            fouls = Integer.parseInt(fouls_team1_edt_txt.getEditableText().toString().trim());
+            fouls2 = Integer.parseInt(fouls_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+
+        if(corners_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                corners_team2_edt_txt.getEditableText().toString().trim()!=null){
+            corners = Integer.parseInt(corners_team1_edt_txt.getEditableText().toString().trim());
+            corners2 = Integer.parseInt(corners_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+
+        if(yellowcards_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                yellowcards_team2_edt_txt.getEditableText().toString().trim()!=null){
+            yellowcard = Integer.parseInt(yellowcards_team1_edt_txt.getEditableText().toString().trim());
+            yellowcard2 = Integer.parseInt(yellowcards_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+
+        if(redcard_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                redcard_team2_edt_txt.getEditableText().toString().trim()!=null){
+            redcard = Integer.parseInt(redcard_team1_edt_txt.getEditableText().toString().trim());
+            redcard2 = Integer.parseInt(redcard_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+
+        if(offsides_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                offsides_team2_edt_txt.getEditableText().toString().trim()!=null){
+            offsides = Integer.parseInt(offsides_team1_edt_txt.getEditableText().toString().trim());
+            offsides2 = Integer.parseInt(offsides_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+
+        if(passaccuracy_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                passaccuracy_team2_edt_txt.getEditableText().toString().trim()!=null){
+            passaccuracy = Integer.parseInt(passaccuracy_team1_edt_txt.getEditableText().toString().trim());
+            passaccuracy2 = Integer.parseInt(passaccuracy_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+        if(passes_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                passes_team2_edt_txt.getEditableText().toString().trim()!=null){
+
+            passes = Integer.parseInt(passes_team1_edt_txt.getEditableText().toString().trim());
+            passes2 = Integer.parseInt(passes_team2_edt_txt.getEditableText().toString().trim());
+        }
 
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 

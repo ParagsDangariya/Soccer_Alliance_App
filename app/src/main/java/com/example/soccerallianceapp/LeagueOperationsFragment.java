@@ -35,6 +35,7 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
     String league_name,league_icon;
     int league_id;
     ImageView league_logo;
+    Bundle bundle;
 
 
 
@@ -85,7 +86,7 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
 
         league_logo = view.findViewById(R.id.league_icon);
 
-        Bundle bundle = getArguments();
+        bundle = getArguments();
         league_operations_schedulematch_btn = view.findViewById(R.id.league_operations_schedulematch_btn);
 
 
@@ -208,6 +209,10 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
             bundle.putInt("League_id",league_id);
             bundle.putString("Coming_from","PlayedMatchInLeague");
             DashboardNavController.navigate(R.id.leaguePlayedMatchFragment,bundle);
+        }
+
+        if( v == league_operations_schedulematch_btn){
+            DashboardNavController.navigate(R.id.scheduleMatchFragment,bundle);
         }
 
     }
