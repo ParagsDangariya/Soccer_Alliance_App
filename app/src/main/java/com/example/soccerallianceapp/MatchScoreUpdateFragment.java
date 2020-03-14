@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.matchScore.MatchScoreDisplay;
 import com.example.soccerallianceapp.pojo.matchScore.MatchScores;
@@ -32,6 +35,8 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
     MatchScores matchscore;
     MatchScores matchScoresteam2;
 
+    ImageView team1icon,team2icon;
+    TextView team1,team2,m_date,time;
     int matchid;
     int team1id;
     int team2id;
@@ -77,12 +82,13 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
                 System.out.println("Team 2 id in Match score update :" + team2id);
 
 
-                up_team1name = getArguments().getString("up_team1name");
-                up_team2name = getArguments().getString("up_team2name");
-                up_team1icon = getArguments().getString("up_team1logo");
-                up_team2icon = getArguments().getString("up_team2logo");
-                up_match_date = getArguments().getString("up_match_date");
-                up_match_time = getArguments().getString("up_match_time");
+                up_team1name = getArguments().getString("played_team1name");
+                up_team2name = getArguments().getString("played_team2name");
+                up_team1icon = getArguments().getString("played_team1logo");
+                up_team2icon = getArguments().getString("played_team2logo");
+                up_match_date = getArguments().getString("played_match_date");
+                //up_match_time = getArguments().getString("up_match_time");
+
 
 
             }
@@ -108,6 +114,8 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
 //        comman_data_List = new ArrayList<Comman_Data_List>();
 //        comman_adapter = new Comman_adapter(comman_data_List, context);
 
+        //team1icon =
+                //team2icon =
         team1_goal_edt_txt = view.findViewById(R.id.team1_goal_edt_txt);
         shots_team1_edt_txt = view.findViewById(R.id.shots_team1_edt_txt);
         shotsontarget_team1_edt_txt = view.findViewById(R.id.shotsontarget_team1_edt_txt);
@@ -139,6 +147,22 @@ public class MatchScoreUpdateFragment extends Fragment implements View.OnClickLi
 
         getTeam1Score(matchid,team1id);
         getTeam2Score(matchid,team2id);
+
+        team1icon = view.findViewById(R.id.team1_logo);
+        team2icon = view.findViewById(R.id.team2_logo);
+        team1 = view.findViewById(R.id.team1);
+        team2 = view.findViewById(R.id.team2);
+        m_date = view.findViewById(R.id.date);
+        //time = view.findViewById(R.id.time);
+
+        team1.setText(up_team1name);
+        team2.setText(up_team2name);
+
+        m_date.setText(up_match_date);
+        System.out.println("team1 image"+up_team1icon+"2     :"+up_team2icon);
+
+        Glide.with(context).load(up_team1icon).fitCenter().into(team1icon);
+        Glide.with(context).load(up_team2icon).fitCenter().into(team2icon);
 
 
 

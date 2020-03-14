@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.soccerallianceapp.SplashScreen">
 
+        <activity android:name="com.example.soccerallianceapp.SplashScreen">
             <intent-filter>
                 <action
                     android:name="android.intent.action.MAIN"
@@ -20,14 +20,13 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.soccerallianceapp.Dashboard_Activity" />
-        <activity android:name="com.example.soccerallianceapp.MainActivity">
-
-
-        </activity>
+        <activity android:name="com.example.soccerallianceapp.MainActivity"></activity>
     </application>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

@@ -2,7 +2,10 @@ package com.example.soccerallianceapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -52,6 +55,13 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        if (isConnected()) {
+            //Toast.makeText(getApplicationContext(), "Internet Connected", Toast.LENGTH_SHORT).show();
+
+        } else {
+            Toast.makeText(getApplicationContext(), "No Internet Connection Turn on your Data Connection before you go ahead.", Toast.LENGTH_LONG).show();
+        }
+
         Log.i(TAG, "onCreate: ");
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -79,7 +89,7 @@ public class SplashScreen extends AppCompatActivity {
             finish();
 
         }else {
-            Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show();
 
 
             uid = user.getUid();
@@ -125,7 +135,7 @@ public class SplashScreen extends AppCompatActivity {
                 public void onFailure(Call<ViewregisterUserDetail> call, Throwable t) {
 
                     System.out.println("error"+t.getMessage());
-                    Toast.makeText(getApplicationContext()," no more hopes on log in....",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext()," Getting Error! Something Went Wrong...",Toast.LENGTH_LONG).show();
 
                 }
             });
@@ -135,6 +145,18 @@ public class SplashScreen extends AppCompatActivity {
 
 
         }
+    }
+    public boolean isConnected() {
+        boolean connected = false;
+        try {
+            ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo nInfo = cm.getActiveNetworkInfo();
+            connected = nInfo != null && nInfo.isAvailable() && nInfo.isConnected();
+            return connected;
+        } catch (Exception e) {
+            Log.e("Connectivity Exception", e.getMessage());
+        }
+        return connected;
     }
 
 }

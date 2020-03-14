@@ -212,7 +212,23 @@ public class LeagueOperationsFragment extends Fragment implements View.OnClickLi
         }
 
         if( v == league_operations_schedulematch_btn){
+
             DashboardNavController.navigate(R.id.scheduleMatchFragment,bundle);
+        }
+        if(v==league_operations_playedmatch_btn){
+            System.out.println("forward form opration fragment");
+            bundle.putInt("League_id",league_id);
+            bundle.putString("Coming_from","PlayedMatchInLeague");
+            DashboardNavController.navigate(R.id.leaguePlayedMatchFragment,bundle);
+        }
+        if(v == league_operations_upmatch_btn){
+            bundle.putString("League_name",league_name);
+            bundle.putInt("League_id",league_id);
+            bundle.putString("ComingFrom" ,"LeagueUpcomingMatchFragment");
+
+            System.out.println("forward form opration fragment");
+            bundle.putInt("League_id",league_id);
+            DashboardNavController.navigate(R.id.leagueUpcomingMatchFragment,bundle);
         }
 
     }

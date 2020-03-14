@@ -131,6 +131,7 @@ public class LeaguePlayedMatchFragment extends Fragment implements View.OnClickL
                                             bundle.putString("played_team2logo", played_matches_data_lists.get(position).getTeam2_logo());
                                             bundle.putString("played_match_date", played_matches_data_lists.get(position).getMatch_date());
 
+                                            System.out.println("logo1: "+played_matches_data_lists.get(position).getTeam1_logo());
                                             DashboardNavController.navigate(R.id.matchScoreUpdateFragment, bundle);
                                         }
                                     });

@@ -13,8 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
 import com.example.soccerallianceapp.pojo.matchScore.MatchScoreDisplay;
 import com.example.soccerallianceapp.pojo.matchScore.MatchScores;
@@ -33,6 +36,9 @@ public class MatchScoreaddFragment extends Fragment implements View.OnClickListe
     MatchScores matchscore;
     MatchScores matchScoresteam2;
 
+
+    ImageView team1icon,team2icon;
+    TextView team1,team2,m_date,time;
     int matchid;
     int team1id;
     int team2id;
@@ -76,6 +82,7 @@ public class MatchScoreaddFragment extends Fragment implements View.OnClickListe
                 System.out.println("Match id in Match score update :" + matchid);
                 System.out.println("Team1 id in Match score update :" + team1id);
                 System.out.println("Team 2 id in Match score update :" + team2id);
+
 
 
                 up_team1name = getArguments().getString("up_team1name");
@@ -141,6 +148,22 @@ public class MatchScoreaddFragment extends Fragment implements View.OnClickListe
         getTeam1Score(matchid,team1id);
         getTeam2Score(matchid,team2id);
 
+
+        team1icon = view.findViewById(R.id.team1_logo);
+        team2icon = view.findViewById(R.id.team2_logo);
+        team1 = view.findViewById(R.id.team1);
+        team2 = view.findViewById(R.id.team2);
+        m_date = view.findViewById(R.id.date);
+        //time = view.findViewById(R.id.time);
+
+        team1.setText(up_team1name);
+        team2.setText(up_team2name);
+
+        m_date.setText(up_match_date);
+        System.out.println("team1 image"+up_team1icon+"2     :"+up_team2icon);
+
+        Glide.with(context).load(up_team1icon).fitCenter().into(team1icon);
+        Glide.with(context).load(up_team2icon).fitCenter().into(team2icon);
 
 //        if (getArguments() != null) {
 //            if (getArguments().getString("Coming_from").equals("updateScore")) {
@@ -425,6 +448,7 @@ public class MatchScoreaddFragment extends Fragment implements View.OnClickListe
                 }
             }
     }
+
     }
 
     private void addScore(int matchid,int team1id,int team2id){
@@ -486,6 +510,78 @@ public class MatchScoreaddFragment extends Fragment implements View.OnClickListe
 
     private void updateScore(int matchid,int team1id,int team2id){
 
+        if(team1_goal_edt_txt.getEditableText().toString().trim()!=null &&
+                team2_goal_edt_txt.getEditableText().toString().trim()!=null) {
+            goalteam1 = Integer.parseInt(team1_goal_edt_txt.getEditableText().toString().trim());
+            goal2 = Integer.parseInt(team2_goal_edt_txt.getEditableText().toString().trim());
+        }
+        if(shots_team1_edt_txt.getEditableText().toString().trim() != null &&
+                shots_team2_edt_txt.getEditableText().toString().trim() != null){
+            shots = Integer.parseInt(shots_team1_edt_txt.getEditableText().toString().trim());
+            shots2 = Integer.parseInt(shots_team2_edt_txt.getEditableText().toString().trim());
+        }
+        if(shotsontarget_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                shotsontarget_team2_edt_txt.getEditableText().toString().trim()!=null){
+            shotsontarget = Integer.parseInt(shotsontarget_team1_edt_txt.getEditableText().toString().trim());
+            shotsontarget2 = Integer.parseInt(shotsontarget_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+        if(possession_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                possession_team2_edt_txt.getEditableText().toString().trim()!=null){
+            possession = Integer.parseInt(possession_team1_edt_txt.getEditableText().toString().trim());
+            possession2 = Integer.parseInt(possession_team2_edt_txt.getEditableText().toString().trim());
+        }
+
+        if(fouls_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                fouls_team2_edt_txt.getEditableText().toString().trim()!=null){
+            fouls = Integer.parseInt(fouls_team1_edt_txt.getEditableText().toString().trim());
+            fouls2 = Integer.parseInt(fouls_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+
+        if(corners_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                corners_team2_edt_txt.getEditableText().toString().trim()!=null){
+            corners = Integer.parseInt(corners_team1_edt_txt.getEditableText().toString().trim());
+            corners2 = Integer.parseInt(corners_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+
+        if(yellowcards_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                yellowcards_team2_edt_txt.getEditableText().toString().trim()!=null){
+            yellowcard = Integer.parseInt(yellowcards_team1_edt_txt.getEditableText().toString().trim());
+            yellowcard2 = Integer.parseInt(yellowcards_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+
+        if(redcard_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                redcard_team2_edt_txt.getEditableText().toString().trim()!=null){
+            redcard = Integer.parseInt(redcard_team1_edt_txt.getEditableText().toString().trim());
+            redcard2 = Integer.parseInt(redcard_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+
+        if(offsides_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                offsides_team2_edt_txt.getEditableText().toString().trim()!=null){
+            offsides = Integer.parseInt(offsides_team1_edt_txt.getEditableText().toString().trim());
+            offsides2 = Integer.parseInt(offsides_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+
+        if(passaccuracy_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                passaccuracy_team2_edt_txt.getEditableText().toString().trim()!=null){
+            passaccuracy = Integer.parseInt(passaccuracy_team1_edt_txt.getEditableText().toString().trim());
+            passaccuracy2 = Integer.parseInt(passaccuracy_team2_edt_txt.getEditableText().toString().trim());
+
+        }
+        if(passes_team1_edt_txt.getEditableText().toString().trim()!=null &&
+                passes_team2_edt_txt.getEditableText().toString().trim()!=null){
+
+            passes = Integer.parseInt(passes_team1_edt_txt.getEditableText().toString().trim());
+            passes2 = Integer.parseInt(passes_team2_edt_txt.getEditableText().toString().trim());
+        }
+
+/*
+
         goalteam1 = Integer.parseInt(team1_goal_edt_txt.getEditableText().toString().trim());
         shots = Integer.parseInt(shots_team1_edt_txt.getEditableText().toString().trim());
         shotsontarget = Integer.parseInt(shotsontarget_team1_edt_txt.getEditableText().toString().trim());
@@ -508,6 +604,7 @@ public class MatchScoreaddFragment extends Fragment implements View.OnClickListe
         offsides = Integer.parseInt(offsides_team2_edt_txt.getEditableText().toString().trim());
         passaccuracy = Integer.parseInt(passaccuracy_team2_edt_txt.getEditableText().toString().trim());
         passes = Integer.parseInt(passes_team2_edt_txt.getEditableText().toString().trim());
+*/
 
         service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
 
@@ -534,7 +631,7 @@ public class MatchScoreaddFragment extends Fragment implements View.OnClickListe
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 System.out.println("error" + t.getMessage());
-                Toast.makeText(context, " not working", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, " Something Went Wrong!!!", Toast.LENGTH_LONG).show();
             }
         });
 

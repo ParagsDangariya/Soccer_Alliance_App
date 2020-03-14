@@ -43,6 +43,12 @@
                         android:id="@+id/team1_logo"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
+                        android:maxWidth="80dp"
+                        android:maxHeight="80dp"
+                        android:layout_gravity="left"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
+                        android:layout_centerInParent="true"
                         android:src="@drawable/splash_logo"
                         />
                     <TextView
@@ -78,9 +84,9 @@
                     style="@style/TextInputLayoutStyleVarient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="4dp"
                     app:hintEnabled="false"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@id/firstLinear"
@@ -93,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:hint="0"
                         android:fontFamily="sans-serif-black"
-                        android:textSize="42dp"
+                        android:textSize="30dp"
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:textColorHint="@color/colorPrimaryLight" />
@@ -126,6 +132,7 @@
                         android:text="Date"
                         android:textSize="18dp"
                         />
+                   <!--
                     <TextView
                         android:id="@+id/time"
                         android:layout_width="wrap_content"
@@ -137,6 +144,7 @@
 
                         />
 
+-->
                 </LinearLayout>
 
                 <!--
@@ -160,9 +168,9 @@
                     style="@style/TextInputLayoutStyleVarient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="4dp"
                     app:hintEnabled="false"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@id/secondLinear"
@@ -178,7 +186,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:textColorHint="@color/colorPrimaryLight"
-                        android:textSize="42dp" />
+                        android:textSize="30dp" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -194,6 +202,12 @@
                         android:id="@+id/team2_logo"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
+                        android:maxWidth="80dp"
+                        android:maxHeight="80dp"
+                        android:layout_gravity="right"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
+                        android:layout_centerInParent="true"
                         android:src="@drawable/splash_logo"
                         />
                     <TextView
