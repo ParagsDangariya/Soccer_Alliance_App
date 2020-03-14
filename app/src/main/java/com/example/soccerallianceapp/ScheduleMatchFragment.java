@@ -44,7 +44,7 @@ import retrofit2.Response;
 
 import static android.R.layout.simple_selectable_list_item;
 
-public class ScheduleMatchFragment extends Fragment implements View.OnClickListener, TimePickerDialog.OnTimeSetListener {
+public class ScheduleMatchFragment extends Fragment implements View.OnClickListener {
 
     public NavController DashboardNavController;
     private Context context;
@@ -198,7 +198,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                             Object item = parent.getItemIdAtPosition(position);
                             System.out.println("Team1 id (Selected from Dropdown) : " + item);
                             Log.i("Test Size", String.valueOf(testlist.size()));
-                            checkMe(testlist);
+                            getTeamId(testlist);
                         }
                     });
 
@@ -207,7 +207,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
                         public void onItemClick(AdapterView<?> parent, View view, int p, long id) {
                             team2id = comman_data_List.get(p).getIteam_id();
                             System.out.println("Team2 id SM 2 : " + team2id);
-                            checkMe(testlist);
+                            getTeamId(testlist);
                         }
                     });
                 } else {
@@ -273,7 +273,14 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
 
                     int sm = response.code();
                     System.out.println("code" + sm);
-                    Toast.makeText(context, "Schedule Match Successfully (After if) : " + sm, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Schedule Match Successfully : " + sm, Toast.LENGTH_LONG).show();
+
+                            schedule_match_edt_txt.getText().clear();
+                            schedule_match_team2_edt_txt.getText().clear();
+                            schedule_match_date_edt_txt.getText().clear();
+                            schedule_match_time_layout_edt_txt.getText().clear();
+                            schedule_match_location_layout_edt_txt.getText().clear();
+
                     DashboardNavController.navigate(R.id.leagueOperationsFragment);
 
                 }
@@ -290,18 +297,7 @@ public class ScheduleMatchFragment extends Fragment implements View.OnClickListe
         }
     }
 
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-        java.util.Calendar newTime = java.util.Calendar.getInstance();
-        newTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-        newTime.set(Calendar.MINUTE, minute);
-
-        System.out.println("Ontime set : " + newTime);
-
-        schedule_match_time_layout_edt_txt.setText(timeformatter.format(newTime.getTime()));
-    }
-    public void checkMe(ArrayList<TeamList> testlist1) {
+  public void getTeamId(ArrayList<TeamList> testlist1) {
         team1name = schedule_match_edt_txt.getText().toString();
         team2name = schedule_match_team2_edt_txt.getText().toString();
         for (int x = 0; x < testlist1.size(); x++) {

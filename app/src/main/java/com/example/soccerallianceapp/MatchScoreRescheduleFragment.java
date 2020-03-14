@@ -1,6 +1,8 @@
 package com.example.soccerallianceapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -22,6 +24,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.soccer_alliance_project_test.R;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 
@@ -136,36 +139,58 @@ public class MatchScoreRescheduleFragment extends Fragment implements View.OnCli
             bundlematch.putString("up_match_date",up_match_date);
             DashboardNavController.navigate(R.id.matchScoreaddFragment,bundlematch);
         }
-        if (v == Cancel_match_btn){
-            try {
-                service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
-                Log.d("step1", "after getService part in match cancel");
-                System.out.println("Match id (Cancel match) : "+ up_match_id);
+        if (v == Cancel_match_btn) {
 
-                Call<ResponseBody> call = service.cancelmatch(up_match_id);
-                call.enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        Log.d("step", "In response part in match cancel");
-                        if(!response.isSuccessful()){
-                            int s = response.code();
-                            System.out.println("code"+s);
-                            Toast.makeText(context," error in response..",Toast.LENGTH_LONG).show();
-                        }
-                        Toast.makeText(context," Successfully Match Canceled..",Toast.LENGTH_LONG).show();
-                        int s = response.code();
-                        System.out.println("code"+s);
-                        DashboardNavController.navigate(R.id.leagueOperationsFragment);
+            MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+            materialAlertDialogBuilder.setTitle("Alert Dialog");
+            materialAlertDialogBuilder.setMessage("Are you sure ?");
+
+            materialAlertDialogBuilder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    try {
+                        service = RetroFitInstance.getRetrofitInstance().create(Getdataservice.class);
+                        Log.d("step1", "after getService part in match cancel");
+                        System.out.println("Match id (Cancel match) : " + up_match_id);
+
+                        Call<ResponseBody> call = service.cancelmatch(up_match_id);
+                        call.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                Log.d("step", "In response part in match cancel");
+                                if (!response.isSuccessful()) {
+                                    int s = response.code();
+                                    System.out.println("code" + s);
+                                    Toast.makeText(context, " error in response..", Toast.LENGTH_LONG).show();
+                                }
+                                Toast.makeText(context, " Successfully Match Canceled..", Toast.LENGTH_LONG).show();
+                                int s = response.code();
+                                System.out.println("code" + s);
+                                DashboardNavController.navigate(R.id.leagueOperationsFragment);
+                            }
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                System.out.println("error" + t.getMessage());
+                                Toast.makeText(context, "IN failure....", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        System.out.println("error"+t.getMessage());
-                        Toast.makeText(context,"IN failure....",Toast.LENGTH_LONG).show();
-                    }
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+                }
+            });
+
+            materialAlertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+
+            materialAlertDialogBuilder.show();
+
         }
+
     }
 }
