@@ -40,3 +40,4 @@ Soccer Alliance displays the results the recent matches that has been played. It
 -	Display Standing & Statistics:
 Soccer Alliance also displays the analog result by graph of the team played the match. It also shows the goals, number of fouls made, number of shots on target, pass accuracy, yellow cards, red cards, offside, corners, passes for each team.
 
+
