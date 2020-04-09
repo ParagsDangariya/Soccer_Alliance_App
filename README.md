@@ -20,7 +20,7 @@ Soccer League Management
 
 ### Features of Application
 -	Sign up:
-To be the part of Soccer Alliance, an application must allow its users to register themselves. Sign up takes user’s first-name, last-name, email, password, confirm password, country, phone number. User is verified by One Time Password (OTP) sent on user’s email.
+To be the part of Soccer Alliance, an application must allow its users to register themselves. Sign up takes user’s first-name, last-name, email, password, confirm password, country, phone number. User need to verify their account through Email.
 -	Login:
 Soccer Alliance must have login feature which takes user’s email and password. Login allows user to access all the premium features of the application.
 Soccer Alliance have two users who can logged in, i.e., team manager and league manager who have overall access to the application.
@@ -40,5 +40,10 @@ Soccer Alliance displays the results the recent matches that has been played. It
 -	Display Standing & Statistics:
 Soccer Alliance also displays the analog result by graph of the team played the match. It also shows the goals, number of fouls made, number of shots on target, pass accuracy, yellow cards, red cards, offside, corners, passes for each team.
 
-![image](https://user-images.githubusercontent.com/45040382/78915980-c93bb480-7a5a-11ea-9c9e-d0033f7d2361.png)
+![Splash Screen](https://user-images.githubusercontent.com/45040382/78915980-c93bb480-7a5a-11ea-9c9e-d0033f7d2361.png)
 
+![image](https://user-images.githubusercontent.com/45040382/78916436-77dff500-7a5b-11ea-899c-f1b9f1b2063a.png)
+
+![image](https://user-images.githubusercontent.com/45040382/78916383-61d23480-7a5b-11ea-9b3a-eb2b69304121.png)
+
+![image](https://user-images.githubusercontent.com/45040382/78916545-a231b280-7a5b-11ea-9d63-4655472e874b.png)
